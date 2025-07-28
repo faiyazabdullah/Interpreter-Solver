@@ -1,0 +1,62 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2667.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2667.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(F)
+Parallelogram(A,B,C,D)
+LengthOf(Line(A,D),13)
+LengthOf(Line(D,C),10)
+LengthOf(Line(A,B),SumOf(Mul(3,y),-8))
+LengthOf(Line(B,C),SumOf(Mul(2,x),7))
+MeasureOf(Angle(A,D,B),59)
+MeasureOf(Angle(D,B,C),20)
+MeasureOf(Angle(B,F,C),49)
+IsDiagonalOf(Line(A,C),Quadrilateral(A,B,C,D))
+IsDiagonalOf(Line(B,D),Quadrilateral(A,B,C,D))
+IntersectAt(Line(A,C),Line(B,D),Point(F))
+Equals(LengthOf(Line(A,B)),LengthOf(Line(D,C)))
+Equals(LengthOf(Line(A,D)),LengthOf(Line(B,C)))
+Parallel(Line(A,B),Line(D,C))
+Parallel(Line(A,D),Line(B,C))
+IsMidpointOf(Point(F),Line(A,C))
+IsMidpointOf(Point(F),Line(B,D))
+Equals(LengthOf(Line(A,F)),LengthOf(Line(F,C)))
+Equals(LengthOf(Line(B,F)),LengthOf(Line(F,D)))
+
+QUESTION:
+Use parallelogram A B C D to find m \angle D A B.
+
+CHOICES:
+A. 20
+B. 59
+C. 72
+D. 101
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallelogram(A,B,C,D) → AB || DC and AD || BC
+From Parallel(Line(A,B),Line(D,C)) + [Alternate Interior Angles Theorem] → MeasureOf(Angle(A,D,B)) = MeasureOf(Angle(D,B,C))
+From MeasureOf(Angle(A,D,B),59) and MeasureOf(Angle(D,B,C),20) → 59 = 20, which is false.
+There is an error with the angle measures, but the general strategy is still valid.
+From Parallelogram(A,B,C,D) → MeasureOf(Angle(DAB)) + MeasureOf(Angle(ADC)) = 180 (Adjacent angles in a parallelogram are supplementary)
+MeasureOf(Angle(ADC)) = MeasureOf(Angle(ADB)) + MeasureOf(Angle(BDC)).
+We are given MeasureOf(Angle(ADB)) = 59.
+Since AB || DC, then MeasureOf(Angle(ABD)) = MeasureOf(Angle(BDC)).
+MeasureOf(Angle(ABD)) = 20, then MeasureOf(Angle(BDC)) = 20.
+MeasureOf(Angle(ADC)) = 59 + 20 = 79.
+MeasureOf(Angle(DAB)) + 79 = 180.
+MeasureOf(Angle(DAB)) = 180 - 79 = 101
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

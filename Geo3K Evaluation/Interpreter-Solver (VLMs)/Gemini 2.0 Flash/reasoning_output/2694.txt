@@ -1,0 +1,79 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2694.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2694.txt
+
+PREDICATES CONTENT:
+Point(M)
+Point(N)
+Point(P)
+Point(R)
+Point(Q)
+Line(M,N)
+Line(N,P)
+Line(P,R)
+Line(R,M)
+Line(M,Q)
+Line(Q,P)
+Line(N,Q)
+Line(Q,R)
+Parallelogram(M,N,P,R)
+MeasureOf(Angle(M,R,P),38)
+MeasureOf(Angle(R,N,P),33)
+MeasureOf(Angle(M,Q,N),83)
+LengthOf(M,R,17.9)
+LengthOf(R,P,20)
+LengthOf(N,P,15.4)
+LengthOf(M,N,Add(Mul(3,x),-4))
+LengthOf(N,P,Add(Mul(2,y),5))
+LengthOf(M,Q,Add(Mul(4,w),-3))
+LengthOf(Q,N,11.1)
+LengthOf(Q,R,Add(Mul(3,z),-3))
+Equals(LengthOf(M,N),LengthOf(R,P))
+Equals(LengthOf(M,R),LengthOf(N,P))
+IsDiagonalOf(Line(M,P),Parallelogram(M,N,P,R))
+IsDiagonalOf(Line(N,R),Parallelogram(M,N,P,R))
+IntersectAt(Line(M,P),Line(N,R),Line(M,Q),Point(Q))
+IntersectAt(Line(M,P),Line(N,R),Line(N,Q),Point(Q))
+IntersectAt(Line(M,P),Line(N,R),Line(Q,P),Point(Q))
+IntersectAt(Line(M,P),Line(N,R),Line(Q,R),Point(Q))
+Equals(LengthOf(M,Q),LengthOf(Q,P))
+Equals(LengthOf(N,Q),LengthOf(Q,R))
+MeasureOf(Angle(M,Q,N),MeasureOf(Angle(R,Q,P)))
+Parallel(Line(M,N),Line(R,P))
+Parallel(Line(M,R),Line(N,P))
+
+QUESTION:
+Use parallelogram M N P R to find m \angle M N P.
+
+CHOICES:
+A. 33
+B. 38
+C. 71
+D. 109
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallelogram(M,N,P,R) + "Opposite angles of a parallelogram are equal" → MeasureOf(Angle(M,R,P)) + MeasureOf(Angle(M,N,P)) = 180
+From MeasureOf(Angle(M,R,P),38) + MeasureOf(Angle(M,N,P)) = 180 → 38 + MeasureOf(Angle(M,N,P)) = 180
+From 38 + MeasureOf(Angle(M,N,P)) = 180 → MeasureOf(Angle(M,N,P)) = 180 - 38
+From MeasureOf(Angle(M,N,P)) = 180 - 38 → MeasureOf(Angle(M,N,P)) = 142.
+The question asks to find m \angle M N P. m \angle M N P = 142. However, the possible answers are 33, 38, 71, 109.
+From Parallelogram(M,N,P,R) + "Adjacent angles in a parallelogram are supplementary" → MeasureOf(Angle(R,M,N)) + MeasureOf(Angle(M,N,P)) = 180
+From Parallel(Line(M,N),Line(R,P)) → Angle(M,N,R) = Angle(N,R,P) = 38 (Alternate Interior Angles)
+Angle MNP = Angle MNR + Angle RNP
+Angle MNR = 38
+We need to find Angle RNP.
+The sum of the angles in triangle RNP is 180.
+Angle NRP = 38 degrees. Angle RNP + Angle NPR + Angle PRN = 180
+Given: Angle RNP = 33
+So we can conclude Angle RNP = 33.
+MeasureOf(Angle(M,N,P)) = MeasureOf(Angle(M,N,R)) + MeasureOf(Angle(R,N,P)) = 38 + 33 = 71
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

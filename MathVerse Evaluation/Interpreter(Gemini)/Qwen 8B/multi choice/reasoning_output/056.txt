@@ -1,0 +1,178 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Point(C)
+Point(D)
+Point(E)
+Point(F)
+Point(G)
+Point(O)
+Line(C,D)
+Line(E,F)
+Line(O,C)
+Line(O,F)
+Line(O,E)
+Circle(O)
+IsDiameterOf(Line(C,D),Circle(O))
+IsChordOf(Line(E,F),Circle(O))
+IsRadiusOf(Line(O,C),Circle(O))
+IsRadiusOf(Line(O,F),Circle(O))
+IsRadiusOf(Line(O,E),Circle(O))
+PointLiesOnCircle(C,Circle(O))
+PointLiesOnCircle(D,Circle(O))
+PointLiesOnCircle(E,Circle(O))
+PointLiesOnCircle(F,Circle(O))
+PointLiesOnLine(O,Line(C,D))
+PointLiesOnLine(G,Line(C,D))
+PointLiesOnLine(G,Line(E,F))
+IsMidpointOf(G,Line(E,F))
+Equals(LengthOf(O,E),LengthOf(O,F))
+Equals(LengthOf(O,E),LengthOf(O,C))
+Equals(LengthOf(O,E),LengthOf(O,D))
+Perpendicular(Line(C,D),Line(E,F))
+IntersectAt(Line(C,D),Line(E,F),Point(G))
+MeasureOf(Angle(D,C,F),20.0)
+RightAngle(Angle(C,G,F))
+RightAngle(Angle(D,G,E))
+
+QUESTION:
+As shown in the figure, the diameter CD of circle O crosses the midpoint G of chord EF, angle DCF = 20.0, then angle EOD is equal to ()
+
+CHOICES:
+A:10°
+B:20°
+C:40°
+D:80°
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's tackle this geometry problem. First, I need to parse all the given predicates and visualize the diagram based on them. Let me start by listing out all the information provided.
+
+We have points C, D, E, F, G, O. Lines CD, EF, OC, OF, OE. There's a circle centered at O. CD is a diameter of the circle, so that means O is the center because it's the midpoint of CD. Also, EF is a chord of the circle since it lies on the circle. The lines OE, OF, and OC are radii, which makes sense because they all connect to the center O. Points E and F lie on the circle, so EF is a chord. 
+
+Now, there's a point G where the diameter CD intersects the midpoint of chord EF. So, G is the midpoint of EF and also lies on CD. Additionally, we know that angle DCF is 20 degrees. The question asks for the measure of angle EOD. 
+
+Let me recall some circle theorems. Since CD is a diameter, and EF is a chord intersected by CD at its midpoint G, there might be some properties about perpendicular bisectors here. Wait, if a diameter intersects a chord at its midpoint, then the diameter is perpendicular to the chord. But wait, the problem says that CD is a diameter and EF is a chord, and they intersect at G, which is the midpoint of EF. Therefore, according to the perpendicular bisector theorem, the diameter CD should be perpendicular to the chord EF. However, another predicate says that lines CD and EF are perpendicular. Wait, yes! The predicate states that Perpendicular(Line(C,D),Line(E,F)), so that confirms they are perpendicular. That makes sense because if a diameter passes through the midpoint of a chord, it must be perpendicular to it.
+
+So, since CD is perpendicular to EF at point G, which is the midpoint of EF. Now, looking at the angles given. Angle DCF is 20 degrees. Let me try to find angle EOD. Point O is the center, so angle EOD is a central angle subtended by arc ED. To find its measure, maybe we can relate it to other angles in the diagram.
+
+First, let's note that OC, OE, and OF are all radii of the circle, so their lengths are equal. From the predicates, Equals(LengthOf(O,E), LengthOf(O,F)) and Equals(LengthOf(O,E), LengthOf(O,C)), so all those segments are equal, confirming they're radii.
+
+Since CD is a diameter, CO and OD are radii, each half the length of CD. So, the entire length of CD is twice the radius. 
+
+Now, considering triangle DCF. We know angle DCF is 20 degrees. Let me think about how this relates to other parts. Point F is on the circle, so CF is a chord from C to F. But since CD is a diameter, point D is directly opposite C on the circle. Wait, but where is point F located? Since EF is a chord, and G is the midpoint of EF, which lies on CD. So, EF is horizontal (assuming CD is vertical) and CD is perpendicular to EF. 
+
+Maybe drawing a diagram would help, but since I can't draw, I'll imagine it. Let me consider coordinates. Let me assign coordinates to make it easier. Let’s place point O at the origin (0,0). Since CD is a diameter, let me set points C and D along the x-axis. Suppose C is (-r, 0) and D is (r, 0), making CD the x-axis. Then, since EF is perpendicular to CD at G, which is the midpoint of EF. Since CD is horizontal, EF must be vertical. The intersection point G is on CD, so let's say G has coordinates (g, 0). Since G is the midpoint of EF, and EF is vertical, points E and F must be symmetric around G. Let me denote E as (g, k) and F as (g, -k) for some k. But since E and F lie on the circle centered at O, their distances from O must be equal to the radius r. 
+
+So for point E (g, k): g² + k² = r². Similarly for F (g, -k): same equation. Also, since CD is the diameter, the length from O to C is r, which is consistent. 
+
+But angle DCF is 20 degrees. Let me find coordinates for point F. Wait, point C is (-r, 0), point D is (r, 0), point F is (g, -k). So angle DCF is the angle at point C between points D, C, F. So vectors CD and CF. Vector CD is from C to D: (2r, 0). Vector CF is from C to F: (g - (-r), -k - 0) = (g + r, -k). The angle between these two vectors is 20 degrees. 
+
+Using the dot product formula: cos(theta) = (CD · CF) / (|CD| |CF|).
+
+Compute CD · CF: (2r)(g + r) + (0)(-k) = 2r(g + r)
+
+|CD| is sqrt((2r)^2 + 0^2) = 2r
+
+|CF| is sqrt( (g + r)^2 + (-k)^2 ) = sqrt( (g + r)^2 + k^2 )
+
+Therefore, cos(theta) = [2r(g + r)] / [2r * sqrt( (g + r)^2 + k^2 ) ] = (g + r)/sqrt( (g + r)^2 + k^2 )
+
+This equals cos(20°). 
+
+But we also know that point F lies on the circle, so from earlier, g² + k² = r². So k² = r² - g². Let me substitute that into the denominator:
+
+sqrt( (g + r)^2 + r² - g² ) = sqrt( g² + 2gr + r² + r² - g² ) = sqrt( 2gr + 2r² ) = sqrt( 2r(r + g) )
+
+Thus, the expression becomes:
+
+(g + r)/sqrt(2r(r + g)) ) = sqrt( (g + r)/(2r) )
+
+Wait, because (g + r)/sqrt(2r(r + g)) ) = sqrt( (g + r)^2 / (2r(r + g)) )) = sqrt( (g + r)/(2r) ). 
+
+So cos(theta) = sqrt( (g + r)/(2r) ) = cos(20°). Therefore,
+
+sqrt( (g + r)/(2r) ) = cos(20°)
+
+Square both sides:
+
+( g + r )/(2r) = cos²(20°)
+
+Multiply both sides by 2r:
+
+g + r = 2r cos²(20°)
+
+Then:
+
+g = 2r cos²(20°) - r = r(2cos²(20°) - 1 )
+
+Hmm, 2cos²θ - 1 is equal to cos(2θ), so substituting θ=20°, we get:
+
+g = r * cos(40°)
+
+So the x-coordinate of point G is r*cos(40°). 
+
+But since G lies on CD, which is the x-axis from (-r, 0) to (r, 0), so the coordinate of G is (g, 0) where g = r*cos(40°). 
+
+Alternatively, since G is the midpoint of EF, which is vertical line through (g, 0). So E is (g, k) and F is (g, -k), with k² = r² - g². 
+
+Now, we need to find angle EOD. Points E and D are on the circle. O is the origin. So angle EOD is the central angle between points E and D. 
+
+To compute angle EOD, we can use coordinates. Let me find the coordinates of E and D. 
+
+Point D is (r, 0). Point E is (g, k) = ( r cos(40°), sqrt(r² - g²) ). Wait, since g = r cos(40°), then g² = r² cos²(40°), so k² = r² - r² cos²(40°) = r² sin²(40°), so k = r sin(40°). Thus, point E is ( r cos(40°), r sin(40°) ). 
+
+So coordinates of E are (r cos(40°), r sin(40°)), and D is (r, 0). 
+
+Vector OE is from O to E: (r cos(40°), r sin(40°)). Vector OD is from O to D: (r, 0). 
+
+The angle between vectors OE and OD is angle EOD. Let's compute this angle using the dot product. 
+
+Dot product of OE and OD is (r cos(40°))(r) + (r sin(40°))(0) = r² cos(40°). 
+
+The magnitude of OE is sqrt( (r cos(40°))^2 + (r sin(40°))^2 ) = r sqrt(cos²θ + sin²θ) = r. 
+
+Magnitude of OD is r. 
+
+So cos(angle EOD) = (dot product)/( |OE| |OD| ) = [ r² cos(40°) ] / ( r * r ) = cos(40°). 
+
+Therefore, angle EOD is arccos( cos(40°) ), which is 40 degrees. 
+
+Wait, that seems straightforward. So angle EOD is 40 degrees. Looking back at the options, choice C is 40°, so the answer is C. 
+
+But let me verify again. Because angle DCF was given as 20°, and through that calculation, we found that angle EOD is 40°, which is double. This suggests that angle EOD is twice angle DCF, which aligns with the inscribed angle theorem. Wait, angle DCF is an inscribed angle, and angle EOD is a central angle subtending the same arc. 
+
+Wait, let me check that. In circle theorems, the central angle is twice the inscribed angle subtending the same arc. 
+
+In this case, angle DCF is an inscribed angle. Let me see which arc it subtends. Point C is on the circle, angle DCF is formed by points D, C, F. So vertex at C, with segments CD and CF. The arc subtended by angle DCF is arc DF. 
+
+However, the central angle subtending arc DF would be angle DOF. Wait, but angle EOD is different. Hmm. Maybe I need to re-examine which arcs are involved. 
+
+Alternatively, perhaps angle EOD is related to arc ED. Let me think. Since angle EOD is the central angle over arc ED, then the inscribed angle subtending arc ED would be half of that. 
+
+But how does angle DCF relate to arc ED? Let me try to trace. 
+
+Point C is connected to D and F. So angle DCF is at point C, so the inscribed angle subtended by arc DF. So the measure of angle DCF is half the measure of arc DF. Therefore, arc DF measures 40°, since angle DCF is 20°. 
+
+Now, since CD is a diameter, arc DC is 180°, as it's a semicircle. Arc DF is part of that. So if arc DF is 40°, then arc DE would depend on the position of E. Wait, but where is point E?
+
+Earlier, we found that point E is located such that its coordinates correspond to an angle of 40° from the x-axis (since we had E at (r cos(40°), r sin(40°))). So, if we consider the central angle from E to D, that would be the angle between OE and OD. Since E is at 40° above the x-axis (if we take standard position), and D is at (r, 0), which is along the positive x-axis. Therefore, the angle between OE and OD is indeed 40°, which is angle EOD. 
+
+Therefore, angle EOD is 40°, which corresponds to option C. 
+
+Another way to look at it: Since EF is perpendicular to CD at G, and G is the midpoint of EF, then OG is the perpendicular bisector of EF, so EG = GF. Also, since CD is a diameter, and EF is a chord, the distance from the center O to EF is OG. Wait, but in our coordinate system, O is at (0,0), and G is at (g, 0) = (r cos(40°), 0). So the distance from O to EF is OG, which is |g|. Wait, but EF is vertical line at x = g. The distance from O to EF is |g|. 
+
+But since EF is a chord, the length of EF can be computed. For example, since E is (g, k) and F is (g, -k), the length EF is 2k. And since k² = r² - g², so EF length is 2√(r² - g²). 
+
+But maybe there's another approach. Since angle EOD is 40°, which we've reasoned through coordinates and dot product. Given that angle DCF is 20°, which leads us to angle EOD being 40°, the answer is C.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

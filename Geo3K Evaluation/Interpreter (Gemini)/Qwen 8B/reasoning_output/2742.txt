@@ -1,0 +1,582 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(B,C)
+Line(A,C)
+Line(B,D)
+PointLiesOnLine(D,Line(A,C))
+Triangle(A,B,C)
+Triangle(A,D,B)
+Triangle(B,D,C)
+RightAngle(Angle(A,B,C))
+RightAngle(Angle(A,D,B))
+RightAngle(Angle(B,D,C))
+Perpendicular(Line(B,D),Line(A,C))
+Equals(LengthOf(Line(A,D)),8.8)
+Equals(LengthOf(Line(B,C)),8.5)
+Equals(LengthOf(Line(C,D)),x)
+Equals(LengthOf(Line(B,D)),y)
+Equals(LengthOf(Line(A,B)),z)
+Similar(Triangle(A,D,B),Triangle(B,D,C))
+IsAltitudeOf(Line(B,D),Triangle(A,B,C))
+IsHypotenuseOf(Line(A,C),Triangle(A,B,C))
+Right(Triangle(A,B,C))
+Right(Triangle(A,D,B))
+Right(Triangle(B,D,C))
+
+QUESTION:
+Find y.
+
+CHOICES:
+A. 4.88
+B. 5.96
+C. 6.75
+D. 8.42
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's try to tackle this problem step by step. First, I need to parse all the given information and figure out how the different elements relate to each other. Let me start by listing out all the constraints provided.
+
+We have points A, B, C, D. There are several lines connecting them: Line(A,B), Line(B,C), Line(A,C), Line(B,D). Also, Point D lies on Line(A,C). So that means D is somewhere along the line AC. 
+
+Triangles mentioned are Triangle(A,B,C), Triangle(A,D,B), and Triangle(B,D,C). Additionally, there are right angles at Angle(A,B,C), Angle(A,D,B), and Angle(B,D,C). Also, Line(B,D) is perpendicular to Line(A,C). So BD is perpendicular to AC. 
+
+Moreover, some lengths are given: Length of AD is 8.8 units, BC is 8.5 units, CD is x (unknown), BD is y (what we need to find), AB is z (also unknown). Also, triangles ADB and BDC are similar. Also, BD is an altitude of triangle ABC, meaning it drops perpendicularly from B to AC, which makes sense since BD is already perpendicular to AC. Also, AC is the hypotenuse of triangle ABC, so triangle ABC is right-angled at B, because the hypotenuse is AC and angle at B is right. Wait, but the right angle is at B for triangle ABC? Wait, the first constraint says RightAngle(Angle(A,B,C)), which is angle at B between A and C. So triangle ABC is right-angled at B. Similarly, Triangle ADB has a right angle at D? Because RightAngle(Angle(A,D,B)) – that would mean the right angle is at D for triangle ADB. And Triangle BDC has a right angle at D as well? Wait, the third right angle is Angle(B,D,C), which would be angle at D between B and C. So triangle BDC is right-angled at D. 
+
+So putting this together:
+
+- Triangle ABC is right-angled at B. Therefore, AB and BC are legs, and AC is hypotenuse. Given that BC = 8.5, and AB = z. Then AC can be computed via Pythagoras: AC² = AB² + BC². But maybe we'll get more info later.
+
+Also, point D lies on AC. Since BD is perpendicular to AC, BD is the altitude from B to AC in triangle ABC. So BD is the height of triangle ABC. Also, triangles ADB and BDC are similar. Wait, the similarity is between Triangle(A,D,B) and Triangle(B,D,C). So Triangle ADB ~ Triangle BDC. Let me note that down.
+
+Let me recall that when two triangles are similar, their corresponding sides are proportional. Also, since they are both right-angled triangles, maybe we can use ratios based on their sides.
+
+First, let's consider triangle ABC. It's right-angled at B. So coordinates might help here. Maybe assigning coordinates to the points could make things clearer. Let me try coordinate geometry.
+
+Let me place point B at the origin (0,0) since it's the right angle. Then, since ABC is right-angled at B, let me set up coordinates such that AB is along the x-axis and BC is along the y-axis. Wait, but then AC would be the hypotenuse. Alternatively, perhaps assign coordinates accordingly.
+
+But also, since D lies on AC, and BD is perpendicular to AC. Also, BD is the altitude from B to AC. In a right-angled triangle, the altitude from the right angle to hypotenuse has known relations. Wait, but in triangle ABC, which is right-angled at B, the altitude from B to AC is BD. However, in a right-angled triangle, the length of the altitude to hypotenuse is equal to (product of legs)/hypotenuse. So BD = (AB * BC)/AC. 
+
+Wait, but BD is also part of triangles ADB and BDC, which are similar. Let me check that. If Triangle ADB ~ Triangle BDC, then their corresponding sides are proportional. Let me think about the correspondence. The notation Triangle(A,D,B) ~ Triangle(B,D,C). So vertex A corresponds to B, D corresponds to D, and B corresponds to C. Wait, that seems confusing. Or maybe the order matters. For similar triangles, the order of vertices indicates the correspondence. So Triangle ADB ~ Triangle BDC implies that angle at A corresponds to angle at B, angle at D corresponds to angle at D, and angle at B corresponds to angle at C. Wait, but angle at D in Triangle ADB is the right angle (since Triangle ADB is right-angled at D, as per the given RightAngle(Angle(A,D,B))). Similarly, Triangle BDC is right-angled at D. So both triangles ADB and BDC are right-angled at D. So their right angles correspond. Therefore, the correspondence would be: Triangle ADB ~ Triangle BDC with right angles at D. Therefore, the correspondence is:
+
+Angle at A (of ADB) corresponds to angle at B (of BDC)
+
+Angle at D (right angle) corresponds to angle at D (right angle)
+
+Angle at B (of ADB) corresponds to angle at C (of BDC)
+
+Therefore, the sides opposite these angles should be in proportion. 
+
+In Triangle ADB: sides are AD, DB, AB. With right angle at D. So the legs are AD and DB, hypotenuse AB.
+
+Wait no, wait: Triangle ADB is right-angled at D. So the sides adjacent to the right angle are AD and DB, and the hypotenuse is AB. Similarly, Triangle BDC is right-angled at D, so its legs are BD and DC, and hypotenuse BC. 
+
+Since they are similar, the ratio of corresponding sides should be equal. So:
+
+AD / BD = BD / DC (since AD corresponds to BD, and BD corresponds to DC?)
+
+Wait, let me think again. If Triangle ADB ~ Triangle BDC, then:
+
+The sides opposite the angles:
+
+In Triangle ADB, angle at A corresponds to angle at B in Triangle BDC. So side opposite angle A in ADB is DB. In Triangle BDC, angle at B corresponds to angle at A, so the side opposite angle B in BDC is DC. Therefore, the ratio would be DB / DC = AB / BC?
+
+Alternatively, maybe it's better to write the proportions based on the order of similarity.
+
+If Triangle ADB ~ Triangle BDC, then:
+
+Side AD corresponds to side BD,
+
+Side DB corresponds to side DC,
+
+Side AB corresponds to side BC.
+
+Wait, maybe I need to look at the order of vertices. So Triangle ADB ~ Triangle BDC. So:
+
+Vertex A corresponds to Vertex B,
+
+Vertex D corresponds to Vertex D,
+
+Vertex B corresponds to Vertex C.
+
+So, the sides:
+
+In Triangle ADB: side AD is between A and D; side DB is between D and B; side AB is between A and B.
+
+In Triangle BDC: side BD is between B and D; side DC is between D and C; side BC is between B and C.
+
+Therefore, the correspondence is:
+
+AD corresponds to BD,
+
+DB corresponds to DC,
+
+AB corresponds to BC.
+
+Thus, the ratio of similarity is AD/BD = DB/DC = AB/BC.
+
+So from this, we can write:
+
+AD / BD = BD / DC → cross multiplying gives BD² = AD × DC.
+
+Additionally, AB / BC = AD / BD.
+
+But also, since BD is the altitude to hypotenuse AC in triangle ABC, we know that BD = (AB × BC)/AC.
+
+Moreover, in triangle ABC, AC is the hypotenuse, so AC = sqrt(AB² + BC²).
+
+Let me denote AB as z, BC as 8.5 (given), so AC = sqrt(z² + 8.5²). Also, BD is the altitude, so BD = (z * 8.5)/sqrt(z² + 8.5²).
+
+But also, from the similarity, we have BD² = AD × DC. Also, since D lies on AC, AD + DC = AC. Let me denote AD as 8.8 (given), DC as x. Therefore, AC = 8.8 + x. Also, BD² = 8.8 * x.
+
+So combining these equations:
+
+From BD² = 8.8x,
+
+and BD = (z * 8.5)/sqrt(z² + 8.5²),
+
+so squaring BD gives BD² = (z² * 8.5²)/(z² + 8.5²) = 8.8x.
+
+But also, from triangle ABC, AC = sqrt(z² + 8.5²) = 8.8 + x.
+
+So substituting AC into BD expression:
+
+BD² = (z² * 8.5²) / ( (8.8 + x)^2 )
+
+But BD² is also 8.8x. So:
+
+8.8x = (z² * 8.5²) / ( (8.8 + x)^2 )
+
+Hmm, but we have another relation from the similarity. Also, from the similarity ratio AB / BC = AD / BD. Which is z / 8.5 = 8.8 / BD. Therefore, BD = (8.5 * 8.8)/z. 
+
+So BD = (8.5 * 8.8)/z. 
+
+But BD² = 8.8x. So:
+
+[(8.5 * 8.8)/z]^2 = 8.8x.
+
+Which simplifies to:
+
+(8.5^2 * 8.8^2 ) / z² = 8.8x → divide both sides by 8.8:
+
+(8.5² * 8.8)/z² = x.
+
+So x = (8.5² * 8.8)/z².
+
+But also, from earlier, AC = 8.8 + x = sqrt(z² + 8.5²).
+
+So substituting x:
+
+8.8 + (8.5² * 8.8)/z² = sqrt(z² + 8.5²).
+
+This equation relates z and x. However, we don't know z yet. Hmm. How do we proceed?
+
+Alternatively, maybe we can find another relationship. Let's see. From the similarity ratio AB / BC = AD / BD. We had BD = (8.5 * 8.8)/z. Also, BD² = 8.8x. So BD² = (8.5² * 8.8²)/z² = 8.8x ⇒ x = (8.5² * 8.8)/z². 
+
+But also, AC = 8.8 + x. And AC is also sqrt(z² + 8.5²). Therefore:
+
+sqrt(z² + 8.5²) = 8.8 + (8.5² * 8.8)/z².
+
+This seems complicated, but maybe we can square both sides to eliminate the square root. Let me denote s = z² for simplicity. Then:
+
+sqrt(s + 8.5²) = 8.8 + (8.5² * 8.8)/s.
+
+Square both sides:
+
+s + 8.5² = [8.8 + (8.5² * 8.8)/s]^2.
+
+Expanding the right-hand side:
+
+= 8.8² + 2*8.8*(8.5² * 8.8)/s + (8.5² * 8.8)^2 / s².
+
+This looks messy. Maybe there's another way. Let me think if there's another approach using the fact that in triangle ABC, the altitude BD divides AC into segments AD and DC, and we have AD = 8.8, DC = x, and BD = y (which is our target). Also, in a right-angled triangle, the altitude to hypotenuse satisfies AD * DC = BD². Wait, yes! That's a standard property. In a right triangle, the altitude to the hypotenuse squared equals the product of the segments into which it divides the hypotenuse. So BD² = AD * DC. Therefore, y² = 8.8 * x. So that gives us y² = 8.8x. So if we can find x, then we can compute y. But how?
+
+But we also know that AC = AD + DC = 8.8 + x. Also, in triangle ABC, AC is the hypotenuse, so AC² = AB² + BC². Let me call AB as z, BC as 8.5. Then AC² = z² + 8.5². But AC is also 8.8 + x. Therefore:
+
+(8.8 + x)^2 = z² + 8.5².
+
+But we also have from the similarity of triangles ADB and BDC. Earlier, we derived that AB / BC = AD / BD. So z / 8.5 = 8.8 / y. Hence, z = (8.5 * 8.8)/y.
+
+Substituting z into the previous equation:
+
+(8.8 + x)^2 = [(8.5 * 8.8)/y]^2 + 8.5².
+
+But we also have y² = 8.8x. So x = y² / 8.8. Substitute that into the above equation:
+
+Left side: (8.8 + y² / 8.8)^2.
+
+Right side: (8.5² * 8.8²)/y² + 8.5².
+
+Let me compute left side:
+
+Let me expand (a + b)^2 where a = 8.8 and b = y² / 8.8.
+
+= a² + 2ab + b² = (8.8)^2 + 2 * 8.8 * (y² / 8.8) + (y^4)/(8.8^2)
+
+Simplify:
+
+= 8.8² + 2y² + y^4/(8.8²)
+
+Now, right side:
+
+= (8.5² * 8.8²)/y² + 8.5²
+
+Factor out 8.5²:
+
+= 8.5² [ (8.8²)/y² + 1 ]
+
+So equating left and right:
+
+8.8² + 2y² + y^4/(8.8²) = 8.5² [ (8.8²)/y² + 1 ]
+
+This equation seems complex, but maybe we can multiply through by y² to eliminate denominators. Let me try that.
+
+Multiply both sides by y²:
+
+Left side becomes:
+
+[8.8² + 2y² + y^4/(8.8²)] * y² = 8.8² y² + 2y^4 + y^6 / (8.8²)
+
+Right side becomes:
+
+8.5² [ (8.8²)/y² + 1 ] * y² = 8.5² (8.8² + y²)
+
+So:
+
+8.8² y² + 2y^4 + y^6 / (8.8²) = 8.5² (8.8² + y²)
+
+This still looks very complicated. Perhaps there's a substitution or another relation we can exploit. Let me recall that from the altitude formula in a right triangle, BD = (AB * BC)/AC. Which we can write as y = (z * 8.5)/AC. Also, since AC = 8.8 + x, and x = y² / 8.8, so AC = 8.8 + y² / 8.8. Thus, AC = (8.8² + y²)/8.8.
+
+Therefore, substituting back into y = (z * 8.5)/AC:
+
+y = (z * 8.5) / [ (8.8² + y²)/8.8 ] = (z * 8.5 * 8.8) / (8.8² + y² )
+
+But earlier, we also had z = (8.5 * 8.8)/y. Substituting that into this equation:
+
+y = [ ( (8.5 * 8.8)/y ) * 8.5 * 8.8 ] / (8.8² + y² )
+
+Simplify numerator:
+
+(8.5 * 8.8 * 8.5 * 8.8 ) / y 
+
+Denominator: 8.8² + y² 
+
+So:
+
+y = [ (8.5² * 8.8² ) / y ] / (8.8² + y² )
+
+Multiply both sides by denominator:
+
+y * (8.8² + y² ) = (8.5² * 8.8² ) / y 
+
+Multiply both sides by y:
+
+y² (8.8² + y² ) = 8.5² * 8.8² 
+
+Expand left side:
+
+y² * 8.8² + y^4 = 8.5² * 8.8² 
+
+Rearranged:
+
+y^4 + y² * 8.8² - 8.5² * 8.8² = 0 
+
+This is a quadratic in terms of y². Let me set u = y². Then:
+
+u² + u * 8.8² - 8.5² * 8.8² = 0 
+
+So solving for u:
+
+u = [ -8.8² ± sqrt( (8.8²)^2 + 4 * 1 * 8.5² * 8.8² ) ] / 2 
+
+But since u must be positive, take the positive root:
+
+u = [ -8.8² + sqrt( (8.8^4) + 4 * 8.5² * 8.8² ) ] / 2 
+
+Factor inside sqrt:
+
+sqrt( 8.8² (8.8² + 4 * 8.5² )) 
+
+So:
+
+u = [ -8.8² + 8.8 * sqrt(8.8² + 4 * 8.5² ) ] / 2 
+
+Let me compute this value numerically.
+
+First calculate 8.8²:
+
+8.8² = 77.44
+
+Calculate 4 * 8.5²: 8.5² = 72.25, so 4 * 72.25 = 289
+
+Then, 8.8² + 4 * 8.5² = 77.44 + 289 = 366.44
+
+Take sqrt(366.44): sqrt(366.44) ≈ 19.14 (since 19²=361, 19.1²=364.81, 19.14²≈(19.1+0.04)^2 ≈ 19.1² + 2*19.1*0.04 + 0.04² ≈ 364.81 + 1.528 + 0.0016 ≈ 366.3396. Close enough.)
+
+So sqrt(366.44) ≈ 19.14 approximately.
+
+Then:
+
+Numerator: -77.44 + 8.8 * 19.14 ≈ ?
+
+Compute 8.8 * 19.14:
+
+Well, 8 * 19.14 = 153.12, 0.8 * 19.14 = 15.312. Total ≈ 153.12 + 15.312 = 168.432
+
+Then subtract 77.44: 168.432 - 77.44 = 90.992
+
+Divide by 2: 90.992 / 2 = 45.496
+
+So u ≈ 45.496
+
+Recall u = y², so y = sqrt(u) ≈ sqrt(45.496). Let me compute sqrt(45.496):
+
+Since 6.7² = 44.89, 6.8² = 46.24. 45.496 is between those. Let's approximate:
+
+Difference between 45.496 and 44.89 is 0.606. Between 6.7 and 6.8, the total difference is 46.24 - 44.89 = 1.35. So fraction is 0.606 / 1.35 ≈ 0.45. So approx 6.7 + 0.45*(0.1) = 6.7 + 0.045 = 6.745. So y ≈ 6.745. Looking at the answer choices, option C is 6.75. That seems very close. So likely the correct answer is C.
+
+But let me verify my calculation steps again to ensure there were no errors. Especially in calculating sqrt(366.44). Let me double-check that.
+
+Original term under sqrt was 8.8² + 4 * 8.5² = 77.44 + 4*72.25 = 77.44 + 289 = 366.44. Correct.
+
+sqrt(366.44): Let me compute more accurately. 19.14^2 = ?
+
+As before, 19.1^2 = 364.81
+
+19.14^2 = (19.1 + 0.04)^2 = 19.1² + 2*19.1*0.04 + 0.04² = 364.81 + 1.528 + 0.0016 = 366.3396. Which is slightly less than 366.44. The difference is 366.44 - 366.3396 = 0.1004. To find a better approximation:
+
+Let’s assume that sqrt(366.44) ≈ 19.14 + delta.
+
+Let’s let x = 19.14, x² = 366.3396. Need to find delta such that (x + delta)^2 = 366.44.
+
+Approximate delta ≈ (366.44 - x²)/(2x) = 0.1004 / (2*19.14) ≈ 0.1004 / 38.28 ≈ 0.00262. So sqrt ≈ 19.14 + 0.00262 ≈ 19.1426. So more precisely, sqrt ≈ 19.1426.
+
+Then 8.8 * 19.1426 ≈ ?
+
+Compute 8 * 19.1426 = 153.1408
+
+0.8 * 19.1426 = 15.31408
+
+Total ≈ 153.1408 + 15.31408 ≈ 168.45488
+
+Then subtract 77.44: 168.45488 - 77.44 = 91.01488
+
+Divide by 2: 45.50744
+
+So u ≈ 45.50744
+
+Then y = sqrt(45.50744). Let me compute this more precisely.
+
+We know that 6.7^2 = 44.89, 6.75^2 = 45.5625. Our value is 45.50744, which is just slightly less than 45.5625. So sqrt(45.50744) ≈ 6.75 - ε.
+
+Let me compute 6.75^2 = 45.5625. Difference between 45.5625 and 45.50744 is 0.05506. Assuming linear approximation, derivative of x² is 2x. At x=6.75, dx ≈ Δy/(2x) = 0.05506/(2*6.75) ≈ 0.05506 / 13.5 ≈ 0.00408. So sqrt ≈ 6.75 - 0.00408 ≈ 6.7459. So approximately 6.746. Which is very close to option C: 6.75. Considering possible rounding during intermediate steps, this suggests the answer is C.
+
+Alternatively, maybe there's a simpler way without going through all that algebra. Let me think again.
+
+Earlier, we had BD² = AD * DC => y² = 8.8 * x. Also, AC = 8.8 + x. Also, in triangle ABC, AC² = AB² + BC². Also, BD = (AB * BC)/AC. Which gives y = (AB * BC)/AC. 
+
+Let me combine these. From y = (AB * BC)/AC, and AC = 8.8 + x, and AB = (from similarity ratio earlier) AB = (BD * BC)/AD. Wait, from the similarity ratio AB / BC = AD / BD → AB = BC * AD / BD → AB = (8.5 * 8.8)/y. 
+
+So substituting AB into AC² = AB² + BC²:
+
+AC² = [ (8.5 * 8.8 / y ) ]² + (8.5)^2
+
+But AC = 8.8 + x, and x = y² / 8.8.
+
+So AC = 8.8 + y² / 8.8 = (8.8² + y²)/8.8
+
+Therefore, AC² = (8.8² + y²)^2 / (8.8²)
+
+So setting equal:
+
+(8.8² + y²)^2 / (8.8²) = [ (8.5 * 8.8 / y ) ]² + 8.5² 
+
+Multiply both sides by 8.8² to eliminate denominator:
+
+(8.8² + y²)^2 = [ (8.5 * 8.8 / y ) ]² * 8.8² + 8.5² * 8.8² 
+
+Let me factor out 8.5² * 8.8² on the right:
+
+= 8.5² * 8.8² [ (8.8² / y² ) + 1 ]
+
+Wait, expanding the second term:
+
+[ (8.5² * 8.8²)/y² ] * 8.8² ? No, original expression after multiplying:
+
+Right side is:
+
+[ (8.5² * 8.8²)/y² ] * 8.8² + 8.5² * 8.8² ?
+
+Wait no, original expansion:
+
+Original right side after multiplying by 8.8² is:
+
+[ (8.5 * 8.8 / y ) ]² * 8.8² + 8.5² * 8.8² 
+
+Which is:
+
+(8.5² * 8.8² / y² ) * 8.8² + 8.5² * 8.8² 
+
+Wait, no. Let me re-express:
+
+Original term was:
+
+[ (8.5 * 8.8 / y ) ]² * 8.8² + 8.5² * 8.8² ?
+
+No, actually, the entire expression is:
+
+[ (8.5 * 8.8 / y ) ]² * 8.8² + 8.5² * 8.8² ?
+
+Wait, no. Let me retrace:
+
+After multiplying both sides by 8.8², the left side is (8.8² + y²)^2.
+
+The right side comes from:
+
+Original right side before multiplying was [ (8.5 * 8.8 / y ) ]² + 8.5² multiplied by 8.8². So:
+
+Right side = [ (8.5 * 8.8 / y )² + 8.5² ] * 8.8² 
+
+Which expands to:
+
+(8.5² * 8.8² / y² ) * 8.8² + 8.5² * 8.8² 
+
+Wait no, sorry:
+
+It's [ (term1)^2 + term2 ] * 8.8², where term1 is (8.5 * 8.8)/y, and term2 is 8.5².
+
+So:
+
+= [ (8.5² * 8.8²)/y² + 8.5² ] * 8.8² 
+
+= 8.5² * 8.8² * [ (8.8²)/y² + 1 ] 
+
+Which matches what I had before. 
+
+So we end up with:
+
+(8.8² + y²)^2 = 8.5² * 8.8² * [ (8.8²)/y² + 1 ]
+
+This seems like the same path as before. So regardless of the method, we arrive at the same quartic equation. Solving it leads us to y ≈ 6.75, matching option C.
+
+Given that the answer choices include 6.75 as option C, and considering the precise calculation leading to around 6.746, which rounds to 6.75, the correct answer is C.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+To determine the value of $ y $, the length of segment $ \overline{BD} $, we utilize the geometric relationships and constraints provided in the problem.
+
+---
+
+### **Step 1: Understand the Geometric Configuration**
+
+We are given:
+- Points $ A, B, C, D $
+- Lines: $ \overline{AB}, \overline{BC}, \overline{AC}, \overline{BD} $
+- $ D $ lies on $ \overline{AC} $, making $ \overline{BD} $ perpendicular to $ \overline{AC} $
+- Triangles:
+  - $ \triangle ABC $ is right-angled at $ B $
+  - $ \triangle ADB $ and $ \triangle BDC $ are right-angled at $ D $
+  - These triangles are **similar** ($ \triangle ADB \sim \triangle BDC $)
+
+---
+
+### **Step 2: Use Similarity of Triangles**
+
+Given the similarity $ \triangle ADB \sim \triangle BDC $, we deduce the following side ratios:
+$$
+\frac{\text{AD}}{\text{BD}} = \frac{\text{BD}}{\text{DC}} = \frac{\text{AB}}{\text{BC}}
+$$
+
+From this, we derive:
+$$
+BD^2 = AD \cdot DC
+$$
+$$
+\Rightarrow y^2 = 8.8 \cdot x
+$$
+
+---
+
+### **Step 3: Express Hypotenuse Using Coordinates and Pythagorean Theorem**
+
+Let’s define:
+- $ AB = z $
+- $ BC = 8.5 $ (given)
+- $ AC = \sqrt{z^2 + 8.5^2} $
+
+But also,
+$$
+AC = AD + DC = 8.8 + x
+$$
+
+So:
+$$
+\sqrt{z^2 + 8.5^2} = 8.8 + x
+$$
+
+---
+
+### **Step 4: Relate $ z $ and $ y $ Using Similarity Ratio**
+
+From the similarity:
+$$
+\frac{AB}{BC} = \frac{AD}{BD}
+\Rightarrow \frac{z}{8.5} = \frac{8.8}{y}
+\Rightarrow z = \frac{8.5 \cdot 8.8}{y}
+$$
+
+Plug this into the hypotenuse equation:
+$$
+\sqrt{z^2 + 8.5^2} = 8.8 + x
+\Rightarrow \sqrt{ \left(\frac{8.5 \cdot 8.8}{y}\right)^2 + 8.5^2 } = 8.8 + x
+$$
+
+And since $ x = \frac{y^2}{8.8} $, substitute:
+$$
+\sqrt{ \left(\frac{8.5 \cdot 8.8}{y}\right)^2 + 8.5^2 } = 8.8 + \frac{y^2}{8.8}
+$$
+
+Squaring both sides and simplifying yields:
+$$
+y^4 + y^2 \cdot 8.8^2 = 8.5^2 \cdot 8.8^2
+$$
+
+Set $ u = y^2 $, giving:
+$$
+u^2 + u \cdot 8.8^2 = 8.5^2 \cdot 8.8^2
+$$
+
+Solving this quadratic in $ u $, we find:
+$$
+u = \frac{-8.8^2 + \sqrt{(8.8^2)^2 + 4 \cdot 8.5^2 \cdot 8.8^2}}{2}
+$$
+
+Numerical evaluation gives:
+$$
+u \approx 45.50744 \quad \Rightarrow \quad y = \sqrt{u} \approx 6.746
+$$
+
+---
+
+### **Conclusion**
+
+The value of $ y $ is approximately **6.75**, which corresponds to **Option C**.
+
+---
+
+### Final Answer:  
+$$
+\boxed{C}
+$$
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

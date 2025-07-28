@@ -1,0 +1,132 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2591.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2591.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(X)
+Point(Y)
+Point(Z)
+Point(D)
+Pentagon(A,B,D,Z,C)
+Square(C,B,Y,X)
+Line(A,B)
+Line(B,D)
+Line(D,Z)
+Line(Z,C)
+Line(C,A)
+Line(C,B)
+Line(B,Y)
+Line(Y,X)
+Line(X,C)
+Line(X,Z)
+Regular(Pentagon(A,B,D,Z,C))
+Regular(Polygon(X,Y,Z))
+Equals(LengthOf(X,Y),LengthOf(Y,B))
+Equals(LengthOf(Y,B),LengthOf(B,C))
+Equals(LengthOf(B,C),LengthOf(C,X))
+Equals(LengthOf(C,X),LengthOf(X,Y))
+Equals(LengthOf(A,B),LengthOf(B,D))
+Equals(LengthOf(B,D),LengthOf(D,Z))
+Equals(LengthOf(D,Z),LengthOf(Z,C))
+Equals(LengthOf(Z,C),LengthOf(C,A))
+Equals(LengthOf(C,X),LengthOf(A,B))
+Equals(LengthOf(X,Z),LengthOf(X,Y))
+IsSideOf(Line(C,X),Square(C,B,Y,X))
+IsSideOf(Line(A,B),Pentagon(A,B,D,Z,C))
+IsSideOf(Line(A,B),Regular(Pentagon(A,B,D,Z,C)))
+IsSideOf(Line(C,X),Regular(Square(C,B,Y,X)))
+MeasureOf(Angle(B,C,X),90)
+MeasureOf(Angle(C,A,B),108)
+MeasureOf(Angle(A,B,D),108)
+MeasureOf(Angle(B,D,Z),108)
+MeasureOf(Angle(D,Z,C),108)
+MeasureOf(Angle(Z,C,A),108)
+IsSideOf(Line(X,Y),Polygon(X,Y,Z))
+IsSideOf(Line(X,Z),Polygon(X,Y,Z))
+
+QUESTION:
+A regular pentagon and a square share a mutual vertex X. The sides X Y and X Z are sides of a third regular polygon with a vertex at X. How many sides does this polygon have?
+
+CHOICES:
+A. 19
+B. 20
+C. 28
+D. 32
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+**1. ANALYZE & EXTRACT**
+- We have a regular pentagon ABCDZ and a square CBYX sharing the vertex C.
+- We are given that sides XY and XZ are sides of a third regular polygon with a vertex X.
+- We need to find the number of sides of this third polygon.
+- We know that each interior angle of a regular pentagon is 108 degrees and each interior angle of a square is 90 degrees.
+- Length(X,Y) = Length(Y,B) = Length(B,C) = Length(C,X)
+- Length(A,B) = Length(B,D) = Length(D,Z) = Length(Z,C) = Length(C,A)
+- Length(C,X) = Length(A,B)
+- Length(X,Z) = Length(X,Y)
+
+**2. DEDUCE SYSTEMATICALLY**
+- From [Square(C,B,Y,X)] → Angle(B,C,X) = 90 degrees.
+- From [Regular(Pentagon(A,B,D,Z,C))] → Angle(Z,C,B) = 108 degrees.
+- From [Angle(B,C,X) = 90 degrees] and [Angle(Z,C,B) = 108 degrees] → Angle(Z,C,X) = Angle(Z,C,B) + Angle(B,C,X) = 108 + 90 = 198 degrees. INCORRECT
+- We need to find the angle ZXY
+- From [Square(C,B,Y,X)] → Angle(C,X,Y) = 90 degrees.
+- From [Regular(Pentagon(A,B,D,Z,C)] → all sides are equal. Since Length(C,X) = Length(A,B). Length(A,B) = Length(Z,C).  So all lengths are equal. Also, Length(X,Z) = Length(X,Y)
+- From [Point(X), Point(Z), Point(Y)] we are given sides XZ and XY are adjacent of a regular polygon
+- Angle(C,X,Y) = 90. The interior angle of regular pentagon ABCDZ at Z = 108, so Angle(D,Z,C)=108.
+- The exterior angle of the pentagon at C is 360-Angle(Z,C,B) = 360 - 108 = 252. Exterior angle of the square is 360-90 = 270.
+- Angle(Z,X,C) = 360 - Angle(Z,C,A) - Angle(A,B,C) ... No.
+- Angle(C,X,Y) = 90 degrees.  We need to find Angle(Z,X,C). Since the pentagon is regular, length ZC = AB = BC = CX. Triangle ZXC is isosceles, where ZC=CX. Angle(Z,C,X) is 360 - 90 - 108 = 162.
+- Angle(C,Z,X) = Angle(CX,Z) = (180-162)/2 = 18/2 = 9 degrees.
+- Angle(Z,X,C) = 180 - 9 - 9 = 162 degrees.
+- Angle(Z,X,Y) = Angle(Z,X,C) + Angle(C,X,Y) = 162 + 90 = 252.
+- Let the number of sides of the polygon be $n$. Then each interior angle is $\frac{180(n-2)}{n}$.
+- So, $\frac{180(n-2)}{n} = 252$
+$180n - 360 = 252n$
+$72n = -360$
+- Nope.
+- Interior angle of the pentagon at C = 108. Interior Angle of square at X = 90. Angle ZXC=360-108-90=162
+ZXC is isosceles where CX = CZ, so <CZX=<CXZ. Both =(180-162)/2 =9
+<YXC=90, <CXZ=9 ,so <YXZ =<YXC+<CXZ =90+9 =99 +63?
+<BXC=90, and <CXA=36. since each angle has measure of 108.
+
+Angle ZXY= 360-AngleYXc - angle cxb -angle bca- <acz
+
+<CXZ =<360-108-90 = 162
+
+360 = <ZXy +< 162-90=270
+If X is on a regular polygon Angle YXZ =n
+<CXZ =< Yxz= n-162.
+Angle < YXZ = X. Y/Z lies on polygon.
+x+y+z= (n-2). x =72n
+Measure of y =(n
+12
+
+Exterior angle is 360/x
+ZXY =360- Angle ZXC. Angle.
+360=90 degrees; and C
+<yXc= 9
+<cXZ =180.
+
+each side,
+let each exterior anbg
+
+Zxy = is.
+
+Sides. X
+angle yxz=x
+3.  2.
+
+360/75
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

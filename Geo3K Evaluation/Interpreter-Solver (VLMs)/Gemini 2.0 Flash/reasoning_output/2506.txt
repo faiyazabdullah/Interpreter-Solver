@@ -1,0 +1,65 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2506.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2506.txt
+
+PREDICATES CONTENT:
+Point(J)
+Point(K)
+Point(L)
+Point(M)
+Point(R)
+Line(J,K)
+Line(K,L)
+Line(L,M)
+Line(M,J)
+Line(J,L)
+Line(K,M)
+Parallelogram(J,K,L,M)
+LengthOf(J,K,2b+3)
+LengthOf(K,L,21)
+LengthOf(L,M,45)
+LengthOf(M,J,3a)
+MeasureOf(Angle(M,L,K),30)
+MeasureOf(Angle(K,L,J),70)
+IntersectAt(Line(J,L),Line(K,M),Line(J,L),Point(R))
+IsDiagonalOf(Line(J,L),Parallelogram(J,K,L,M))
+IsDiagonalOf(Line(K,M),Parallelogram(J,K,L,M))
+Parallel(Line(J,K),Line(L,M))
+Parallel(Line(K,L),Line(M,J))
+Equals(LengthOf(J,K),LengthOf(L,M))
+Equals(LengthOf(K,L),LengthOf(M,J))
+Equals(MeasureOf(Angle(J,K,L)),MeasureOf(Angle(J,M,L)))
+Equals(MeasureOf(Angle(K,J,M)),MeasureOf(Angle(K,L,M)))
+IsMidpointOf(Point(R),Line(J,L))
+IsMidpointOf(Point(R),Line(K,M))
+PointLiesOnLine(R,Line(J,L))
+PointLiesOnLine(R,Line(K,M))
+MeasureOf(Angle(J,K,L),SumOf(MeasureOf(Angle(K,L,J)),MeasureOf(Angle(M,L,K))))
+
+QUESTION:
+Use parallelogram J K L M to find m \angle K J L if J K = 2 b + 3 and J M = 3 a.
+
+CHOICES:
+A. 30
+B. 70
+C. 80
+D. 100
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallelogram(J,K,L,M) → JK || LM and KL || MJ
+From Parallel(Line(J,K),Line(L,M)) + Parallel(Line(K,L),Line(M,J)) → ∠KLM + ∠LKJ = 180 (Adjacent angles in a parallelogram are supplementary)
+From MeasureOf(Angle(M,L,K),30) + MeasureOf(Angle(K,L,J),70) → MeasureOf(Angle(K,L,M)) = 30 + 70 = 100
+From MeasureOf(Angle(K,L,M),100) + (Adjacent angles in a parallelogram are supplementary) → MeasureOf(Angle(LKJ)) = 180 - 100 = 80
+From Parallel(Line(J,K),Line(L,M)) → ∠KJL = ∠MLJ (alternate interior angles)
+From MeasureOf(Angle(M,L,K),30) → MeasureOf(Angle(M,L,J)) = 30
+From MeasureOf(Angle(K,J,L),MeasureOf(Angle(M,L,J))) → ∠KJL = 30
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

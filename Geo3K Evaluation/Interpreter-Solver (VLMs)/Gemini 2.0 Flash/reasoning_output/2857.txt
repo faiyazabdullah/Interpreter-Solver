@@ -1,0 +1,62 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2857.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2857.txt
+
+PREDICATES CONTENT:
+Point(F)
+Point(G)
+Point(H)
+Point(J)
+Point(A)
+Line(F,G)
+Line(F,J)
+Line(G,H)
+Line(H,J)
+Line(G,J)
+Line(F,H)
+LengthOf(Line(G,A),12)
+LengthOf(Line(A,H),15)
+Kite(F,G,H,J)
+IsDiagonalOf(Line(G,J),Kite(F,G,H,J))
+IsDiagonalOf(Line(F,H),Kite(F,G,H,J))
+Perpendicular(Line(G,J),Line(F,H))
+IntersectAt(Line(G,J),Line(F,H),Point(A))
+PointLiesOnLine(A,Line(G,J))
+PointLiesOnLine(A,Line(F,H))
+Equals(LengthOf(Line(G,A)),LengthOf(Line(A,J)))
+RightAngle(Angle(G,A,F))
+RightAngle(Angle(H,A,G))
+RightAngle(Angle(J,A,H))
+RightAngle(Angle(F,A,J))
+Equals(LengthOf(Line(F,G)),LengthOf(Line(F,J)))
+Equals(LengthOf(Line(H,G)),LengthOf(Line(H,J)))
+IsMidpointOf(Point(A),Line(G,J))
+
+QUESTION:
+Find G H in the kite.
+
+CHOICES:
+A. 12
+B. 15
+C. 11 \sqrt { 3 }
+D. \sqrt { 369 }
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Point(A) + PointLiesOnLine(A,Line(G,J)) + IsMidpointOf(Point(A),Line(G,J)) → A is the midpoint of GJ.
+From LengthOf(Line(G,A),12) + Equals(LengthOf(Line(G,A)),LengthOf(Line(A,J))) → LengthOf(Line(A,J),12)
+From RightAngle(Angle(H,A,G)) + Line(H,A) + Line(G,A) → Triangle(G,A,H) is a right triangle.
+From Triangle(G,A,H) is a right triangle + LengthOf(Line(G,A),12) + LengthOf(Line(A,H),15) + Pythagorean Theorem → LengthOf(Line(G,H))^2 = LengthOf(Line(G,A))^2 + LengthOf(Line(A,H))^2
+From LengthOf(Line(G,A),12) → LengthOf(Line(G,A))^2 = 12^2 = 144
+From LengthOf(Line(A,H),15) → LengthOf(Line(A,H))^2 = 15^2 = 225
+From LengthOf(Line(G,H))^2 = LengthOf(Line(G,A))^2 + LengthOf(Line(A,H))^2 + LengthOf(Line(G,A))^2 = 144 + LengthOf(Line(A,H))^2 = 225 → LengthOf(Line(G,H))^2 = 144 + 225 = 369
+From LengthOf(Line(G,H))^2 = 369 → LengthOf(Line(G,H)) = \sqrt{369}
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

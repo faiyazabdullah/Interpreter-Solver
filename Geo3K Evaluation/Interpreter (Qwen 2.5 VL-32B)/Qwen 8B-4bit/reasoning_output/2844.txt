@@ -1,0 +1,196 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Parallelogram(A,B,C,D)
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(B,C)
+Line(C,D)
+Line(D,A)
+Parallel(Line(A,B), Line(C,D))
+Parallel(Line(B,C), Line(D,A))
+RightAngle(Angle(B,C,A))
+Angle(A,B,C, 45)
+Equals(LengthOf(Line(A,B)), 28)
+Equals(LengthOf(Line(B,C)), 9)
+IsAltitudeOf(Line(C,A), Parallelogram(A,B,C,D))
+IsBaseOf(Line(A,B), Parallelogram(A,B,C,D))
+
+QUESTION:
+Find the area of the parallelogram. Round to the nearest tenth if necessary.
+
+CHOICES:
+A. 89.1
+B. 178.2
+C. 252.0
+D. 356.4
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's tackle this problem step by step. So, we need to find the area of a parallelogram given some specific conditions. Let me start by recalling the properties of a parallelogram. In a parallelogram, opposite sides are equal in length and parallel, and opposite angles are equal. Also, the area can be calculated as the base multiplied by the height. But here, there are some specific details given, so I need to parse those carefully.
+
+First, the given predicates mention that ABCD is a parallelogram. That means AB is parallel to CD, and BC is parallel to DA. Also, points A, B, C, D are all points, and lines AB, BC, CD, DA are defined. Additionally, there's a right angle at Angle BCA, which I think refers to angle at point C between points B, C, and A. Wait, the predicate says RightAngle(Angle(B,C,A)), so that would mean angle at point C between points B, C, A. So angle BCA is a right angle? Wait, but in a parallelogram, consecutive angles are supplementary. If one angle is a right angle, then all angles are right angles, making it a rectangle. But wait, the other predicate says Angle(A,B,C,45). Wait, that seems conflicting. Because if angle at B, between A, B, C is 45 degrees, but if angle at C is 90 degrees, how does that fit?
+
+Wait, maybe I misread the angle. Let me check again. The Angle(A,B,C,45) means angle at point B between points A, B, C. So angle ABC is 45 degrees. And RightAngle(Angle(B,C,A)) is angle at point C between points B, C, A, which is angle BCA. So angle BCA is 90 degrees. Hmm. Wait, but in a parallelogram, adjacent angles are supplementary. So angle ABC plus angle BCD should be 180 degrees. If angle ABC is 45 degrees, then angle BCD would be 135 degrees. However, angle BCA is part of angle BCD. Wait, perhaps I'm getting confused here. Let me try to sketch mentally.
+
+Let me consider the parallelogram ABCD. So sides AB and DC are parallel, AD and BC are parallel. Angles at each corner: in a general parallelogram, consecutive angles are supplementary. Now, if angle at B (angle ABC) is 45 degrees, then angle at C (angle BCD) should be 180 - 45 = 135 degrees. But the right angle is at angle BCA, which is part of triangle BCA. Wait, angle BCA is part of triangle BCA. Let me see. Point C is connected to B and A. Since ABCD is a parallelogram, vector CB is equal to vector AD. Wait, maybe I need to use coordinates to model this.
+
+Alternatively, since there's a right angle at angle BCA, which is angle at C between B, C, A. So triangle BCA has a right angle at C. Therefore, triangle BCA is a right triangle with legs BC and CA, and hypotenuse BA. Wait, but BC is one side of the parallelogram. Given that BC is length 9, as per Equals(LengthOf(Line(B,C)), 9). Also, AB is length 28, as per Equals(LengthOf(Line(A,B)), 28). Wait, but if triangle BCA is a right triangle with legs BC=9 and CA=?, and hypotenuse BA=28. Then by Pythagoras, BC² + CA² = BA². So 9² + CA² = 28² → 81 + CA² = 784 → CA² = 784 - 81 = 703 → CA = sqrt(703). But then, how does that relate to the area of the parallelogram?
+
+But the area of a parallelogram is base times height. Alternatively, if we have two adjacent sides and the sine of the included angle, the area is |AB| * |BC| * sin(theta), where theta is the angle between them. Here, angle at B is 45 degrees, so theta is 45 degrees. Wait, but if angle ABC is 45 degrees, then the area would be AB * BC * sin(45°). Let me compute that. AB is 28, BC is 9. So 28*9*sin(45°). Sin(45°) is √2 / 2 ≈ 0.7071. So 28*9 = 252, multiplied by √2 / 2 gives 252*(√2)/2 = 126√2 ≈ 126*1.4142 ≈ 178.2. Which is option B. But wait, but earlier thought about triangle BCA being a right triangle may conflict with this?
+
+Wait, hold on. There's another predicate: IsAltitudeOf(Line(C,A), Parallelogram(A,B,C,D)). This suggests that line CA is an altitude of the parallelogram. An altitude of a parallelogram is a perpendicular segment from a vertex to the opposite side. So if line CA is an altitude, then CA is perpendicular to the base AB. Wait, because in a parallelogram, the altitude corresponding to base AB would be the distance between AB and CD. If CA is an altitude, then CA is perpendicular to AB. But earlier, we had that angle BCA is a right angle, meaning that BC is perpendicular to CA. Wait, that would imply that BC is perpendicular to CA, so CA is perpendicular to BC, but if CA is also an altitude, then CA is perpendicular to AB. Wait, but in a parallelogram, adjacent sides are not necessarily perpendicular unless it's a rectangle. So there's a contradiction here?
+
+Wait, maybe my understanding is wrong. Let me re-examine the predicates. 
+
+The IsAltitudeOf(Line(C,A), Parallelogram(A,B,C,D)) means that line CA is an altitude of the parallelogram. So CA is perpendicular to the base. Which base? Since the IsBaseOf(Line(A,B), Parallelogram(...)) says that AB is the base. So the altitude corresponding to base AB is CA. Therefore, CA is perpendicular to AB. Thus, angle between CA and AB is 90 degrees. But earlier, we have angle BCA is a right angle, which is angle at C between B, C, A. So angle BCA is between BC and CA. So if CA is perpendicular to AB, then BC is not necessarily perpendicular to CA. Wait, unless AB and BC are perpendicular. Wait, but if CA is perpendicular to AB, and angle at C between BC and CA is 90 degrees, then BC would be parallel to AB? Wait, no. Let me draw this mentally.
+
+In parallelogram ABCD, AB is parallel to CD, and AD is parallel to BC. Suppose AB is horizontal, and CA is vertical (since CA is an altitude, hence perpendicular to AB). Then point C is somewhere such that CA is vertical. Also, angle BCA is 90 degrees. So triangle BCA is a right triangle with right angle at C. So BC is horizontal? Wait, if AB is horizontal and CA is vertical, then point C is vertically above point A. But then BC connects point B to point C. If AB is horizontal and CA is vertical, then point C is directly above A. So coordinates could be assigned as follows: Let’s assign coordinates to make it easier.
+
+Let me set coordinate system. Let me place point A at origin (0,0). Since AB is a base, let me take AB along x-axis. Let AB have length 28, so point B is at (28, 0). Now, CA is an altitude, so CA is perpendicular to AB. Since AB is horizontal, CA is vertical. So point C lies somewhere along the vertical line passing through A. Wait, but CA is from C to A, so if CA is vertical, then point C has same x-coordinate as A. Wait, A is at (0,0), so if CA is vertical, then point C is at (0, y) for some y. But then BC connects B(28,0) to C(0,y). Then BC has slope (y - 0)/(0 - 28) = -y/28. The length of BC is given as 9. So the distance between B(28,0) and C(0,y) is sqrt((28)^2 + y^2) = 9. Wait, that would give sqrt(784 + y²) = 9 → 784 + y² = 81 → y² = -703. Impossible. Contradiction. So something's wrong here.
+
+Hmm, that suggests inconsistency in the premises. But the problem states that these predicates are true. So maybe my assumption about which altitude corresponds to which base is incorrect. Let me check again. The IsBaseOf(Line(A,B), ...) says that AB is the base. Therefore, the altitude corresponding to base AB is CA. So CA is perpendicular to AB. But according to the previous calculation, that leads to an impossible scenario. Therefore, there must be an error in my interpretation.
+
+Wait, perhaps CA is not the entire line, but just the segment from C to A. Maybe CA is the altitude, meaning that CA is perpendicular to AB. But in that case, the foot of the altitude from C to AB is point A? Wait, but in a parallelogram, the altitude from C should drop perpendicularly onto AB. But if the foot is at A, then that implies that AB is the base and CA is the height. But in that case, the length of CA would be the height. But then, in the right triangle BCA, angle at C is 90 degrees, which would mean that BC is perpendicular to CA. So BC is perpendicular to CA, which is the altitude. But if CA is the altitude, then BC is perpendicular to CA, implying that BC is perpendicular to AB (since CA is perpendicular to AB). Therefore, angle at B between AB and BC is 90 degrees. But the given angle at B is 45 degrees. So this contradicts. Hence, there's a contradiction here. What's wrong?
+
+Wait, maybe I made a mistake in assigning coordinates. Let me try again. Let me assume that AB is the base, and CA is the altitude. So CA is perpendicular to AB. Therefore, CA is vertical if AB is horizontal. Let me suppose AB is horizontal, from A(0,0) to B(28,0). Then CA is vertical, so point C is (x, y) such that line AC is vertical. Therefore, x-coordinate of C equals x-coordinate of A, which is 0. So point C is (0, h), where h is the height. Then point D can be determined since ABCD is a parallelogram. In a parallelogram, vector AB equals vector DC. Vector AB is (28, 0). So vector DC should also be (28, 0). Since point C is (0, h), then point D would be C + vector AB. Wait, no. In a parallelogram, the coordinates can be found by adding vectors. From point A(0,0) to B(28,0), then from point C(0,h), moving by vector AB to get D. So D = C + vector AB = (0 + 28, h + 0) = (28, h). Wait, but then BD would connect B(28,0) to D(28,h), which is vertical, and AD connects A(0,0) to D(28,h). Wait, but then BC connects B(28,0) to C(0,h), and AD connects A(0,0) to D(28,h). Are they supposed to be parallel? Let me check slopes. Slope of BC: (h - 0)/(0 - 28) = -h/28. Slope of AD: (h - 0)/(28 - 0) = h/28. These are negative reciprocals if h/28 = 1/(h/28)? No, unless h^2 = 28^2. Not sure. Anyway, the main issue is the length of BC. Given BC is 9 units. The distance between B(28,0) and C(0,h) is sqrt( (28)^2 + (h)^2 ) = 9. So 784 + h² = 81 → h² = -703. Again, impossible. So this suggests that my assumption that CA is the altitude leading to this configuration is invalid. Therefore, there must be a different interpretation.
+
+Alternative approach: Perhaps the altitude isn't from C to AB, but from another vertex? Wait, the predicate says IsAltitudeOf(Line(C,A), ...), meaning that line CA is an altitude. So the altitude is the line CA itself, which means that CA is perpendicular to the base AB. But according to the previous calculation, that leads to inconsistency. So either there's a miscalculation, or misunderstanding of the predicates.
+
+Wait, let's revisit the given Angle(A,B,C,45). This is angle at B between A, B, C. So angle ABC is 45 degrees. And RightAngle(Angle(B,C,A)) is angle at C between B, C, A, i.e., angle BCA is 90 degrees. So in triangle BCA, angle at B is 45 degrees, angle at C is 90 degrees, so angle at A is 45 degrees (since sum is 180). So triangle BCA is a right-angled isoceles triangle? Wait, because angles at B and A are both 45 degrees. Therefore, sides opposite these angles are equal. So BC and CA are equal? Wait, in triangle BCA, angle at C is 90°, angle at B is 45°, so side opposite angle B is CA, and side opposite angle A is BC. Since angles at B and A are equal (both 45°), then CA = BC. But BC is given as 9, so CA should be 9. But earlier, using Pythagoras, we had CA² + BC² = AB². Wait, but if CA = BC = 9, then AB² = 9² + 9² = 162 → AB = sqrt(162) ≈ 12.727, but the given AB is 28. Contradiction again. So this suggests inconsistency in the problem's given data? Or maybe my understanding is wrong.
+
+Wait, perhaps the triangle is not BCA but another triangle? Let me confirm. Angle(B,C,A) is the angle at C between B, C, A. So vertices B-C-A, forming angle at C. So triangle BCA has angle at C = 90°, angle at B = 45°, therefore angle at A = 45°, making it an isoceles right triangle. So sides BC and CA are equal. So BC = CA = 9, and AB is hypotenuse, which should be 9√2 ≈ 12.727. But the problem states that AB is 28. So this is inconsistent. How is this possible?
+
+This suggests that there's a fundamental inconsistency in the given predicates. But since the problem is presented as solvable, perhaps I misunderstood the predicates. Let me check again.
+
+Wait, the given predicates say:
+
+- Parallelogram(A,B,C,D)
+
+- Line(A,B), Line(B,C), Line(C,D), Line(D,A)
+
+- Parallel(Line(A,B), Line(C,D)), Parallel(Line(B,C), Line(D,A))
+
+- RightAngle(Angle(B,C,A)): angle at C between B, C, A is right angle.
+
+- Angle(A,B,C,45): angle at B between A,B,C is 45 degrees.
+
+- Equals(LengthOf(Line(A,B)), 28): AB = 28
+
+- Equals(LengthOf(Line(B,C)), 9): BC = 9
+
+- IsAltitudeOf(Line(C,A), Parallelogram(A,B,C,D)): CA is an altitude of the parallelogram.
+
+- IsBaseOf(Line(A,B), Parallelogram(...)): AB is the base.
+
+So combining all these, there's a contradiction between the triangle BCA having AB as hypotenuse of length 28, while the right triangle with legs BC=9 and CA=9 would require AB=9√2≈12.727. Hence, this suggests that the given data is inconsistent. But since the problem exists, perhaps I'm missing something.
+
+Wait, maybe the triangle is not BCA but another triangle? For example, angle at B between A, B, C is 45 degrees, and angle at C between B, C, A is 90 degrees. Let me consider triangle ABC. In triangle ABC, angle at B is 45°, angle at C is 90°, so angle at A is 45°, making it an isoceles right triangle. Thus, sides BC = CA. But BC is given as 9, so CA should be 9. Then AB, the hypotenuse, is 9√2. But the given AB is 28. This discrepancy suggests that the problem's data is contradictory, but since it's posed as a problem, perhaps I've made a wrong assumption.
+
+Wait, perhaps the right angle is not in triangle BCA, but elsewhere? Let me recheck the predicate: RightAngle(Angle(B,C,A)) — yes, that's angle at C between B, C, A. So it's definitely part of triangle BCA. So if that's a right angle, and angle at B is 45°, then triangle BCA must have AB as hypotenuse of length 9√2. But the given AB is 28. So this is impossible. Therefore, there must be a misunderstanding of the predicates.
+
+Wait, could the angle be at a different vertex? Like, maybe the Angle(B,C,A) refers to a different angle? No, standard notation for Angle(X,Y,Z) is the angle at Y between X-Y-Z. So Angle(B,C,A) is angle at C between B-C-A.
+
+Another possibility: Maybe the parallelogram is not convex? Or perhaps the labeling is different. Let me try to visualize differently. Suppose ABCD is a parallelogram, with AB and CD parallel, AD and BC parallel. Let me consider that angle at B is 45°, and angle at C is 90°, but that doesn't fit with parallelogram properties because consecutive angles are supplementary. If angle at B is 45°, then angle at C should be 135°, not 90°. So there's a contradiction here. Unless the angle at C is not the internal angle of the parallelogram. Wait, but the RightAngle(Angle(B,C,A)) refers to angle at C between B, C, A. In the parallelogram, the internal angle at C would be angle BCD. But angle BCA is a different angle. Let me clarify.
+
+In parallelogram ABCD, the internal angle at C is angle BCD. But angle BCA is part of that angle. So if angle BCA is 90°, then angle BCD would be composed of angle BCA (90°) plus angle ACD. Wait, but without more info, it's hard to tell. Let me attempt to calculate using trigonometry.
+
+Assume that in triangle BCA, angle at C is 90°, angle at B is 45°, so as before, this makes it an isoceles right triangle with legs BC = CA = 9, and AB = 9√2. But the problem says AB = 28. This suggests that the triangle is not a right triangle, but the given right angle is somehow compatible with AB = 28. How?
+
+Wait, maybe the right angle is not in triangle BCA, but in another triangle? Wait, no, the predicate explicitly says RightAngle(Angle(B,C,A)), which is angle at C between B-C-A. So it must be part of triangle BCA.
+
+Alternatively, maybe the angle at C is not part of triangle BCA, but of another triangle? No, B, C, A are three points, so it's triangle BCA.
+
+This suggests that the given data is inconsistent. However, since the problem asks for an answer, I must have made a mistake. Let me try to proceed differently.
+
+Since the problem mentions that CA is an altitude of the parallelogram, which implies that CA is perpendicular to AB. So CA ⊥ AB. Let me denote AB as the base with length 28. Then the height of the parallelogram is the length of CA. But in this case, since CA is perpendicular to AB, the area would be AB * CA.
+
+Now, we need to find CA. To do this, we can use the given angle at B (45°) and the length BC = 9.
+
+In triangle BCA, if CA is perpendicular to AB, then triangle BCA is a right triangle with right angle at A (since CA is perpendicular to AB, which meets at A). Wait, no. If CA is perpendicular to AB, then the right angle is at A, not at C. Wait, no. Let me clarify: CA is perpendicular to AB. So the line CA forms a right angle with AB. So if AB is horizontal, then CA is vertical. So point C is somewhere such that line CA is vertical. Let me assign coordinates again.
+
+Let me set A at (0,0), B at (28,0), since AB = 28. CA is vertical, so point C is at (0, y) for some y. Then, BC connects B(28,0) to C(0,y). The length of BC is 9, so distance between (28,0) and (0,y) is sqrt(28² + y²) = 9 → 784 + y² = 81 → y² = -703. Again, impossible. So this suggests that CA cannot be perpendicular to AB if BC is 9 and AB is 28. Hence, there's a contradiction.
+
+But since the problem includes these predicates, there must be a way to resolve this. Perhaps the IsAltitudeOf(Line(C,A), ...) means that CA is an altitude, but not necessarily that it is perpendicular to AB? Wait, no, an altitude is defined as a perpendicular segment from a vertex to the opposite side. So CA must be perpendicular to AB. So why is this causing inconsistency?
+
+Wait, perhaps the altitude is not from C to AB, but from another vertex? Wait, the predicate says IsAltitudeOf(Line(C,A), ...), so it's the line CA that is the altitude. So CA is the altitude, which means it is perpendicular to the base AB. But this leads to the previous contradiction. 
+
+Alternatively, maybe the base is not AB but another side? Wait, the IsBaseOf(Line(A,B), ...) says that AB is the base. So the altitude corresponding to base AB is CA. Hence, CA must be perpendicular to AB. But this leads to inconsistency. 
+
+At this point, I'm stuck. Maybe I need to consider that the given Angle(A,B,C,45) is not angle ABC but another angle? Wait, no. Angle(A,B,C,45) is angle at B between A, B, C. So it's angle ABC = 45°. 
+
+Given that, and angle BCA = 90°, then in triangle ABC, we have angle at B = 45°, angle at C = 90°, so angle at A = 45°. Thus, triangle ABC is an isoceles right triangle with legs BC and CA equal. Hence, BC = CA = 9, and AB = 9√2. But the given AB is 28, which conflicts. So unless there's a scaling factor involved, but the problem doesn't mention scaling.
+
+Wait, perhaps the problem uses non-Euclidean geometry? Unlikely, as it's a standard geometry problem.
+
+Alternatively, maybe the right angle is at C, but not in triangle BCA. Wait, no, it's specified as Angle(B,C,A), which is at C. 
+
+Wait, let me try to calculate using the Law of Sines in triangle ABC. In triangle ABC, angle at B is 45°, angle at C is 90°, so angle at A is 45°. Therefore, sides:
+
+Opposite angle B (45°) is AC.
+
+Opposite angle C (90°) is AB.
+
+Opposite angle A (45°) is BC.
+
+So by Law of Sines: AB / sin(90°) = BC / sin(45°).
+
+Thus, AB = BC * sin(90°) / sin(45°) = 9 * 1 / (√2/2) = 9 * 2/√2 = 9√2 ≈ 12.727, but given AB is 28. So again, contradiction.
+
+This suggests that the problem's given data is inconsistent. But since it's presented as a valid problem, I must have made a wrong assumption. Let me revisit the IsAltitudeOf predicate. Perhaps it's not saying that CA is an altitude, but that line CA is an altitude, which could mean that CA is perpendicular to AB, but in this case, it's not possible due to the lengths given. 
+
+Alternatively, perhaps the altitude is from A to BC? No, the predicate says IsAltitudeOf(Line(C,A), ...), which is line CA being the altitude. 
+
+Wait, maybe I'm confusing the direction of the altitude. An altitude is a segment from a vertex perpendicular to the opposite side. So if CA is an altitude, it should be from C to AB. So CA is the altitude from C to AB, meaning that CA is perpendicular to AB, and its length is the height. But then, in this case, as shown earlier, this leads to inconsistency with BC length.
+
+But maybe the problem allows for CA to be extended beyond A? For instance, if point C is not on the same line as A, but the line CA extends to meet AB at a right angle. Wait, but in a parallelogram, the altitude from C to AB would be a segment from C to AB, but if CA is that altitude, then A is the foot of the altitude. So CA is from C to A, which is on AB. Hence, CA is perpendicular to AB, and A is the foot. But then, as before, this creates the contradiction.
+
+At this point, I'm forced to conclude that there's an error in the problem statement, but since I need to provide an answer, perhaps I should proceed with the assumption that despite the contradiction, the intended solution is to use the given lengths AB = 28, BC = 9, and angle at B = 45°, and compute the area as AB * BC * sin(angle between them).
+
+If angle ABC is 45°, then the area would be AB * BC * sin(45°) = 28 * 9 * (√2/2) = 126√2 ≈ 178.2, which is option B. This would ignore the contradictions arising from the right angle and altitude predicates, but perhaps those were meant to be distractions or there was a typo. Alternatively, maybe the right angle and altitude are meant to indicate that the height is BC, leading to area = AB * BC = 28 * 9 = 252, which is option C. But that would contradict the angle being 45°.
+
+Wait, if CA is the altitude, then the height is CA. If angle at B is 45°, and BC is 9, then in triangle ABC, if it's a right triangle, but with AB = 28, it's impossible. But if we disregard the right angle and use the given angle at B, then area would be AB * height. If CA is the height, then we need to find CA. Using the given angle at B (45°), and BC = 9, we can find CA.
+
+In triangle ABC, angle at B is 45°, BC = 9, AB = 28. Let's apply the Law of Sines. Wait, but we don't know any angles except at B. Wait, if we consider triangle ABC, with AB = 28, BC = 9, angle at B = 45°. We can use the Law of Cosines to find AC.
+
+Law of Cosines: AC² = AB² + BC² - 2 * AB * BC * cos(angle at B).
+
+So AC² = 28² + 9² - 2 * 28 * 9 * cos(45°).
+
+Compute this:
+
+28² = 784
+
+9² = 81
+
+cos(45°) = √2/2 ≈ 0.7071
+
+So AC² = 784 + 81 - 2 * 28 * 9 * 0.7071
+
+Calculate the third term: 2 * 28 * 9 = 504; 504 * 0.7071 ≈ 356.4
+
+So AC² ≈ 784 + 81 - 356.4 = 865 - 356.4 = 508.6
+
+Then AC ≈ sqrt(508.6) ≈ 22.55
+
+But if CA is the height, then the area would be AB * height = 28 * 22.55 ≈ 631.4, which is not among the options. So this doesn't align with the choices.
+
+Alternatively, if the height is BC = 9, then area would be AB * 9 = 252, which is option C. But why would BC be the height? Only if BC is perpendicular to AB, but angle at B is 45°, so that wouldn't be the case.
+
+Wait, but if IsAltitudeOf(Line(C,A), ...) means that CA is the altitude, then CA is the height. But earlier calculation shows that CA is approximately 22.55, which would make area ≈ 28 * 22.55 ≈ 631.4, not matching any choices. So this approach also fails.
+
+But looking back at the answer choices, option B is 178.2, which is 126√2 ≈ 178.2. This suggests that the intended solution is to multiply AB * BC * sin(45°), ignoring the contradictions in the other predicates. Maybe the right angle and altitude predicates are red herrings, or there was a mistake in the problem setup. Given that, and since 126√2 is approximately 178.2, which is option B, I'll go with that.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

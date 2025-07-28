@@ -1,0 +1,91 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2603.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2603.txt
+
+PREDICATES CONTENT:
+Point(H)
+Point(J)
+Point(K)
+Point(L)
+Point(M)
+Point(S)
+Point(R)
+Point(Q)
+Point(P)
+Line(H,S)
+Line(H,M)
+Line(S,R)
+Line(R,Q)
+Line(Q,P)
+Line(P,M)
+Line(H,J)
+Line(J,K)
+Line(K,L)
+Line(L,M)
+Parallel(Line(H,J),Line(J,K))
+Parallel(Line(J,K),Line(K,L))
+Parallel(Line(K,L),Line(H,S))
+LengthOf(Line(L,K))
+Equals(LengthOf(Line(L,K)),4)
+LengthOf(Line(M,P))
+Equals(LengthOf(Line(M,P)),3)
+LengthOf(Line(P,Q))
+Equals(LengthOf(Line(P,Q)),6)
+LengthOf(Line(K,J))
+Equals(LengthOf(Line(K,J)),2)
+LengthOf(Line(R,S))
+Equals(LengthOf(Line(R,S)),6)
+LengthOf(Line(L,P))
+Equals(LengthOf(Line(L,P)),2)
+PointLiesOnLine(R,Line(S,M))
+PointLiesOnLine(Q,Line(S,M))
+PointLiesOnLine(P,Line(S,M))
+PointLiesOnLine(J,Line(H,M))
+PointLiesOnLine(K,Line(H,M))
+PointLiesOnLine(L,Line(H,M))
+
+QUESTION:
+If L K = 4, M P = 3, P Q = 6, K J = 2, R S = 6, and L P = 2, find J H.
+
+CHOICES:
+A. 2
+B. 3
+C. 4
+D. 6
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallel(Line(H,J),Line(J,K)), Parallel(Line(J,K),Line(K,L)), Parallel(Line(K,L),Line(H,S)) → Line(H,J) || Line(J,K) || Line(K,L) || Line(H,S). Since these lines are parallel, and since the points R, Q, P, and M lie on Line(S,M) and the points H, J, K, L, and M lie on Line(H,M), then by the side-splitter theorem, we have the ratios of corresponding side lengths are equal.
+
+(1) We are given LP = 2, PQ = 6, MP = 3, RS = 6. Therefore, SQ = RS + RQ = RS + RP + PQ - PQ = RS + RP + PQ = 6 + 6 + 3 - 3. Also, we have SR = 6, QP = 6, PM = 3. Thus, SR/RQ is not defined. Instead, we can look at the ratios formed by the transversal line segment from H to M.
+(2) We have HJ/JK = SR/RQ and JK/KL = RQ/QP and KL/LM = QP/PM. Since Line(H,S) || Line(J,R) || Line(K,Q) || Line(L,P) then HJ/JH = SR/RS, JK/KQ = RQ/QP and KL/LP = QP/PM. But SR/RQ, etc. are of no use.
+
+We are given that LK = 4, KJ = 2, LP = 2, PQ = 6, PM = 3, SR = 6.
+Let JH = x. We have SR = 6, RQ = RS+SQ, PQ= 6, MP = 3
+Then JH/HJ = SR/RQ, where JH = x, so HJ/KJ = SR/RQ means x/2 = 6/RQ. RQ is not defined.
+Instead HJ/LK = SR/PM. Then x/2 = 6/6 = 6/6+3 = RQ+QP+PM = RP = RQ= RP = SQ = RS.
+Using similar triangles, we know that JH/SR = JK/RQ = KL/QP = LM/MP.
+We are given RS=6, PQ=6, MP=3, LK=4, KJ=2. So SR,PQ,MP are on one side. And JH, JK, KL, LM are on the other side.
+We have
+JH/RS = JK/RQ = KL/PQ = LM/MP.
+Therefore, JH/6 = 2/RQ = 4/6 = LM/3.
+JH/6 = 4/6 implies JH = 4.
+Since JH/RS = JK/RQ = KL/PQ = LM/MP, JH/6 = 2/RQ = 4/6 = LM/3
+Then JK/RQ = KL/PQ = 4/6 = 2/3.
+So 2/RQ = 2/3 which means RQ = 3.
+JH/6 = 4/6 implies JH=4.
+LM/MP = 4/6 implies LM/3 = 2/3, so LM = 2.
+
+Consider JH/JK = SR/RQ. SR = 6, KJ = 2. And L P = 2, P Q = 6, M P = 3.
+So J H = x and H J / J K = x / 2. SR/RQ = 6/RQ.
+JH/JK = SR/RQ = LK/PQ = LM/MP, or JH/2 = 4/6 or JH/2 = LM/3 and  H J / 2 = x / 2.
+KJ/KL = RQ/PQ which means RQ = PQ * JK/KL which implies RQ = 6 * 2/4 which means RQ=3. So JH /2 = 6/3 which means JH= 4
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

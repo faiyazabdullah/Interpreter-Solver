@@ -1,0 +1,60 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2418.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2418.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(F)
+Line(A,B)
+Line(B,C)
+Line(C,D)
+Line(D,A)
+Line(A,C)
+Line(B,D)
+Parallelogram(A,B,C,D)
+LengthOf(A,B,6)
+LengthOf(A,D,9)
+LengthOf(C,D,6.86)
+MeasureOf(Angle(D,A,B),20)
+MeasureOf(Angle(B,A,C),32)
+MeasureOf(Angle(A,B,C),40.1)
+IntersectAt(Line(A,C),Line(B,D),Line(A,C),Point(F))
+IsDiagonalOf(Line(A,C),Quadrilateral(A,B,C,D))
+IsDiagonalOf(Line(B,D),Quadrilateral(A,B,C,D))
+Parallel(Line(A,B),Line(C,D))
+Parallel(Line(A,D),Line(B,C))
+
+QUESTION:
+Use parallelogram A B C D to find m \angle A D C.
+
+CHOICES:
+A. 42
+B. 52
+C. 72
+D. 128
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallelogram(A,B,C,D) + Opposite angles of a parallelogram are equal → Angle(A,B,C) = Angle(A,D,C)
+From MeasureOf(Angle(A,B,C),40.1) + Angle(A,B,C) = Angle(A,D,C) → MeasureOf(Angle(A,D,C),40.1)
+From the properties of a parallelogram, adjacent angles are supplementary → Angle(D,A,B) + Angle(B,A,C) + Angle(A,D,C) + Angle adjacent to ADC at D = 180
+From MeasureOf(Angle(D,A,B),20) + MeasureOf(Angle(B,A,C),32) → MeasureOf(Angle(D,A,C),20+32) → MeasureOf(Angle(D,A,C),52)
+From Parallelogram(A,B,C,D) + Adjacent angles in a parallelogram are supplementary → Angle(D,A,B) + Angle(B,A,C) + Angle(B,C,D) = 180
+From Parallelogram(A,B,C,D) + Adjacent angles in a parallelogram are supplementary → MeasureOf(Angle(DAB)) + MeasureOf(Angle(ADC)) = 180
+From MeasureOf(Angle(D,A,B),20) + MeasureOf(Angle(B,A,C),32) → MeasureOf(Angle(D,A,C),20+32) → MeasureOf(Angle(D,A,C),52)
+From MeasureOf(Angle(D,A,B),20) + MeasureOf(Angle(B,A,C),32) = MeasureOf(Angle(DAC), 52) + MeasureOf(Angle(CAB),32) → Angle(DAB) = Angle(DAC) + Angle(CAB) = 20+32 =52
+From Parallelogram(A,B,C,D) → MeasureOf(Angle(DAB)) + MeasureOf(Angle(ADC)) = 180
+From MeasureOf(Angle(DAB)) = 20+32 = 52 → 52 + MeasureOf(Angle(ADC)) = 180
+From 52 + MeasureOf(Angle(ADC)) = 180 → MeasureOf(Angle(ADC)) = 180 - 52 → MeasureOf(Angle(ADC)) = 128
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

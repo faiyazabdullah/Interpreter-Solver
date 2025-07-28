@@ -1,0 +1,195 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Triangle(A,B,C)
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(B,C)
+Line(A,C)
+Line(A,D)
+Line(B,D)
+Line(D,C)
+Angle(A,B,C)
+RightAngle(Angle(A,B,C))
+RightAngle(Angle(A,D,B))
+RightAngle(Angle(A,D,C))
+Right(Triangle(A,B,C))
+Right(Triangle(A,B,D))
+Right(Triangle(A,D,C))
+Equals(LengthOf(Line(A,B)), 10)
+Equals(LengthOf(Line(B,D)), 5)
+Perpendicular(Line(A,B), Line(A,C))
+Perpendicular(Line(A,D), Line(B,C))
+IsAltitudeOf(Line(A,D), Triangle(A,B,C))
+IsSideOf(Line(A,B), Triangle(A,B,C))
+IsSideOf(Line(B,C), Triangle(A,B,C))
+IsSideOf(Line(A,C), Triangle(A,B,C))
+IsSideOf(Line(A,B), Triangle(A,B,D))
+IsSideOf(Line(B,D), Triangle(A,B,D))
+IsSideOf(Line(A,D), Triangle(A,B,D))
+IsSideOf(Line(A,C), Triangle(A,D,C))
+IsSideOf(Line(D,C), Triangle(A,D,C))
+IsSideOf(Line(A,D), Triangle(A,D,C))
+
+QUESTION:
+In the figure, A D is perpendicular to B C and A B is perpendicular to A C. What is B C?
+
+CHOICES:
+A. 5 \sqrt 2
+B. 5 \sqrt 3
+C. 20
+D. 25
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's try to tackle this geometry problem. So, the question is asking for the length of BC, given some conditions about perpendicular lines and right angles. Let me start by going through the given predicates step by step.
+
+First, the problem mentions several points: A, B, C, D. There are lines connecting these points, like AB, BC, AC, AD, BD, DC. Also, there are right angles mentioned at certain angles, like Angle(A,B,C) being a right angle, and others involving D. Additionally, there are statements about perpendicularity between lines, such as AB being perpendicular to AC, and AD being perpendicular to BC. 
+
+Let me parse the key information again. The main thing here is understanding the relationships between the lines and the right angles. Since AB is perpendicular to AC, that means triangle ABC is a right triangle with the right angle at A. Similarly, AD is perpendicular to BC, so AD is an altitude of triangle ABC because it's perpendicular to BC and passes through A? Wait, but AD connects A to D. Wait, maybe D is a point somewhere such that AD is an altitude. But since AD is also part of other triangles, like ABD and ADC, which are also right triangles.
+
+Wait, looking back at the predicates: Right(Triangle(A,B,C)), Right(Triangle(A,B,D)), Right(Triangle(A,D,C)). So all three triangles ABC, ABD, and ADC are right-angled. That suggests that each of these triangles has a right angle at different vertices. For example, Triangle ABC is right-angled at A because AB is perpendicular to AC. Then, Triangle ABD is right-angled—where? The RightAngle(Angle(A,D,B)) implies that the right angle is at D for triangle ABD. Similarly, RightAngle(Angle(A,D,C)) would mean the right angle is at D for triangle ADC. So, D is connected to B and C, forming two right angles at D. 
+
+So, putting this together, we have triangle ABC with a right angle at A. Then, from point A, there's a line AD which is perpendicular to BC. Wait, but according to the given, AD is perpendicular to BC. However, since AD is also part of triangles ABD and ADC, which are right-angled at D. Therefore, AD is an altitude of triangle ABC, dropping perpendicularly onto BC. 
+
+Now, the problem gives us some lengths: Equals(LengthOf(Line(A,B)), 10) and Equals(LengthOf(Line(B,D)), 5). So AB is 10 units long, and BD is 5 units. We need to find BC. 
+
+Since ABC is a right triangle at A, by Pythagoras, BC² = AB² + AC². But we don't know AC yet. However, there's more info. Because AD is an altitude in triangle ABC, and in right triangles, the altitude to the hypotenuse has some relations. Let me recall that in a right triangle, the altitude to the hypotenuse relates the segments into which the hypotenuse is divided. Specifically, AD² = BD × DC. Wait, but here BD is given as 5. However, I need to confirm if that applies here. 
+
+But first, let me check the coordinates. Maybe assigning coordinates could help. Let's place point A at the origin (0,0). Since AB is perpendicular to AC, let's assume AB is along the x-axis and AC is along the y-axis. So, point B would be at (10,0) because AB is 10 units. Point C would be at (0, c) for some c. Then, BC would be the hypotenuse of triangle ABC, which goes from (10,0) to (0,c). The equation of BC can be found. 
+
+AD is perpendicular to BC. Since AD starts at A (0,0) and is perpendicular to BC. Let me compute the slope of BC. The coordinates of B are (10,0), C are (0,c). So the slope of BC is (c - 0)/(0 - 10) = -c/10. Therefore, the slope of AD, being perpendicular, should be the negative reciprocal, which is 10/c. 
+
+But AD goes from A(0,0) to D. Let me denote D as (x,y). Since AD has slope 10/c, so y/x = 10/c → y = (10/c)x. Also, D lies on BC. The parametric equation of BC can be written as starting at B(10,0) and moving towards C(0,c). Parametric equations: x = 10 - 10t, y = 0 + ct, where t ranges from 0 to 1. 
+
+So, point D lies on BC, so its coordinates satisfy those equations. Also, D lies on AD, which has the equation y = (10/c)x. Therefore, substituting the parametric expressions into the equation for AD:
+
+ct = (10/c)(10 - 10t)
+
+Multiply both sides by c:
+
+c^2 t = 10*(10 - 10t)
+
+Which simplifies to:
+
+c² t = 100 - 100t
+
+Bring terms with t to one side:
+
+c² t + 100t = 100
+
+t(c² + 100) = 100
+
+Therefore,
+
+t = 100 / (c² + 100)
+
+Then, coordinates of D are:
+
+x = 10 - 10t = 10 - 10*(100/(c²+100)) = 10 - 1000/(c² + 100)
+
+Similarly,
+
+y = ct = c*(100/(c² + 100)) = 100c/(c² + 100)
+
+But also, since D lies on AD, which has slope 10/c. Let me check if this aligns with the previous calculation. Alternatively, perhaps there's another way to relate BD and DC. 
+
+Alternatively, in a right triangle, the length of the altitude to the hypotenuse is given by (AB * AC)/BC. Let me recall that formula. In triangle ABC, right-angled at A, the altitude AD to hypotenuse BC has length (AB*AC)/BC. 
+
+Also, BD and DC are the segments into which the altitude divides BC. So BD = (AB²)/BC and DC = (AC²)/BC. Therefore, BD * DC = (AB² * AC²)/BC². But AD² = BD * DC. Also, AD is the altitude, so AD² = (AB² * AC²)/BC². 
+
+But we know BD is given as 5. Let me see. Wait, in our case, BD is given as 5. But how does that fit into the equations?
+
+Alternatively, since BD is part of triangle ABD, which is right-angled at D. So triangle ABD has right angle at D, with legs AD and BD, and hypotenuse AB. Wait, AB is 10. So by Pythagoras:
+
+AB² = AD² + BD² → 10² = AD² + 5² → AD² = 100 - 25 = 75 → AD = √75 = 5√3. 
+
+But also, in the right triangle ABC, the altitude AD can be expressed as (AB * AC)/BC. So:
+
+AD = (AB * AC)/BC → 5√3 = (10 * AC)/BC → (10 * AC)/BC = 5√3 → AC/BC = (√3)/2 → AC = (√3/2) * BC. 
+
+Additionally, since ABC is a right triangle at A, we have:
+
+AB² + AC² = BC² → 10² + [(√3/2)*BC]^2 = BC² → 100 + (3/4)BC² = BC² → 100 = BC² - (3/4)BC² = (1/4)BC² → BC² = 400 → BC = 20. 
+
+Wait, so BC is 20? Let me check this again. 
+
+Starting with BD=5, AB=10. Using triangle ABD right-angled at D: AB² = AD² + BD² → AD² = 100 - 25 = 75 → AD = 5√3. Then, since AD is the altitude in triangle ABC, which is right-angled at A, the formula for the altitude is (AB * AC)/BC = AD. 
+
+So, (10 * AC)/BC = 5√3. Also, from Pythagoras in triangle ABC: AB² + AC² = BC² → 100 + AC² = BC². 
+
+From the altitude formula, AC = (AD * BC)/10. Substituting AD = 5√3:
+
+AC = (5√3 * BC)/10 = (√3/2) BC. 
+
+Substitute this into the Pythagorean equation:
+
+100 + ( (√3/2 BC )² ) = BC² → 100 + (3/4)BC² = BC² → 100 = BC² - 3/4 BC² = (1/4)BC² → BC² = 400 → BC = 20. 
+
+Yes, that seems consistent. So BC equals 20. Looking at the options, option C is 20. So the answer should be C. 
+
+Wait, but let me make sure there isn't another approach. For instance, using coordinate geometry. Suppose AB is 10 units, so coordinates: A(0,0), B(10,0), C(0,c). Then BC has endpoints (10,0) and (0,c). The equation of BC is x/10 + y/c = 1. 
+
+AD is perpendicular to BC and passes through A(0,0). The slope of BC is -c/10, so the slope of AD is 10/c. Equation of AD: y = (10/c)x. 
+
+Intersection point D is where AD meets BC. Solve the system:
+
+x/10 + y/c = 1  
+y = (10/c)x  
+
+Substitute y into the first equation:
+
+x/10 + (10/c)x / c = 1  
+x/10 + (10x)/c² = 1  
+Factor out x:  
+x (1/10 + 10/c²) = 1  
+Solve for x:  
+x = 1 / (1/10 + 10/c²)  
+Multiply numerator and denominator by c²:  
+x = c² / (c²/10 + 10) = c² / [ (c² + 100)/10 ] = (10c²) / (c² + 100)  
+
+So coordinates of D are x = 10c²/(c² + 100), y = (10/c)x = (10/c)*(10c²/(c² + 100)) = 100c/(c² + 100). 
+
+Now, BD is the distance from B(10,0) to D(x,y). Let's calculate BD. 
+
+Coordinates of B: (10,0). Coordinates of D: (10c²/(c² + 100), 100c/(c² + 100)). 
+
+So BD squared is [10 - 10c²/(c² + 100)]² + [0 - 100c/(c² + 100)]². 
+
+Compute the x-coordinate difference:
+
+10 - [10c²/(c² + 100)] = [10(c² + 100) - 10c²]/(c² + 100) = [10c² + 1000 - 10c²]/(denominator) = 1000/(c² + 100)
+
+So x-difference squared is (1000)^2 / (c² + 100)^2
+
+y-difference squared is [ -100c/(c² + 100) ]² = (100c)^2 / (c² + 100)^2
+
+Total BD squared is [1000² + (100c)^2] / (c² + 100)^2 
+
+Factor numerator: 100² [10² + c²] = 10000(c² + 100)
+
+Thus BD squared = 10000(c² + 100) / (c² + 100)^2 ) = 10000 / (c² + 100)
+
+Given BD is 5, so BD squared is 25. Thus:
+
+10000 / (c² + 100) = 25 → c² + 100 = 10000 / 25 = 400 → c² = 400 - 100 = 300 → c = sqrt(300) = 10√3. 
+
+So AC is the length from A(0,0) to C(0,c), which is c = 10√3. 
+
+Now, BC is the hypotenuse of triangle ABC, which has AB=10, AC=10√3. So BC squared is 10² + (10√3)^2 = 100 + 300 = 400 → BC = 20. 
+
+This confirms that BC is indeed 20. Hence, the answer is C.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

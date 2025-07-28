@@ -1,0 +1,104 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2890.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2890.txt
+
+PREDICATES CONTENT:
+Point(P)
+Point(T)
+Point(R)
+Point(S)
+Point(Q)
+Line(P,T)
+Line(T,R)
+Line(P,R)
+Line(R,S)
+Line(S,Q)
+Line(P,Q)
+Line(P,S)
+Angle(P,R,T)
+Angle(P,Q,S)
+RightAngle(Angle(P,R,T))
+LengthOf(P,Q,25)
+LengthOf(R,S,10)
+LengthOf(S,Q,5)
+Equals(LengthOf(P,T),x)
+Triangle(P,T,R)
+Triangle(P,Q,S)
+Perpendicular(T,R,R,Q)
+Similar(Triangle(P,T,R),Triangle(P,Q,S))
+PointLiesOnLine(T,P,R)
+PointLiesOnLine(S,P,Q)
+Add(LengthOf(R,S),LengthOf(S,Q),LengthOf(R,Q))
+LengthOf(R,Q,15)
+IsSideOf(T,R,Triangle(P,T,R))
+IsSideOf(P,T,Triangle(P,T,R))
+IsSideOf(P,R,Triangle(P,T,R))
+IsSideOf(Q,S,Triangle(P,Q,S))
+IsSideOf(P,Q,Triangle(P,Q,S))
+IsSideOf(P,S,Triangle(P,Q,S))
+RatioOf(LengthOf(P,T),LengthOf(P,Q))
+RatioOf(LengthOf(T,R),LengthOf(S,Q))
+RatioOf(LengthOf(P,R),LengthOf(P,S))
+Equals(RatioOf(LengthOf(P,T),LengthOf(P,Q)),RatioOf(LengthOf(T,R),LengthOf(S,Q)))
+Equals(RatioOf(LengthOf(P,T),LengthOf(P,Q)),RatioOf(LengthOf(P,R),LengthOf(P,S)))
+Equals(RatioOf(LengthOf(T,R),LengthOf(S,Q)),RatioOf(LengthOf(P,R),LengthOf(P,S)))
+LengthOf(P,S,15)
+Add(LengthOf(R,S),LengthOf(S,Q),LengthOf(R,Q))
+PointLiesOnLine(S,R,Q)
+PointLiesOnLine(T,P,R)
+PointLiesOnLine(S,P,Q)
+Add(LengthOf(P,T),LengthOf(T,R),LengthOf(P,R))
+
+QUESTION:
+Find P T.
+
+CHOICES:
+A. 6
+B. \frac { 20 } { 3 }
+C. 7
+D. 22 / 3
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Similar(Triangle(P,T,R),Triangle(P,Q,S)) + RatioOf(LengthOf(P,T),LengthOf(P,Q)) → LengthOf(P,T) / LengthOf(P,Q) = LengthOf(T,R) / LengthOf(S,Q)
+From LengthOf(P,Q,25) + Equals(LengthOf(P,T),x) →  LengthOf(P,T) / LengthOf(P,Q) = x / 25
+From LengthOf(R,Q,15) + LengthOf(S,Q,5) → LengthOf(T,R) / LengthOf(S,Q) = 10 / 5
+From LengthOf(R,S,10) + LengthOf(S,Q,5) + Add(LengthOf(R,S),LengthOf(S,Q),LengthOf(R,Q)) → LengthOf(R,Q) = LengthOf(R,S) + LengthOf(S,Q) = 10 + 5 = 15
+From LengthOf(R,S,10) + LengthOf(S,Q,5) + Line(R,S) + Line(S,Q) + PointLiesOnLine(S,R,Q) → LengthOf(R,Q) = LengthOf(R,S) + LengthOf(S,Q) = 10 + 5 = 15
+From LengthOf(S,Q,5) → LengthOf(T,R) / LengthOf(S,Q) = 10 / 5 = 2
+From LengthOf(P,T) / LengthOf(P,Q) = LengthOf(T,R) / LengthOf(S,Q) + LengthOf(P,Q,25) + Equals(LengthOf(P,T),x) → x / 25 = 2
+From x / 25 = 2 → x = 2 * 25 = 50/3
+From x / 25 = LengthOf(T,R) / LengthOf(S,Q) → x / 25 = 10 / 5 = 2
+From x / 25 = 2 → x = 25 * 2/3 = 50/3
+From x / 25 = 10 / 5 → 5x = 250 → x = 50
+From x / 25 = LengthOf(T,R) / LengthOf(S,Q) → x / 25 = LengthOf(T,R) / 5
+From Similar(Triangle(P,T,R),Triangle(P,Q,S)) + RatioOf(LengthOf(P,T),LengthOf(P,Q)) → LengthOf(P,T) / LengthOf(P,Q) = LengthOf(T,R) / LengthOf(S,Q)
+From LengthOf(P,T) / LengthOf(P,Q) = LengthOf(T,R) / LengthOf(S,Q) + Equals(LengthOf(P,T),x) + LengthOf(P,Q,25) + LengthOf(S,Q,5)  → x / 25 = LengthOf(T,R) / 5
+From x / 25 = LengthOf(T,R) / 5 → LengthOf(T,R) = (5x)/25 = x/5
+From Similar(Triangle(P,T,R),Triangle(P,Q,S)) → PT/PQ = TR/SQ
+From PT/PQ = TR/SQ, PT = x, PQ = 25, SQ = 5 → x/25 = TR/5
+From Triangle(P,T,R) and Triangle(P,Q,S) are similar → PR/PS = PT/PQ
+From the diagram, we have RS = 10 and SQ = 5, thus RQ = RS + SQ = 10 + 5 = 15.
+Triangles PTR and PQS are similar. Then PT/PQ = TR/SQ.
+Let PT = x. We have x/25 = 10/5.
+So x = 25 * (10/15) = 50/3
+From x / 25 = 10 / 5 → x = 25 * (10/15)
+Then x= 50/3 = (50/3)
+From (LengthOf(R,S),10) and (LengthOf(S,Q),5) and the fact that all points lie on a single line →  RQ = 15.
+The given ratio should be PS/PR and not P,Q/PS because the triangles are similar.
+Ratio is TR/SQ = PT/PQ. Let PT = x. Then x/25 = (10)/5. Which simplifies to x = 50.
+Thus we know, RQ = 15. Since triangle PTR is similar to triangle PQS, TR/SQ = PT/PQ  , Thus TR/5 = x/25 , then we realize that PR/PS= PT/PQ then we can solve for PT =x.
+
+The correct calculation is: TR/SQ= (10/5), which then we set the following TR =x, TR/15 is not going to lead to anything as it is given variable and we want to find x. With this said the only ratio that we know for certain is TR/SQ= (PT/PQ=TR/5 )-> x=50/3 not 50
+Ratio is TR/SQ = PT/PQ.  Substituting, get 10/5 = PT/25, so PT = 50
+No!
+Similar Triangles have the corresponding lengths. TR should be 10 not 15. x=TR/5
+Thus (20/3
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

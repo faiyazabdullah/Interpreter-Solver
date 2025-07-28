@@ -1,0 +1,70 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2486.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2486.txt
+
+PREDICATES CONTENT:
+Point(O)
+Point(C)
+Point(B)
+Point(D)
+Point(X)
+Circle(O)
+PointLiesOnCircle(C,O)
+PointLiesOnCircle(B,O)
+PointLiesOnCircle(D,O)
+Line(O,C)
+Line(O,B)
+Line(C,D)
+Line(O,X)
+IsRadiusOf(Line(O,C),Circle(O))
+IsRadiusOf(Line(O,B),Circle(O))
+IsChordOf(Line(C,D),Circle(O))
+Perpendicular(Line(O,B),Line(C,D))
+IntersectAt(Line(O,B),Line(C,D),Line(C,D),X)
+IsMidpointOf(X,Line(C,D))
+LengthOf(Line(C,D),24)
+LengthOf(Line(O,B),13)
+LengthOf(Line(O,C),13)
+RightAngle(Angle(C,X,O))
+RightAngle(Angle(D,X,O))
+MeasureOf(Arc(C,D),134)
+IsRadiusOf(Line(O,B),Circle(O))
+IsRadiusOf(Line(O,C),Circle(O))
+Equals(LengthOf(Line(O,B)),LengthOf(Line(O,C)))
+IsMidpointOf(X,Line(C,D))
+Equals(LengthOf(Line(C,X)),LengthOf(Line(X,D)))
+LengthOf(Line(C,X),12)
+LengthOf(Line(X,D),12)
+PointLiesOnLine(X,Line(O,B))
+PointLiesOnLine(X,Line(C,D))
+Triangle(O,X,C)
+Right(Triangle(O,X,C))
+
+QUESTION:
+Circle O has a radius of 13 inches. Radius O B is perpendicular to chord C D which is 24 inches long. If m \widehat C D = 134, find m \widehat C B.
+
+CHOICES:
+A. 24
+B. 33
+C. 67
+D. 134
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Perpendicular(Line(O,B),Line(C,D)) + IntersectAt(Line(O,B),Line(C,D),Line(C,D),X) → Line OB is perpendicular to chord CD at point X.
+From Perpendicular(Line(O,B),Line(C,D)) + Circle(O) + IsChordOf(Line(C,D),Circle(O)) → Line OB bisects chord CD.
+From LengthOf(Line(C,D),24) + IsMidpointOf(X,Line(C,D)) → LengthOf(Line(C,X),12) and LengthOf(Line(X,D),12).
+From LengthOf(Line(O,C),13) + LengthOf(Line(C,X),12) + RightAngle(Angle(C,X,O)) + Triangle(O,X,C) + Right(Triangle(O,X,C)) → LengthOf(Line(O,X)) = sqrt(13^2 - 12^2) = sqrt(169-144) = sqrt(25) = 5.
+From Circle(O) + PointLiesOnCircle(C,O) + PointLiesOnCircle(B,O) + Line(O,C) + Line(O,B) + IsRadiusOf(Line(O,C),Circle(O)) + IsRadiusOf(Line(O,B),Circle(O)) + Equals(LengthOf(Line(O,B)),LengthOf(Line(O,C))) → OC = OB = radius of circle O.
+From MeasureOf(Arc(C,D),134) + Line(O,C) + Line(O,D) + O is center of the circle → Angle COD = 134 degrees.
+From Perpendicular(Line(O,B),Line(C,D)) + O is the center of the circle + CD is a chord → OB bisects the arc CD.
+From OB bisects the arc CD + MeasureOf(Arc(C,D),134) → MeasureOf(Arc(C,B)) = MeasureOf(Arc(B,D)) = 134/2 = 67 degrees.
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

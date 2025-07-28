@@ -1,0 +1,429 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Point(G)
+Point(H)
+Point(I)
+Point(J)
+Point(K)
+Line(G,H)
+Line(G,K)
+Line(K,J)
+Line(H,I)
+Line(J,I)
+Triangle(G,K,H)
+Triangle(J,K,H)
+RightAngle(Angle(G,K,H))
+RightAngle(Angle(K,J,H))
+Parallel(Line(K,J), Line(H,I))
+Parallel(Line(J,I), Line(K,H))
+Equals(LengthOf(Line(G,H)), 9)
+Equals(LengthOf(Line(G,K)), 6)
+Equals(LengthOf(Line(K,J)), 4)
+Equals(LengthOf(Line(H,I)), LengthOf(Line(K,J)))
+Equals(LengthOf(Line(J,I)), LengthOf(Line(K,H)))
+IsSideOf(Line(G,H), Triangle(G,K,H))
+IsSideOf(Line(G,K), Triangle(G,K,H))
+IsSideOf(Line(K,H), Triangle(G,K,H))
+IsSideOf(Line(K,J), Triangle(J,K,H))
+IsSideOf(Line(J,H), Triangle(J,K,H))
+IsSideOf(Line(K,H), Triangle(J,K,H))
+IsHypotenuseOf(Line(G,H), Triangle(G,K,H))
+IsHypotenuseOf(Line(J,H), Triangle(J,K,H))
+Equals(LengthOf(Line(K,H)), Sqrt(Sub(SquareOf(LengthOf(Line(G,H))), SquareOf(LengthOf(Line(G,K)))))
+
+QUESTION:
+Find G I if G H = 9, G K = 6, and K J = 4.
+
+CHOICES:
+A. 6
+B. 9
+C. 12
+D. 15
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+<think>
+Okay, let me try to figure out how to find GI given the problem. So first, I need to parse all the given predicates and see what's going on here. 
+
+Starting with the points: there are points G, H, I, J, K. Then there are several lines connecting them. The triangles mentioned are Triangle(G,K,H) and Triangle(J,K,H). Also, some right angles at Angle(G,K,H) and Angle(K,J,H). Plus, there are parallel lines between Line(K,J) and Line(H,I), and Line(J,I) and Line(K,H). The lengths given are GH=9, GK=6, KJ=4, HI equals KJ so HI=4, and JI equals KH. Wait, but KH is part of the right triangle?
+
+Let me sketch this mentally. Let's start with Triangle(G,K,H). Since it's a right triangle with right angle at G-K-H? Wait, RightAngle(Angle(G,K,H)) means that the angle at point K between points G and H is the right angle. So Triangle(G,K,H) has a right angle at K. Similarly, Triangle(J,K,H) has a right angle at K because RightAngle(Angle(K,J,H))—so angle at J? Wait, no. The angle is Angle(K,J,H), which would mean the angle at point J between points K and H. Wait, maybe I'm getting confused here. Let me clarify.
+
+In Angle(A,B,C), the vertex is at B. So Angle(G,K,H) is the angle at point K between points G and H. Therefore, in Triangle(G,K,H), the right angle is at K. So sides GK and KH are the legs, and GH is the hypotenuse. Given that, since GH=9 and GK=6, we can use Pythagoras to find KH. Wait, the problem also gives Equals(LengthOf(Line(K,H)), Sqrt(Sub(SquareOf(LengthOf(Line(G,H))), SquareOf(LengthOf(Line(G,K))))). That formula is just the Pythagorean theorem. So KH should be sqrt(9² - 6²) = sqrt(81 - 36) = sqrt(45) = 3√5. But wait, the problem says that JI equals KH. So JI is equal to KH, which is 3√5. However, another predicate says Equals(LengthOf(Line(J,I)), LengthOf(Line(K,H))). Wait, but earlier they said that JI equals KH. So that's consistent.
+
+But then there's more about the other triangle. Triangle(J,K,H) is also a right triangle with right angle at J? Because RightAngle(Angle(K,J,H)) implies the angle at J. So in Triangle(J,K,H), the right angle is at J. So sides KJ and JH are the legs, and KH is the hypotenuse? Wait, but KJ is given as 4. And JH is... Well, JH would be the other leg. Wait, but in this case, KH is the hypotenuse. Wait, but earlier we found KH is 3√5, so if KJ is 4, then JH can be found via Pythagoras again. Let me check that.
+
+Wait, for Triangle(J,K,H): right angle at J. So legs are KJ and JH, hypotenuse KH. So KJ^2 + JH^2 = KH^2. We know KJ is 4, KH is 3√5. So 4² + JH² = (3√5)^2 → 16 + JH² = 9*5 = 45 → JH² = 45 -16 = 29 → JH = √29. Hmm. Not sure if that helps yet.
+
+Now, looking at the parallel lines. Line(K,J) is parallel to Line(H,I), and Line(J,I) is parallel to Line(K,H). So, these two pairs of lines are parallel. Let me think about what that implies. Maybe forming parallelograms or something? Since Line(K,J) || Line(H,I), and Line(J,I) || Line(K,H). Let me imagine the structure.
+
+So, Line(K,J) is one side of Triangle(J,K,H), which is connected to Line(J,I). Wait, Line(J,I) is parallel to Line(K,H). So Line(K,H) is a hypotenuse of Triangle(G,K,H), which is length 3√5. So Line(J,I) is parallel to that. Also, Line(K,J) is parallel to Line(H,I). So perhaps there's a parallelogram formed here? Or maybe some translation?
+
+Alternatively, considering coordinates. Maybe assigning coordinates to each point could help. Let me try that.
+
+Let me place point K at the origin (0,0) to simplify. Since Triangle(G,K,H) is a right triangle at K. So, if K is at (0,0), then points G and H can be along axes. Suppose GK is one leg and KH is the other. Since GK is 6 units. Let me assume that point G is along the x-axis, so G is at (6,0). Then, since the right angle is at K, point H would be along the y-axis. So H is at (0, b), where b is the length of KH, which we found earlier as 3√5. So H is at (0, 3√5).
+
+Then, Triangle(J,K,H) is another right triangle with right angle at J. Since Line(K,J) is parallel to Line(H,I), and Line(J,I) is parallel to Line(K,H). Let me see. Let me consider the coordinates of J. In Triangle(J,K,H), right angle at J. So, points J, K, H form a right triangle with right angle at J. So, vectors from J to K and J to H should be perpendicular. Also, Line(K,J) is parallel to Line(H,I). Let me denote coordinates for J. Let me suppose that J is somewhere such that Line(KJ) is parallel to Line(HI). Also, Line(JI) is parallel to Line(KH). Since Line(KH) goes from K(0,0) to H(0, 3√5), which is vertical. Therefore, Line(KH) is vertical. Thus, Line(JI) is parallel to Line(KH), which is vertical, so Line(JI) must also be vertical. Therefore, points J and I must lie on a vertical line. So, if Line(JI) is vertical, then I has the same x-coordinate as J. 
+
+Also, Line(KJ) is parallel to Line(HI). Line(KJ) connects K(0,0) to J(x,y). Let me call J's coordinates (a,b). Then Line(KJ) has direction vector (a,b). Line(HI) connects H(0, 3√5) to I. Since Line(HI) is parallel to Line(KJ), so the direction vector of HI is the same as KJ. So, if HI has direction vector (a,b), then starting from H(0, 3√5), moving in direction (a,b) gets us to I. Also, since Line(JI) is vertical, as discussed, so I has the same x-coordinate as J. Therefore, the x-coordinate of I is the same as J's x-coordinate. So, if J is at (a,b), then I is at (a, c) for some c. 
+
+Additionally, since Line(JI) is vertical, and JI is a segment from J(a,b) to I(a,c), so its length is |c - b|. Also, from the given, the length of Line(J,I) equals the length of Line(K,H). Wait, the predicate says Equals(LengthOf(Line(J,I)), LengthOf(Line(K,H))). Earlier, we had KH = 3√5, so JI must also be 3√5. Therefore, |c - b| = 3√5. 
+
+Moreover, in Triangle(J,K,H), which is a right triangle with right angle at J. So, points J, K, H form a right triangle with right angle at J. So, vectors JK and JH are perpendicular. Vector JK is from J to K: (0 - a, 0 - b) = (-a, -b). Vector JH is from J to H: (0 - a, 3√5 - b) = (-a, 3√5 - b). These vectors must be perpendicular, so their dot product is zero. So:
+
+(-a)(-a) + (-b)(3√5 - b) = 0  
+a² - b(3√5 - b) = 0  
+a² - 3√5 b + b² = 0  
+This equation relates a and b.
+
+Additionally, the length of KJ is given as 4. Since KJ is the distance from K(0,0) to J(a,b), which is sqrt(a² + b²) = 4. Therefore:
+
+sqrt(a² + b²) = 4 ⇒ a² + b² = 16.
+
+From the previous equation: a² - 3√5 b + b² = 0. Substituting a² + b² = 16 into this equation:
+
+16 - 3√5 b = 0 ⇒ 3√5 b = 16 ⇒ b = 16/(3√5) = (16√5)/15.
+
+Now, substitute back to find a²:
+
+From a² + b² = 16,
+
+a² = 16 - b² = 16 - [(16√5)/15]^2. Let me compute that:
+
+First, square of (16√5)/15: (256 * 5)/(225) = 1280 / 225 = 256/45.
+
+Thus, a² = 16 - 256/45 = (720/45 - 256/45) = 464/45.
+
+Therefore, a = ±sqrt(464/45) = ±(sqrt(464))/sqrt(45) = ±(4*sqrt(29))/ (3√5) ) = ±(4√(29/5))/3. Hmm, messy numbers. Maybe I can keep it symbolic for now.
+
+But regardless, we have coordinates for J as (a, b) where b = 16√5/15 and a² = 464/45.
+
+Now, since Line(HI) is parallel to Line(KJ), which has direction vector (a, b). So, from point H(0, 3√5), moving along direction (a, b) to get to I. But since Line(JI) is vertical, I has x-coordinate a. Let me parametrize point I.
+
+Parametric equations: Starting at H(0, 3√5), moving along direction vector (a, b). So, any point on Line(HI) can be written as (0 + ta, 3√5 + tb) for t ∈ ℝ. But since Line(HI) is parallel to Line(KJ), which has direction (a, b), so the parametric representation is correct.
+
+But we also know that I lies on the vertical line x=a. Therefore, the x-coordinate of I is a. So, from the parametric equation, the x-coordinate is ta = a ⇒ t = 1 (assuming t≠0). Therefore, substituting t=1, the coordinates of I are (ta, 3√5 + tb) = (a, 3√5 + b). Therefore, point I is at (a, 3√5 + b). 
+
+But earlier, we had that the length of JI is 3√5. The coordinates of J are (a, b), and I is (a, 3√5 + b). So the distance between J and I is |y-coordinates difference| = |3√5 + b - b| = 3√5. Which matches the given condition. Good.
+
+Now, we need to find the length of GI. Point G is at (6,0), and point I is at (a, 3√5 + b). So, the distance between G(6,0) and I(a, 3√5 + b) is sqrt[(a - 6)^2 + (3√5 + b - 0)^2]. Let's compute this expression.
+
+We need to find a and b. From earlier, we have:
+
+b = 16√5 / 15
+
+and a² = 464/45. Let me compute a:
+
+a² = 464/45 ≈ 10.311...
+
+But maybe we can express (a - 6)^2 + (3√5 + b)^2.
+
+First, expand (a - 6)^2 = a² - 12a + 36.
+
+Second term: (3√5 + b)^2 = (3√5)^2 + 2*(3√5)*b + b² = 45 + 6√5*b + b².
+
+Adding both terms:
+
+Total = a² -12a +36 +45 +6√5*b + b² = (a² + b²) + (-12a) + (36+45) + 6√5*b.
+
+We already know that a² + b² = 16, so substitute:
+
+Total = 16 -12a + 81 + 6√5*b = 97 -12a + 6√5*b.
+
+So the squared distance GI² = 97 -12a + 6√5*b.
+
+Hmm, but we need to compute this. Let me plug in the known values of b and a.
+
+Earlier, we had b = 16√5 /15. So 6√5*b = 6√5*(16√5)/15 = 6*16*(√5)^2 /15 = 6*16*5 /15 = (96*5)/15 = 96/3 = 32.
+
+Then, the term -12a. What is a? Recall that a² = 464/45. But we don't have the exact value of a unless we calculate it. Alternatively, maybe we can relate a using the expressions we have.
+
+Wait, from earlier, we had the equation from the perpendicularity: a² - 3√5 b + b² = 0. And since a² + b² = 16, substituting into that gives 16 - 3√5 b = 0 ⇒ b = 16/(3√5) as before.
+
+So we can express a² = 16 - b² = 16 - (256*5)/225 = 16 - 1280/225 = converting 16 to 3600/225, subtract 1280/225 gives 2320/225 = 464/45, which checks out.
+
+But how do we find 'a'? It seems like we need another relation. Wait, but we might not need the exact value of 'a' because maybe it cancels out in the expression for GI²?
+
+Wait, our current expression for GI² is 97 -12a + 32 = 129 -12a. Wait, no, earlier breakdown was:
+
+GI² = 97 -12a + 6√5*b = 97 -12a + 32 = 129 -12a. Wait, yes, because 6√5*b was computed as 32.
+
+So GI² = 129 -12a. Now, we need to find 'a'. How?
+
+Recall that a² = 464/45. So a = sqrt(464/45) or negative. But does the sign matter? Let me think about the diagram. Since Line(KJ) is part of Triangle(J,K,H), and we assumed that J is positioned such that the triangle is oriented properly. Depending on the direction of the parallel lines, maybe a is positive or negative. However, without loss of generality, maybe we can take a positive value.
+
+But even if we take a positive value, we still need to find the numerical value. Wait, but perhaps there's another way to find 'a'? Let me check the other conditions.
+
+Wait, we also have that Line(J,I) is parallel to Line(K,H). Line(K,H) is vertical, as established earlier. So Line(J,I) is vertical, which we already used. So no new info there.
+
+Alternatively, maybe the coordinates of I are connected to other parts? For example, maybe there are other constraints involving the points? Let me check the given predicates again.
+
+Wait, there's a predicate that says IsSideOf(Line(H,I), Triangle(...))? Not sure. Also, the problem asks for GI. Maybe there's another way to find GI without knowing 'a' directly?
+
+Alternatively, perhaps there's a property or theorem that can be applied here instead of coordinate geometry. Let me think again.
+
+Looking back at the problem: Find GI, given that GH=9, GK=6, KJ=4. So, the answer options are 6,9,12,15. Let me see if there's a simpler way.
+
+Given that GH=9, GK=6, KJ=4. The triangles involved are right triangles. Also, the parallel lines suggest similarity or congruence.
+
+Since Line(KJ) || Line(HI), and Line(JI) || Line(KH). So, these two pairs of lines being parallel suggests that the figure is a parallelogram or part of a parallelogram.
+
+Wait, if Line(KJ) || Line(HI) and Line(JI) || Line(KH), then the figure formed by KJHI might be a parallelogram? Let me check. For a parallelogram, opposite sides must be parallel and equal. Here, Line(KJ) || Line(HI), and Line(KH) || Line(JI). So if those are true, then KJHI is a parallelogram. Hence, KJ = HI and KH = JI. Which matches the given that KJ=4, HI=4 (since HI equals KJ), and JI equals KH (which is 3√5). So that holds.
+
+So, in the parallelogram KJHI, opposite sides are equal. So, KJ=HI and KH=JI. Therefore, the diagonals of the parallelogram would bisect each other. But not sure if that helps here.
+
+But how does this help in finding GI?
+
+Points G, I, and others. Let me think of the entire figure. Points G, K, H form a right triangle. Points J, K, H form another right triangle. Lines KJ and HI are parallel; JI and KH are parallel. So, maybe the figure includes a larger shape?
+
+Alternatively, since we have coordinates for G and I, perhaps we can find GI using coordinates. Earlier, we were stuck with GI² = 129 -12a. But if we can find 'a', then we can compute it. Let me try to find 'a'.
+
+We have a² = 464/45. So, a = sqrt(464/45). Simplify sqrt(464/45):
+
+Factor numerator and denominator:
+
+464 divided by 45. Let's factor 464: 464 ÷ 16 = 29. So 464 = 16×29. Therefore, sqrt(16×29 / 45) = 4*sqrt(29/45) = 4*sqrt(29)/sqrt(45) = 4*sqrt(29)/(3√5) = (4√29)/(3√5). Rationalizing the denominator: multiply numerator and denominator by √5: (4√145)/15. But not sure if helpful.
+
+But maybe we can find another relation involving 'a'. Let me think. Are there any other constraints?
+
+Wait, the problem mentions that Line(H,I) is parallel to Line(K,J), which we've already used. Also, Line(J,I) is parallel to Line(K,H), which is vertical. So, Line(J,I) is vertical. Which we've already considered.
+
+Alternatively, maybe triangle GHI? Or some other relations. Let me think about the location of point I. Since I is part of the parallelogram KJHI, and H is at (0, 3√5), and I is at (a, 3√5 + b). So, coordinates of I are (a, 3√5 + b). Coordinates of G are (6, 0). So GI is the distance between (6,0) and (a, 3√5 + b). As previously, GI² = (a - 6)^2 + (3√5 + b)^2.
+
+But we need to find this value. Let me compute (a - 6)^2 + (3√5 + b)^2.
+
+Expanding:
+
+= a² -12a + 36 + 9*5 + 6√5*b + b²  
+= a² + b² -12a + 36 + 45 + 6√5*b  
+= (a² + b²) + (-12a) + 81 + 6√5*b.
+
+As before, since a² + b² = 16, this becomes:
+
+16 -12a + 81 + 6√5*b = 97 -12a + 6√5*b.
+
+Earlier, we found that 6√5*b = 32. So this becomes 97 + 32 -12a = 129 -12a.
+
+So GI² = 129 -12a. To find GI, we need to find the value of 'a'.
+
+But how?
+
+We know that a² = 464/45. Let me compute 12a. But without knowing the exact value of a, this seems difficult. Unless there's a relationship between a and other variables.
+
+Wait, earlier in the equation from the perpendicularity: a² -3√5*b + b² = 0. And since a² + b² = 16, this became 16 -3√5*b = 0 => b = 16/(3√5). So that's fixed. So, we can find a from a² = 16 - b².
+
+Compute b:
+
+b = 16/(3√5) = (16√5)/15. So b² = (256 * 5)/225 = 1280/225 = 256/45.
+
+Thus, a² = 16 - 256/45 = (720/45 - 256/45) = 464/45.
+
+So, a = sqrt(464/45). Let me rationalize this:
+
+sqrt(464/45) = sqrt((16*29)/45) = 4*sqrt(29/45) = 4*sqrt(29)/sqrt(45) = 4*sqrt(29)/(3*sqrt(5)) = (4/sqrt(5)) * sqrt(29)/3 = (4√5/5) * sqrt(29)/3 = (4√145)/15. Not sure if helpful.
+
+But if I proceed with GI² = 129 -12a, and a = sqrt(464/45), then GI² = 129 -12*sqrt(464/45). This seems complicated. Perhaps there's an error in my approach?
+
+Alternatively, maybe there's a different way to look at the problem. Let me recall that in the parallelogram KJHI, since KJ is parallel to HI and KH is parallel to JI, then the length of KJ is equal to HI (which is 4), and KH is equal to JI (which is 3√5). But how does this help with GI?
+
+Maybe consider triangle GKI or something? Or look for similar triangles?
+
+Alternatively, since we have coordinates for G(6,0) and I(a, 3√5 + b), perhaps there's another relation between a and other variables?
+
+Wait, let me think about the position of I. Since I is part of the parallelogram KJHI, then vector HI = vector KJ. Vector KJ is from K(0,0) to J(a,b), which is (a,b). So vector HI should also be (a,b). Since H is at (0, 3√5), then adding vector (a,b) to H gives I's coordinates: I = H + vector HI = (0 + a, 3√5 + b). Which matches our earlier conclusion that I is at (a, 3√5 + b).
+
+So, the coordinates of I are (a, 3√5 + b). Now, to find GI, we need to find the distance between G(6,0) and I(a, 3√5 + b).
+
+But we need to find the value of a. Let me see if there's another relation involving a. 
+
+Wait, since Line(JI) is parallel to Line(KH), and Line(KH) is vertical. So Line(JI) is vertical, which we already used. So, no new info.
+
+Alternatively, maybe there's a relation between the slopes of other lines? Let me check. Line(GK) is from G(6,0) to K(0,0), which is horizontal. Line(KH) is vertical. So, the slope of GK is 0, slope of KH is undefined. 
+
+But I'm not seeing a direct connection to find 'a'. Maybe I made a wrong assumption in setting up coordinates? Let me double-check.
+
+Alternative approach: Maybe use vectors or transformations. Since Line(KJ) is parallel to Line(HI), and Line(JI) is parallel to Line(KH), which is vertical. So, translating the segment KJ to HI would give HI parallel to KJ. But since JI is parallel to KH, which is vertical, then JI is vertical. So, the transformation that maps KJ to HI is a translation? Or a combination of translation and rotation?
+
+Alternatively, since KJHI is a parallelogram, then vector KJ equals vector HI. So, vector KJ = J - K = (a, b). Vector HI = I - H = (a - 0, (3√5 + b) - 3√5) = (a, b). Yes, which confirms that. So, no new info.
+
+Wait, but maybe there's another triangle or relation involving point I. For instance, maybe triangle GHI or something else?
+
+Alternatively, since we know the coordinates of I, maybe we can find GI using the coordinates and the known values of a and b, even though a is expressed in terms of radicals. Let me try plugging in the numbers numerically.
+
+Let me calculate a² = 464/45 ≈ 10.3111. So a ≈ sqrt(10.3111) ≈ 3.211. Let me compute a ≈ 3.211. Then, GI² ≈ 129 - 12*3.211 ≈ 129 - 38.532 ≈ 90.468. So GI ≈ sqrt(90.468) ≈ 9.51. But none of the answer choices are close to this. Wait, the options are 6,9,12,15. Hmm, this suggests that there might be an error in my calculation.
+
+Wait, but this discrepancy indicates that my coordinate setup might be incorrect. Let me re-examine my assumptions.
+
+Wait, when I set up the coordinates for K at (0,0), G at (6,0), H at (0, 3√5). Then, for Triangle(J,K,H) being a right triangle at J, with KJ=4. But I assumed that J is at (a,b), but maybe my assumption about the orientation of the triangle is incorrect?
+
+Wait, in Triangle(J,K,H), the right angle is at J. So, points J, K, H form a right triangle with right angle at J. So, the legs are KJ and JH, and hypotenuse KH. Wait, but earlier I thought that KH was the hypotenuse, but according to the Pythagorean theorem, KH^2 = KJ^2 + JH^2. We had KH = 3√5, KJ =4, so JH^2 = KH^2 - KJ^2 = (45) - 16 = 29. So JH = sqrt(29). So, the length of JH is sqrt(29).
+
+But in my coordinate system, J is at (a,b), H is at (0,3√5). So the distance between J and H is sqrt[(a-0)^2 + (b - 3√5)^2] = sqrt(a² + (b - 3√5)^2) = sqrt(29). Squaring both sides: a² + (b - 3√5)^2 = 29.
+
+But earlier, from the perpendicularity condition, we had a² + b² = 16. So combining these two equations:
+
+Equation 1: a² + b² = 16  
+Equation 2: a² + (b - 3√5)^2 = 29  
+
+Subtract Equation 1 from Equation 2:
+
+[a² + (b - 3√5)^2] - [a² + b²] = 29 - 16  
+Expand: (b² -6√5 b + 45) - b² = 13  
+Simplify: -6√5 b + 45 = 13  
+=> -6√5 b = 13 -45 = -32  
+=> b = (-32)/(-6√5) = 32/(6√5) = 16/(3√5) = 16√5/15, which matches what I had before.
+
+So that's consistent. So the value of b is correct. And thus, a² = 16 - b² = 16 - (256*5)/225 = 16 - 1280/225 = (3600 - 1280)/225 = 2320/225 = 464/45. Correct.
+
+So, the issue is in calculating GI² = 129 -12a. But why is the numerical estimate giving me around 9.5, which isn't among the options? Maybe I made a mistake in deriving GI².
+
+Let me recheck the expansion of (a - 6)^2 + (3√5 + b)^2.
+
+Expand (a - 6)^2 = a² -12a +36  
+Expand (3√5 + b)^2 = 9*5 + 6√5*b + b² = 45 + 6√5*b + b²  
+Summing both terms: a² -12a +36 +45 +6√5*b + b² = (a² + b²) + (-12a) + (36 + 45) + 6√5*b  
+Which is 16 -12a + 81 + 6√5*b = 97 -12a + 6√5*b. Correct.
+
+And since 6√5*b = 32, then total is 97 + 32 -12a = 129 -12a. So that's correct.
+
+So, GI² = 129 -12a. Now, we need to find the value of 'a'.
+
+But how?
+
+Wait, from equation 1: a² + b² = 16, and from equation 2: a² + (b - 3√5)^2 = 29. We already used these to find b. But can we find a from these equations?
+
+Yes! From equation 1: a² = 16 - b² = 16 - (256*5)/225 = 16 - 1280/225 = 2320/225 = 464/45. So a = sqrt(464/45). But this doesn't give us a numerical value unless we compute it. Let me compute the numerical value of a:
+
+464 divided by 45 is approximately 10.3111. So sqrt(10.3111) ≈ 3.211. So a ≈ 3.211.
+
+Thus, 12a ≈ 12 * 3.211 ≈ 38.532.
+
+So GI² ≈ 129 - 38.532 ≈ 90.468. Taking sqrt gives GI ≈ 9.51. But this is not matching any of the answer choices. The closest option is 9 or 12. But this suggests an error in the approach.
+
+Alternatively, maybe there's a miscalculation in assuming the coordinates. Let me think differently.
+
+Perhaps the answer is not requiring precise computation but relies on recognizing some geometric relationships. Let me think again about the figure.
+
+We have two right triangles: GKH and JKH. Both share the hypotenuse KH. Also, KJ and HI are parallel, JI and KH are parallel. So, KJHI is a parallelogram. Thus, HI = KJ = 4, and JI = KH = 3√5.
+
+But how to find GI?
+
+Let me consider vectors. Vector GI = I - G. If I can find the coordinates of I relative to G, or find a relationship.
+
+Alternatively, since KJHI is a parallelogram, then vector KJ = vector HI. So, vector KJ is J - K = J - O (if K is origin). Wait, earlier I placed K at (0,0), so vector KJ is J - K = (a,b). Vector HI is I - H = I - H = (a, 3√5 + b) - (0, 3√5) = (a, b). Which confirms it.
+
+Now, to find GI, which is I - G. G is at (6,0), I is at (a, 3√5 + b). So vector GI = (a - 6, 3√5 + b - 0) = (a -6, 3√5 + b). The length of GI is sqrt[(a -6)^2 + (3√5 + b)^2], which is what I calculated earlier.
+
+But how to find this value without knowing a?
+
+Wait, let me consider the entire system. We have:
+
+From the first triangle: GH=9, GK=6, so KH=3√5.
+
+From the second triangle: KJ=4, JH=sqrt(29), as above.
+
+Now, since KJHI is a parallelogram, then IH = KJ =4, and JI=KH=3√5.
+
+But how does this help with GI?
+
+Maybe consider triangle GHI? Let me think about the coordinates again.
+
+Point G is at (6,0), H is at (0, 3√5), I is at (a, 3√5 + b). So, the distance from G to I is what we're trying to find.
+
+But maybe there's another way to relate these points. Let me consider the fact that Line(HI) is parallel to Line(KJ). Since Line(KJ) has slope (b - 0)/(a - 0) = b/a. Line(HI) has the same slope. But Line(HI) goes from H(0, 3√5) to I(a, 3√5 + b). So the slope is (3√5 + b - 3√5)/(a - 0) = b/a, which matches. So that's consistent.
+
+But again, this doesn't give us new info.
+
+Wait, perhaps there's a mistake in assuming the coordinates of G? Let me check: if I placed K at (0,0), and G at (6,0), then GK is 6, which matches. H is at (0, 3√5), making KH = 3√5, which matches. All good.
+
+Another idea: since Line(JI) is parallel to Line(KH), which is vertical, so Line(JI) is vertical, hence I has the same x-coordinate as J. So, I is vertically aligned with J. So, J is at (a, b), I is at (a, 3√5 + b). 
+
+Now, let's consider the entire figure. Points G(6,0), K(0,0), H(0, 3√5), J(a, b), I(a, 3√5 + b). 
+
+Now, what is the relation between G and I? Maybe there's a way to express GI in terms of other segments?
+
+For example, if we can find the coordinates of I in terms of other known quantities, or find a relation between a and other variables.
+
+Wait, but we have the value of b = 16√5/15. Let me plug that into the expression for GI² = 129 -12a. But I need to find a. 
+
+Wait, from the equation a² + b² = 16, and b = 16√5/15. Let me compute a²:
+
+a² = 16 - b² = 16 - (256*5)/225 = 16 - 1280/225 = (3600 - 1280)/225 = 2320/225 = 464/45.
+
+So, a = sqrt(464/45). Let me rationalize this fraction:
+
+464 divided by 45: 464 = 16 * 29, 45 = 9 * 5. So sqrt(16*29 / 9*5) = (4/3) * sqrt(29/5) = (4/3)*(sqrt(145)/5) = 4*sqrt(145)/15. 
+
+But I don't know if this helps. Let me plug this into GI²:
+
+GI² = 129 -12a = 129 -12*(4*sqrt(145)/15) = 129 - (48*sqrt(145))/15. This seems too complicated to simplify further. 
+
+This suggests that either there's a miscalculation in the setup, or perhaps the problem expects a different approach.
+
+Let me try a different approach, focusing on vectors or using the properties of parallelograms and right triangles.
+
+Since KJHI is a parallelogram, then the diagonal of the parallelogram is KI and HJ. But not sure.
+
+Alternatively, since GH = 9, GK = 6, KJ = 4, and we need to find GI. Maybe using the law of cosines in triangle GIK or something?
+
+Wait, but I don't know the angle between GK and KI. Alternatively, since we have right triangles and parallelograms, maybe there's a way to find GI as a combination of known lengths.
+
+Wait, let's think about vectors again. Vector GI = I - G. From earlier, I is at (a, 3√5 + b). G is at (6,0). So, GI vector is (a -6, 3√5 + b - 0) = (a -6, 3√5 + b). 
+
+The length of GI squared is (a -6)^2 + (3√5 + b)^2. 
+
+But we know that a² + b² = 16, and b = 16√5/15. Let me substitute b into this expression.
+
+First, expand (a -6)^2 + (3√5 + b)^2:
+
+= a² -12a + 36 + 9*5 + 6√5 b + b²  
+= a² + b² -12a + 36 + 45 + 6√5 b  
+= (a² + b²) + (-12a) + 81 + 6√5 b  
+= 16 -12a + 81 + 6√5 b  
+= 97 -12a + 6√5 b.
+
+Now, we know that 6√5 b = 32 (from earlier calculation). So this becomes 97 + 32 -12a = 129 -12a. 
+
+Now, we need to find 12a. Let me find a from a² = 464/45. Let me write a = sqrt(464/45). So 12a = 12*sqrt(464/45). 
+
+But how to relate this to known quantities? Let me think about the value of 12a. 
+
+Wait, if I can express a in terms of other known lengths. Let me think: a is the x-coordinate of point J, which is part of the parallelogram KJHI. But I don't see a direct relation.
+
+Wait, maybe there's a mistake in assuming the coordinates. Let me try a different coordinate system. Let me place point K at (0,0), point G at (0,6), and point H at (3√5, 0), making Triangle(G,K,H) a right triangle with right angle at K. Wait, this would make GK = 6 (vertical), KH = 3√5 (horizontal), and GH = 9. Let me verify:
+
+Distance from G(0,6) to H(3√5, 0): sqrt((3√5 - 0)^2 + (0 - 6)^2) = sqrt(45 + 36) = sqrt(81) = 9. Yes, this works. So this alternative coordinate system might simplify things.
+
+Let me try this setup. So:
+
+- K is at (0,0).
+- G is at (0,6) (since GK = 6, vertical).
+- H is at (3√5, 0) (since KH = 3√5, horizontal).
+- Triangle(G,K,H) is right-angled at K.
+
+Now, for Triangle(J,K,H), which is right-angled at J. Line(KJ) is parallel to Line(HI), and Line(JI) is parallel to Line(KH). Line(KH) is horizontal (from K(0,0) to H(3√5,0)), so it's horizontal. Thus, Line(JI) is parallel to this, so Line(JI) is also horizontal. So, JI is horizontal. Also, Line(KJ) is parallel to Line(HI). Let me find coordinates for J and I.
+
+Since Triangle(J,K,H) is right-angled at J. So, points J, K, H form a right triangle with right angle at J. So, vectors JK and JH are perpendicular.
+
+Let me denote J as (x,y). Then, vector JK is K - J = (0 - x, 0 - y) = (-x, -y). Vector JH is H - J = (3√5 - x, 0 - y) = (3√5 - x, -y). Their dot product should be zero:
+
+(-x)(3√5 - x) + (-y)(-y) = 0  
+=> -3√5 x + x² + y² = 0  
+=> x² + y² = 3√5 x.
+
+Also, the length of KJ is 4. Since KJ is from K(0,0) to J(x,y), its length is sqrt(x² + y²) = 4. So x² + y² = 16.
+
+Substitute into the previous equation: 16 = 3√5 x → x = 16/(3√5) = 16√5/15. So x = 16√5/15.
+
+Now, we can find y from x² + y² = 16:
+
+y² = 16 - x² = 16 - (256*5)/225 = 16 - 1280/225 = (3600 - 1280)/225 = 2320/225 = 464/45. So y = ±sqrt(464/45). Let's assume y is positive for simplicity.
+
+Now, Line(KJ) is from K(0,0) to J(x,y). This line has direction vector (x, y). Line(HI) is parallel to this, so it has the same direction vector. Line(HI) starts at H(3√5, 0) and goes in direction (x, y). So, point I can be found by moving from H in the direction of (x, y) for some parameter t. But also, Line(JI) is horizontal (parallel to Line(KH), which is horizontal). So, Line(JI) is horizontal, meaning that I has the same y-coordinate as J
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

@@ -1,0 +1,73 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2751.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2751.txt
+
+PREDICATES CONTENT:
+Point(D)
+Point(W)
+Point(X)
+Point(Y)
+Point(Z)
+Point(C)
+Point(G)
+Point(H)
+Point(I)
+Point(J)
+Line(D,C)
+Line(G,H)
+Line(H,I)
+Line(I,J)
+Line(J,Y)
+Line(I,X)
+Angle(W,X,J)
+Angle(W,Z,C)
+Angle(Y,I,Z)
+Triangle(J,H,I)
+Triangle(J,X,Y)
+MeasureOf(Angle(W,X,J))
+MeasureOf(Angle(W,Z,C))
+Equals(MeasureOf(Angle(W,X,J)),130)
+Equals(MeasureOf(Angle(W,Z,C)),20)
+PointLiesOnLine(W,Line(D,C))
+PointLiesOnLine(X,Line(D,C))
+PointLiesOnLine(Y,Line(D,C))
+PointLiesOnLine(Z,Line(D,C))
+PointLiesOnLine(H,Line(G,H))
+PointLiesOnLine(I,Line(G,H))
+RatioOf(LengthOf(Line(I,J)),LengthOf(Line(X,J)))
+RatioOf(LengthOf(Line(H,J)),LengthOf(Line(Y,J)))
+Equals(RatioOf(LengthOf(Line(I,J)),LengthOf(Line(X,J))),RatioOf(LengthOf(Line(H,J)),LengthOf(Line(Y,J))))
+PointLiesOnLine(H,Line(X,I))
+PointLiesOnLine(I,Line(X,I))
+
+QUESTION:
+If \frac { I J } { X J } = \frac { H J } { Y J }, m \angle W X J = 130 and m \angle W Z G = 20, find m \angle Y I Z.
+
+CHOICES:
+A. 40
+B. 50
+C. 65
+D. 110
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From PointLiesOnLine(X,Line(D,C)), Angle(W,X,J) + Visual → Angle(YXJ) and Angle(WXJ) are supplementary angles.
+From Equals(MeasureOf(Angle(W,X,J)),130) + supplementary angles → MeasureOf(Angle(YXJ)) = 180 - 130 = 50 degrees.
+From PointLiesOnLine(Z,Line(D,C)), Angle(W,Z,C) + Visual → Angle(YZI) and Angle(WZC) are supplementary angles.
+From Equals(MeasureOf(Angle(W,Z,C)),20) + supplementary angles → MeasureOf(Angle(YZI)) = 180 - 20 = 160 degrees.
+From Equals(RatioOf(LengthOf(Line(I,J)),LengthOf(Line(X,J))),RatioOf(LengthOf(Line(H,J)),LengthOf(Line(Y,J)))) → IJ/XJ = HJ/YJ
+From the above equation, IJ/XJ = HJ/YJ, we have XJ/IJ = YJ/HJ.
+Triangle(J,H,I) and Triangle(J,X,Y) sharing the same angle at vertex J.
+Since IJ/XJ = HJ/YJ, the triangles JHI and JYX are similar. Since XJ/IJ = YJ/HJ implies that sides are in the same ratio, then triangle JIJ is similar to triangle JYX, by Side-Angle-Side similarity. Since Triangles are similar, all corresponding angles are equal.
+Therefore, angle YXJ = angle JIH = 130 degrees and angle JYX = angle JHI and angle HJI = angle YJI.
+So angle JIH = 130 degrees. Angle JIH and angle YIZ are supplementary, since PointLiesOnLine(I,Line(X,I)) and PointLiesOnLine(Z,Line(D,C)), therefore I lies on line YZ.
+Angle YIZ + angle JIH = 180 degrees. Thus, angle YIZ = 180 - angle JIH = 180 - 130 = 50 degrees.
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

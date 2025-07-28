@@ -1,0 +1,501 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Triangle(A,B,C)
+Triangle(A,B,D)
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(B,C)
+Line(A,C)
+Line(B,D)
+Line(D,C)
+Angle(A,C,B)
+Angle(D,B,A)
+RightAngle(Angle(A,C,B))
+RightAngle(Angle(D,B,A))
+Right(Triangle(A,B,C))
+Right(Triangle(A,B,D))
+Equals(LengthOf(Line(D,C)), 6)
+Equals(LengthOf(Line(B,C)), 8)
+Equals(LengthOf(Line(D,B)), y)
+Equals(LengthOf(Line(A,C)), x)
+Equals(LengthOf(Line(A,B)), z)
+Perpendicular(Line(B,D), Line(A,B))
+Perpendicular(Line(A,C), Line(B,C))
+PointLiesOnLine(C, Line(D,A))
+PointLiesOnLine(D, Line(D,A))
+PointLiesOnLine(A, Line(D,A))
+Equals(SquareOf(LengthOf(Line(A,B))), Add(SquareOf(LengthOf(Line(A,C))), SquareOf(LengthOf(Line(B,C)))))
+Equals(SquareOf(LengthOf(Line(A,D))), Add(SquareOf(LengthOf(Line(A,B))), SquareOf(LengthOf(Line(D,B)))))
+IsHypotenuseOf(Line(A,B), Triangle(A,B,C))
+IsHypotenuseOf(Line(A,D), Triangle(A,B,D))
+IsSideOf(Line(A,C), Triangle(A,B,C))
+IsSideOf(Line(B,C), Triangle(A,B,C))
+IsSideOf(Line(A,B), Triangle(A,B,D))
+IsSideOf(Line(D,B), Triangle(A,B,D))
+
+QUESTION:
+Find z.
+
+CHOICES:
+A. 10
+B. \frac { 32 } { 3 }
+C. \frac { 40 } { 3 }
+D. \frac { 50 } { 3 }
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's tackle this geometry problem step by step. First, I need to parse all the given information carefully. There are two right triangles mentioned: Triangle(A,B,C) and Triangle(A,B,D). Both share the side AB, which is common between them. Also, there are several points and lines defined, along with some perpendicularity conditions and length equalities. The goal is to find the value of z, which is the length of line AB.
+
+Let me start by visualizing the figure based on the constraints. Since both triangles ABC and ABD are right-angled, and they share the hypotenuse AB (since AB is the hypotenuse for both as per IsHypotenuseOf statements), that suggests that points C and D lie such that AC and AD are legs of their respective triangles. Wait, but wait—actually, in triangle ABC, since it's a right triangle with hypotenuse AB, then the right angle must be at point C. Similarly, for triangle ABD, the right angle is at point D because Angle(D,B,A) is a right angle. Let me confirm that.
+
+The problem states RightAngle(Angle(A,C,B)) which means the right angle is at point C for triangle ABC. So triangle ABC has a right angle at C. Therefore, sides AC and BC are the legs, and AB is the hypotenuse. Similarly, Angle(D,B,A) is a right angle, so triangle ABD has a right angle at B? Wait, no. The angle is at point B? Wait, Angle(D,B,A) would mean the angle at point B between points D, B, and A. So yes, the right angle is at B for triangle ABD. But wait, triangle ABD has vertices A, B, D. If the right angle is at B, then AB and BD are the legs, and AD is the hypotenuse. However, the problem says IsHypotenuseOf(Line(A,B), Triangle(A,B,C)), meaning AB is the hypotenuse of triangle ABC. That aligns with the earlier conclusion that triangle ABC has right angle at C. For triangle ABD, the hypotenuse is AD, since IsHypotenuseOf(Line(A,D), Triangle(A,B,D)). Therefore, triangle ABD has right angle at B, with legs AB and BD, and hypotenuse AD.
+
+So, we have two right triangles sharing the leg AB. Now, also given that Point C lies on line DA. Because PointLiesOnLine(C, Line(D,A)), and similarly for D and A. Wait, the points C and D are on line DA. Wait, the problem says:
+
+PointLiesOnLine(C, Line(D,A))
+PointLiesOnLine(D, Line(D,A))
+PointLiesOnLine(A, Line(D,A))
+
+Wait, that implies that points A, D, and C are colinear, lying on line DA. So line DA connects points D and A, and point C is somewhere on that line. Interesting. So line DA passes through points D, A, and C. Therefore, line DA is the same as line DC extended through A?
+
+Wait, but line DA is defined as connecting D and A. Then point C is on line DA, meaning that line DA contains point C. So the order of points on line DA could be D---C---A or maybe A---C---D, depending on positions. But since triangle ABC is formed with points A, B, C, and C is on line DA, perhaps the position depends on the lengths given.
+
+Now, given that, let's note down all the given equations and relationships.
+
+First, the lengths:
+
+- Length(D,C) = 6
+- Length(B,C) = 8
+- Length(D,B) = y
+- Length(A,C) = x
+- Length(A,B) = z
+- Also, there's a relation involving squares of lengths: SquareOf(AB) = SquareOf(AC) + SquareOf(BC). Which is Pythagoras theorem for triangle ABC. Similarly, SquareOf(AD) = SquareOf(AB) + SquareOf(BD), which is Pythagoras for triangle ABD.
+
+But since points A, D, C are colinear, then the length AD can be expressed in terms of AC and CD. Depending on the order of the points. Let me think about how these points are arranged.
+
+Since point C lies on line DA, and points D and A are endpoints of line DA. So, if we consider line DA, then point C is somewhere along that line. Let me assume that the order is D --- C --- A, so that DC = 6, CA = x, hence DA = DC + CA = 6 + x. Alternatively, if the order were different, like A --- C --- D, then DA would be |AC - CD| or something else. But given that in triangle ABC, point C is connected to B, and BC is 8 units long. Let me try to model coordinates here.
+
+Perhaps assigning coordinate system would help. Let me place point B at the origin (0,0) for simplicity. Since triangle ABC is right-angled at C, and triangle ABD is right-angled at B. Let me try to assign coordinates accordingly.
+
+Let me proceed step by step.
+
+Set coordinate system:
+
+Let’s take point B at (0, 0). Since triangle ABD is right-angled at B, then AB and BD are perpendicular. Let me assume AB is horizontal and BD is vertical. Wait, but direction matters. Let me define coordinates properly.
+
+Let’s suppose point B is at (0, 0). Let’s denote AB as horizontal. Let’s say point A is at (z, 0), since AB has length z. Then, since triangle ABD is right-angled at B, BD is perpendicular to AB. Since AB is horizontal, BD would be vertical. So point D would be either above or below B. Let's say upwards for simplicity; so point D would be at (0, y), since BD has length y. Wait, but BD is a vertical line from B(0,0) up to D(0,y).
+
+Now, triangle ABC is right-angled at C. So, since ABC is right-angled at C, then AC and BC are perpendicular. Given that, and that point C lies on line DA. Let me first find coordinates of point C.
+
+Line DA connects points D(0, y) and A(z, 0). Let me parametrize line DA. The equation of line DA can be determined. Let me compute its slope first.
+
+Coordinates of D: (0, y)
+
+Coordinates of A: (z, 0)
+
+Slope of DA: (0 - y)/(z - 0) = -y/z.
+
+Equation of line DA: Using point-slope form. Let's write it as:
+
+(y - y_D) = m(x - x_D)
+
+Which becomes:
+
+y - y = (-y/z)(x - 0) → Wait, that seems redundant. Wait, point D is (0, y), so using point D:
+
+y - y_D = m(x - x_D)
+
+So, y - y = (-y/z)(x - 0) → Wait, no, that would be:
+
+For any point (x, y) on line DA, the equation is:
+
+(y - y_D) = m(x - x_D)
+
+So substituting:
+
+y - y = (-y/z)(x - 0)
+
+Wait, no. Let me rephrase. The line DA goes through D(0, y) and A(z, 0). So general equation can be written parametrically. Alternatively, express it as:
+
+Parametric equations: Starting from D(0, y), moving towards A(z, 0). Let parameter t go from 0 to 1, with t=0 at D and t=1 at A. Then coordinates are:
+
+x = 0 + t*z
+
+y = y + t*(0 - y) = y - t*y
+
+Alternatively, solving for line DA. The equation can be written as:
+
+(y - y) = (-y/z)(x - 0) → Hmm, perhaps better to use variables.
+
+Let me instead use variables. Let me call the coordinates of point C as (p, q). Since point C lies on line DA, it satisfies the equation of line DA.
+
+We can find the equation of DA. Let me calculate it again.
+
+Points D(0, y) and A(z, 0). The slope is (0 - y)/(z - 0) = -y/z. So the equation of line DA is:
+
+y - y_D = m(x - x_D)
+
+→ y - y = (-y/z)(x - 0) → Wait, that's confusing because I used y for both the variable and the coordinate. Let me use another notation.
+
+Let me denote the coordinates of point C as (x_c, y_c). Since it's on line DA, it must satisfy the equation derived from points D(0, y) and A(z, 0). The equation of line DA can be written as:
+
+(y - y) = (-y/z)(x - 0) → No, that's not helpful. Let me do it properly.
+
+The line passing through (0, y) and (z, 0) can be written as:
+
+(y - y_1) = m(x - x_1)
+
+Where (x_1, y_1) is (0, y). So:
+
+y - y = (-y/z)(x - 0)
+
+Wait, that's still conflicting. Let me use different letters. Let me denote the coordinates as (X, Y). Then the line DA passes through (0, y) and (z, 0). The slope is (0 - y)/(z - 0) = -y/z. Thus, equation is:
+
+Y - y = (-y/z)(X - 0)
+
+→ Y = (-y/z) X + y.
+
+Therefore, any point on DA satisfies Y = (-y/z) X + y.
+
+Thus, coordinates of point C (which is on DA) must satisfy Y_c = (-y/z) * X_c + y.
+
+Additionally, triangle ABC is right-angled at C. So vectors CB and CA should be perpendicular.
+
+Vector CB is B - C = (0 - X_c, 0 - Y_c) = (-X_c, -Y_c)
+
+Vector CA is A - C = (z - X_c, 0 - Y_c) = (z - X_c, -Y_c)
+
+Their dot product should be zero:
+
+(-X_c)(z - X_c) + (-Y_c)(-Y_c) = 0
+
+Expanding:
+
+- X_c * z + X_c² + Y_c² = 0
+
+→ X_c² - z X_c + Y_c² = 0.
+
+Also, since point C lies on DA, we know Y_c = (-y/z) X_c + y. Let me substitute that into the above equation.
+
+Substitute Y_c:
+
+X_c² - z X_c + [ (-y/z X_c + y ) ]² = 0.
+
+Let me expand that term:
+
+[ (-y/z X_c + y ) ]² = [ y - (y/z) X_c ]² = y² - 2 y (y/z) X_c + (y² / z²) X_c² = y² - (2 y² / z) X_c + (y² / z²) X_c².
+
+So plugging back into the equation:
+
+X_c² - z X_c + y² - (2 y² / z) X_c + (y² / z²) X_c² = 0.
+
+Combine like terms:
+
+Terms with X_c²: 1 + (y² / z²) = (z² + y²)/z²
+
+Terms with X_c: -z X_c - (2 y² / z) X_c = - [ z + (2 y²)/z ] X_c
+
+Constant term: y²
+
+So overall:
+
+[(z² + y²)/z²] X_c² - [ z + (2 y²)/z ] X_c + y² = 0.
+
+This looks complicated. Maybe there's a better way. Alternatively, since we know BC = 8, and coordinates of B is (0, 0), coordinates of C is (X_c, Y_c). Then distance BC is sqrt( (X_c)^2 + (Y_c)^2 ) = 8. Hence,
+
+X_c² + Y_c² = 64. Equation (1)
+
+Also, since point C is on DA: Y_c = (-y/z) X_c + y. Equation (2)
+
+And from the right angle condition at C, we had earlier:
+
+From the dot product: X_c² - z X_c + Y_c² = 0. Equation (3)
+
+So combining Equations (1) and (3):
+
+From (1): X_c² + Y_c² = 64
+
+From (3): X_c² + Y_c² - z X_c = 0 → Substitute (1) into this:
+
+64 - z X_c = 0 → z X_c = 64 → X_c = 64 / z. Equation (4)
+
+So we can substitute X_c = 64/z into Equation (2) to find Y_c.
+
+From Equation (2):
+
+Y_c = (-y/z)*(64/z) + y = - (64 y)/z² + y = y (1 - 64/z² )
+
+So Y_c = y (1 - 64/z² )
+
+Now, plug X_c and Y_c into Equation (1):
+
+X_c² + Y_c² = 64.
+
+Compute X_c²:
+
+(64/z)^2 = 4096 / z²
+
+Compute Y_c²:
+
+[y^2 (1 - 64/z² )]^2 = y² (1 - 64/z² )² 
+
+So total:
+
+4096/z² + y² (1 - 64/z² )² = 64.
+
+Hmm, this seems complex. Perhaps there's another relationship we can use. Remember that in triangle ABC, which is right-angled at C, the hypotenuse AB has length z, and the legs are AC and BC, with BC = 8. From Pythagoras:
+
+AB² = AC² + BC² → z² = AC² + 8² → AC² = z² - 64. But AC is the length from A to C, which is sqrt( (X_c - z)^2 + (Y_c - 0)^2 ). Wait, coordinates of A is (z, 0), coordinates of C is (X_c, Y_c). So AC squared is:
+
+(X_c - z)^2 + Y_c² = ?
+
+But according to Pythagoras, AC² + BC² = AB² → AC² = z² - BC² = z² - 64. So:
+
+(X_c - z)^2 + Y_c² = z² - 64.
+
+Expand (X_c - z)^2:
+
+X_c² - 2 z X_c + z² + Y_c² = z² - 64.
+
+Simplify:
+
+X_c² + Y_c² - 2 z X_c + z² = z² - 64 → X_c² + Y_c² - 2 z X_c = -64.
+
+But from Equation (1), X_c² + Y_c² = 64. Substitute:
+
+64 - 2 z X_c = -64 → -2 z X_c = -128 → z X_c = 64 → which matches Equation (4). So nothing new here.
+
+Therefore, we need another equation to relate variables. Let me recall that there's another triangle ABD, which is right-angled at B. So triangle ABD has legs AB and BD, with AB = z, BD = y, and hypotenuse AD. Therefore, AD² = z² + y². But AD is the length from A(z, 0) to D(0, y). Let me compute AD:
+
+Distance between A(z, 0) and D(0, y):
+
+sqrt( (z - 0)^2 + (0 - y)^2 ) = sqrt(z² + y² ), which matches the Pythagorean theorem. So that checks out.
+
+But also, since point C is on line DA, then the length DA can be expressed as DC + CA or similar. Wait, since points D, C, A are colinear, then DA = DC + CA if C is between D and A. Or DA = |DC - CA| if C is beyond A or D.
+
+But given that DC = 6 (as per Equals(LengthOf(Line(D,C)), 6)), and AC = x (from Equals(LengthOf(Line(A,C)), x)), then DA = DC + CA if C is between D and A. So DA = 6 + x. But DA is also sqrt(z² + y² ). Therefore:
+
+sqrt(z² + y² ) = 6 + x → square both sides:
+
+z² + y² = (6 + x)^2 → Equation (5)
+
+But we also have from triangle ABC, AC = x, which is the length from A to C. Earlier, we had AC² = z² - 64. So:
+
+x² = z² - 64 → Equation (6)
+
+So combining Equation (5) and (6):
+
+z² + y² = (6 + x)^2 = 36 + 12x + x²
+
+But from Equation (6), x² = z² - 64. Substitute that into the RHS:
+
+RHS = 36 + 12x + z² - 64 = z² - 28 + 12x.
+
+Thus:
+
+z² + y² = z² - 28 + 12x → Simplify:
+
+y² = -28 + 12x → Equation (7)
+
+Now, we need more relations. Let me check if there are other equations. We also have the equation involving AD² = AB² + BD², which we already used. Are there other relations?
+
+Looking back at the problem statement, there is another equality:
+
+Equals(SquareOf(LengthOf(Line(A,D))), Add(SquareOf(LengthOf(Line(A,B))), SquareOf(LengthOf(Line(D,B))))). Which is just restating the Pythagorean theorem for triangle ABD, so nothing new.
+
+Another thing to consider: since point C lies on DA, and DC = 6, and DA = 6 + x, then we can express DA in terms of x. But DA is also sqrt(z² + y² ). So:
+
+sqrt(z² + y² ) = 6 + x → Squared gives z² + y² = (6 + x)^2 → As before.
+
+But we need to connect x and y. How?
+
+Earlier, we had expressions for X_c and Y_c in terms of z and y. Recall that X_c = 64/z, and Y_c = y(1 - 64/z² ). Additionally, since point C lies on DA, which connects D(0, y) and A(z, 0), then the coordinates of C can also be expressed as a weighted average between D and A. Let me think about that.
+
+If C is on DA, then vectorially, C = D + t(A - D), where t is a scalar between 0 and 1 if C is between D and A. Let me parametrize it. Let me set parameter t such that when t=0, we are at D, and t=1 at A.
+
+So coordinates of C would be:
+
+X_c = 0 + t(z - 0) = t z
+
+Y_c = y + t(0 - y) = y (1 - t)
+
+So, X_c = t z, Y_c = y (1 - t)
+
+From earlier, we had X_c = 64/z, so:
+
+t z = 64/z → t = 64/(z² )
+
+Similarly, Y_c = y(1 - t) = y (1 - 64/z² )
+
+Which matches our previous expression for Y_c. So this parametrization holds.
+
+Now, since DC = 6. Let me compute DC. Coordinates of D(0, y) and C(tz, y(1 - t)).
+
+Distance DC squared is:
+
+(tz - 0)^2 + [ y(1 - t) - y ]^2 = t² z² + [ - y t ]² = t² z² + y² t² = t² (z² + y² )
+
+Given that DC = 6, so:
+
+sqrt( t² (z² + y² )) = 6 → t sqrt(z² + y² ) = 6 → t = 6 / sqrt(z² + y² )
+
+But earlier, t was also equal to 64/(z² ). Therefore:
+
+64/z² = 6 / sqrt(z² + y² )
+
+Cross-multiplying:
+
+64 / z² * sqrt(z² + y² ) = 6
+
+Multiply both sides by z²:
+
+64 sqrt(z² + y² ) = 6 z² → Divide both sides by 2:
+
+32 sqrt(z² + y² ) = 3 z² → Square both sides:
+
+(32)^2 (z² + y² ) = 9 z^4 → 1024 (z² + y² ) = 9 z^4 → Equation (8)
+
+Now, from Equation (7): y² = -28 + 12x. And from Equation (6): x² = z² - 64. Also, remember that x is AC, which we can relate to t. Let me see.
+
+From the parametrization, AC is the distance from A(z, 0) to C(tz, y(1 - t)).
+
+Coordinates difference:
+
+Δx = tz - z = z(t - 1)
+
+Δy = y(1 - t) - 0 = y(1 - t)
+
+So AC squared is [ z(t - 1) ]² + [ y(1 - t) ]² = (t - 1)^2 (z² + y² )
+
+But AC squared is x² = z² - 64. Therefore:
+
+(t - 1)^2 (z² + y² ) = z² - 64 → Equation (9)
+
+But from earlier, t = 64/z², so t - 1 = 64/z² - 1 = (64 - z²)/z²
+
+So Equation (9) becomes:
+
+[ (64 - z²)/z² ]² * (z² + y² ) = z² - 64
+
+Note that z² - 64 is negative unless z > 8. But since it's squared in the left-hand side, maybe okay. Let me write:
+
+Left side: [(64 - z²)^2 / z^4 ] * (z² + y² ) = z² - 64
+
+Multiply both sides by z^4:
+
+(64 - z²)^2 (z² + y² ) = (z² - 64) z^4
+
+Note that (64 - z²)^2 = (z² - 64)^2, so:
+
+(z² - 64)^2 (z² + y² ) = (z² - 64) z^4
+
+Assuming z ≠ 8 (since otherwise denominator would be zero), we can divide both sides by (z² - 64):
+
+(z² - 64)(z² + y² ) = z^4
+
+Expanding LHS:
+
+z²(z² + y² ) - 64(z² + y² ) = z^4
+
+→ z^4 + z² y² - 64 z² - 64 y² = z^4
+
+Subtract z^4 from both sides:
+
+z² y² - 64 z² - 64 y² = 0
+
+Factor:
+
+z² y² = 64 z² + 64 y²
+
+Divide both sides by 64:
+
+(z² y²)/64 = z² + y² → Equation (10)
+
+Now, from Equation (7): y² = -28 + 12x, and from Equation (6): x² = z² - 64. So x = sqrt(z² - 64). But maybe we can express x in terms of z, and then substitute into Equation (7).
+
+But Equation (10) relates z and y. Let me see if I can find another relation between z and y. Also, recall from Equation (8):
+
+1024(z² + y² ) = 9 z^4 → Let me write that as:
+
+z² + y² = (9/1024) z^4 → Equation (8a)
+
+Now, from Equation (10):
+
+z² y² = 64(z² + y² )
+
+Substituting z² + y² from Equation (8a) into Equation (10):
+
+z² y² = 64 * (9/1024) z^4 → Simplify:
+
+z² y² = (64 * 9 / 1024) z^4 → 64/1024 = 1/16, so:
+
+z² y² = (9/16) z^4 → Divide both sides by z² (assuming z ≠ 0):
+
+y² = (9/16) z² → So y = (3/4) z or y = -(3/4) z, but since lengths are positive, y = (3/4) z.
+
+So y = (3/4) z → Equation (11)
+
+Now, substitute y² = (9/16) z² into Equation (8a):
+
+z² + (9/16) z² = (9/1024) z^4 → Combine terms:
+
+(25/16) z² = (9/1024) z^4 → Multiply both sides by 1024:
+
+(25/16)*1024 z² = 9 z^4 → Calculate 1024 / 16 = 64 → 25*64 z² = 9 z^4 → 1600 z² = 9 z^4 → Divide both sides by z² (assuming z ≠ 0):
+
+1600 = 9 z² → z² = 1600 / 9 → Take square root:
+
+z = sqrt(1600/9) = 40/3 ≈ 13.333...
+
+Wait, but let me check the calculation steps again.
+
+Wait, after substitution into Equation (8a):
+
+z² + y² = (9/1024) z^4 → With y² = 9/16 z²:
+
+z² + 9/16 z² = 25/16 z² = (9/1024) z^4 → So:
+
+25/16 z² = 9/1024 z^4 → Multiply both sides by 1024:
+
+25 * 64 z² = 9 z^4 → 25 * 64 = 1600 → 1600 z² = 9 z^4 → Divide both sides by z²:
+
+1600 = 9 z² → z² = 1600 / 9 → z = √(1600/9) = 40/3. Yes, that's correct.
+
+So z = 40/3. Which corresponds to option C: 40/3.
+
+But let me verify this with other equations to ensure consistency.
+
+So z = 40/3. Then from Equation (11): y = (3/4) z = (3/4)(40/3) = 10. So y = 10.
+
+Then, from Equation (7): y² = -28 + 12x → y² = 100 = -28 + 12x → 12x = 128 → x = 128/12 = 32/3.
+
+Check if x² equals z² - 64:
+
+x² = (32/3)^2 = 1024 / 9.
+
+z² - 64 = (1600 / 9) - 64 = (1600 - 576)/9 = 1024 / 9. Correct. So that's consistent.
+
+Also, check Equation (5): z² + y² = (1600/9) + 100 = 1600/9 + 900/9 = 2500/9. On the other hand, (6 + x)^2 = (6 + 32/3)^2 = (18/3 + 32/3)^2 = (50/3)^2 = 2500/9. Which matches. Perfect.
+
+Therefore, z = 40/3, which is option C.
+
+But let me check if there's any mistake in assuming the position of point C. For example, what if point C is not between D and A, but extends beyond A or D? Would that affect anything?
+
+Suppose point C is beyond A on line DA. Then DA would be |DC| - |AC|. But in our case, DC = 6, and AC = x. But in that scenario, DA = |DC - AC|, but since DC is part of DA, depending on the direction. However, in our equations, we arrived at a valid solution without assuming the position, because the parametrization allowed t to be outside [0,1], but since we derived t = 64/z², and with z = 40/3, t = 64 / ( (1600/9) ) = 64 * 9 / 1600 = (64/1600)*9 = (2/50)*9 = 9/25 = 0.36. Which is between 0 and 1, so point C is indeed between D and A. So our assumption is valid.
+
+Thus, the value of z is 40/3, corresponding to option C.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

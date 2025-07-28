@@ -1,0 +1,91 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2827.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2827.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Line(A,B)
+Line(B,C)
+Line(C,D)
+Line(D,A)
+Line(A,C)
+Line(B,D)
+Rhombus(A,B,C,D)
+IntersectAt(Line(A,C),Line(B,D),Line(A,C),Point(E))
+IsDiagonalOf(Line(A,C),Rhombus(A,B,C,D))
+IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D))
+IsSideOf(Line(A,B),Rhombus(A,B,C,D))
+IsSideOf(Line(B,C),Rhombus(A,B,C,D))
+IsSideOf(Line(C,D),Rhombus(A,B,C,D))
+IsSideOf(Line(D,A),Rhombus(A,B,C,D))
+Equals(LengthOf(A,B),LengthOf(B,C))
+Equals(LengthOf(B,C),LengthOf(C,D))
+Equals(LengthOf(C,D),LengthOf(D,A))
+LengthOf(B,C)
+Equals(LengthOf(B,C),6)
+MeasureOf(Angle(D,A,B))
+MeasureOf(Angle(A,B,C))
+MeasureOf(Angle(B,C,D))
+MeasureOf(Angle(C,D,A))
+Equals(MeasureOf(Angle(D,A,B)),MeasureOf(Angle(B,C,D)))
+Equals(MeasureOf(Angle(A,B,C)),MeasureOf(Angle(C,D,A)))
+PointLiesOnLine(E,Line(A,C))
+PointLiesOnLine(E,Line(B,D))
+BisectsAngle(Line(A,C),Angle(B,C,D))
+BisectsAngle(Line(A,C),Angle(D,A,B))
+BisectsAngle(Line(B,D),Angle(A,B,C))
+BisectsAngle(Line(B,D),Angle(C,D,A))
+Perpendicular(Line(A,C),Line(B,D))
+RightAngle(Angle(A,E,B))
+RightAngle(Angle(B,E,C))
+RightAngle(Angle(C,E,D))
+RightAngle(Angle(D,E,A))
+IsMidpointOf(E,Line(A,C))
+IsMidpointOf(E,Line(B,D))
+Equals(MeasureOf(Angle(D,A,B)),2)
+
+QUESTION:
+In rhombus A B C D, m \angle D A B = 2, m \angle A D C and C B = 6. Find m \angle A D B.
+
+CHOICES:
+A. 30
+B. 60
+C. 90
+D. 120
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Rhombus(A,B,C,D) + Equals(MeasureOf(Angle(D,A,B)),2) → MeasureOf(Angle(D,A,B)) = 2
+From Rhombus(A,B,C,D) → MeasureOf(Angle(D,A,B)) = MeasureOf(Angle(B,C,D)) and MeasureOf(Angle(A,B,C)) = MeasureOf(Angle(C,D,A))
+From MeasureOf(Angle(D,A,B)) = 2 → MeasureOf(Angle(B,C,D)) = 2
+From Rhombus(A,B,C,D) → Line(A,B) || Line(C,D) and Line(A,D) || Line(B,C)
+From Line(A,B) || Line(C,D) → MeasureOf(Angle(D,A,B)) + MeasureOf(Angle(A,D,C)) = 180
+From MeasureOf(Angle(D,A,B)) = 2 and MeasureOf(Angle(D,A,B)) + MeasureOf(Angle(A,D,C)) = 180 → 2 + MeasureOf(Angle(A,D,C)) = 180 → MeasureOf(Angle(A,D,C)) = 180 - 2
+From MeasureOf(Angle(A,B,C)) = MeasureOf(Angle(C,D,A)) and MeasureOf(Angle(A,D,C)) = 180 - 2 → MeasureOf(Angle(A,B,C)) = 180 - 2
+From IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D)) → BisectsAngle(Line(B,D),Angle(A,B,C)) and BisectsAngle(Line(B,D),Angle(C,D,A))
+From BisectsAngle(Line(B,D),Angle(A,B,C)) → MeasureOf(Angle(A,B,D)) = MeasureOf(Angle(A,B,C)) / 2
+From MeasureOf(Angle(A,B,C)) = 180 - 2 → MeasureOf(Angle(A,B,D)) = (180 - 2) / 2 = 90 - 1 = 89
+Since the problem states m \angle DAB = 2, the angle DAB is 2 degrees. This is not possible for a rhombus since the angle would then need to be bisected to determine angle ADB.
+
+From IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D)) → BisectsAngle(Line(B,D),Angle(C,D,A))
+From BisectsAngle(Line(B,D),Angle(C,D,A)) → MeasureOf(Angle(A,D,B)) = MeasureOf(Angle(A,D,C)) / 2
+From MeasureOf(Angle(A,D,C)) = 180 - 2 → MeasureOf(Angle(A,D,B)) = (180 - 2) / 2 = 90 - 1 = 89.
+
+The problem states: In rhombus A B C D, m \angle D A B = 2, m \angle A D C and C B = 6. Find m \angle A D B.
+
+It appears that the problem meant that m \angle DAB = 60, not 2.
+If m \angle DAB = 60, then m \angle ADC = 120.
+Since DB bisects angle ADC, then m \angle ADB = 120/2 = 60.
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

@@ -1,0 +1,444 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Triangle(A,B,C)
+Triangle(A,B,D)
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+PointLiesOnLine(D,Line(B,C))
+Line(A,B)
+Line(B,C)
+Line(A,C)
+Line(A,D)
+Line(B,D)
+Angle(B,A,C)
+Angle(B,D,A)
+RightAngle(Angle(B,A,C))
+RightAngle(Angle(B,D,A))
+Right(Triangle(A,B,C))
+Right(Triangle(A,B,D))
+Equals(LengthOf(Line(A,D)), 12)
+Equals(LengthOf(Line(B,D)), 24)
+Equals(LengthOf(Line(C,D)), Add(1,t))
+Perpendicular(Line(A,D),Line(B,D))
+Perpendicular(Line(A,B),Line(A,C))
+Similar(Triangle(A,B,D),Triangle(C,B,A))
+IsSideOf(Line(A,B),Triangle(A,B,C))
+IsSideOf(Line(B,C),Triangle(A,B,C))
+IsSideOf(Line(A,C),Triangle(A,B,C))
+IsSideOf(Line(A,D),Triangle(A,B,D))
+IsSideOf(Line(B,D),Triangle(A,B,D))
+IsSideOf(Line(A,B),Triangle(A,B,D))
+Add(LengthOf(Line(B,D)),LengthOf(Line(C,D)),LengthOf(Line(B,C)))
+
+QUESTION:
+Find the value of the variable t.
+
+CHOICES:
+A. 3
+B. 4
+C. 5
+D. 6
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's try to tackle this geometry problem. First, I need to parse all the given information and figure out how to find the value of 't'. Let me start by listing out all the constraints provided.
+
+We have two triangles, Triangle(A,B,C) and Triangle(A,B,D). Points A, B, C, D are points. The line segments mentioned include Line(A,B), Line(B,C), Line(A,C), Line(A,D), Line(B,D). Also, there are some angles mentioned: Angle(B,A,C) and Angle(B,D,A). Both of these angles are right angles. So that tells me that Triangle(A,B,C) and Triangle(A,B,D) are both right-angled at A? Wait, no. Let me check again. 
+
+The RightAngle(Angle(B,A,C)) means that angle at point A between points B and C is a right angle. Similarly, RightAngle(Angle(B,D,A)) means angle at point A between points B and D is also a right angle. Wait, but if both those angles are right angles, then lines AB and AC are perpendicular, as well as AB and AD being perpendicular? But that would mean that AC and AD are both perpendicular to AB, so they should lie on the same line? That can't be unless points C and D are colinear with A along the direction perpendicular to AB. Hmm, maybe that's possible. But then we have more constraints.
+
+Also, it says Perpendicular(Line(A,D), Line(B,D)). So line AD is perpendicular to line BD. Since angle at A between B and D is a right angle (from the RightAngle(Angle(B,D,A))), which implies that AD is perpendicular to AB. Wait, but if AD is perpendicular to AB, and BD is perpendicular to AD, then BD must be parallel to AB? Because if AD is perpendicular to AB, and BD is perpendicular to AD, then BD is parallel to AB. Wait, that might not hold. Let me think again.
+
+Let me draw this mentally. Suppose point A is the origin, and AB is along the x-axis. Then since angle BAC is a right angle, AC must be vertical (along y-axis). Similarly, angle BAD is a right angle, so AD must be vertical as well. But then if both AC and AD are vertical, then points C and D lie along the same line through A. However, there's also the constraint that Point D lies on line BC. Wait, because PointLiesOnLine(D, Line(B,C)). So D is on line BC. But if D is on line BC and also lies on the vertical line through A (since AD is vertical), then line BC must intersect the vertical line through A at point D. Therefore, line BC passes through D, which is vertically aligned with A. 
+
+Wait, let me structure this properly. Let's assign coordinates to make it easier. Let me set coordinate system with point A at (0,0). Let’s assume AB is along the x-axis. Let me denote coordinates:
+
+Let’s say point A is (0,0).
+
+Since triangle ABC is right-angled at A, then AB and AC are perpendicular. So if AB is horizontal, AC is vertical. Let me assign coordinates to B and C. Let’s suppose AB has length 'a', so point B is at (a, 0). Point C is at (0, c) for some c. Then AC has length c, and AB has length a. 
+
+Now, triangle ABD is also right-angled at A, meaning angle BAD is a right angle. So AD is perpendicular to AB. Since AB is horizontal, AD must be vertical. So point D is somewhere along the vertical line passing through A, i.e., x=0. But wait, but earlier we had that D lies on line BC. So line BC connects points B(a,0) and C(0,c). The equation of line BC can be parametrized. Let me compute its equation.
+
+The slope of BC is (c - 0)/(0 - a) = -c/a. The equation of line BC is y - 0 = (-c/a)(x - a), simplifying to y = (-c/a)x + c. Now, point D lies on this line, and also lies on the vertical line x=0 (because AD is vertical, so D has x-coordinate 0). Substituting x=0 into the equation of BC gives y = (-c/a)(0) + c = c. Therefore, point D is at (0, c). Wait, but that's the same as point C! Which can’t be, unless D coincides with C, but the problem states that there are distinct points C and D. Therefore, my assumption must be wrong here. Where did I go wrong?
+
+Ah, perhaps I made an error in assuming that AD is vertical. Wait, angle BAD is a right angle, meaning that vectors BA and DA are perpendicular. Vector BA is from A to B, which is (a, 0). Vector DA is from A to D, which would be (d_x, d_y). For them to be perpendicular, their dot product must be zero: (a)(d_x) + (0)(d_y) = 0 => a*d_x = 0. Since a ≠ 0 (as AB is a side of a triangle), this implies d_x = 0. Therefore, point D must lie on the y-axis (x=0). So yes, previous conclusion holds. But then D lies on BC, which intersects the y-axis at point C (since when x=0, y=c). Therefore, D must coincide with C? But that contradicts the existence of separate points C and D. Hence, something is wrong here.
+
+Wait, but maybe my coordinate assignment is flawed. Let me re-examine the constraints. There's another condition: Perpendicular(Line(A,D), Line(B,D)). So line AD is perpendicular to line BD. Given that AD is vertical (since d_x=0), then BD must be horizontal? Because AD is vertical, so BD must be horizontal to be perpendicular. So line BD is horizontal. Therefore, point D must lie such that BD is horizontal. Since point B is at (a, 0), and line BD is horizontal, then point D must have the same y-coordinate as B. So y-coordinate of D is 0. But earlier, we concluded that D lies on line BC, which at x=0 has y-coordinate c. Therefore, combining these two conditions, D must satisfy both y=0 and y=c. Therefore, c=0? But then point C would be at (0,0), which is point A. Contradiction again. So there's inconsistency here.
+
+Hmm, this suggests that my initial assumptions are conflicting. Maybe I need to consider different positions. Alternatively, perhaps I misapplied the perpendicularity. Let me re-express the constraints.
+
+Given that Perpendicular(Line(A,D), Line(B,D)). So line AD ⊥ line BD. Let me think about slopes. If line AD has slope m1 and line BD has slope m2, then m1 * m2 = -1. 
+
+Earlier, I thought that since angle BAD is a right angle, AD is vertical, implying slope infinity. Then BD would need to have slope 0 to be perpendicular. But that led to contradictions. Perhaps there's another way. Let me try again with coordinates.
+
+Let me define coordinates carefully. Let me place point A at (0,0). Let me take AB as horizontal axis. Let me assign coordinates:
+
+Let me suppose AB is along x-axis, so point B is at (b, 0) for some b > 0. Since triangle ABC is right-angled at A, AC is vertical. So point C is at (0, c) for some c > 0. Then line BC goes from (b, 0) to (0, c). Equation of BC is y = (-c/b)x + c.
+
+Now, point D lies on line BC. Let me parameterize point D as lying on BC. Let me use parameter k such that D divides BC in ratio k:(1-k), but maybe better to write coordinates of D as follows:
+
+Any point on BC can be written as D = B + t*(C - B) = (b, 0) + t*(-b, c) = (b - tb, 0 + tc) = (b(1 - t), ct), where t ∈ [0,1].
+
+So coordinates of D are (b(1 - t), ct). Now, since AD is perpendicular to BD. Let me express this condition.
+
+Vector AD is D - A = (b(1 - t), ct) - (0,0) = (b(1 - t), ct).
+
+Vector BD is D - B = (b(1 - t) - b, ct - 0) = (-bt, ct).
+
+For AD ⊥ BD, their dot product must be zero:
+
+[ b(1 - t) ] * [ -bt ] + [ ct ] * [ ct ] = 0
+
+Compute:
+
+-b^2 t (1 - t) + c² t² = 0
+
+Factor out t:
+
+t [ -b² (1 - t) + c² t ] = 0
+
+Solutions are t=0 (which gives D=B, but that's trivial, not useful), or:
+
+ -b² (1 - t) + c² t = 0 → -b² + b² t + c² t = 0 → t(b² + c²) = b² → t = b² / (b² + c²)
+
+Therefore, coordinates of D are:
+
+x = b(1 - t) = b[1 - b²/(b² + c²)] = b[(b² + c² - b²)/ (b² + c²)] = b(c²)/(b² + c²)
+
+y = ct = c * [b²/(b² + c²)] = (b² c)/(b² + c²)
+
+So coordinates of D are ( bc²/(b² + c²), b² c/(b² + c²) )
+
+Additionally, we have the other condition that triangle ABD is right-angled at A. Wait, no, the right angle is at A for angle BAD. Wait, the original statement was RightAngle(Angle(B,D,A)), which is angle at A between points B and D. So that would imply that AB is perpendicular to AD. Wait, but earlier calculation shows that AD is not necessarily vertical. Wait, but according to the previous condition, we derived that AD is perpendicular to BD. But how does that relate to angle BAD being right?
+
+Wait, angle BAD is the angle at A between BA and DA. So vectors AB and AD. For this angle to be right, AB · AD = 0. Let me verify this.
+
+Vector AB is B - A = (b, 0) - (0, 0) = (b, 0)
+
+Vector AD is D - A = ( bc²/(b² + c²), b² c/(b² + c²) ) - (0, 0) = ( bc²/(b² + c²), b² c/(b² + c²) )
+
+Dot product AB · AD = b * [ bc²/(b² + c²) ] + 0 * [ b² c/(b² + c²) ] = b² c² / (b² + c² )
+
+This is equal to zero only if b² c² = 0, which would require either b=0 or c=0, but that would collapse points. Therefore, contradiction again. This suggests that my earlier assumption is incorrect. What's wrong here?
+
+Wait, the problem states that RightAngle(Angle(B,D,A)), which is angle at A between B and D. So that would be angle BAD. So vectors AB and AD should be perpendicular. But according to our current setup, their dot product isn't zero unless specific conditions. Therefore, my mistake must be in the assumption that D lies on BC and satisfies AD ⊥ BD. But the problem says both that D lies on BC and that AD is perpendicular to BD. So combining these two conditions leads to the above equations, but also requires that AB ⊥ AD. So let me combine these two conditions.
+
+From angle BAD being right, AB · AD = 0. From earlier, AB · AD = b² c² / (b² + c² ). Setting this equal to zero gives b² c² = 0, which is impossible. Therefore, there's inconsistency. So where is the mistake?
+
+Wait, perhaps I confused the angle. The angle is Angle(B,D,A), which is angle at D between points B and A. Wait, no, the notation Angle(B,D,A) refers to the angle at D between points B and A. Wait, no—standard notation is Angle(X,Y,Z) is the angle at Y between X and Z. So Angle(B,D,A) is the angle at D between points B and A. So it's angle BDA, not BAD. Oh! That changes everything. Earlier, I misread the angle. So the right angle is at D, not at A. That explains why the previous reasoning didn't work.
+
+Let me correct that. The problem says RightAngle(Angle(B,D,A)), which is the angle at D between points B and A. So angle BDA is a right angle. So in triangle ABD, angle at D is right. So triangle ABD is right-angled at D. Therefore, BD ⊥ AD. Which matches the given condition Perpendicular(Line(A,D), Line(B,D)). So that's consistent. So my earlier confusion was due to misinterpreting the angle location. Great!
+
+So now, let's redo the analysis with that correction. So angle at D between B and A is right. So triangle ABD is right-angled at D. Therefore, BD ⊥ AD. Which is already covered by the Perpendicular(Line(A,D), Line(B,D)) condition. So that makes sense.
+
+Now, going back to coordinates. Let me reassign variables with corrected understanding.
+
+Let me keep A at (0,0), B at (b, 0), C at (0, c). D lies on BC, and triangle ABD is right-angled at D. So BD ⊥ AD. So using earlier parameterization of D on BC as (b(1 - t), ct) with t = b²/(b² + c²). Wait, earlier we derived t = b²/(b² + c²) from the condition that AD ⊥ BD. But since angle at D is right, that condition is satisfied. So coordinates of D are ( bc²/(b² + c²), b² c/(b² + c²) )
+
+But also, since triangle ABD is right-angled at D, then AD and BD are legs of the right triangle. So lengths of AD and BD can be computed. Additionally, we have given lengths: LengthOf(Line(A,D)) = 12, LengthOf(Line(B,D)) = 24. So let me calculate these lengths in terms of b and c.
+
+Coordinates of D: ( bc²/(b² + c²), b² c/(b² + c²) )
+
+Distance AD: distance from A(0,0) to D(x,y):
+
+AD² = [bc²/(b² + c²)]² + [b²c/(b² + c²)]² = [b²c⁴ + b⁴c²]/(b² + c²)^2 = b²c²(c² + b²)/(b² + c²)^2) = b²c²/(b² + c²)
+
+Thus, AD = sqrt( b²c²/(b² + c²) ) = (bc)/sqrt(b² + c²)
+
+Similarly, BD is distance from B(b,0) to D(x,y):
+
+BD² = [b - bc²/(b² + c²)]² + [0 - b²c/(b² + c²)]² 
+
+First term inside first square:
+
+b[1 - c²/(b² + c²)] = b[ (b² + c² - c²)/ (b² + c²) ] = b³/(b² + c²)
+
+Second term:
+
+- b²c/(b² + c²)
+
+So BD² = [ b³/(b² + c²) ]² + [ -b²c/(b² + c²) ]² 
+
+= b^6/(b² + c²)^2 + b^4 c²/(b² + c²)^2 
+
+= [ b^6 + b^4 c² ] / (b² + c²)^2 
+
+Factor numerator:
+
+b^4 (b² + c²) / denominator → [ b^4 (b² + c²) ] / (b² + c²)^2 ) = b^4 / (b² + c²)
+
+Therefore, BD = b² / sqrt(b² + c²)
+
+Given that AD = 12 and BD = 24, so:
+
+AD = (bc)/sqrt(b² + c²) = 12 ...(1)
+
+BD = b² / sqrt(b² + c²) = 24 ...(2)
+
+Dividing equation (2) by equation (1):
+
+( b² / sqrt(...) ) / ( bc / sqrt(...) ) ) = 24 / 12 ⇒ b/c = 2 ⇒ b = 2c
+
+So substituting b = 2c into equation (1):
+
+( (2c)c ) / sqrt( (2c)^2 + c^2 ) = 12 ⇒ (2c²) / sqrt(4c² + c²) = 12 ⇒ 2c² / sqrt(5c²) = 12 ⇒ 2c² / (c√5) ) = 12 ⇒ 2c / √5 = 12 ⇒ c = (12 * √5)/2 = 6√5
+
+Then b = 2c = 12√5
+
+Now, we can compute coordinates of D:
+
+Earlier, D's coordinates were ( bc²/(b² + c²), b² c/(b² + c²) )
+
+Plugging in b = 2c:
+
+First, compute b² + c² = 4c² + c² = 5c²
+
+So x-coordinate of D: bc² / (5c²) = b/5 = (2c)/5
+
+Similarly, y-coordinate: b² c / (5c²) = (4c² * c) / (5c²) ) = 4c/5
+
+So D is at (2c/5, 4c/5). Since c = 6√5, substitute:
+
+x = 2*(6√5)/5 = 12√5 / 5
+
+y = 4*(6√5)/5 = 24√5 /5
+
+So coordinates of D are (12√5/5, 24√5/5)
+
+Now, we need to find the value of t, which is defined as Equals(LengthOf(Line(C,D)), Add(1,t)). Wait, no, the problem says:
+
+"Equals(LengthOf(Line(C,D)), Add(1,t))"
+
+Wait, that seems odd. Wait, the exact wording is:
+
+"Equals(LengthOf(Line(C,D)), Add(1,t))"
+
+Wait, that probably means that LengthOf(Line(C,D)) equals 1 + t, so we need to find t such that Length(CD) = 1 + t. Or maybe it's supposed to be LengthOf(Line(C,D)) equals Add(1, t)? Probably, the problem says that the length CD is equal to 1 + t. So we need to compute CD's length and set it equal to 1 + t, then solve for t.
+
+So first, find coordinates of C and D. Point C is at (0, c) = (0, 6√5). Point D is at (12√5/5, 24√5/5). Compute distance between C(0, 6√5) and D(12√5/5, 24√5/5).
+
+Difference in x-coordinates: 12√5/5 - 0 = 12√5/5
+
+Difference in y-coordinates: 24√5/5 - 6√5 = 24√5/5 - 30√5/5 = -6√5/5
+
+Therefore, distance CD squared is (12√5/5)^2 + (-6√5/5)^2 = [ (144*5)/25 ] + [ (36*5)/25 ] = (720 + 180)/25 = 900/25 = 36
+
+So CD = sqrt(36) = 6. Thus, LengthOf(Line(C,D)) = 6. According to the given condition, this equals 1 + t. So:
+
+6 = 1 + t ⇒ t = 5.
+
+Looking at the answer choices, option C is 5. So the answer is C.
+
+Wait, but let me confirm once more. Did I compute CD correctly?
+
+Yes:
+
+Coordinates of C: (0, 6√5)
+
+Coordinates of D: (12√5/5, 24√5/5)
+
+Δx = 12√5/5 - 0 = 12√5/5
+
+Δy = 24√5/5 - 6√5 = convert 6√5 to fifths: 6√5 = 30√5/5
+
+So Δy = 24√5/5 - 30√5/5 = -6√5/5
+
+Then, squared differences:
+
+(12√5/5)^2 = 144 * 5 / 25 = 720/25
+
+(-6√5/5)^2 = 36 * 5 / 25 = 180/25
+
+Total: 720 + 180 = 900 over 25 → 36. Square root is 6. Yes. So CD = 6. Therefore, 1 + t = 6 ⇒ t = 5. Hence, answer is C.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+To determine the value of $ t $, we begin by analyzing the geometric configuration and leveraging the relationships between the given points and lines. We are told that the following geometric constraints apply:
+
+- Triangle $ \triangle ABC $ and $ \triangle ABD $ are both **right-angled** at $ A $, with the additional detail that the right angle in $ \angle BAD $ occurs at **point $ D $**, not at $ A $. 
+- Point $ D $ lies on segment $ BC $, and $ AD \perp BD $.
+- Specific distances are given:  
+  - $ |AD| = 12 $
+  - $ |BD| = 24 $
+  - $ |CD| = 1 + t $
+
+---
+
+### Step 1: Coordinate Setup
+
+Assigning coordinates based on the given constraints:
+
+- Place point $ A $ at the origin: $ A = (0, 0) $
+- Place point $ B $ on the x-axis: $ B = (b, 0) $
+- Place point $ C $ directly above $ A $ on the y-axis: $ C = (0, c) $
+- Point $ D $ lies on the line segment $ BC $, and we will later find its coordinates via vector interpolation.
+
+Using vector interpolation, any point $ D $ on segment $ BC $ can be expressed as:
+
+$$
+D = B + t(C - B) = (b - tb, 0 + tc) = (b(1 - t), ct)
+$$
+
+---
+
+### Step 2: Use Distance Constraints
+
+We are given:
+
+- $ |AD| = 12 $
+- $ |BD| = 24 $
+
+Use the coordinates of $ D = (b(1-t), ct) $
+
+#### Compute $ |AD|^2 $:
+
+$$
+|AD|^2 = [b(1 - t)]^2 + (ct)^2 = b^2(1 - t)^2 + c^2t^2
+$$
+
+Set this equal to $ 12^2 = 144 $:
+
+$$
+b^2(1 - t)^2 + c^2t^2 = 144 \tag{1}
+$$
+
+#### Compute $ |BD|^2 $:
+
+$$
+|BD|^2 = [b(1 - t) - b]^2 + (ct - 0)^2 = [-bt]^2 + (ct)^2 = b^2t^2 + c^2t^2 = t^2(b^2 + c^2)
+$$
+
+Set this equal to $ 24^2 = 576 $:
+
+$$
+t^2(b^2 + c^2) = 576 \tag{2}
+$$
+
+---
+
+### Step 3: Solve the System
+
+From Equation (1):
+$$
+b^2(1 - t)^2 + c^2t^2 = 144
+$$
+
+Expand:
+$$
+b^2(1 - 2t + t^2) + c^2t^2 = 144 \\
+\Rightarrow b^2 - 2b^2t + b^2t^2 + c^2t^2 = 144
+$$
+
+Group like terms:
+$$
+b^2 - 2b^2t + t^2(b^2 + c^2) = 144 \tag{3}
+$$
+
+Substitute Equation (2): $ t^2(b^2 + c^2) = 576 $
+
+Plug into (3):
+$$
+b^2 - 2b^2t + 576 = 144 \\
+\Rightarrow b^2 - 2b^2t = 144 - 576 = -432 \\
+\Rightarrow b^2(1 - 2t) = -432 \tag{4}
+$$
+
+From (2), divide both sides by $ t^2 $:
+
+$$
+b^2 + c^2 = \frac{576}{t^2} \tag{5}
+$$
+
+Now solve Equations (4) and (5) together. Try small integer values of $ t $ to simplify.
+
+Try $ t = 5 $:
+
+From (4):
+$$
+b^2(1 - 10) = -432 \Rightarrow b^2(-9) = -432 \Rightarrow b^2 = 48
+$$
+
+From (5):
+$$
+b^2 + c^2 = \frac{576}{25} = 23.04
+$$
+
+Check consistency: $ b^2 = 48 $, but $ b^2 + c^2 = 23.04 $ — contradiction.
+
+Try $ t = 3 $:
+
+From (4):
+$$
+b^2(1 - 6) = -432 \Rightarrow b^2(-5) = -432 \Rightarrow b^2 = 86.4
+$$
+
+From (5):
+$$
+b^2 + c^2 = \frac{576}{9} = 64 \Rightarrow c^2 = 64 - 86.4 = -22.4 \text{ (invalid)}
+$$
+
+Try $ t = 4 $:
+
+From (4):
+$$
+b^2(1 - 8) = -432 \Rightarrow b^2(-7) = -432 \Rightarrow b^2 = 61.714...
+$$
+
+From (5):
+$$
+b^2 + c^2 = \frac{576}{16} = 36 \Rightarrow c^2 = 36 - 61.714... < 0 \text{ (invalid)}
+$$
+
+Try $ t = 5 $ again:
+
+From (4): $ b^2 = 48 $, valid.
+
+From (5): $ b^2 + c^2 = 576 / 25 = 23.04 $, so $ c^2 = 23.04 - 48 = -24.96 $, still invalid.
+
+Try $ t = 6 $:
+
+From (4): $ b^2(1 - 12) = -432 \Rightarrow b^2(-11) = -432 \Rightarrow b^2 = 39.27 $
+
+From (5): $ b^2 + c^2 = \frac{576}{36} = 16 \Rightarrow c^2 = 16 - 39.27 = -23.27 $, invalid.
+
+Only valid solution comes from solving numerically:
+
+Try $ t = 5 $ yields inconsistent results. Recheck earlier steps.
+
+Let us instead directly calculate $ |CD| $ using known coordinates.
+
+From earlier, we found that:
+
+- Coordinates of $ C = (0, c) = (0, 6\sqrt{5}) $
+- Coordinates of $ D = (12\sqrt{5}/5, 24\sqrt{5}/5) $
+
+Compute $ |CD| $:
+
+$$
+|CD| = \sqrt{(12\sqrt{5}/5 - 0)^2 + (24\sqrt{5}/5 - 6\sqrt{5})^2}
+= \sqrt{\left(\frac{12\sqrt{5}}{5}\right)^2 + \left(\frac{-6\sqrt{5}}{5}\right)^2}
+= \sqrt{\frac{720}{25} + \frac{180}{25}} = \sqrt{\frac{900}{25}} = \sqrt{36} = 6
+$$
+
+So $ |CD| = 6 $, and it's given that $ |CD| = 1 + t $
+
+$$
+6 = 1 + t \Rightarrow t = 5
+$$
+
+---
+
+### Final Answer:  
+$$
+\boxed{C}
+$$
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

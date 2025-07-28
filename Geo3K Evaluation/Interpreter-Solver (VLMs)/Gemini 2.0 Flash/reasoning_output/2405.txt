@@ -1,0 +1,63 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2405.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2405.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Point(F)
+Point(G)
+Point(H)
+Point(I)
+Line(D,F)
+Line(H,E)
+Line(A,B)
+Line(B,C)
+Line(A,G)
+Line(C,I)
+Parallel(Line(D,F),Line(H,E))
+PointLiesOnLine(A,Line(D,F))
+PointLiesOnLine(C,Line(H,E))
+Angle(A,B,C)
+MeasureOf(Angle(D,A,B))
+MeasureOf(Angle(B,C,H))
+Equals(MeasureOf(Angle(D,A,B)),38)
+Equals(MeasureOf(Angle(B,C,H)),33)
+Line(l)
+Line(m)
+Equals(Line(l),Line(D,F))
+Equals(Line(m),Line(H,E))
+PointLiesOnLine(A,Line(l))
+PointLiesOnLine(C,Line(m))
+
+QUESTION:
+In the figure below, \angle A B C is intersected by parallel lines l and m. What is the measure of \angle A B C? Express your answer in degrees.
+
+CHOICES:
+A. 33
+B. 38
+C. 61
+D. 71
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallel(Line(D,F),Line(H,E)) + [Alternate Interior Angles Theorem] → Angle(B,A,F) = Angle(B,C,H)
+From Equals(MeasureOf(Angle(B,C,H)),33) → MeasureOf(Angle(B,C,H)) = 33
+From Angle(B,A,F) = Angle(B,C,H) + MeasureOf(Angle(B,C,H)) = 33 → MeasureOf(Angle(B,A,F)) = 33
+From Angle(D,A,B) + Angle(B,A,F) = Angle(D,A,F) → Angle(D,A,B) + Angle(B,A,F) = 180
+From MeasureOf(Angle(D,A,B)) = 38 + MeasureOf(Angle(B,A,F)) = 33 → 38 + Angle(B,A,F) = 180 is not true
+From Parallel(Line(D,F),Line(H,E)) + [Alternate Interior Angles Theorem] → Angle(A,B,C) + Angle(D,A,B) + Angle(B,C,H) = 180 - 180 not applicable
+From Parallel(Line(l),Line(m)) + [Alternate Interior Angles Theorem] → Angle(A,B,C) + Angle(D,A,B) + Angle(B,C,I) = 180
+From Parallel(Line(l),Line(m)) + [Alternate Interior Angles Theorem] → Measure of angle ABC = 38 + 33 = 71
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

@@ -1,0 +1,59 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2403.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2403.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(B,C)
+Line(B,D)
+Line(A,D)
+Line(A,C)
+Triangle(B,C,D)
+Triangle(A,B,D)
+RightAngle(Angle(D,A,B))
+MeasureOf(Angle(B,C,A))
+Equals(54,MeasureOf(Angle(B,C,A)))
+LengthOf(B,D)
+Equals(32,LengthOf(B,D))
+LengthOf(A,D)
+Equals(x,LengthOf(A,D))
+LengthOf(A,B)
+Equals(y,LengthOf(A,B))
+Equals(LengthOf(B,C),LengthOf(B,D))
+Equals(LengthOf(B,C),32)
+IsAltitudeOf(Line(A,B),Triangle(B,C,D))
+Perpendicular(Line(A,B),Line(A,D))
+Isosceles(Triangle(B,C,D))
+
+QUESTION:
+Find x. Round to the nearest tenth.
+
+CHOICES:
+A. 18.8
+B. 23.2
+C. 25.9
+D. 44.0
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Isosceles(Triangle(B,C,D)) + Equals(LengthOf(B,C),LengthOf(B,D)) → Triangle BCD is an isosceles triangle with BD = BC = 32.
+From Triangle(B,C,D) + Isosceles(Triangle(B,C,D)) → Angle(B,D,A) = Angle(B,C,A) = 54 degrees.
+From RightAngle(Angle(D,A,B)) → Triangle ABD is a right triangle with a right angle at A.
+From Triangle(A,B,D) + RightAngle(Angle(D,A,B)) → sin(Angle(B,D,A)) = LengthOf(A,B) / LengthOf(B,D) and cos(Angle(B,D,A)) = LengthOf(A,D) / LengthOf(B,D).
+From cos(Angle(B,D,A)) = LengthOf(A,D) / LengthOf(B,D) + Equals(x,LengthOf(A,D)) + Equals(32,LengthOf(B,D)) + Angle(B,D,A) = 54 degrees → cos(54) = x / 32
+From cos(54) = x / 32 → x = 32 * cos(54)
+From x = 32 * cos(54) → x ≈ 32 * 0.5878 = 18.8096
+From x ≈ 18.8096 → x ≈ 18.8
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

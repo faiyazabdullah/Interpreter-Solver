@@ -1,0 +1,58 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2623.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2623.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(S)
+Point(T)
+Trapezoid(A,B,C,D)
+IsMidpointOf(S,Line(A,D))
+IsMidpointOf(T,Line(B,C))
+IsMedianOf(Line(S,T),Trapezoid(A,B,C,D))
+Parallel(Line(A,B),Line(C,D))
+LengthOf(Line(A,B))
+LengthOf(Line(C,D))
+LengthOf(Line(S,T))
+Equals(LengthOf(Line(A,B)),Add(Var(x),4))
+Equals(LengthOf(Line(C,D)),Add(Mul(3,Var(x)),2))
+Equals(LengthOf(Line(S,T)),9)
+Equals(LengthOf(Line(S,T)),Div(SumOf(LengthOf(Line(A,B)),LengthOf(Line(C,D))),2))
+IsLegOf(Line(A,D),Trapezoid(A,B,C,D))
+IsLegOf(Line(B,C),Trapezoid(A,B,C,D))
+IsBaseOf(Line(A,B),Trapezoid(A,B,C,D))
+IsBaseOf(Line(C,D),Trapezoid(A,B,C,D))
+
+QUESTION:
+For trapezoid A B C D, S and T are midpoints of the legs. If A B = x + 4, C D = 3 x + 2, and S T = 9, find A B.
+
+CHOICES:
+A. 3
+B. 5
+C. 7
+D. 9
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From IsMedianOf(Line(S,T),Trapezoid(A,B,C,D)) + LengthOf(Line(S,T)) = Div(SumOf(LengthOf(Line(A,B)),LengthOf(Line(C,D))),2) → 9 = (LengthOf(Line(A,B)) + LengthOf(Line(C,D)))/2
+From Equals(LengthOf(Line(A,B)),Add(Var(x),4)) + Equals(LengthOf(Line(C,D)),Add(Mul(3,Var(x)),2)) → LengthOf(Line(A,B)) = x + 4 and LengthOf(Line(C,D)) = 3x + 2
+Substitute LengthOf(Line(A,B)) = x + 4 and LengthOf(Line(C,D)) = 3x + 2 into 9 = (LengthOf(Line(A,B)) + LengthOf(Line(C,D)))/2 → 9 = (x + 4 + 3x + 2)/2
+Multiply both sides of 9 = (x + 4 + 3x + 2)/2 by 2 → 18 = x + 4 + 3x + 2
+Combine like terms in 18 = x + 4 + 3x + 2 → 18 = 4x + 6
+Subtract 6 from both sides of 18 = 4x + 6 → 12 = 4x
+Divide both sides of 12 = 4x by 4 → 3 = x
+Substitute x = 3 into LengthOf(Line(A,B)) = x + 4 → LengthOf(Line(A,B)) = 3 + 4
+Simplify LengthOf(Line(A,B)) = 3 + 4 → LengthOf(Line(A,B)) = 7
+Therefore, A B = 7
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

@@ -1,0 +1,65 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2917.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2917.txt
+
+PREDICATES CONTENT:
+Point(R)
+Point(S)
+Point(T)
+Point(Q)
+Line(R,S)
+Line(S,T)
+Line(R,T)
+Line(R,Q)
+Line(T,Q)
+Line(S,Q)
+Triangle(R,S,Q)
+Triangle(T,S,Q)
+LengthOf(R,S)
+LengthOf(S,T)
+LengthOf(R,Q)
+LengthOf(T,Q)
+Equals(LengthOf(R,S),7)
+Equals(LengthOf(S,T),7)
+Equals(LengthOf(R,Q),Add(x,3))
+Equals(LengthOf(T,Q),Sub(Mul(2,x),6))
+RightAngle(Angle(R,S,Q))
+RightAngle(Angle(T,S,Q))
+Perpendicular(Line(S,Q),Line(R,T))
+IsSideOf(Line(R,S),Triangle(R,S,Q))
+IsSideOf(Line(S,Q),Triangle(R,S,Q))
+IsSideOf(Line(R,Q),Triangle(R,S,Q))
+IsSideOf(Line(T,S),Triangle(T,S,Q))
+IsSideOf(Line(T,Q),Triangle(T,S,Q))
+Equals(LengthOf(R,S),LengthOf(S,T))
+
+QUESTION:
+Find T Q.
+
+CHOICES:
+A. 6
+B. 7
+C. 12
+D. 18
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From RightAngle(Angle(R,S,Q)) + RightAngle(Angle(T,S,Q)) + LengthOf(R,S) + LengthOf(S,T) + Equals(LengthOf(R,S),7) + Equals(LengthOf(S,T),7) + Line(S,Q) + Line(R,Q) + Line(T,Q) → Triangle(R,S,Q) and Triangle(T,S,Q) are right triangles and RS = ST.
+From Perpendicular(Line(S,Q),Line(R,T)) → Angle RSQ and Angle TSQ are right angles.
+From Angle(R,S,Q) is a right angle and Angle(T,S,Q) is a right angle + Line(S,Q) → Triangle RSQ and Triangle TSQ are right triangles
+From LengthOf(R,S) = 7 and LengthOf(S,T) = 7 → RS = ST
+From Line(S,Q), IsSideOf(Line(S,Q),Triangle(R,S,Q)), IsSideOf(Line(S,Q),Triangle(T,S,Q)) → SQ is a common side to both triangles RSQ and TSQ.
+From RS = ST + SQ = SQ + Angle RSQ = Angle TSQ → Triangle RSQ is congruent to Triangle TSQ by Side-Angle-Side (SAS) congruence.
+From Triangle RSQ is congruent to Triangle TSQ → RQ = TQ (Corresponding Parts of Congruent Triangles are Congruent - CPCTC).
+From Equals(LengthOf(R,Q),Add(x,3)) + Equals(LengthOf(T,Q),Sub(Mul(2,x),6)) + RQ = TQ → x + 3 = 2x - 6.
+From x + 3 = 2x - 6 → 3 + 6 = 2x - x → 9 = x.
+From x = 9 and Equals(LengthOf(T,Q),Sub(Mul(2,x),6)) → TQ = 2 * 9 - 6 = 18 - 6 = 12.
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

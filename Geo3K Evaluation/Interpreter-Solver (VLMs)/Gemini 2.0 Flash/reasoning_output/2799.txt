@@ -1,0 +1,91 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2799.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2799.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Point(F)
+Point(G)
+Circle(G)
+PointLiesOnCircle(A,G)
+PointLiesOnCircle(B,G)
+PointLiesOnCircle(C,G)
+PointLiesOnCircle(D,G)
+PointLiesOnCircle(E,G)
+PointLiesOnCircle(F,G)
+Line(A,C)
+Line(D,F)
+Line(G,B)
+Line(G,E)
+Line(G,A)
+Line(G,D)
+Line(G,F)
+IsRadiusOf(G,A,Circle(G))
+IsRadiusOf(G,B,Circle(G))
+IsRadiusOf(G,D,Circle(G))
+IsRadiusOf(G,F,Circle(G))
+IsChordOf(A,C,Circle(G))
+IsChordOf(D,F,Circle(G))
+LengthOf(G,A)
+LengthOf(G,B)
+LengthOf(G,D)
+LengthOf(G,F)
+Equals(LengthOf(G,A),LengthOf(G,B))
+Equals(LengthOf(G,B),LengthOf(G,D))
+Equals(LengthOf(G,D),LengthOf(G,F))
+Equals(LengthOf(G,A),26)
+Equals(LengthOf(G,B),26)
+Equals(LengthOf(G,D),26)
+Equals(LengthOf(G,F),26)
+Perpendicular(G,B,A,C)
+Perpendicular(G,E,D,F)
+Equals(LengthOf(G,B),LengthOf(G,E))
+Equals(LengthOf(A,C),LengthOf(D,F))
+
+QUESTION:
+Chords A C and D F are equidistant from the center. If the radius of \odot G is 26, find A C.
+
+CHOICES:
+A. 5
+B. 10
+C. 13
+D. 48
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Circle(G) + IsRadiusOf(G,A,Circle(G)) + LengthOf(G,A) = 26 → LengthOf(G,A) = 26
+From Circle(G) + IsRadiusOf(G,B,Circle(G)) + LengthOf(G,B) = 26 → LengthOf(G,B) = 26
+From Circle(G) + IsRadiusOf(G,D,Circle(G)) + LengthOf(G,D) = 26 → LengthOf(G,D) = 26
+From Circle(G) + IsRadiusOf(G,F,Circle(G)) + LengthOf(G,F) = 26 → LengthOf(G,F) = 26
+From Perpendicular(G,B,A,C) → GB is perpendicular to AC
+From Perpendicular(G,E,D,F) → GE is perpendicular to DF
+From Perpendicular(G,B,A,C) + Circle properties → B is the midpoint of AC
+From Perpendicular(G,E,D,F) + Circle properties → E is the midpoint of DF
+From Equals(LengthOf(G,B),LengthOf(G,E)) → The distance from the center G to chord AC equals the distance from the center G to chord DF
+From LengthOf(G,B) = LengthOf(G,E) + Circle Properties → LengthOf(A,C) = LengthOf(D,F) (Chords equidistant from the center are equal)
+Let X be the length of AC.
+Since GB is perpendicular to AC, triangle ABG is a right triangle with hypotenuse GA = 26.
+Since B is the midpoint of AC, AB = AC/2 = X/2
+Using the Pythagorean theorem on triangle ABG, we have:
+$AG^2 = AB^2 + GB^2$
+$26^2 = (X/2)^2 + (10)^2$
+$676 = X^2/4 + 100$
+$576 = X^2/4$
+$X^2 = 4 * 576$
+$X^2 = 2304$
+$X = \sqrt{2304}$
+$X = 48$
+Therefore, LengthOf(A,C) = 48
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

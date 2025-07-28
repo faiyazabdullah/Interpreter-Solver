@@ -1,0 +1,97 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2963.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2963.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(P)
+Point(Q)
+Point(R)
+Line(A,B)
+Line(A,C)
+Line(B,C)
+Line(C,P)
+Line(C,Q)
+Line(C,R)
+Triangle(A,B,C)
+PointLiesOnLine(P,Line(A,B))
+PointLiesOnLine(Q,Line(A,B))
+PointLiesOnLine(R,Line(A,B))
+MeasureOf(Angle(A,C,B))
+MeasureOf(Angle(Q,C,B))
+Equals(MeasureOf(Angle(A,C,B)),Sub(123,x))
+Equals(MeasureOf(Angle(Q,C,B)),Add(42,x))
+Perpendicular(Line(C,P),Line(A,B))
+BisectsAngle(Line(C,Q),Angle(A,C,B))
+IsMidpointOf(R,Line(A,B))
+Equals(LengthOf(Line(A,R)),LengthOf(Line(R,B)))
+RightAngle(Angle(C,P,B))
+RightAngle(Angle(C,P,A))
+Equals(MeasureOf(Angle(A,C,Q)),MeasureOf(Angle(Q,C,B)))
+Equals(SumOf(MeasureOf(Angle(A,C,Q)),MeasureOf(Angle(Q,C,B))),MeasureOf(Angle(A,C,B)))
+IsAltitudeOf(Line(C,P),Triangle(A,B,C))
+MeasureOf(Angle(C,P,B))
+MeasureOf(Angle(C,P,A))
+Equals(MeasureOf(Angle(C,P,B)),90)
+Equals(MeasureOf(Angle(C,P,A)),90)
+
+QUESTION:
+In the figure, C P is an altitude, C Q is the angle bisector of \angle A C B, and R is the midpoint of A B. Find m \angle A C Q if m \angle A C B = 123 - x and m \angle Q C B = 42 + x.
+
+CHOICES:
+A. 40
+B. 45
+C. 50
+D. 55
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From BisectsAngle(Line(C,Q),Angle(A,C,B)) + Equals(MeasureOf(Angle(A,C,Q)),MeasureOf(Angle(Q,C,B))) → MeasureOf(Angle(A,C,Q)) = MeasureOf(Angle(Q,C,B))
+From SumOf(MeasureOf(Angle(A,C,Q)),MeasureOf(Angle(Q,C,B))),MeasureOf(Angle(A,C,B))) → MeasureOf(Angle(A,C,Q)) + MeasureOf(Angle(Q,C,B)) = MeasureOf(Angle(A,C,B))
+Let x = MeasureOf(Angle(A,C,Q))
+Let x = MeasureOf(Angle(Q,C,B))
+From MeasureOf(Angle(A,C,Q)) + MeasureOf(Angle(Q,C,B)) = MeasureOf(Angle(A,C,B)) + Equals(MeasureOf(Angle(A,C,B)),Sub(123,x)) → x + x = 123 - x
+From x + x = 123 - x → 2x = 123 - x
+From 2x = 123 - x → 3x = 123
+From 3x = 123 → x = 41
+MeasureOf(Angle(Q,C,B)) = 41
+From Equals(MeasureOf(Angle(Q,C,B)),Add(42,x)) → MeasureOf(Angle(Q,C,B)) = 42 + x
+Let y = MeasureOf(Angle(Q,C,B))
+y = 42 + x
+y = 41
+From y = 42 + x + y = 41 → 41 = 42 + x
+From 41 = 42 + x → x = -1
+MeasureOf(Angle(A,C,B)) = 123 - x
+From x = -1 → MeasureOf(Angle(A,C,B)) = 123 - (-1) = 124
+MeasureOf(Angle(A,C,Q)) = MeasureOf(Angle(Q,C,B))
+2 * MeasureOf(Angle(Q,C,B)) = MeasureOf(Angle(A,C,B))
+MeasureOf(Angle(Q,C,B)) = 1/2 * MeasureOf(Angle(A,C,B))
+MeasureOf(Angle(Q,C,B)) = 1/2 * 124
+MeasureOf(Angle(Q,C,B)) = 62
+MeasureOf(Angle(Q,C,B)) = 42 + x
+62 = 42 + x
+x = 20
+Contradiction
+MeasureOf(Angle(A,C,B)) = 123 - x
+MeasureOf(Angle(Q,C,B)) = 42 + x
+MeasureOf(Angle(Q,C,B)) = 1/2 MeasureOf(Angle(A,C,B))
+42 + x = 1/2 (123 - x)
+84 + 2x = 123 - x
+3x = 39
+x = 13
+MeasureOf(Angle(Q,C,B)) = 42 + x
+MeasureOf(Angle(Q,C,B)) = 42 + 13
+MeasureOf(Angle(Q,C,B)) = 55
+MeasureOf(Angle(A,C,Q)) = MeasureOf(Angle(Q,C,B))
+MeasureOf(Angle(A,C,Q)) = 55
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

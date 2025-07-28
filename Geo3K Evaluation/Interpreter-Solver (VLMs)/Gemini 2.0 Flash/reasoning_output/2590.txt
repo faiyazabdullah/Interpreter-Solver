@@ -1,0 +1,58 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2590.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2590.txt
+
+PREDICATES CONTENT:
+Point(G)
+Point(J)
+Point(K)
+Point(I)
+Point(H)
+Line(G,J)
+Line(G,K)
+Line(K,J)
+Line(J,I)
+Line(G,H)
+Line(H,I)
+Line(K,H)
+Triangle(G,J,I)
+Triangle(G,K,H)
+Parallel(Line(K,H),Line(J,I))
+PointLiesOnLine(K,Line(G,J))
+PointLiesOnLine(H,Line(G,I))
+Equals(LengthOf(Line(G,H)),9)
+Equals(LengthOf(Line(G,K)),6)
+Equals(LengthOf(Line(K,J)),4)
+Similar(Triangle(G,K,H),Triangle(G,J,I))
+IsSideOf(Line(G,J),Triangle(G,J,I))
+IsSideOf(Line(J,I),Triangle(G,J,I))
+IsSideOf(Line(G,I),Triangle(G,J,I))
+IsSideOf(Line(G,K),Triangle(G,K,H))
+IsSideOf(Line(K,H),Triangle(G,K,H))
+IsSideOf(Line(G,H),Triangle(G,K,H))
+
+QUESTION:
+Find G I if G H = 9, G K = 6, and K J = 4.
+
+CHOICES:
+A. 6
+B. 9
+C. 12
+D. 15
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From PointLiesOnLine(K,Line(G,J)) + PointLiesOnLine(H,Line(G,I)) + Line(K,H) + Line(J,I) + Parallel(Line(K,H),Line(J,I)) → Triangle(G,K,H) is similar to Triangle(G,J,I).
+From Equals(LengthOf(Line(G,K)),6) + Equals(LengthOf(Line(K,J)),4) → LengthOf(Line(G,J)) = LengthOf(Line(G,K)) + LengthOf(Line(K,J)) = 6 + 4 = 10.
+From Similar(Triangle(G,K,H),Triangle(G,J,I)) → LengthOf(Line(G,K)) / LengthOf(Line(G,J)) = LengthOf(Line(G,H)) / LengthOf(Line(G,I)).
+From LengthOf(Line(G,K)) / LengthOf(Line(G,J)) = LengthOf(Line(G,H)) / LengthOf(Line(G,I)) + Equals(LengthOf(Line(G,K)),6) + LengthOf(Line(G,J))=10 + Equals(LengthOf(Line(G,H)),9) → 6 / 10 = 9 / LengthOf(Line(G,I)).
+From 6 / 10 = 9 / LengthOf(Line(G,I)) → LengthOf(Line(G,I)) = 9 * 10 / 6 = 90 / 6 = 15.
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

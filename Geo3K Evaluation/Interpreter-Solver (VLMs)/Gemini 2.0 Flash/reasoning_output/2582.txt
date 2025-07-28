@@ -1,0 +1,67 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2582.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2582.txt
+
+PREDICATES CONTENT:
+Point(M)
+Point(L)
+Point(N)
+Point(P)
+Point(A)
+Point(B)
+Point(C)
+Line(M,L)
+Line(M,P)
+Line(M,N)
+Line(L,P)
+Line(P,N)
+Line(L,A)
+Line(N,B)
+Line(P,C)
+Angle(L,M,P)
+Angle(P,M,N)
+Angle(M,L,P)
+Angle(M,N,P)
+MeasureOf(Angle(L,M,P),25)
+MeasureOf(Angle(P,M,N),25)
+RightAngle(Angle(M,L,P))
+RightAngle(Angle(M,N,P))
+Perpendicular(Line(M,L),Line(L,A))
+Perpendicular(Line(M,N),Line(N,B))
+LengthOf(Line(L,P),Add(Mul(3,x),6))
+LengthOf(Line(P,N),Sub(Mul(4,x),2))
+Equals(LengthOf(Line(L,P)),LengthOf(Line(P,N)))
+Congruent(Triangle(M,L,P),Triangle(M,N,P))
+BisectsAngle(Line(M,P),Angle(L,M,N))
+PointLiesOnLine(L,Line(L,A))
+PointLiesOnLine(N,Line(N,B))
+
+QUESTION:
+Find P N.
+
+CHOICES:
+A. 25
+B. 30
+C. 50
+D. 60
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Angle(L,M,P) and Angle(P,M,N) + MeasureOf(Angle(L,M,P),25) + MeasureOf(Angle(P,M,N),25) → MeasureOf(Angle(L,M,P)) = MeasureOf(Angle(P,M,N)) = 25.
+From MeasureOf(Angle(L,M,P)) = MeasureOf(Angle(P,M,N)) → Line(M,P) bisects Angle(L,M,N).
+From RightAngle(Angle(M,L,P)) and RightAngle(Angle(M,N,P)) → MeasureOf(Angle(M,L,P)) = MeasureOf(Angle(M,N,P)) = 90.
+From Line(M,P) and MeasureOf(Angle(L,M,P)) = MeasureOf(Angle(P,M,N)) = 25 and MeasureOf(Angle(M,L,P)) = MeasureOf(Angle(M,N,P)) = 90 → Triangle(M,L,P) and Triangle(M,N,P) are congruent by Angle-Angle-Side (AAS) criterion.
+From Congruent(Triangle(M,L,P),Triangle(M,N,P)) → LengthOf(Line(L,P)) = LengthOf(Line(N,P)).
+From LengthOf(Line(L,P),Add(Mul(3,x),6)) and LengthOf(Line(P,N),Sub(Mul(4,x),2)) and LengthOf(Line(L,P)) = LengthOf(Line(N,P)) → 3x + 6 = 4x - 2.
+From 3x + 6 = 4x - 2 → x = 8.
+From LengthOf(Line(P,N),Sub(Mul(4,x),2)) and x = 8 → LengthOf(Line(P,N)) = 4 * 8 - 2 = 32 - 2 = 30.
+Therefore, P N = 30.
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

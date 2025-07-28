@@ -1,0 +1,63 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2410.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2410.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Line(A,B)
+Line(A,C)
+Line(A,D)
+Line(A,E)
+Line(B,C)
+Line(D,E)
+LengthOf(Line(A,C),x - 3)
+LengthOf(Line(B,E),20)
+LengthOf(Line(A,B),16)
+LengthOf(Line(C,D),x + 5)
+PointLiesOnLine(B,Line(A,E))
+PointLiesOnLine(A,Line(A,E))
+PointLiesOnLine(E,Line(A,E))
+PointLiesOnLine(A,Line(A,D))
+PointLiesOnLine(C,Line(A,D))
+PointLiesOnLine(D,Line(A,D))
+Parallel(Line(B,C),Line(D,E))
+Add(LengthOf(Line(A,B)),LengthOf(Line(B,E)),LengthOf(Line(A,E)))
+Add(LengthOf(Line(A,C)),LengthOf(Line(C,D)),LengthOf(Line(A,D)))
+Equals(LengthOf(Line(A,E)),36)
+
+QUESTION:
+Find C D if A C = x - 3, B E = 20, A B = 16, and C D = x + 5.
+
+CHOICES:
+A. 32
+B. 35
+C. 36
+D. 40
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Add(LengthOf(Line(A,B)),LengthOf(Line(B,E)),LengthOf(Line(A,E))) + LengthOf(Line(A,B),16) + LengthOf(Line(B,E),20) → LengthOf(Line(A,E)) = 16 + 20 = 36
+From Equals(LengthOf(Line(A,E)),36) + LengthOf(Line(A,E)) = 36 → 36 = 36
+From Parallel(Line(B,C),Line(D,E)) → Triangle(A,B,C) ~ Triangle(A,E,D) by AA similarity postulate
+From Triangle(A,B,C) ~ Triangle(A,E,D) → LengthOf(Line(A,B))/LengthOf(Line(A,E)) = LengthOf(Line(A,C))/LengthOf(Line(A,D))
+From LengthOf(Line(A,B),16) + LengthOf(Line(A,E),36) + LengthOf(Line(A,C),x - 3) + LengthOf(Line(C,D),x + 5) + Add(LengthOf(Line(A,C)),LengthOf(Line(C,D)),LengthOf(Line(A,D))) → 16/36 = (x - 3)/(x - 3 + x + 5)
+From 16/36 = (x - 3)/(x - 3 + x + 5) → 16/36 = (x - 3)/(2x + 2)
+From 16/36 = (x - 3)/(2x + 2) → 16(2x + 2) = 36(x - 3)
+From 16(2x + 2) = 36(x - 3) → 32x + 32 = 36x - 108
+From 32x + 32 = 36x - 108 → 36x - 32x = 32 + 108
+From 36x - 32x = 32 + 108 → 4x = 140
+From 4x = 140 → x = 140/4 = 35
+From C D = x + 5 and x = 35 → C D = 35 + 5 = 40
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

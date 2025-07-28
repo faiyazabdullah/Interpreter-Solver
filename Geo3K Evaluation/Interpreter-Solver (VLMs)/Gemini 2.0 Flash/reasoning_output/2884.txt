@@ -1,0 +1,82 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2884.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2884.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Point(F)
+Line(A,B)
+Line(B,C)
+Line(C,D)
+Line(D,E)
+Line(A,F)
+Line(F,E)
+Line(B,F)
+Line(F,D)
+LengthOf(A,B,6)
+LengthOf(A,F,8)
+LengthOf(B,C,x)
+LengthOf(C,D,y)
+LengthOf(D,E,2*y-3)
+LengthOf(F,E,x+10/3)
+Parallel(B,F,C,E)
+Parallel(F,D,A,B)
+Parallelogram(B,F,D,E)
+Equals(LengthOf(B,F),LengthOf(D,E))
+Equals(LengthOf(B,D),LengthOf(F,E))
+PointLiesOnLine(B,A,C,E)
+PointLiesOnLine(C,A,C,E)
+PointLiesOnLine(D,A,C,E)
+PointLiesOnLine(F,A,F,E)
+Triangle(A,B,F)
+Triangle(A,C,E)
+Similar(Triangle(A,B,F),Triangle(A,C,E))
+SumOf(LengthOf(B,C),LengthOf(C,D),LengthOf(B,D))
+SumOf(LengthOf(A,B),LengthOf(B,C),LengthOf(A,C))
+Equals(LengthOf(A,C),LengthOf(A,B)+LengthOf(B,C))
+Equals(LengthOf(A,E),LengthOf(A,F)+LengthOf(F,E))
+SumOf(LengthOf(C,D),LengthOf(D,E),LengthOf(C,E))
+Equals(LengthOf(C,E),LengthOf(C,D)+LengthOf(D,E))
+
+QUESTION:
+Find B C if A B = 6, A F = 8, B C = x, C D = y, D E = 2 y - 3, and F E = x + \frac { 10 } { 3 }.
+
+CHOICES:
+A. 9
+B. 10
+C. 13.3
+D. 15
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallel(B,F,C,E) + Parallel(F,D,A,B) + Parallelogram(B,F,D,E) → BFDE is a parallelogram.
+From Parallelogram(B,F,D,E) → Equals(LengthOf(B,F),LengthOf(D,E)) and Equals(LengthOf(B,D),LengthOf(F,E))
+From Equals(LengthOf(B,F),LengthOf(D,E)) + LengthOf(D,E,2*y-3) → LengthOf(B,F) = 2y - 3
+From Equals(LengthOf(B,D),LengthOf(F,E)) + LengthOf(F,E,x+10/3) → LengthOf(B,D) = x + 10/3
+From SumOf(LengthOf(B,C),LengthOf(C,D),LengthOf(B,D)) → LengthOf(B,C) + LengthOf(C,D) = LengthOf(B,D)
+From LengthOf(B,C,x) + LengthOf(C,D,y) + LengthOf(B,D) = x + 10/3 → x + y = x + 10/3
+From x + y = x + 10/3 → y = 10/3
+From LengthOf(B,F) = 2y - 3 + y = 10/3 → LengthOf(B,F) = 2*(10/3) - 3 = 20/3 - 9/3 = 11/3
+From Triangle(A,B,F) + Triangle(A,C,E) + Similar(Triangle(A,B,F),Triangle(A,C,E)) → LengthOf(A,B) / LengthOf(A,C) = LengthOf(A,F) / LengthOf(A,E)
+From LengthOf(A,B,6) + LengthOf(A,F,8) → 6 / LengthOf(A,C) = 8 / LengthOf(A,E)
+From Equals(LengthOf(A,C),LengthOf(A,B)+LengthOf(B,C)) + LengthOf(A,B,6) + LengthOf(B,C,x) → LengthOf(A,C) = 6 + x
+From Equals(LengthOf(A,E),LengthOf(A,F)+LengthOf(F,E)) + LengthOf(A,F,8) + LengthOf(F,E,x+10/3) → LengthOf(A,E) = 8 + x + 10/3 = x + 24/3 + 10/3 = x + 34/3
+From LengthOf(A,C) = 6 + x + LengthOf(A,E) = x + 34/3 → 6 / (6 + x) = 8 / (x + 34/3)
+From 6 / (6 + x) = 8 / (x + 34/3) → 6*(x + 34/3) = 8*(6 + x)
+From 6*(x + 34/3) = 8*(6 + x) → 6x + 68 = 48 + 8x
+From 6x + 68 = 48 + 8x → 2x = 20
+From 2x = 20 → x = 10
+LengthOf(B,C,x) and x = 10 → LengthOf(B,C) = 10
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

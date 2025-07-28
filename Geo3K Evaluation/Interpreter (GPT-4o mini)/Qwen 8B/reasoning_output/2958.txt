@@ -1,0 +1,578 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+- Point(A)
+- Point(B)
+- Point(C)
+- Point(X)
+- Line(A,B)
+- Line(A,C)
+- Line(B,C)
+- Line(B,X)
+- Line(X,C)
+- Line(A,X)
+- RightAngle(Angle(A,X,C))
+- RightAngle(Angle(B,X,C))
+- RightAngle(Angle(B,C,A))
+- LengthOf(Line(A,X),6x)
+- LengthOf(Line(B,X),36)
+- LengthOf(Line(X,C),x)
+- LengthOf(Line(B,C),y)
+- LengthOf(Line(A,B),z)
+
+QUESTION:
+Find z.
+
+CHOICES:
+A. 36 \sqrt { 5 }
+B. 36 \sqrt { 7 }
+C. 36 \sqrt { 11 }
+D. 36 \sqrt { 13 }
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+<think>
+Okay, let's try to figure out this geometry problem. So, we have points A, B, C, X, and some lines connecting them. There are several right angles mentioned, and lengths given in terms of variables x, y, z. The goal is to find z, which is the length of line AB.
+
+First, I need to parse all the given predicates. Let me list them out again:
+
+Points: A, B, C, X.
+
+Lines: AB, AC, BC, BX, XC, AX.
+
+Angles: Angle at X between AXC is a right angle. Similarly, angle at X between BXC is also a right angle. Also, angle at C between BCA is a right angle. Wait, the third one says RightAngle(Angle(B,C,A)), so that would be angle at C between B and A? Wait, angle notation is usually vertex in the middle. So Angle(B,C,A) means the angle at point C between points B and A. So that's angle BCA, which is a right angle. So triangle ABC has a right angle at C?
+
+Wait, but there's also right angles at X. Let me visualize this. Points A, B, C connected as lines, and X connected to B and C. Also, X is connected to A. So maybe X is somewhere such that lines AX, BX, CX form certain right angles.
+
+Let me try to sketch this mentally. Since there are two right angles at X: angle AXC and angle BXC. So, if I consider point X, then lines AX and XC form a right angle, and lines BX and XC also form a right angle. That suggests that AX and BX are both perpendicular to XC. But if two different lines (AX and BX) are both perpendicular to the same line XC, then they must be colinear? Wait, unless they're in different planes, but since we're dealing with planar geometry, they should lie on the same plane. Therefore, if two lines are both perpendicular to the same line, they must be parallel to each other. But since both AX and BX start at X and go towards A and B respectively, and both are perpendicular to XC, that implies that AX is parallel to BX. But if AX and BX are parallel and share a common point X, that would mean they are the same line, which isn't possible unless A and B are the same point, which they aren't. Hmm, contradiction here. Maybe my understanding is wrong.
+
+Alternatively, perhaps those right angles are not both at X. Let me check again. The first right angle is Angle(A,X,C): that's angle at X between A and C. Second is Angle(B,X,C): angle at X between B and C. Third is Angle(B,C,A): angle at C between B and A. So, the first two right angles are at X, and the third is at C.
+
+So, considering the right angles at X: angle AXC and angle BXC are both right angles. So, at point X, lines AX and CX form a right angle, and lines BX and CX form another right angle. Therefore, both AX and BX are perpendicular to CX. Which would imply that AX and BX are both perpendicular to CX, hence AX is parallel to BX. But since they meet at X, that would require that AX and BX are the same line, which can't be unless A and B are on the same line through X. However, that seems conflicting. Unless there's something else going on here.
+
+Wait, maybe the lines AX and BX are not both perpendicular to CX. Wait, angle AXC being a right angle means that at point X, the lines XA and XC are perpendicular. Similarly, angle BXC being a right angle means that at X, lines XB and XC are perpendicular. Therefore, both XA and XB are perpendicular to XC. Therefore, XA and XB are both perpendicular to the same line XC, implying that XA and XB are parallel. But since they both originate from X, they can't be parallel unless they are the same line, which they aren't. This suggests that my initial assumption about the configuration is incorrect. Perhaps there's a three-dimensional aspect, but the problem likely assumes planar geometry.
+
+Hmm, maybe the problem involves coordinates. Let me assign coordinates to the points to make it easier. Let me place point C at the origin (0,0). Since angle BCA is a right angle, triangle ABC is right-angled at C. So, points B and A are along axes. Let me assume that C is at (0,0). Then, since angle at C is right, suppose point B is along the x-axis and point A is along the y-axis. So, coordinates: C = (0,0), B = (b, 0), A = (0, a). Then, AB would be the hypotenuse of triangle ABC.
+
+Now, point X is connected to A, B, and C. Given that angles at X: AXC and BXC are right angles. Let me think about where X could be. Let me denote coordinates for X as (x,y).
+
+Given that angle AXC is a right angle. So vectors XA and XC are perpendicular. Vector XA is A - X = (0 - x, a - y) = (-x, a - y). Vector XC is C - X = (0 - x, 0 - y) = (-x, -y). Their dot product should be zero:
+
+(-x)(-x) + (a - y)(-y) = 0 → x² - y(a - y) = 0 → x² - ay + y² = 0. Equation (1)
+
+Similarly, angle BXC is a right angle. So vectors XB and XC are perpendicular. Vector XB is B - X = (b - x, 0 - y) = (b - x, -y). Vector XC is (-x, -y). Dot product:
+
+(b - x)(-x) + (-y)(-y) = 0 → -bx + x² + y² = 0 → x² - bx + y² = 0. Equation (2)
+
+So equations (1) and (2):
+
+From equation (1): x² + y² = a y  
+From equation (2): x² + y² = b x  
+
+Therefore, equating these two: a y = b x ⇒ y = (b/a)x. Let me note that.
+
+Also, since point X lies somewhere in the plane. Now, we also know lengths involving X. Let me recall the given lengths:
+
+Length of AX is 6x. Wait, the problem states:
+
+- LengthOf(Line(A,X),6x)
+- LengthOf(Line(B,X),36)
+- LengthOf(Line(X,C),x)
+- LengthOf(Line(B,C),y)
+- LengthOf(Line(A,B),z)
+
+Wait, the variables here are x, y, z. But in the problem statement, the lengths are expressed in terms of variables x, y, z. However, in our coordinate system, we have variables like x-coordinate of X, which may conflict with the variable x used in the length of AX. Wait, this might be confusing. Let me clarify.
+
+In the problem, the LengthOf(Line(A,X)) is given as 6x. Let me denote that as |AX| = 6x. Similarly, |BX| = 36, |XC| = x. Also, |BC| = y, |AB| = z.
+
+But in my coordinate system, I had variables for coordinates, which might clash with the variables x, y, z here. To avoid confusion, maybe I should use different symbols. Let me adjust.
+
+Let me redefine:
+
+Let’s say the length of AX is 6k, BX is 36, XC is k, BC is m, AB is z. Here, k is a variable, and m is another variable. But the problem uses x, y, z as variables. Let me check again:
+
+Original problem:
+
+LengthOf(Line(A,X),6x) → so |AX| = 6x  
+LengthOf(Line(B,X),36) → |BX| = 36  
+LengthOf(Line(X,C),x) → |XC| = x  
+LengthOf(Line(B,C),y) → |BC| = y  
+LengthOf(Line(A,B),z) → |AB| = z
+
+So, variables x, y, z are the lengths of AX, BX, XC, BC, AB respectively. Wait, but in the problem, x is used in multiple places. For example, |XC| = x, and |AX|=6x. So x is a variable here, representing the length of XC. Then, AX is 6 times that same x. So x is a single variable. Then, BC is length y, AB is length z.
+
+So, in the coordinate system, we can relate these variables. Let me proceed with that.
+
+So, back to the coordinate system. Let me assign coordinates again with C at (0,0), B at (m, 0), since |BC| = y? Wait, wait, |BC| is y. So BC is the segment from B to C, which has length y. So if C is at (0,0), then B is at (y, 0), because distance from B to C is y. Wait, but earlier I thought BC is length y, so yes.
+
+Then, point A is at (0, a), since angle at C is right. Then, AB would be the hypotenuse of triangle ABC, with legs BC = y and AC = a. Wait, but AC is from A(0,a) to C(0,0), so length is a. Then, AB is sqrt(a² + y²) = z. So z = sqrt(a² + y²). But we need to find z.
+
+Now, point X has coordinates (p, q). Because earlier, in equations (1) and (2), we had relations involving x and y, but here I'm using p and q for coordinates.
+
+Wait, but earlier, I considered equations (1) and (2) with variables x and y (coordinates), but in the problem, variables x and y are lengths. To avoid confusion, let me reassign:
+
+Let me denote coordinates of X as (h, k). Then, equations from the right angles:
+
+For angle AXC being right: vectors XA and XC are perpendicular. XA vector is A - X = (0 - h, a - k) = (-h, a - k). XC vector is C - X = (0 - h, 0 - k) = (-h, -k). Their dot product is (-h)(-h) + (a - k)(-k) = h² - k(a - k) = 0 → h² - ak + k² = 0. Equation (1)
+
+For angle BXC being right: vectors XB and XC are perpendicular. XB vector is B - X = (y - h, 0 - k) = (y - h, -k). XC vector is (-h, -k). Their dot product is (y - h)(-h) + (-k)(-k) = -hy + h² + k² = 0 → h² + k² - hy = 0. Equation (2)
+
+So equations (1) and (2):
+
+Equation (1): h² + k² - ak = 0  
+Equation (2): h² + k² - hy = 0  
+
+Thus, setting them equal: ak = hy → k = (h y)/a.
+
+So, substituting k into equation (2): h² + [(h^2 y²)/a²] - hy = 0. Wait, no. Let me substitute k = (h y)/a into equation (2). Wait equation (2) was h² + k² - hy = 0. Substituting k = (h y)/a gives:
+
+h² + [(h y)/a]^2 - hy = 0 → h² + (h² y²)/a² - hy = 0.
+
+Factor h:
+
+h [ h + (h y²)/a² - y ] = 0 ?
+
+Wait, perhaps better to factor h²:
+
+Let me write h² (1 + y² / a² ) = hy → h² ( (a² + y²)/a² ) = hy → h² ( (a² + y²) ) = h y a² → Assuming h ≠ 0, divide both sides by h:
+
+h (a² + y² ) = y a² → h = (y a² ) / (a² + y² )
+
+So h = (a² y)/(a² + y² )
+
+And since k = (h y)/a, substituting h:
+
+k = [ (a² y / (a² + y² )) * y ] / a = (a y² ) / (a² + y² )
+
+So coordinates of X are ( h, k ) = ( (a² y)/(a² + y² ), (a y² )/(a² + y² ) )
+
+Now, we also know the distances from X to A, X to B, and X to C.
+
+Given that |XC| = x. Since C is at (0,0), and X is at (h,k), then distance XC is sqrt(h² + k² ). From equation (1), h² + k² = a k. So sqrt(a k) = x → a k = x². 
+
+But k = (a y² )/(a² + y² ), so:
+
+a * [ (a y² ) / (a² + y² ) ] = x² → (a² y² ) / (a² + y² ) = x² → Equation (3)
+
+Also, |AX| = 6x. Let's compute |AX|. Point A is at (0,a), X is at (h,k). Distance squared is (h - 0)^2 + (k - a)^2 = h² + (k - a)^2. 
+
+We can expand this:
+
+= h² + k² - 2 a k + a² 
+
+But from equation (1), h² + k² = a k. Substitute:
+
+= a k - 2 a k + a² = -a k + a² 
+
+So |AX|^2 = a² - a k 
+
+But |AX| = 6x, so squaring gives:
+
+a² - a k = (6x)^2 = 36 x² → Equation (4)
+
+We also have from above that a k = x² (from Equation (3)). So substituting into Equation (4):
+
+a² - x² = 36 x² → a² = 37 x² → a = x√37 
+
+Now, let's look at |BX| = 36. Compute |BX|. Point B is at (y, 0), X is at (h,k). Distance squared is (h - y)^2 + (k - 0)^2 = (h - y)^2 + k² 
+
+Expand:
+
+= h² - 2 h y + y² + k² 
+
+Again, from equation (2), h² + k² = h y. So substitute:
+
+= h y - 2 h y + y² = - h y + y² 
+
+So |BX|^2 = y² - h y 
+
+But |BX| = 36, so:
+
+y² - h y = 36² = 1296 → Equation (5)
+
+But h = (a² y ) / (a² + y² ). Let's substitute that into Equation (5):
+
+y² - [ (a² y ) / (a² + y² ) ] * y = 1296 
+
+Simplify:
+
+y² - [ a² y² / (a² + y² ) ] = 1296 
+
+Combine terms:
+
+[ y² (a² + y² ) - a² y² ] / (a² + y² ) = 1296 
+
+Numerator: y² a² + y^4 - a² y² = y^4 
+
+So:
+
+y^4 / (a² + y² ) = 1296 → Equation (6)
+
+Earlier, from Equation (3), we had (a² y² ) / (a² + y² ) = x² → Let me call this Equation (3)
+
+So, from Equation (6): y^4 / (a² + y² ) = 1296 
+
+Let me express this as y^4 = 1296 (a² + y² )
+
+But from Equation (3): a² y² = x² (a² + y² )
+
+Wait, Equation (3) is:
+
+(a² y² ) / (a² + y² ) = x² → Multiply both sides by denominator: a² y² = x² (a² + y² )
+
+So, a² y² = x² (a² + y² )
+
+Let me denote S = a² + y². Then, from Equation (3): a² y² = x² S → Equation (3a)
+
+From Equation (6): y^4 = 1296 S → Equation (6a)
+
+But S = a² + y². Also, from earlier, we found that a² = 37 x². So, substituting a² = 37 x² into S:
+
+S = 37 x² + y² 
+
+So, Equation (3a): (37 x² ) y² = x² (37 x² + y² )
+
+Divide both sides by x² (assuming x ≠ 0):
+
+37 y² = 37 x² + y² → 37 y² - y² = 37 x² → 36 y² = 37 x² → y² = (37 / 36 ) x² → y = (√37 / 6 ) x 
+
+Now, substitute y² into Equation (6a):
+
+y^4 = 1296 S → y^4 = 1296 (37 x² + y² )
+
+Substitute y² = (37/36)x²:
+
+Left side: y^4 = [ (37/36)x² ]² = (37² / 36² ) x^4 
+
+Right side: 1296 (37 x² + (37/36)x² ) = 1296 * [ (37 x² )(1 + 1/36 ) ] = 1296 * (37 x² * 37/36 ) 
+
+Wait, let me compute inside:
+
+Inside the brackets: 37 x² + (37/36)x² = 37x² (1 + 1/36 ) = 37x² (37/36 )
+
+Wait, no. Wait, 1 + 1/36 is 37/36. So:
+
+Right side becomes 1296 * 37x² * (37/36 ) 
+
+Compute 1296 divided by 36 is 36. So:
+
+1296 * (37/36 ) = 36 * 37 
+
+So overall, right side is 36*37 x² * 37 ?
+
+Wait, let me redo:
+
+Right side: 1296 * [37 x² + (37/36)x² ] = 1296 * [ (37 + 37/36 ) x² ] 
+
+Wait, no. Original expression: 37 x² + (37/36)x² = 37 x² * (1 + 1/36 ) = 37 x² * (37/36 )
+
+Wait no, original term was 37x² + (37/36)x². Wait, no, the previous substitution was:
+
+Inside the brackets: 37 x² + (37/36)x² ?
+
+No. Earlier, S = 37x² + y². And y² is (37/36)x². So S = 37x² + (37/36)x² = 37x² (1 + 1/36 ) = 37x² * (37/36 )
+
+Wait, no. Let me do arithmetic correctly:
+
+S = 37x² + y² = 37x² + (37/36)x² = x² (37 + 37/36 ) = x² * [ (37 * 36 + 37 ) / 36 ] = x² * [ 37 (36 + 1 ) / 36 ] = x² * (37 * 37 ) / 36 
+
+So S = (37² / 36 ) x² 
+
+Therefore, Equation (6a): y^4 = 1296 * S = 1296 * (37² / 36 ) x² 
+
+Which simplifies to:
+
+y^4 = 1296 * 37² / 36 * x² 
+
+Calculate 1296 / 36 = 36, so:
+
+y^4 = 36 * 37² x² 
+
+But we also have from left side: y^4 = (37² / 36² ) x^4 
+
+Set them equal:
+
+(37² / 36² ) x^4 = 36 * 37² x² 
+
+Divide both sides by 37² x² (assuming x ≠ 0):
+
+(1 / 36² ) x² = 36 
+
+Multiply both sides by 36²:
+
+x² = 36³ 
+
+Take square root:
+
+x = 36^(3/2 ) = 36 * √36 = 36 * 6 = 216 
+
+Wait, no. Wait 36^(3/2) is sqrt(36)^3 = 6^3 = 216. Yes. So x = 216. 
+
+But we need to find z, which is |AB|. Recall that in our coordinate system, AB is the hypotenuse of triangle ABC, which has legs AC = a and BC = y. So z = sqrt(a² + y² )
+
+Earlier, we found that a² = 37 x². Also, y² = (37 / 36 ) x². Thus:
+
+z² = a² + y² = 37 x² + (37 / 36 ) x² = x² (37 + 37/36 ) = x² * (37 * 37 / 36 )
+
+Wait, no:
+
+Wait 37 + 37/36 = 37*(1 + 1/36 ) = 37*(37/36 ). So:
+
+z² = x² * (37 * 37 / 36 ) 
+
+So z = x * (37 / 6 )
+
+Since x = 216, then z = 216 * (37 / 6 ) = 36 * 37 
+
+Because 216 divided by 6 is 36. So z = 36 * 37 
+
+Wait, but 36 multiplied by 37 equals 1332. But looking at the answer options, none of them are 1332. The options are multiples of 36 with sqrt(5), sqrt(7), etc. So perhaps I made a mistake here.
+
+Wait, wait, let me double-check. 
+
+Earlier, we found that z² = a² + y² = 37x² + y², and y² = (37/36)x². So total z² = 37x² + (37/36)x² = (37 + 37/36)x² = 37(1 + 1/36)x² = 37*(37/36)x². So z = sqrt(37*(37/36)x² ) = (37/6)x. 
+
+Yes, because sqrt(37 * 37 / 36 ) = 37/6. So z = (37/6)x. 
+
+Since x = 216, then z = (37/6)*216 = 37*36 = 1332. But the answer choices don't have 1332. The options are A. 36√5, B. 36√7, C. 36√11, D. 36√13. So this suggests that my calculation is wrong. Where did I go wrong?
+
+Let me backtrack. Let me check the calculation of z. 
+
+Earlier, I said that a² = 37x², and y² = (37/36)x². Then z² = a² + y² = 37x² + (37/36)x² = x² (37 + 37/36) = x² * ( (37*36 + 37)/36 ) = x² * (37*(36+1))/36 = x² * 37*37 / 36. Hence z = (37/6)x. 
+
+But x was found to be 216. So z = 37/6 * 216 = 37 * 36 = 1332. But this doesn't match the answer choices. Therefore, there must be an error in my reasoning.
+
+Let me check how x was determined. We had:
+
+From Equation (6a): y^4 = 1296 * S, where S = 37x² + y². But then I substituted y² = (37/36)x², leading to S = 37x² + (37/36)x² = 37x²(1 + 1/36) = 37x²*(37/36). 
+
+Wait, no! Wait, 37x² is part of S? No, S = a² + y². Previously, we had a² = 37x², and y² = (37/36)x². So S = 37x² + (37/36)x² = x²*(37 + 37/36) = x²*( (37*36 + 37)/36 ) = x²*(37*(36 + 1))/36 = x²*(37*37)/36. 
+
+Yes. Then, Equation (6a) says y^4 = 1296*S. So substituting:
+
+y^4 = 1296*(37²/36)x². 
+
+But we also have y^4 = (37²/36²)x^4. 
+
+Setting them equal:
+
+(37²/36²)x^4 = 1296*(37²/36)x² 
+
+Cancel 37² from both sides:
+
+(1/36²)x^4 = 1296/36 x² → Simplify RHS: 1296/36 = 36.
+
+So:
+
+(1/36²)x^4 = 36 x² → Multiply both sides by 36²:
+
+x^4 = 36^3 x² → Divide both sides by x² (x≠0):
+
+x² = 36^3 → x = 36^(3/2) = 36*sqrt(36) = 36*6 = 216. Correct.
+
+Then z = (37/6)x = (37/6)*216 = 37*36 = 1332. 
+
+This suggests that z is 1332, but the answer choices are multiples of 36 with square roots. Clearly, this discrepancy indicates an error in assumptions. 
+
+Perhaps my coordinate setup is flawed. Let me reconsider the entire approach.
+
+Alternative approach: Since there are two right angles at X, and the right angle at C, maybe using similar triangles or Pythagoras.
+
+Given that AX ⊥ XC and BX ⊥ XC, so AX || BX? Wait, if two lines are both perpendicular to the same line, they are parallel. But since both AX and BX originate from X, they can't be parallel unless they are the same line, which they aren't. So this suggests that my coordinate system assumption might be incorrect. Alternatively, maybe the right angles are not both at X but in different configurations.
+
+Wait, let me re-express the problem without coordinates. Since AX ⊥ XC and BX ⊥ XC, then AX and BX are both perpendicular to XC, implying that AX and BX are parallel. But since they meet at X, this is impossible unless they are the same line, which they aren't. So this suggests that the diagram is not in a plane? Or perhaps there's a misinterpretation of the angles.
+
+Wait, maybe the right angles are not at X. Let me recheck the problem statement:
+
+- RightAngle(Angle(A,X,C)): This is angle at X between A and C, so yes, right angle at X.
+- RightAngle(Angle(B,X,C)): Right angle at X between B and C.
+- RightAngle(Angle(B,C,A)): Right angle at C between B and A.
+
+So the first two are at X, third at C. So the previous analysis holds. So why the inconsistency?
+
+Maybe the issue is in the calculation of z. Let me think differently. Let me use the given lengths and the relationships.
+
+We have |AX| = 6x, |XC| = x, so AX = 6x, XC = x. So triangle AXC has AX = 6x, XC = x, and right angle at X. So by Pythagoras, AC² = AX² + XC² = (6x)^2 + x^2 = 37x² → AC = x√37. 
+
+Similarly, triangle BXC has BX = 36, XC = x, right angle at X. So BC² = BX² + XC² = 36² + x² → BC = sqrt(36² + x²) = y.
+
+Now, triangle ABC has a right angle at C, so AB² = AC² + BC². 
+
+So AB² = (37x²) + (36² + x²) = 38x² + 1296. 
+
+But AB is z, so z² = 38x² + 1296. 
+
+But we need to find z. How to find x?
+
+Wait, but how does x relate to other parts? Let me see. Are there more relationships?
+
+Looking back, in triangle AXC, AC = x√37. In triangle ABC, AC is one leg, and BC is another leg. But also, from triangle BXC, BC = sqrt(36² + x²). So combining these:
+
+AC = x√37, BC = sqrt(1296 + x²). 
+
+But in triangle ABC, which is right-angled at C, AB² = AC² + BC² = (37x²) + (1296 + x²) = 38x² + 1296. 
+
+But we need another relation to connect x. Is there anything else?
+
+Wait, maybe using coordinates again. Let me think about coordinates. Let me place C at (0,0), A at (0, AC) = (0, x√37), B at (BC, 0) = (sqrt(1296 + x²), 0). 
+
+Point X is such that AX ⊥ XC and BX ⊥ XC. So, since XC is from X to C, which is (0,0). Let me find coordinates of X. 
+
+Let me denote X as (a,b). Since AX ⊥ XC, the slope of AX times slope of XC = -1. 
+
+Slope of AX: (b - AC)/(a - 0) = (b - x√37)/a. Slope of XC: (0 - b)/(0 - a) = b/a. Product of slopes: [(b - x√37)/a] * [b/a] = -1. 
+
+Wait, this might get complicated. Alternatively, since AX ⊥ XC, then vectors AX and XC are perpendicular. Vector AX is (a - 0, b - AC) = (a, b - x√37). Vector XC is (0 - a, 0 - b) = (-a, -b). Their dot product is:
+
+a*(-a) + (b - x√37)*(-b) = -a² -b(b - x√37) = 0 → -a² -b² + b x√37 = 0 → a² + b² = b x√37. Equation (1)
+
+Similarly, for BX ⊥ XC: Vector BX is (a - B_x, b - 0) = (a - B_x, b). Vector XC is (-a, -b). Dot product:
+
+(a - B_x)(-a) + b*(-b) = -a(a - B_x) - b² = -a² + a B_x - b² = 0 → a² + b² = a B_x. Equation (2)
+
+From Equation (1) and Equation (2): a² + b² = b x√37 and a² + b² = a B_x → so b x√37 = a B_x → B_x = (b x√37)/a. 
+
+But B_x is the x-coordinate of point B, which we defined as sqrt(1296 + x²). So:
+
+sqrt(1296 + x²) = (b x√37)/a → Equation (3)
+
+Additionally, since X is a point such that |AX| = 6x and |XC| = x. 
+
+Distance from X to C is sqrt(a² + b²) = x → a² + b² = x². From Equation (1), this equals b x√37. So:
+
+x² = b x√37 → assuming x ≠ 0, divide both sides by x: x = b√37 → b = x / √37. 
+
+Now, substitute b into Equation (1): a² + b² = x² → a² = x² - b² = x² - (x² / 37 ) = x² (1 - 1/37 ) = x² (36/37 ) → a = ± (6x)/√37. 
+
+Now, from Equation (3):
+
+sqrt(1296 + x²) = (b x√37)/a 
+
+Substitute b = x / √37 and a = 6x / √37:
+
+RHS: ( (x / √37 ) * x√37 ) / (6x / √37 ) = (x²) / (6x / √37 ) = (x² * √37 ) / 6x = (x √37 ) / 6 
+
+So:
+
+sqrt(1296 + x²) = (x √37 ) / 6 
+
+Square both sides:
+
+1296 + x² = (x² * 37 ) / 36 
+
+Multiply both sides by 36:
+
+36*1296 + 36x² = 37x² 
+
+→ 36*1296 = 37x² - 36x² = x² 
+
+→ x² = 36*1296 
+
+→ x = 6 * sqrt(1296) = 6*36 = 216 
+
+Ah! So x = 216. Now, returning to z² = 38x² + 1296. Wait, no, previously I had z² = 38x² + 1296? Let me recalculate.
+
+Wait, earlier, I said AB² = AC² + BC² = (37x²) + (1296 + x²) = 38x² + 1296. 
+
+But wait, AC² is 37x², and BC² is 36² + x² = 1296 + x². So AB² = 37x² + 1296 + x² = 38x² + 1296. 
+
+Now, substitute x² = 36*1296:
+
+AB² = 38*(36*1296) + 1296 = 1296*(38*36 + 1). Let me calculate:
+
+First, compute 38*36: 38*36 = 1368. So AB² = 1296*(1368 + 1) = 1296*1369. 
+
+Then, AB = sqrt(1296*1369) = sqrt(1296)*sqrt(1369) = 36*37 = 1332. 
+
+Same result as before. But this contradicts the answer choices. What's going on?
+
+Wait, the answer choices are all multiples of 36 with square roots. But according to this, z = 36*37. 37 is not a square number, so it cannot be expressed as sqrt(something). However, the answer choices are in the form 36√n, where n is 5,7,11,13. So this suggests that there's a miscalculation in the derivation.
+
+Wait, but where? Let me re-examine the relationship between z and x. 
+
+Wait, earlier, I said AB² = AC² + BC². But AC is x√37, BC is sqrt(1296 + x²). So AB² = (x√37)^2 + (sqrt(1296 + x²))^2 = 37x² + 1296 + x² = 38x² + 1296. But this is correct. 
+
+However, we found x² = 36*1296, so substituting:
+
+AB² = 38*(36*1296) + 1296 = 38*36*1296 + 1296 = 1296*(38*36 + 1). Let me calculate 38*36: 38*36 = 1368. So AB² = 1296*(1368 + 1) = 1296*1369. 
+
+But 1369 is 37², since 37*37=1369. So AB² = 1296*37². Therefore, AB = sqrt(1296*37²) = 36*37. 
+
+So z = 36*37. But none of the answer choices is 36*37. The options are 36√5, 36√7, 36√11, 36√13. 
+
+Wait, this suggests that either the problem has a typo, or I made a fundamental error. Let me check the problem statement again to ensure I interpreted everything correctly.
+
+Rechecking the given predicates:
+
+- RightAngle(Angle(A,X,C)): angle at X between A and C.
+- RightAngle(Angle(B,X,C)): angle at X between B and C.
+- RightAngle(Angle(B,C,A)): angle at C between B and A (right angle at C).
+- LengthOf(Line(A,X),6x): |AX|=6x
+- LengthOf(Line(B,X),36): |BX|=36
+- LengthOf(Line(X,C),x): |XC|=x
+- LengthOf(Line(B,C),y): |BC|=y
+- LengthOf(Line(A,B),z): |AB|=z
+
+Wait, earlier, I assumed that in triangle BXC, which is right-angled at X, so BC² = BX² + XC². But is that correct? Let me confirm. 
+
+If angle at X is a right angle in triangle BXC, then yes, BC² = BX² + XC². So BC = sqrt(36² + x²). Correct.
+
+And AC is from A to C, which is sqrt(AX² + XC²) = sqrt((6x)^2 + x^2) = sqrt(37x²) = x√37. Correct.
+
+Then AB² = AC² + BC² = 37x² + (36² + x²) = 38x² + 1296. Correct.
+
+But then with x² = 36*1296, so AB = 36*37. But this is not among the options. 
+
+Wait, but maybe I made a mistake in calculating x. Let me revisit the equation where I had:
+
+From the condition of point X, we had sqrt(1296 + x²) = (x√37)/6. Squared gives 1296 + x² = (37x²)/36. Rearranged: 1296 = (37x²)/36 - x² = x²(37/36 - 1) = x²(1/36). So x² = 1296 * 36. Hence x = sqrt(1296*36) = 36*6 = 216. Correct.
+
+Then AB = 36*37. But none of the answer choices is this. So why is this happening? Maybe the problem has a different configuration.
+
+Wait, maybe I misunderstood the right angles. Perhaps the right angles are not in the way I thought. Let me consider that the right angle at X is between A-X-C and B-X-C, but perhaps the triangles are not as I assumed.
+
+Wait, let me think of the configuration where X is outside the triangle ABC. Suppose ABC is a right triangle at C, and X is a point such that AX and BX are both perpendicular to XC. This would mean that X lies on the perpendicular to XC at C, but since XC is a line from X to C, and AX and BX are perpendicular to it, X must be such that XC is the altitude from X to some line. This is getting too vague. Maybe using mass point or other methods.
+
+Alternatively, perhaps using similarity. Since AX and BX are both perpendicular to XC, then triangles AXC and BXC are similar to some other triangles?
+
+Wait, let me consider triangles AXC and BXC. Both are right-angled at X. So, triangle AXC: right-angled at X, with legs AX=6x and XC=x, hypotenuse AC = x√37. Triangle BXC: right-angled at X, with legs BX=36 and XC=x, hypotenuse BC = sqrt(36² + x²). 
+
+Now, in triangle ABC, which is right-angled at C, so AB² = AC² + BC² = (37x²) + (1296 + x²) = 38x² + 1296. 
+
+But we need another equation to relate x. Perhaps using the fact that X lies on some line or satisfies some condition. 
+
+Wait, but earlier, we derived x = 216, leading to z = 36*37, but this is not in the options. Maybe the problem expects us to express z in terms of the given data without finding x explicitly? Let me try another approach.
+
+From the previous calculation, we have z = 36*37. But the answer choices are multiples of 36 with square roots. This suggests that perhaps the correct answer is not listed, but since this is unlikely, I must have made a mistake.
+
+Wait, let me re-express z. We have z = 36*37, but 37 is 36 + 1. Not helpful. Alternatively, maybe I made a mistake in the sign during squaring.
+
+Wait, let me re-express the equation where I had:
+
+From the condition: sqrt(1296 + x²) = (x√37)/6. Squaring both sides gives 1296 + x² = (37x²)/36. Rearranging: 1296 = (37x²)/36 - x² = x²(37/36 - 1) = x²(1/36). So x² = 1296 * 36. Hence x = 36*6 = 216. Correct.
+
+Then z = 36*37. But 37 is a prime number, so it cannot be simplified further. But the answer choices are in terms of sqrt(n). This suggests that there is a mistake in the problem setup or my interpretation. 
+
+Wait, perhaps the right angles are not at X, but at other points? Let me check again.
+
+The given right angles are:
+
+- Angle(A,X,C): at X.
+- Angle(B,X,C): at X.
+- Angle(B,C,A): at C.
+
+So, the first two are at X, third at C. So, the earlier analysis holds.
+
+Alternatively, maybe the length of AX is 6x, but x is not the same x as in |XC| = x. Wait, the problem says:
+
+LengthOf(Line(A,X),6x) → |AX|=6x
+
+LengthOf(Line(X,C),x) → |XC|=x
+
+So x is a variable here, not the coordinate. So, in the earlier
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

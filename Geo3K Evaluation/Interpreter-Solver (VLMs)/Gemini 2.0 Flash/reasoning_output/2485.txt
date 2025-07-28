@@ -1,0 +1,71 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2485.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2485.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Line(A,B)
+Line(B,C)
+Line(C,D)
+Line(D,A)
+Line(A,C)
+Line(B,D)
+Rhombus(A,B,C,D)
+Equals(LengthOf(Line(A,B)),Add(Mul(2,x),3))
+Equals(LengthOf(Line(B,C)),Mul(5,x))
+Equals(LengthOf(Line(A,B)),LengthOf(Line(B,C)))
+Equals(LengthOf(Line(B,C)),LengthOf(Line(C,D)))
+Equals(LengthOf(Line(C,D)),LengthOf(Line(D,A)))
+Equals(LengthOf(Line(D,A)),LengthOf(Line(A,B)))
+IsDiagonalOf(Line(A,C),Rhombus(A,B,C,D))
+IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D))
+IntersectAt(Line(A,C),Line(B,D),Point(E))
+IsMidpointOf(Point(E),Line(A,C))
+IsMidpointOf(Point(E),Line(B,D))
+Perpendicular(Line(A,C),Line(B,D))
+RightAngle(Angle(A,E,B))
+RightAngle(Angle(B,E,C))
+RightAngle(Angle(C,E,D))
+RightAngle(Angle(D,E,A))
+PointLiesOnLine(E,Line(A,C))
+PointLiesOnLine(E,Line(B,D))
+IsSideOf(Line(A,B),Rhombus(A,B,C,D))
+IsSideOf(Line(B,C),Rhombus(A,B,C,D))
+IsSideOf(Line(C,D),Rhombus(A,B,C,D))
+IsSideOf(Line(D,A),Rhombus(A,B,C,D))
+IsDiagonalOf(Line(A,C),Rhombus(A,B,C,D))
+IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D))
+
+QUESTION:
+In rhombus A B C D, A B = 2 x + 3 and B C = 5 x. Find m \angle A E B.
+
+CHOICES:
+A. 45
+B. 60
+C. 90
+D. 180
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Equals(LengthOf(Line(A,B)),Add(Mul(2,x),3)) and Equals(LengthOf(Line(B,C)),Mul(5,x)) and Equals(LengthOf(Line(A,B)),LengthOf(Line(B,C))) → Add(Mul(2,x),3) = Mul(5,x)
+From Add(Mul(2,x),3) = Mul(5,x) → 3 = Mul(5,x) - Mul(2,x)
+From 3 = Mul(5,x) - Mul(2,x) → 3 = Mul(3,x)
+From 3 = Mul(3,x) → x = 1
+From x = 1 and Equals(LengthOf(Line(A,B)),Add(Mul(2,x),3)) → LengthOf(Line(A,B)) = Add(Mul(2,1),3) = 2+3 = 5
+From Rhombus(A,B,C,D) → IsSideOf(Line(A,B),Rhombus(A,B,C,D)) and IsSideOf(Line(B,C),Rhombus(A,B,C,D)) and IsSideOf(Line(C,D),Rhombus(A,B,C,D)) and IsSideOf(Line(D,A),Rhombus(A,B,C,D))
+From Rhombus(A,B,C,D) → Perpendicular(Line(A,C),Line(B,D))
+From Perpendicular(Line(A,C),Line(B,D)) and IntersectAt(Line(A,C),Line(B,D),Point(E)) → RightAngle(Angle(A,E,B))
+From RightAngle(Angle(A,E,B)) → m∠AEB = 90
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

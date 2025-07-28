@@ -1,0 +1,58 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2514.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2514.txt
+
+PREDICATES CONTENT:
+Point(G)
+Point(J)
+Point(K)
+Point(H)
+Point(I)
+Line(G,J)
+Line(G,K)
+Line(K,J)
+Line(G,H)
+Line(G,I)
+Line(H,I)
+Line(K,H)
+Line(J,I)
+Triangle(G,J,I)
+PointLiesOnLine(K,Line(G,J))
+PointLiesOnLine(H,Line(G,I))
+Parallel(Line(K,H),Line(J,I))
+LengthOf(Line(G,J),8)
+LengthOf(Line(G,H),12)
+LengthOf(Line(H,I),4)
+Similar(Triangle(G,K,H),Triangle(G,J,I))
+Add(LengthOf(Line(G,H)),LengthOf(Line(H,I)),LengthOf(Line(G,I)))
+Equals(LengthOf(Line(G,I)),16)
+RatioOf(LengthOf(Line(G,K)),LengthOf(Line(G,J)))
+RatioOf(LengthOf(Line(G,H)),LengthOf(Line(G,I)))
+Equals(RatioOf(LengthOf(Line(G,K)),LengthOf(Line(G,J))),RatioOf(LengthOf(Line(G,H)),LengthOf(Line(G,I))))
+Sub(LengthOf(Line(G,J)),LengthOf(Line(G,K)),LengthOf(Line(K,J)))
+
+QUESTION:
+Find K J if G J = 8, G H = 12, and H I = 4.
+
+CHOICES:
+A. 2
+B. 4
+C. 6
+D. 8
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Add(LengthOf(Line(G,H)),LengthOf(Line(H,I)),LengthOf(Line(G,I))) + Equals(LengthOf(Line(G,I)),16) + LengthOf(Line(G,H),12) + LengthOf(Line(H,I),4) → LengthOf(Line(G,I)) = LengthOf(Line(G,H)) + LengthOf(Line(H,I)) = 12 + 4 = 16
+From Similar(Triangle(G,K,H),Triangle(G,J,I)) → RatioOf(LengthOf(Line(G,K)),LengthOf(Line(G,J))) = RatioOf(LengthOf(Line(G,H)),LengthOf(Line(G,I)))
+From RatioOf(LengthOf(Line(G,K)),LengthOf(Line(G,J))) = RatioOf(LengthOf(Line(G,H)),LengthOf(Line(G,I))) + LengthOf(Line(G,J),8) + LengthOf(Line(G,H),12) + LengthOf(Line(G,I)),16) → LengthOf(Line(G,K))/8 = 12/16
+From LengthOf(Line(G,K))/8 = 12/16 → LengthOf(Line(G,K)) = (12/16)*8 = 6
+From Sub(LengthOf(Line(G,J)),LengthOf(Line(G,K)),LengthOf(Line(K,J))) + LengthOf(Line(G,J),8) + LengthOf(Line(G,K)) = 6 → LengthOf(Line(K,J)) = LengthOf(Line(G,J)) - LengthOf(Line(G,K)) = 8 - 6 = 2
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

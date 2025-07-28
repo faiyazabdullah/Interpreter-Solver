@@ -1,0 +1,88 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2721.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2721.txt
+
+PREDICATES CONTENT:
+Point(K)
+Point(L)
+Point(M)
+Point(N)
+Point(P)
+Point(R)
+Point(Q)
+Triangle(K,L,M)
+Triangle(R,P,M)
+Line(K,L)
+Line(R,P)
+Line(K,N)
+Line(L,N)
+Line(R,M)
+Line(P,M)
+Line(M,N)
+Parallel(Line(K,L),Line(R,P))
+Perpendicular(Line(M,N),Line(K,L))
+Perpendicular(Line(M,N),Line(R,P))
+Equals(LengthOf(K,N),9)
+Equals(LengthOf(L,N),16)
+Equals(LengthOf(P,M),Mul(2,LengthOf(K,P)))
+RightAngle(Angle(K,N,M))
+RightAngle(Angle(L,N,M))
+RightAngle(Angle(P,M,N))
+RightAngle(Angle(R,M,N))
+PointLiesOnLine(N,Line(K,L))
+PointLiesOnLine(P,Line(K,M))
+PointLiesOnLine(R,Line(L,M))
+PointLiesOnLine(Q,Line(M,N))
+PointLiesOnLine(Q,Line(R,P))
+Similar(Triangle(R,P,M),Triangle(K,L,M))
+
+QUESTION:
+If P R \parallel K L, K N = 9, L N = 16, and P M = 2K P, find K M.
+
+CHOICES:
+A. 5
+B. 9
+C. 12
+D. 15
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From PointLiesOnLine(N,Line(K,L)) + Equals(LengthOf(K,N),9) + Equals(LengthOf(L,N),16) → LengthOf(K,L) = LengthOf(K,N) + LengthOf(L,N) = 9 + 16 = 25
+From Perpendicular(Line(M,N),Line(K,L)) → RightAngle(Angle(K,N,M))
+From RightAngle(Angle(K,N,M)) → Triangle(K,N,M) is a right triangle.
+From Perpendicular(Line(M,N),Line(K,L)) → RightAngle(Angle(L,N,M))
+From RightAngle(Angle(L,N,M)) → Triangle(L,N,M) is a right triangle.
+From Triangle(K,N,M) is a right triangle + Triangle(L,N,M) is a right triangle → LengthOf(M,N)^2 + LengthOf(K,N)^2 = LengthOf(K,M)^2 and LengthOf(M,N)^2 + LengthOf(L,N)^2 = LengthOf(L,M)^2
+From Triangle(K,L,M) + Triangle(R,P,M) + Parallel(Line(K,L),Line(R,P)) → Triangle(R,P,M) ~ Triangle(K,L,M)
+From Triangle(R,P,M) ~ Triangle(K,L,M) → LengthOf(R,M)/LengthOf(L,M) = LengthOf(P,M)/LengthOf(K,M) = LengthOf(R,P)/LengthOf(K,L)
+From Equals(LengthOf(P,M),Mul(2,LengthOf(K,P))) → LengthOf(P,M) = 2 * LengthOf(K,P)
+From PointLiesOnLine(P,Line(K,M)) → LengthOf(K,M) = LengthOf(K,P) + LengthOf(P,M)
+From LengthOf(P,M) = 2 * LengthOf(K,P) + LengthOf(K,M) = LengthOf(K,P) + LengthOf(P,M) → LengthOf(K,M) = LengthOf(K,P) + 2 * LengthOf(K,P) = 3 * LengthOf(K,P) → LengthOf(K,P) = LengthOf(K,M) / 3
+From LengthOf(P,M) = 2 * LengthOf(K,P) + LengthOf(K,P) = LengthOf(K,M) / 3 → LengthOf(P,M) = 2 * (LengthOf(K,M) / 3) = (2/3) * LengthOf(K,M)
+From Triangle(R,P,M) ~ Triangle(K,L,M) → LengthOf(P,M)/LengthOf(K,M) = LengthOf(M,N) / LengthOf(K,L)
+From LengthOf(P,M)/LengthOf(K,M) = LengthOf(M,N) / LengthOf(K,L) + LengthOf(P,M) = (2/3) * LengthOf(K,M) + LengthOf(K,L) = 25 → ((2/3) * LengthOf(K,M)) / LengthOf(K,M) = LengthOf(M,N) / 25 → 2/3 = LengthOf(M,N) / 25 → LengthOf(M,N) = (2/3) * 25 = 50/3
+From LengthOf(M,N)^2 + LengthOf(K,N)^2 = LengthOf(K,M)^2 + LengthOf(M,N) = 50/3 + LengthOf(K,N) = 9 → (50/3)^2 + 9^2 = LengthOf(K,M)^2 → LengthOf(K,M)^2 = 2500/9 + 81 = (2500 + 729) / 9 = 3229/9
+LengthOf(K,M) = sqrt(3229/9) = sqrt(3229)/3 ≈ 17.35/3 ≈ 10.76, very close to 9, 12, 15
+
+From similar triangles again : Triangle(K,N,M) ~ Triangle(K,P,R). Also LengthOf(M,N) / LengthOf(K,L) = LengthOf(M,N) / (LengthOf(K,N) + LengthOf(L,N))
+LengthOf(M,N)^2 + LengthOf(N,K)^2 = LengthOf(M,K)^2
+LengthOf(P,K) = LengthOf(M,K) / 3
+(2/3) * LengthOf(K,M) = LengthOf(P,M)
+(2/3) * LengthOf(M,K) / LengthOf(K,L) = LengthOf(N,M) / (9 + 16) = LengthOf(M,K) / LengthOf(L,M)
+
+Also triangles KNM and LNM are similar right triangles.
+
+Let us try to show some triangles KNL and PMR are similar.
+
+KN / NM = NM / NL => NM^2 = KN * NL => NM^2 = 9 * 16 = 144 => NM = 12
+(2/3) KM/ 25 = 12=> KM = 12 x 25 x 3/2 = 450
+Also consider Triangle(K,N,M). LengthOf(N,M) = 12, LengthOf(N,K) = 9. Then LengthOf(K,M) = sqrt(9^2+12^2) = 15
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

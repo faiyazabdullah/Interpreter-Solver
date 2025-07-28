@@ -1,0 +1,59 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2959.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2959.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Rhombus(A,B,C,D)
+IsDiagonalOf(Line(A,C),Rhombus(A,B,C,D))
+IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D))
+IntersectAt(Line(A,C),Line(B,D),Line(A,C),Point(E))
+IsMidpointOf(Point(E),Line(A,C))
+IsMidpointOf(Point(E),Line(B,D))
+LengthOf(Line(A,E),12)
+LengthOf(Line(E,C),12)
+LengthOf(Line(D,E),11)
+LengthOf(Line(E,B),11)
+Perpendicular(Line(A,C),Line(B,D))
+RightAngle(Angle(A,E,D))
+RightAngle(Angle(D,E,C))
+RightAngle(Angle(C,E,B))
+RightAngle(Angle(B,E,A))
+Equals(LengthOf(Line(D,E)),LengthOf(Line(E,B)))
+Equals(LengthOf(Line(A,E)),LengthOf(Line(E,C)))
+
+QUESTION:
+Find the area of the rhombus.
+
+CHOICES:
+A. 132
+B. 264
+C. 265
+D. 528
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Rhombus(A,B,C,D) + IsDiagonalOf(Line(A,C),Rhombus(A,B,C,D)) + IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D)) → Diagonals AC and BD are diagonals of the rhombus ABCD.
+From IsMidpointOf(Point(E),Line(A,C)) + LengthOf(Line(A,E),12) → LengthOf(Line(E,C),12)
+From IsMidpointOf(Point(E),Line(B,D)) + LengthOf(Line(D,E),11) → LengthOf(Line(E,B),11)
+From LengthOf(Line(A,E),12) + LengthOf(Line(E,C),12) → LengthOf(Line(A,C), LengthOf(Line(A,E)) + LengthOf(Line(E,C)))
+→ LengthOf(Line(A,C), 12 + 12) → LengthOf(Line(A,C), 24)
+From LengthOf(Line(D,E),11) + LengthOf(Line(E,B),11) → LengthOf(Line(D,B), LengthOf(Line(D,E)) + LengthOf(Line(E,B)))
+→ LengthOf(Line(D,B), 11 + 11) → LengthOf(Line(D,B), 22)
+From Rhombus(A,B,C,D) + IsDiagonalOf(Line(A,C),Rhombus(A,B,C,D)) + IsDiagonalOf(Line(B,D),Rhombus(A,B,C,D)) → Area of rhombus ABCD = (1/2) * LengthOf(Line(A,C)) * LengthOf(Line(B,D))
+→ Area of rhombus ABCD = (1/2) * 24 * 22
+→ Area of rhombus ABCD = 12 * 22
+→ Area of rhombus ABCD = 264
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

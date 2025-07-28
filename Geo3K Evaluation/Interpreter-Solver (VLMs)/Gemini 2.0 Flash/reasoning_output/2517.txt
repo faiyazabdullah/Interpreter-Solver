@@ -1,0 +1,64 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2517.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2517.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(F)
+PointLiesOnLine(A,Line(A,B))
+PointLiesOnLine(B,Line(A,B))
+PointLiesOnLine(C,Line(B,C))
+PointLiesOnLine(B,Line(B,C))
+PointLiesOnLine(D,Line(B,D))
+PointLiesOnLine(B,Line(B,D))
+PointLiesOnLine(F,Line(B,F))
+PointLiesOnLine(B,Line(B,F))
+Angle(A,B,C)
+Angle(A,B,F)
+Angle(F,B,C)
+Angle(A,B,D)
+Angle(D,B,F)
+MeasureOf(Angle(F,B,C))
+MeasureOf(Angle(A,B,F))
+Equals(MeasureOf(Angle(F,B,C)),Add(Mul(2,x),25))
+Equals(MeasureOf(Angle(A,B,F)),Sub(Mul(10,x),1))
+BisectsAngle(Line(B,D),Angle(A,B,F))
+Equals(MeasureOf(Angle(A,B,D)),MeasureOf(Angle(D,B,F)))
+Add(MeasureOf(Angle(A,B,F)),MeasureOf(Angle(F,B,C)))
+Equals(Add(MeasureOf(Angle(A,B,F)),MeasureOf(Angle(F,B,C))),180)
+PointLiesOnLine(B,Line(A,C))
+PointLiesOnLine(A,Line(A,C))
+PointLiesOnLine(C,Line(A,C))
+
+QUESTION:
+\overrightarrow B A and \overrightarrow B C are opposite rays and \overrightarrow B D bisects \angle A B F. If m \angle F B C = 2 x + 25 and m \angle A B F = 10 x - 1, find m \angle D B F.
+
+CHOICES:
+A. 25.5
+B. 50
+C. 54
+D. 64.5
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Equals(Add(MeasureOf(Angle(A,B,F)),MeasureOf(Angle(F,B,C))),180) + Equals(MeasureOf(Angle(F,B,C)),Add(Mul(2,x),25)) + Equals(MeasureOf(Angle(A,B,F)),Sub(Mul(10,x),1)) → Add(Sub(Mul(10,x),1),Add(Mul(2,x),25)) = 180
+From Add(Sub(Mul(10,x),1),Add(Mul(2,x),25)) = 180 → 10x - 1 + 2x + 25 = 180
+From 10x - 1 + 2x + 25 = 180 → 12x + 24 = 180
+From 12x + 24 = 180 → 12x = 180 - 24 = 156
+From 12x = 156 → x = 156 / 12 = 13
+
+From BisectsAngle(Line(B,D),Angle(A,B,F)) + Equals(MeasureOf(Angle(A,B,D)),MeasureOf(Angle(D,B,F))) → MeasureOf(Angle(A,B,D)) = MeasureOf(Angle(D,B,F)) = MeasureOf(Angle(A,B,F)) / 2
+From MeasureOf(Angle(D,B,F)) = MeasureOf(Angle(A,B,F)) / 2 + Equals(MeasureOf(Angle(A,B,F)),Sub(Mul(10,x),1)) → MeasureOf(Angle(D,B,F)) = (10x - 1) / 2
+From MeasureOf(Angle(D,B,F)) = (10x - 1) / 2 + x = 13 → MeasureOf(Angle(D,B,F)) = (10 * 13 - 1) / 2 = (130 - 1) / 2 = 129 / 2 = 64.5
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

@@ -1,0 +1,71 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2781.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2781.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Rhombus(A,B,C,D)
+Angle(A,B,C)
+Angle(1)
+IntersectAt(Line(A,C),Line(B,D),Line(A,C),Point(E))
+IsDiagonalOf(Line(A,C),Quadrilateral(A,B,C,D))
+IsDiagonalOf(Line(B,D),Quadrilateral(A,B,C,D))
+IsMidpointOf(Point(E),Line(A,C))
+IsMidpointOf(Point(E),Line(B,D))
+Equals(LengthOf(A,B),LengthOf(B,C))
+Equals(LengthOf(B,C),LengthOf(C,D))
+Equals(LengthOf(C,D),LengthOf(D,A))
+BisectsAngle(Line(B,D),Angle(A,B,C))
+BisectsAngle(Line(A,C),Angle(B,A,D))
+MeasureOf(Angle(A,B,C),70)
+Angle(B,A,E)
+Equals(MeasureOf(Angle(A,B,C)),70)
+Angle(B,A,D)
+Add(MeasureOf(Angle(A,B,C)),MeasureOf(Angle(B,A,D)),180)
+Angle(A,E,B)
+RightAngle(Angle(A,E,B))
+Perpendicular(Line(A,C),Line(B,D))
+Angle(A,B,E)
+Equals(MeasureOf(Angle(A,B,E)),HalfOf(MeasureOf(Angle(A,B,C))))
+Angle(1,A,B)
+MeasureOf(Angle(1))
+IsSideOf(Line(A,B),Rhombus(A,B,C,D))
+IsSideOf(Line(B,C),Rhombus(A,B,C,D))
+IsSideOf(Line(C,D),Rhombus(A,B,C,D))
+IsSideOf(Line(D,A),Rhombus(A,B,C,D))
+PointLiesOnLine(E,Line(A,C))
+PointLiesOnLine(E,Line(B,D))
+Angle(B,A,E)
+Equals(MeasureOf(Angle(B,A,E)),MeasureOf(Angle(1)))
+
+QUESTION:
+If A B C D is a rhombus, and m \angle A B C = 70, what is m \angle 1?
+
+CHOICES:
+A. 45
+B. 55
+C. 70
+D. 125
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Rhombus(A,B,C,D) + IsDiagonalOf(Line(B,D),Quadrilateral(A,B,C,D)) + BisectsAngle(Line(B,D),Angle(A,B,C)) → Line BD bisects angle ABC
+From BisectsAngle(Line(B,D),Angle(A,B,C)) + MeasureOf(Angle(A,B,C),70) → MeasureOf(Angle(A,B,E)) = HalfOf(MeasureOf(Angle(A,B,C))) = 70/2 = 35
+From Rhombus(A,B,C,D) → LengthOf(A,B) = LengthOf(B,C) = LengthOf(C,D) = LengthOf(D,A) and Line AC bisects angle BAD.
+From Equals(LengthOf(A,B),LengthOf(B,C)) + Equals(LengthOf(B,C),LengthOf(C,D)) + Equals(LengthOf(C,D),LengthOf(D,A)) + MeasureOf(Angle(A,B,C),70) + Add(MeasureOf(Angle(A,B,C)),MeasureOf(Angle(B,A,D)),180) → MeasureOf(Angle(B,A,D)) = 180 - 70 = 110
+From IsDiagonalOf(Line(A,C),Quadrilateral(A,B,C,D)) + BisectsAngle(Line(A,C),Angle(B,A,D)) → Line AC bisects angle BAD
+From BisectsAngle(Line(A,C),Angle(B,A,D)) + MeasureOf(Angle(B,A,D),110) → MeasureOf(Angle(B,A,E)) = HalfOf(MeasureOf(Angle(B,A,D))) = 110/2 = 55
+From Equals(MeasureOf(Angle(B,A,E)),MeasureOf(Angle(1))) → MeasureOf(Angle(1)) = MeasureOf(Angle(B,A,E)) = 55
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

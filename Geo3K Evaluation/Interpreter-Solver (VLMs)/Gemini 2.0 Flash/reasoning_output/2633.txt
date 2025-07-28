@@ -1,0 +1,100 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2633.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2633.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(F)
+Point(B)
+Point(G)
+Point(H)
+Point(J)
+Circle(A)
+PointLiesOnCircle(F,Circle(A))
+PointLiesOnCircle(G,Circle(A))
+PointLiesOnCircle(B,Circle(A))
+PointLiesOnCircle(H,Circle(A))
+PointLiesOnCircle(J,Circle(A))
+Line(F,H)
+Line(G,H)
+Line(J,H)
+IsDiameterOf(Line(F,H),Circle(A))
+RightAngle(Angle(F,H,J))
+MeasureOf(Angle(2))
+MeasureOf(Angle(3))
+Equals(MeasureOf(Angle(2)),Mul(2,x))
+Equals(MeasureOf(Angle(3)),x)
+IsRadiusOf(Line(A,B),Circle(A))
+IsRadiusOf(Line(A,G),Circle(A))
+IsRadiusOf(Line(A,H),Circle(A))
+IsRadiusOf(Line(A,J),Circle(A))
+Equals(LengthOf(Line(A,B)),LengthOf(Line(A,G)))
+Equals(LengthOf(Line(A,B)),LengthOf(Line(A,H)))
+Equals(LengthOf(Line(A,B)),LengthOf(Line(A,J)))
+PointLiesOnLine(A,Line(F,H))
+Triangle(F,H,J)
+Right(Triangle(F,H,J))
+Equals(MeasureOf(Angle(F,H,J)),90)
+Angle(G,B,H)
+Angle(J,H,B)
+Line(G,B)
+Line(J,B)
+IntersectAt(Line(J,H),Line(G,H),Line(F,H),Point(H))
+IsChordOf(Line(G,H),Circle(A))
+IsChordOf(Line(J,H),Circle(A))
+
+QUESTION:
+m \angle 2 = 2 x, m \angle 3 = x. Find m \angle 3.
+
+CHOICES:
+A. 30
+B. 45
+C. 60
+D. 90
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Circle(A) + IsRadiusOf(Line(A,G),Circle(A)) + IsRadiusOf(Line(A,H),Circle(A)) + IsRadiusOf(Line(A,J),Circle(A)) → LengthOf(Line(A,G)) = LengthOf(Line(A,H)) = LengthOf(Line(A,J))
+From LengthOf(Line(A,G)) = LengthOf(Line(A,H)) → Triangle(G,A,H) is isosceles.
+From LengthOf(Line(A,J)) = LengthOf(Line(A,H)) → Triangle(J,A,H) is isosceles.
+From IsDiameterOf(Line(F,H),Circle(A)) → Angle(F,J,H) is a right angle. (Angle inscribed in a semicircle is a right angle)
+From RightAngle(Angle(F,H,J)) and Right(Triangle(F,H,J)) → MeasureOf(Angle(F,H,J)) = 90 degrees.
+From the diagram, Angle(J,H,G) = Angle(J,H,F) + Angle(F,H,G). We also know that Triangle(F,H,J) is a right triangle. Since FH is a diameter, then angle FHJ must be a right angle = 90 degrees. Also we have angles 2 and 3, such that m<2 = 2x and m<3 = x.
+From PointLiesOnCircle(G,Circle(A)), PointLiesOnCircle(H,Circle(A)), PointLiesOnCircle(J,Circle(A)) and RightAngle(Angle(F,H,J)) → Triangle(G,H,J) is inscribed in Circle(A) and <FHJ = 90 degrees.
+From Triangle(F,H,J) and the angles of a triangle add to 180 degrees, Angle(HFJ) + Angle(FJH) + Angle(JHF) = 180
+Angle(HFJ) + Angle(FJH) + 90 = 180  → Angle(HFJ) + Angle(FJH) = 90
+From Angle(F,H,J) = 90, we can say that the total angle subtended by the semicircle FH is 180. So the angle subtended by chord GH is 2x, and the angle subtended by chord JH is x.
+Also since FH is a diameter, then the angle subtended at the center is 180. So angle FAJ + angle JAH = 180. Also Angle(GAH) + Angle(HAJ) = Angle(GAJ)
+
+The angle subtended by a chord at the center is twice the angle subtended by the same chord on the circumference.
+Let's consider the angles G,H,J and center A. Angle(GAH) = 2*angle(GJH)
+HJ subtends angle HAJ at the center and the inscribed angle is HJ. But we have angle 3, namely JHB = x.
+
+Consider Angle GAH = 2 * Angle GHJ since GAH is the central angle and GHJ is the inscribed angle
+Similarly, Angle JAH = 2 * Angle JGH
+However, Angle GHJ + Angle JGH + Angle GJH = 180 degrees
+Since FH is a diameter, Angle FHJ is a right angle = 90.
+
+We know that angle GHJ = angle 2 = 2x and angle JHB = angle 3 = x.
+However, Triangle GHJ is NOT a right triangle.
+
+Consider triangle GHJ. Angle GJH + Angle JHG + Angle HJG = 180 degrees.
+Angle JHG + Angle JHB = Angle FJH = 90
+Angle GHJ = angle 2 = 2x and angle JHB = x so angle GHB = 2x+x = 3x
+
+HJ subtends angle 2 and GH subtends angle 3 so we have that the major arc FH is split into two arcs GH and HJ which form angles 2 and 3.
+
+Therefore 2x = angle 2 and x=angle 3.
+But since <FHJ is an inscribed right angle then <GHJ+<GJH=90.
+Consider the figure GHJ. The sum of its angles <HJG + <JGH + <GHJ = 180 degrees
+Also, since <FHJ is a diameter, and <GHJ and <JGH intercept FH, then it is a triangle that is acute with the addition of 2x + x + 90=180 and thus 3x = 90 so x = 30
+m < 3 = x = 30 degrees.
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

@@ -1,0 +1,65 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2779.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2779.txt
+
+PREDICATES CONTENT:
+Point(W)
+Point(X)
+Point(Y)
+Point(Z)
+Point(T)
+Line(ZT)
+Line(XY)
+Line(WX)
+Line(WY)
+Parallel(Line(ZT),Line(XY))
+Triangle(W,X,Y)
+PointLiesOnLine(Z,Line(W,X))
+PointLiesOnLine(T,Line(W,Y))
+LengthOf(Line(ZT),10)
+LengthOf(Line(XY),16)
+LengthOf(Line(W,Y),20)
+LengthOf(Line(W,X),32)
+Similar(Triangle(W,Z,T),Triangle(W,X,Y))
+IsSideOf(Line(W,X),Triangle(W,X,Y))
+IsSideOf(Line(W,Y),Triangle(W,X,Y))
+IsSideOf(Line(X,Y),Triangle(W,X,Y))
+IsSideOf(Line(Z,T),Triangle(W,Z,T))
+IsSideOf(Line(W,Z),Triangle(W,Z,T))
+IsSideOf(Line(W,T),Triangle(W,Z,T))
+RatioOf(LengthOf(Line(ZT)),LengthOf(Line(XY)),RatioOf(10,16))
+Equals(LengthOf(Line(W,X)),32)
+Equals(LengthOf(Line(W,Y)),20)
+RatioOf(LengthOf(Line(W,Z)),LengthOf(Line(W,X)),Div(5,8))
+RatioOf(LengthOf(Line(W,T)),LengthOf(Line(W,Y)),Div(5,8))
+
+QUESTION:
+Find x.
+
+CHOICES:
+A. 7.5
+B. 10
+C. 12.5
+D. 15
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Triangle(W,X,Y) + IsSideOf(Line(W,Y),Triangle(W,X,Y)) + LengthOf(Line(W,Y),20) → Length of side WY is 20.
+From Triangle(W,Z,T) + IsSideOf(Line(W,T),Triangle(W,Z,T)) → WT is a side of the triangle WZT.
+From Similar(Triangle(W,Z,T),Triangle(W,X,Y)) + IsSideOf(Line(Z,T),Triangle(W,Z,T)) + IsSideOf(Line(X,Y),Triangle(W,X,Y)) → The sides ZT and XY are corresponding sides.
+From LengthOf(Line(ZT),10) + LengthOf(Line(XY),16) → ZT = 10 and XY = 16.
+From Similar(Triangle(W,Z,T),Triangle(W,X,Y)) + IsSideOf(Line(W,T),Triangle(W,Z,T)) + IsSideOf(Line(W,Y),Triangle(W,X,Y)) → The sides WT and WY are corresponding sides.
+From Similar(Triangle(W,Z,T),Triangle(W,X,Y)) →  WT/WY = ZT/XY
+From WT/WY = ZT/XY + LengthOf(Line(ZT),10) + LengthOf(Line(XY),16) + LengthOf(Line(W,Y),20) → WT/20 = 10/16
+From WT/20 = 10/16 → WT = (10/16)*20 = 200/16 = 100/8 = 50/4 = 25/2 = 12.5
+x represents the length of WT.
+Therefore x = 12.5.
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

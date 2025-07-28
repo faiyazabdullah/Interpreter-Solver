@@ -1,0 +1,71 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2908.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2908.txt
+
+PREDICATES CONTENT:
+Point(J)
+Point(K)
+Point(L)
+Point(M)
+Line(J,K)
+Line(J,L)
+Line(K,L)
+Line(J,M)
+Line(M,L)
+Line(K,M)
+Triangle(J,K,L)
+Triangle(J,M,L)
+Triangle(K,M,L)
+LengthOf(J,K,20)
+LengthOf(J,M,5)
+LengthOf(J,L,y)
+LengthOf(K,L,z)
+LengthOf(M,L,x)
+RightAngle(Angle(J,L,K))
+RightAngle(Angle(J,M,L))
+PointLiesOnLine(M,Line(J,K))
+Perpendicular(Line(J,L),Line(K,L))
+Perpendicular(Line(J,M),Line(K,M))
+Similar(Triangle(J,M,L),Triangle(K,L,J))
+Similar(Triangle(J,M,L),Triangle(K,M,L))
+IsAltitudeOf(Line(M,L),Triangle(J,K,L))
+IsHypotenuseOf(Line(J,K),Triangle(J,K,L))
+IsHypotenuseOf(Line(K,M),Triangle(K,M,L))
+IsHypotenuseOf(Line(M,L),Triangle(J,M,L))
+IsSideOf(Line(J,L),Triangle(J,K,L))
+IsSideOf(Line(K,L),Triangle(J,K,L))
+IsSideOf(Line(J,M),Triangle(J,M,L))
+IsSideOf(Line(M,L),Triangle(J,M,L))
+IsSideOf(Line(K,M),Triangle(K,M,L))
+IsSideOf(Line(K,L),Triangle(K,M,L))
+LengthOf(K,M,Sub(LengthOf(J,K),LengthOf(J,M)))
+
+QUESTION:
+Find y.
+
+CHOICES:
+A. 5
+B. 5 \sqrt { 3 }
+C. 10
+D. 5 \sqrt { 5 }
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From LengthOf(J,K,20) + LengthOf(J,M,5) + PointLiesOnLine(M,Line(J,K)) + LengthOf(K,M,Sub(LengthOf(J,K),LengthOf(J,M))) → LengthOf(K,M) = 20-5 = 15
+From RightAngle(Angle(J,M,L)) + RightAngle(Angle(J,L,K)) + Similar(Triangle(J,M,L),Triangle(K,L,J)) → Triangle(J,M,L) ~ Triangle(K,L,J)
+From Triangle(J,M,L) ~ Triangle(K,L,J) → JM/JL = KL/KJ
+From JM/JL = KL/KJ → 5/y = z/20 → y*z = 100
+From Similar(Triangle(J,M,L),Triangle(K,M,L)) → JM/ML = ML/MK
+From JM/ML = ML/MK → 5/x = x/15 → x^2 = 75 → x = sqrt(75) = 5*sqrt(3)
+From RightAngle(Angle(J,M,L)) → JML is a right triangle
+From RightAngle(Angle(J,M,L)) + LengthOf(J,M,5) + LengthOf(M,L,x) + x = 5*sqrt(3) + LengthOf(J,L,y) → (JM)^2 + (ML)^2 = (JL)^2
+From (JM)^2 + (ML)^2 = (JL)^2 → (5)^2 + (5*sqrt(3))^2 = y^2 → 25 + 75 = y^2 → y^2 = 100 → y = 10
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

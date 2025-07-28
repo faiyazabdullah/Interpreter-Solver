@@ -1,0 +1,57 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2934.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2934.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Triangle(A,B,C)
+RightAngle(Angle(B,A,C))
+MeasureOf(Angle(A,B,C))
+LengthOf(Line(A,B))
+LengthOf(Line(A,C))
+LengthOf(Line(B,C))
+Perpendicular(Line(A,B),Line(A,C))
+Equals(MeasureOf(Angle(A,B,C)),30)
+Equals(LengthOf(Line(A,B)),Mul(14,SqrtOf(3)))
+IsSideOf(Line(A,B),Triangle(A,B,C))
+IsSideOf(Line(A,C),Triangle(A,B,C))
+IsSideOf(Line(B,C),Triangle(A,B,C))
+HypotenuseOf(Line(B,C),Triangle(A,B,C))
+Right(Triangle(A,B,C))
+MeasureOf(Angle(B,C,A))
+Add(MeasureOf(Angle(B,A,C)),MeasureOf(Angle(A,B,C)),MeasureOf(Angle(B,C,A)))
+Equals(SumOf(MeasureOf(Angle(B,A,C)),MeasureOf(Angle(A,B,C)),MeasureOf(Angle(B,C,A))),180)
+LengthOf(Line(A,C))
+Equals(LengthOf(Line(A,C)),x)
+LengthOf(Line(B,C))
+Equals(LengthOf(Line(B,C)),y)
+
+QUESTION:
+Find y.
+
+CHOICES:
+A. 14
+B. 14 \sqrt { 3 }
+C. 28
+D. 14 \sqrt { 6 }
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Triangle(A,B,C) + RightAngle(Angle(B,A,C)) → Triangle(A,B,C) is a right triangle.
+From Equals(MeasureOf(Angle(A,B,C)),30) + Right(Triangle(A,B,C)) + SumOf(MeasureOf(Angle(B,A,C)),MeasureOf(Angle(A,B,C)),MeasureOf(Angle(B,C,A)))=180 → MeasureOf(Angle(B,A,C)) = 90 and MeasureOf(Angle(B,C,A)) = 180 - 90 - 30 = 60.
+From Equals(LengthOf(Line(A,B)),Mul(14,SqrtOf(3))) + Equals(MeasureOf(Angle(A,B,C)),30) + Right(Triangle(A,B,C)) → LengthOf(Line(B,C)) = 2 * LengthOf(Line(A,C)) and LengthOf(Line(A,B)) = LengthOf(Line(A,C)) * sqrt(3).
+From LengthOf(Line(A,B)) = LengthOf(Line(A,C)) * sqrt(3) + Equals(LengthOf(Line(A,B)),Mul(14,SqrtOf(3))) →  LengthOf(Line(A,C)) * sqrt(3) = 14 * sqrt(3).
+From LengthOf(Line(A,C)) * sqrt(3) = 14 * sqrt(3) → LengthOf(Line(A,C)) = 14.
+From LengthOf(Line(B,C)) = 2 * LengthOf(Line(A,C)) + LengthOf(Line(A,C)) = 14 → LengthOf(Line(B,C)) = 2 * 14 = 28.
+From Equals(LengthOf(Line(B,C)),y) → y = 28.
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

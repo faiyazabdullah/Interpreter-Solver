@@ -1,0 +1,392 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Triangle(E,F,G)
+Point(E)
+Point(F)
+Point(G)
+Point(H)
+Line(E,H)
+Line(F,G)
+Angle(1)
+Angle(2)
+Angle(F,H,E)
+Angle(F,H)
+Equilateral(Triangle(E,F,G))
+PointLiesOnLine(H,Line(F,G))
+BisectsAngle(Line(E,H),Angle(F,E,G))
+RightAngle(Angle(F,H,E))
+Equals(MeasureOf(Angle(F,H)),Mul(15,x))
+IsSideOf(Line(E,F),Triangle(E,F,G))
+IsSideOf(Line(F,G),Triangle(E,F,G))
+IsSideOf(Line(E,G),Triangle(E,F,G))
+Equals(MeasureOf(Angle(1)),MeasureOf(Angle(2)))
+
+QUESTION:
+\triangle E F G is equilateral, and E H bisects \angle E. Find m \angle 2.
+
+CHOICES:
+A. 15
+B. 30
+C. 45
+D. 60
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let me try to figure out this geometry problem. So we have triangle EFG which is equilateral. That means all sides are equal and all angles are 60 degrees each. Then there's a point H such that line EH bisects angle E. Also, there's some information about angles 1 and 2, but I need to focus on what's needed here. The question asks for the measure of angle 2, which seems related to the angles formed by the bisector EH.
+
+First, since triangle EFG is equilateral, each angle in the triangle is 60 degrees. So angle at E (which is angle FEG) is 60 degrees. Now, EH is the bisector of angle E. If we bisect a 60-degree angle, each resulting angle should be half of that. So angle FEH and angle GEC (assuming H is somewhere such that EH splits angle E into two parts) would each be 30 degrees. Wait, but the problem mentions angle(F,H,E) which is angle at H between points F, H, E. Wait, maybe I need to draw a diagram mentally.
+
+Let me clarify the setup. Points E, F, G form an equilateral triangle. Point H lies on line FG because it says PointLiesOnLine(H, Line(F,G)). Wait, no—wait, the constraint says "PointLiesOnLine(H, Line(F,G))". So H is on line FG? Or wait, Line(F,G) is the side FG of the triangle. But then, if EH is drawn, starting from E to H on FG. So EH is a line from vertex E to a point H on side FG. And this line EH bisects angle E. Therefore, EH is the angle bisector of angle E in triangle EFG.
+
+But in an equilateral triangle, the angle bisector, median, and altitude from any vertex coincide. However, since H is on FG, then EH is both the angle bisector and the median and altitude. Wait, but in an equilateral triangle, all these lines are the same. So if H is the midpoint of FG, then EH would split FG into two equal parts. However, in that case, angle FEH would be 30 degrees, as angle E was originally 60 degrees. But the problem mentions angle(F,H,E) which is angle at H, so angle FHE. Wait, angle(F,H,E) is angle at H between F, H, E. So that's angle FHE.
+
+Wait, but if H is on FG, then triangle EFH has angles... Let me think again. Since EH is the angle bisector, splitting angle E into two 30-degree angles. So angle FEH = 30 degrees. Now, considering triangle EFH, we can perhaps find some relations.
+
+Alternatively, since H is on FG, and EH is the angle bisector, maybe we can use the Angle Bisector Theorem. In triangle EFG, with angle bisector from E to H on FG. The Angle Bisector Theorem states that the ratio of the adjacent sides is equal to the ratio of the segments divided by the bisector. But in an equilateral triangle, all sides are equal. So EF = EG = FG. Therefore, the Angle Bisector Theorem tells us that FH / HG = EF / EG. But since EF = EG, this implies FH = HG. Hence, H is the midpoint of FG. So FH = HG.
+
+Now, looking at triangle EFH. We know that angle at E is 30 degrees (since EH bisects 60 degrees). Let me consider triangle EFH. The sides EF and EH. Wait, but maybe using coordinates could help here. Let me assign coordinates to make it concrete.
+
+Let me place point E at (0, 0). Since it's an equilateral triangle, let me assume coordinates. Suppose E is at (0, 0), F at (1, 0). To find G, since it's an equilateral triangle, the height can be calculated. The height h of an equilateral triangle with side length s is (√3/2)s. So if EF is from (0,0) to (1,0), then G would be at (0.5, √3/2). So coordinates:
+
+E: (0, 0)
+
+F: (1, 0)
+
+G: (0.5, √3/2)
+
+Then FG is from (1, 0) to (0.5, √3/2). The midpoint of FG would be ((1 + 0.5)/2, (0 + √3/2)/2) = (0.75, √3/4). So point H is at the midpoint of FG, which is (0.75, √3/4).
+
+So now, line EH connects E(0,0) to H(0.75, √3/4). Let's compute the slope of EH. Slope is (√3/4 - 0)/(0.75 - 0) = (√3/4) / (3/4) )= √3/3 = 1/√3. Which corresponds to an angle whose tangent is 1/√3, which is 30 degrees. So angle between EH and the x-axis is 30 degrees. Therefore, angle between EF (which is along x-axis from E to F) and EH is 30 degrees. So angle FEH is 30 degrees, as expected.
+
+Now, angle(F,H,E) is angle at H between points F, H, E. So angle FHE. Let me find this angle. For that, we can look at triangle FHE. Let me calculate the lengths of the sides.
+
+First, coordinates:
+
+F: (1, 0)
+
+H: (0.75, √3/4)
+
+E: (0, 0)
+
+Compute distance FH: distance between F(1,0) and H(0.75, √3/4):
+
+Δx = 0.75 - 1 = -0.25; Δy = √3/4 - 0 = √3/4
+
+Distance FH = sqrt[ (-0.25)^2 + (√3/4)^2 ] = sqrt[ 0.0625 + (3/16) ]
+
+Convert 0.0625 to 1/16. So total inside sqrt is 1/16 + 3/16 = 4/16 = 1/4. So sqrt(1/4) = 1/2. So FH = 1/2.
+
+Similarly, HE: distance from H to E: sqrt[(0.75)^2 + (√3/4)^2]. Let me compute that:
+
+(0.75)^2 = 9/16
+
+(√3/4)^2 = 3/16
+
+Total: 9/16 + 3/16 = 12/16 = 3/4. So sqrt(3/4) = √3/2 ≈ 0.866...
+
+And distance from H to F is 1/2, as above.
+
+Also, distance from E to F is 1 unit (from (0,0) to (1,0)).
+
+Now, in triangle EFH, we have sides:
+
+EF = 1
+
+EH = √3/2 ≈ 0.866
+
+FH = 1/2
+
+We can apply the Law of Sines or Cosines to find angle at H, which is angle FHE.
+
+Law of Cosines in triangle EFH:
+
+cos(angle FHE) = (FH² + HE² - FE²) / (2 * FH * HE)
+
+Wait, angle FHE is at H, so opposite side is FE, which is 1.
+
+So cos(angle FHE) = (FH² + HE² - FE²) / (2 * FH * HE)
+
+Plugging numbers:
+
+FH² = (1/2)^2 = 1/4
+
+HE² = ( (√3)/2 )^2 = 3/4
+
+FE² = 1^2 = 1
+
+So numerator: 1/4 + 3/4 - 1 = (1) - 1 = 0
+
+Therefore, cos(angle FHE) = 0 / (2*(1/2)*(√3/2)) ) = 0.
+
+Thus, angle FHE is arccos(0) = 90 degrees. Wait, that's interesting. So angle at H, which is angle FHE, is 90 degrees?
+
+Wait, but according to the problem statement, there's a RightAngle(Angle(F,H,E)), meaning angle(F,H,E) is a right angle. Which matches our calculation here. So angle FHE is 90 degrees. But how does this relate to angle 2?
+
+Looking back at the problem, the user mentioned:
+
+Angle(1)
+Angle(2)
+Angle(F,H,E)
+Angle(F,H)
+Equilateral(Triangle(E,F,G))
+PointLiesOnLine(H,Line(F,G))
+BisectsAngle(Line(E,H),Angle(F,E,G))
+RightAngle(Angle(F,H,E))
+Equals(MeasureOf(Angle(F,H)),Mul(15,x))
+IsSideOf(...)
+
+Wait, the problem says "Angle(F,H)" – probably angle at H between F and something else? Maybe angle FHE is angle(F,H,E), which is given as a right angle. Then, angle(F,H) might refer to another angle. Wait, perhaps there's confusion here.
+
+Wait, the original problem mentions:
+
+- Angle(F,H,E): which is angle at H between F, H, E → which we just found is 90 degrees.
+
+- There's also Equals(MeasureOf(Angle(F,H)), Mul(15,x)). So Angle(F,H) is another angle, and its measure equals 15 times x. Wait, but maybe Angle(F,H) refers to angle at H between F and another point? Like angle FHB or something else? Wait, but the problem may have been translated or written with some ambiguity.
+
+Alternatively, perhaps there are two angles labeled 1 and 2, and their measures are equal. The problem says Equals(MeasureOf(Angle(1)), MeasureOf(Angle(2))). So angle 1 and angle 2 are equal.
+
+But the question asks to find m∠2. Given that angle(F,H,E) is a right angle (90°), and angle(F,H) is mentioned. Wait, maybe angle(F,H) is angle at H between F and E, which is the same as angle(F,H,E)? But that's already given as right angle. Alternatively, maybe angle(F,H) refers to angle at H between F and another line, like angle FHF' or something else. Hmm, perhaps there's more to the diagram.
+
+Wait, going back to the problem. The problem says:
+
+- Triangle EFG is equilateral.
+
+- Point H lies on line FG (since PointLiesOnLine(H, Line(F,G))).
+
+- Line EH bisects angle E. So EH is the angle bisector.
+
+- RightAngle(Angle(F,H,E)): angle at H, between F-H-E is a right angle.
+
+- Equals(MeasureOf(Angle(F,H)), Mul(15,x)): So angle(F,H) is some angle, and its measure equals 15x. But since x isn't defined, maybe x is a variable here. However, in the context of the problem, perhaps angle(F,H) is referring to angle at H, which is part of the right angle? Wait, but angle(F,H,E) is already a right angle. So perhaps angle(F,H) refers to another angle.
+
+Wait, perhaps there's a typo or mislabeling. Let me re-express the problem's constraints:
+
+Given:
+
+- Triangle EFG is equilateral.
+
+- Point H is on FG.
+
+- Line EH bisects angle E.
+
+- Angle(F,H,E) is a right angle.
+
+- Measure of angle(F,H) equals 15*x.
+
+- Measures of angle 1 and angle 2 are equal.
+
+Question: Find m∠2.
+
+Wait, maybe angle(F,H) is angle at H between F and another point? Like angle FHE? Which we found earlier to be 90 degrees. But that conflicts with the equality involving 15x. Unless x is a specific value. However, without knowing x, this seems unclear. But maybe there's another interpretation.
+
+Wait, perhaps the problem has multiple angles labeled as 1 and 2. Let me check the initial problem again.
+
+The problem says:
+
+"Angle(1)
+Angle(2)
+Angle(F,H,E)
+Angle(F,H)
+Equilateral(Triangle(E,F,G))
+PointLiesOnLine(H,Line(F,G))
+BisectsAngle(Line(E,H),Angle(F,E,G))
+RightAngle(Angle(F,H,E))
+Equals(MeasureOf(Angle(F,H)),Mul(15,x))
+IsSideOf(Line(E,F),Triangle(E,F,G))
+IsSideOf(Line(F,G),Triangle(E,F,G))
+IsSideOf(Line(E,G),Triangle(E,F,G))
+Equals(MeasureOf(Angle(1)),MeasureOf(Angle(2)))"
+
+So, there are angles labeled 1 and 2, and angle(F,H) which is equal to 15x. Also, angle(F,H,E) is a right angle.
+
+Perhaps angle(F,H) refers to angle at H between F and another point. But since H is on FG, and line EH is present, maybe angle(F,H) is angle at H between F and E, which is the same as angle(F,H,E) which is 90 degrees. But then why is it equal to 15x? Or maybe angle(F,H) refers to a different angle.
+
+Alternatively, maybe angle(F,H) is angle at H between F and another point, like angle FHE (which is the right angle), or maybe angle at H between E and another line. Wait, but there's only line EH and FG. Maybe there's another intersection? Or perhaps angle(F,H) refers to angle at H between F and G? But that would be a straight line since H is on FG, so that angle would be 180 degrees.
+
+Alternatively, maybe angle(F,H) refers to angle at H between E and another line. Wait, but unless there's another line through H. But the problem only mentions line EH and line FG. So unless there's another construction.
+
+Wait, but the problem says that line EH bisects angle E. So angle FEH is 30 degrees. Then, in triangle EFH, we have angle at E is 30 degrees, angle at H is 90 degrees, so angle at F would be 180 - 30 - 90 = 60 degrees. Wait, but angle at F in triangle EFG is originally 60 degrees. But in triangle EFH, angle at F would be part of that. Wait, but angle at F in triangle EFG is still 60 degrees. How does that fit?
+
+Wait, in triangle EFH, angle at F is the same as angle at F in triangle EFG? No, because in triangle EFH, angle at F is different. Because H is on FG. So in triangle EFH, angle at F is between E-F-H. So that's different from the original angle at F in triangle EFG. Let me calculate that.
+
+In triangle EFH, angles are:
+
+At E: 30 degrees (as EH bisects angle E into two 30-degree angles)
+
+At H: 90 degrees (right angle)
+
+Therefore, angle at F in triangle EFH is 180 - 30 - 90 = 60 degrees. So angle at F in triangle EFH is 60 degrees. But angle at F in triangle EFG is also 60 degrees. So this suggests that when we take triangle EFH, the angle at F is the same as the original angle at F in triangle EFG. Is that possible?
+
+Yes, because H is on FG, so the line FH is part of FG. So the angle at F between E-F-H is the same as the original angle at F in triangle EFG. Wait, but in triangle EFG, angle at F is between E-F-G. But in triangle EFH, angle at F is between E-F-H, which is the same as the original angle since H is on FG. Therefore, that angle remains 60 degrees.
+
+So in triangle EFH, angles are 30° at E, 60° at F, and 90° at H. Wait, but that sums up to 180°, which checks out. So angle at H is 90°, which is the right angle mentioned.
+
+Now, the problem mentions angle(F,H) equals 15x. Assuming angle(F,H) refers to angle at H, which is 90°, but then 90° = 15x ⇒ x = 6. But the question asks for m∠2, which is supposed to be equal to angle 1. However, the problem says Equals(MeasureOf(Angle(1)),MeasureOf(Angle(2))), so angle 1 and angle 2 are equal. What are these angles?
+
+Possibly, angle 1 and angle 2 refer to angles in triangle EFH or elsewhere. For example, maybe angle 1 is the 30° angle at E, and angle 2 is another angle. Or maybe they refer to angles created by the bisector.
+
+Wait, the problem says "Find m∠2", and the answer choices are 15, 30, 45, 60. Given that angle(F,H,E) is 90°, and angle(F,H) is possibly 90°, but maybe angle 2 is referring to something else.
+
+Wait, the problem says "Angle(F,H)" is equal to 15x. If angle(F,H) is 90°, then 15x = 90 ⇒ x = 6. But how does that relate to angle 2?
+
+Alternatively, maybe angle(F,H) refers to angle at H between F and E, which is 90°, and angle 2 is something else. But the problem says "Equals(MeasureOf(Angle(1)),MeasureOf(Angle(2)))". So angle 1 and angle 2 are equal. Perhaps angle 1 is the 30° angle at E, and angle 2 is another angle, say, the angle at H in triangle EFH? But that's 90°, which isn't among the answer choices. Alternatively, maybe angle 2 is one of the angles in triangle EFH, like the 60° angle at F?
+
+Wait, but the answer choices don't include 60°, except option D. However, the problem says that angle(F,H,E) is a right angle, and angle(F,H) equals 15x. Maybe angle 2 refers to x? Or perhaps angle 2 refers to the angle that's being multiplied by 15? This is getting confusing.
+
+Wait, let me go back. The problem says:
+
+"Equals(MeasureOf(Angle(F,H)),Mul(15,x))"
+
+So MeasureOf(Angle(F,H)) equals 15 times x. But the question is asking for m∠2, and it says Equals(MeasureOf(Angle(1)),MeasureOf(Angle(2))). So angle 1 and angle 2 are equal. But what are these angles?
+
+Maybe angle 1 and angle 2 are the two angles formed by the angle bisector. Wait, angle at E is bisected into two angles of 30° each. So those could be angle 1 and angle 2? But then they would both be 30°, making angle 2 equal to 30°, which is option B. But why would angle(F,H) be involved?
+
+Alternatively, maybe angle 1 and angle 2 are the angles at H. But angle at H is 90°, which would mean angle 1 and angle 2 are both 90°, but that doesn't fit with answer choices.
+
+Alternatively, maybe angle 1 and angle 2 are the angles in triangle EFH. For instance, angle at F (60°), angle at E (30°), and angle at H (90°). But none of these are directly referred to as angle 1 or 2.
+
+Wait, maybe the problem has a typo, and angle(F,H) is actually angle at H between E and another line. For example, if there is another line from H, but the problem doesn't mention it. Or maybe angle(F,H) refers to angle at H between F and G? But that's a straight line, so 180°, which doesn't seem right.
+
+Alternatively, maybe angle(F,H) refers to angle at H between E and G. But H is on FG, so connecting E to H and G to H? Not sure.
+
+Wait, let me think differently. Since EH bisects angle E (60° into 30° each), and H is on FG. In triangle EFG, which is equilateral, so all sides are equal. So EF = FG = GE. Using the Angle Bisector Theorem, as before, FH/HG = EF/EG = 1, so FH = HG, hence H is the midpoint of FG. Thus, FH = HG = (1/2)FG.
+
+Now, in triangle EFH, we have angle at E is 30°, angle at H is 90°, angle at F is 60°, as previously established. So if angle 2 is one of these angles, but which one?
+
+If angle 2 is the angle at F (which is 60°), then answer D. But the problem says angle(F,H) equals 15x. If angle(F,H) is the 60° angle at F, then 15x = 60 => x = 4. But how does that tie into finding angle 2?
+
+Alternatively, if angle 2 is the 30° angle at E, then angle 2 is 30°, which is option B. But the problem mentions angle(F,H) equals 15x, which might not be directly related.
+
+Alternatively, maybe angle 2 refers to the angle between EH and FG? Let me see. At point H, line EH meets FG. The angle between EH and FG at H would be angle between EH and HF. Since angle at H is 90°, and HF is part of FG. Let me think. In triangle EFH, angle at H is 90°, which is between EH and FH. So that's the angle between EH and FG (since FH is along FG). So that angle is 90°, which is angle(F,H,E), which is the right angle. So that's covered.
+
+But how does this connect to angle 2?
+
+Wait, the problem says Equals(MeasureOf(Angle(1)),MeasureOf(Angle(2))). So angle 1 and angle 2 are equal. If angle 1 and angle 2 are the two angles formed by the angle bisector, which are both 30°, then angle 2 would be 30°, option B. But why is angle(F,H) mentioned?
+
+Alternatively, maybe angle 1 and angle 2 are the angles at H. But angle at H is 90°, so both angles would be 90°, which doesn't match answer choices. 
+
+Wait, the problem might have a translation issue or notation confusion. Let me read the original problem again carefully.
+
+Original problem:
+
+"Given geometric constraints:
+Triangle(E,F,G)
+Point(E)
+Point(F)
+Point(G)
+Point(H)
+Line(E,H)
+Line(F,G)
+Angle(1)
+Angle(2)
+Angle(F,H,E)
+Angle(F,H)
+Equilateral(Triangle(E,F,G))
+PointLiesOnLine(H,Line(F,G))
+BisectsAngle(Line(E,H),Angle(F,E,G))
+RightAngle(Angle(F,H,E))
+Equals(MeasureOf(Angle(F,H)),Mul(15,x))
+IsSideOf(Line(E,F),Triangle(E,F,G))
+IsSideOf(Line(F,G),Triangle(E,F,G))
+IsSideOf(Line(E,G),Triangle(E,F,G))
+Equals(MeasureOf(Angle(1)),MeasureOf(Angle(2)))
+
+QUESTION:
+△EFG is equilateral, and EH bisects ∠E. Find m∠2.
+
+ANSWER CHOICES:
+A. 15
+B. 30
+C. 45
+D. 60
+
+So the key is that angle(F,H,E) is a right angle, and angle(F,H) is equal to 15x. Also, angle 1 and angle 2 are equal. The question is to find m∠2.
+
+Assuming that angle 2 is referring to angle(F,H), which is 15x. But how do we find x? Since angle(F,H,E) is 90°, and angle(F,H) is part of that?
+
+Wait, angle(F,H) might be angle at H between F and E, which is the same as angle(F,H,E) = 90°, so 15x = 90 => x = 6. But then the question asks for m∠2, which is equal to angle 1. But what is angle 1?
+
+If angle 1 and angle 2 are equal, and one of them is angle(F,H) = 15x = 90°, then angle 2 would be 90°, which is not in the choices. So this is conflicting.
+
+Alternatively, maybe angle 1 and angle 2 are the angles created by the angle bisector. Since EH bisects angle E into two angles of 30°, so angle 1 and angle 2 could be those two angles, each 30°. Hence, m∠2 is 30°, which is option B.
+
+This makes sense. The problem might have used Angle(1) and Angle(2) to refer to the two angles formed by the bisector, which are equal. Since the bisector divides the original 60° angle into two equal parts, each being 30°. Therefore, angle 2 is 30°, so the answer is B.
+
+But why is there mention of angle(F,H) = 15x? Maybe that's a red herring, or part of another part of the problem. Alternatively, maybe angle(F,H) refers to another angle. But if we ignore that and focus on the main question, which is to find m∠2 given that EH bisects ∠E in an equilateral triangle, then the answer is 30°.
+
+Another possibility: since angle(F,H,E) is a right angle, and angle(F,H) is part of that. If angle(F,H) is one leg of the right angle, then maybe it's 45°, but that doesn't fit. Or maybe it's part of a different triangle.
+
+Wait, but if we consider triangle EFH, which has angles 30°, 60°, 90°, then the angles are 30°, 60°, 90°. If angle 2 is one of these, and angle 1 is another, but since they are equal, that would require them to be 30° and 30°, but there's no such pair in this triangle. Hence, this suggests that angle 1 and angle 2 are the two angles formed by the bisector, which are both 30°, hence m∠2 = 30°, option B.
+
+Therefore, despite the confusion with angle(F,H), the most logical conclusion is that angle 2 is 30°, so the answer is B.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+To determine $ m\angle 2 $, we begin by analyzing the structure of the given geometric configuration.
+
+---
+
+### **Step 1: Understand the Geometry**
+We're told that triangle $ \triangle EFG $ is **equilateral**. Therefore:
+
+- All three sides are equal: $ EF = FG = GE $
+- Each internal angle is $ 60^\circ $
+
+Additionally, point $ H $ lies on segment $ FG $, and line $ EH $ **bisects** angle $ \angle FEG $. This means:
+
+- $ EH $ splits $ \angle FEG $ into two congruent angles
+- Since $ \angle FEG = 60^\circ $, the bisector creates two angles of:
+  $$
+  \frac{1}{2} \times 60^\circ = 30^\circ
+  $$
+
+So, $ \angle FEH = \angle GEC = 30^\circ $
+
+---
+
+### **Step 2: Analyze the Role of Point $ H $**
+Because $ H $ lies on $ FG $ and $ EH $ is the angle bisector, we can infer that:
+
+- By the **Angle Bisector Theorem**, since all sides of the equilateral triangle are equal, $ H $ must divide $ FG $ into two equal segments: $ FH = HG $
+- Therefore, $ H $ is the **midpoint** of $ FG $
+
+---
+
+### **Step 3: Determine the Relationship Between Angles**
+The problem introduces the concept of **angles 1 and 2** and specifies:
+
+$$
+\text{Equals}( \text{MeasureOf}( \angle 1 ), \text{MeasureOf}( \angle 2 ) )
+$$
+
+From the context and the fact that $ EH $ bisects $ \angle FEG $, the only plausible explanation is that:
+
+- $ \angle 1 $ and $ \angle 2 $ are the two **equal angles formed by the bisector** at vertex $ E $
+- These are the two parts of the original $ 60^\circ $ angle at $ E $, each measuring:
+  $$
+  \frac{1}{2} \times 60^\circ = 30^\circ
+  $$
+
+Therefore, $ \angle 1 = \angle 2 = 30^\circ $
+
+---
+
+### **Conclusion**
+
+Since the question asks for $ m\angle 2 $, and we've deduced that $ \angle 2 = 30^\circ $, the final answer is:
+
+$$
+\boxed{B}
+$$
+
+---
+
+**Final Answer:** B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

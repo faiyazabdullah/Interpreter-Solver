@@ -1,0 +1,91 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2940.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2940.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(X)
+Point(Y)
+Point(Z)
+Point(M)
+Point(N)
+Circle(X)
+PointLiesOnCircle(A,X)
+PointLiesOnCircle(B,X)
+PointLiesOnCircle(C,X)
+PointLiesOnCircle(D,X)
+PointLiesOnCircle(Y,X)
+PointLiesOnCircle(Z,X)
+Line(A,B)
+Line(C,D)
+Line(X,M)
+Line(X,N)
+Line(X,Y)
+Line(X,Z)
+IsRadiusOf(Line(X,A),Circle(X))
+IsRadiusOf(Line(X,B),Circle(X))
+IsRadiusOf(Line(X,C),Circle(X))
+IsRadiusOf(Line(X,D),Circle(X))
+IsRadiusOf(Line(X,Y),Circle(X))
+IsRadiusOf(Line(X,Z),Circle(X))
+IsChordOf(Line(A,B),Circle(X))
+IsChordOf(Line(C,D),Circle(X))
+Equals(LengthOf(Line(A,B)),30)
+Equals(LengthOf(Line(C,D)),30)
+IsMidpointOf(M,Line(A,B))
+IsMidpointOf(N,Line(C,D))
+Perpendicular(Line(X,M),Line(A,B))
+Perpendicular(Line(X,N),Line(C,D))
+Equals(LengthOf(Line(A,M)),LengthOf(Line(M,B)))
+Equals(LengthOf(Line(C,N)),LengthOf(Line(N,D)))
+Equals(LengthOf(Line(X,A)),LengthOf(Line(X,B)))
+Equals(LengthOf(Line(X,B)),LengthOf(Line(X,C)))
+Equals(LengthOf(Line(X,C)),LengthOf(Line(X,D)))
+Equals(LengthOf(Line(X,D)),LengthOf(Line(X,Y)))
+Equals(LengthOf(Line(X,Y)),LengthOf(Line(X,Z)))
+IntersectAt(Line(A,B),Line(X,M),Line(X,Y),M)
+IntersectAt(Line(C,D),Line(X,N),Line(X,Z),N)
+Angle(C,X,Z)
+Equals(MeasureOf(Angle(C,X,Z)),MeasureOf(Arc(C,Z)))
+PointLiesOnLine(Y,Line(X,M))
+PointLiesOnLine(Z,Line(X,N))
+Equals(LengthOf(Line(X,M)),LengthOf(Line(X,N)))
+
+QUESTION:
+In \odot X, A B = 30, C D = 30, and m \widehat C Z = 40. Find m \widehat C D.
+
+CHOICES:
+A. 30
+B. 40
+C. 60
+D. 80
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From IsChordOf(Line(A,B),Circle(X)) + IsChordOf(Line(C,D),Circle(X)) + Equals(LengthOf(Line(A,B)),30) + Equals(LengthOf(Line(C,D)),30) → LengthOf(Line(A,B)) = LengthOf(Line(C,D))
+From Equals(LengthOf(Line(A,B)),LengthOf(Line(C,D))) + Circle(X) → Arc(A,B) = Arc(C,D)
+From Arc(A,B) = Arc(C,D) → MeasureOf(Arc(A,B)) = MeasureOf(Arc(C,D))
+From IsMidpointOf(N,Line(C,D)) + Perpendicular(Line(X,N),Line(C,D)) → Line(X,N) bisects chord Line(C,D)
+From PointLiesOnLine(Z,Line(X,N)) → Line(X,Z) is an extension of Line(X,N)
+From Angle(C,X,Z) + Equals(MeasureOf(Angle(C,X,Z)),MeasureOf(Arc(C,Z))) + MeasureOf(Angle(C,X,Z)) = 40 → MeasureOf(Arc(C,Z)) = 40
+From Equals(LengthOf(Line(X,M)),LengthOf(Line(X,N))) + Line(X,N) bisects chord Line(C,D) → MeasureOf(Arc(A,B)) = MeasureOf(Arc(C,D))
+From MeasureOf(Arc(C,Z)) = 40 → Angle(C,X,Z) = 40
+From Chord(C,D) + Midpoint(N) → Angle(C,X,N) = Angle(D,X,N)
+Since chord AB = chord CD = 30, then the arcs that chords AB and CD subtend are equal.
+Therefore, mArc(AB) = mArc(CD). Also, given mArc(CZ) = 40. Since XM = XN then Arc(AB) = Arc(CD). Arc(CD) = arc(CZ) + Arc(ZD). Thus Arc CD > 40. Since XM=XN then central angles are equal and the Arcs are congruent so Arc CD = Arc AB.
+
+The question requires determining the measure of Arc CD, given that AB = CD = 30, and mArc CZ = 40. Since chords AB and CD have equal length, arcs AB and CD are equal in measure. Since Line XN bisects chord CD, CD is perpendicular to line XN, making N the midpoint of chord CD. Because XM = XN, these lines are equidistant from the center of the circle, implying that CD and AB are congruent, making the corresponding arcs congruent. However the measure of Arc CZ is stated as 40. And Arc CD is requested. Since CD and AB have equal length, their arc are equal
+
+From diagram, it appears that arc CD > arc CZ. We're given Arc(CZ)=40 and CD = 30. We are looking for Arc (CD). Since AB = CD =30 then arc AB = Arc CD. However we are not told what the arc AB equals. Since it can't be determined, use the transitive property since arcs with the same length are equivalent (given AB=CD) then the two arcs must be of equal measure, m arc CD = 40.
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

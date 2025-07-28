@@ -1,0 +1,71 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2720.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2720.txt
+
+PREDICATES CONTENT:
+Point(P)
+Point(L)
+Point(K)
+Point(M)
+Point(N)
+Point(J)
+Line(P,L)
+Line(L,M)
+Line(M,N)
+Line(N,P)
+Line(L,K)
+Line(K,M)
+Line(M,J)
+Line(L,J)
+Line(L,N)
+Line(P,J)
+Rectangle(L,M,N,P)
+Parallelogram(L,K,M,J)
+LengthOf(L,N,10)
+LengthOf(L,J,2x+1)
+LengthOf(P,J,3x-1)
+Equals(LengthOf(L,N),10)
+Equals(LengthOf(L,J),2x+1)
+Equals(LengthOf(P,J),3x-1)
+IsDiagonalOf(Line(L,N),Rectangle(L,M,N,P))
+IsDiagonalOf(Line(P,M),Rectangle(L,M,N,P))
+RightAngle(Angle(N,P,L))
+RightAngle(Angle(P,L,M))
+RightAngle(Angle(L,M,N))
+RightAngle(Angle(M,N,P))
+Equals(LengthOf(L,N),LengthOf(P,M))
+PointLiesOnLine(J,Line(L,N))
+PointLiesOnLine(J,Line(P,M))
+Add(LengthOf(P,J),LengthOf(L,J),LengthOf(P,M))
+Parallel(Line(P,L),Line(M,N))
+Parallel(Line(L,M),Line(N,P))
+IsDiagonalOf(Line(L,M),Parallelogram(L,K,M,J))
+IsDiagonalOf(Line(K,J),Parallelogram(L,K,M,J))
+
+QUESTION:
+Use rectangle L M N P, parallelogram L K M J to solve the problem. If L N = 10, L J = 2 x + 1, and P J = 3 x - 1, find x.
+
+CHOICES:
+A. 2
+B. 4
+C. 5
+D. 10
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Rectangle(L,M,N,P) + IsDiagonalOf(Line(L,N),Rectangle(L,M,N,P)) + IsDiagonalOf(Line(P,M),Rectangle(L,M,N,P)) → LengthOf(L,N) = LengthOf(P,M)
+From Equals(LengthOf(L,N),10) → LengthOf(P,M) = 10
+From PointLiesOnLine(J,Line(P,M)) → LengthOf(P,J) + LengthOf(L,J) = LengthOf(P,M)
+From Equals(LengthOf(L,J),2x+1) + Equals(LengthOf(P,J),3x-1) → (3x - 1) + (2x + 1) = LengthOf(P,M)
+From LengthOf(P,M) = 10 → (3x - 1) + (2x + 1) = 10
+From (3x - 1) + (2x + 1) = 10 → 5x = 10
+From 5x = 10 → x = 2
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

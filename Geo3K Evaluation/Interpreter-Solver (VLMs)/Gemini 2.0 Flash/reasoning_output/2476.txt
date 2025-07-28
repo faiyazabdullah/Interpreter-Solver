@@ -1,0 +1,90 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2476.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2476.txt
+
+PREDICATES CONTENT:
+Point(M)
+Point(N)
+Point(P)
+Point(R)
+Point(Q)
+Parallelogram(M,N,P,R)
+IntersectAt(Line(M,P),Line(R,N),Line(M,N),Point(Q))
+LengthOf(Line(M,R),17.9)
+LengthOf(Line(N,P),2*y+5)
+LengthOf(Line(M,N),3*x-4)
+LengthOf(Line(R,P),20)
+LengthOf(Line(N,Q),4*w-3)
+LengthOf(Line(Q,P),11.1)
+LengthOf(Line(R,Q),3*z-3)
+MeasureOf(Angle(M,R,Q),38)
+MeasureOf(Angle(P,N,Q),33)
+MeasureOf(Angle(M,Q,R),83)
+Equals(LengthOf(Line(M,R)),LengthOf(Line(N,P)))
+Equals(LengthOf(Line(M,N)),LengthOf(Line(R,P)))
+IsMidpointOf(Point(Q),Line(R,N))
+IsMidpointOf(Point(Q),Line(M,P))
+Equals(LengthOf(Line(R,Q)),LengthOf(Line(N,Q)))
+Equals(LengthOf(Line(M,Q)),LengthOf(Line(Q,P)))
+Parallel(Line(M,N),Line(R,P))
+Parallel(Line(M,R),Line(N,P))
+IsDiagonalOf(Line(M,P),Quadrilateral(M,N,P,R))
+IsDiagonalOf(Line(R,N),Quadrilateral(M,N,P,R))
+IsSideOf(Line(M,R),Parallelogram(M,N,P,R))
+IsSideOf(Line(R,P),Parallelogram(M,N,P,R))
+IsSideOf(Line(N,P),Parallelogram(M,N,P,R))
+IsSideOf(Line(M,N),Parallelogram(M,N,P,R))
+LengthOf(Line(Q,N),15.4)
+Equals(Angle(M,Q,R),Angle(P,Q,N))
+
+QUESTION:
+Use parallelogram M N P R to find m \angle R M N.
+
+CHOICES:
+A. 33
+B. 38
+C. 71
+D. 109
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallelogram(M,N,P,R) + IsSideOf(Line(M,R),Parallelogram(M,N,P,R)) + IsSideOf(Line(R,P),Parallelogram(M,N,P,R)) + IsSideOf(Line(N,P),Parallelogram(M,N,P,R)) + IsSideOf(Line(M,N),Parallelogram(M,N,P,R)) → MN || RP and MR || NP
+From Parallel(Line(M,R),Line(N,P)) + IntersectAt(Line(M,P),Line(R,N),Line(M,N),Point(Q)) → m \angle MRQ = m \angle PNQ
+From m \angle MRQ = 38 and m \angle MRQ = m \angle PNQ → m \angle PNQ = 38
+In triangle PNQ, m \angle PNQ = 38 and m \angle QNP = 33.
+m \angle PQN + m \angle PNQ + m \angle QNP = 180 (sum of angles in a triangle)
+m \angle PQN + 38 + 33 = 180
+m \angle PQN + 71 = 180
+m \angle PQN = 180 - 71 = 109
+From Equals(Angle(M,Q,R),Angle(P,Q,N)) (formal geometric relationships)  → m \angle MQR = m \angle PQN = 83 and m \angle PQN = 109. Therefore m \angle PQN cannot be both 83 and 109. Thus my assumption of m \angle MRQ = m \angle PNQ is not correct.
+
+Since MN || RP, then m \angle MRN = m \angle MNR.
+m \angle MQR + m \angle M RN + m \angle RMN = 180 in triangle MRN
+m \angle MRQ = 38
+m \angle MQR = 83
+So, 38 + 83 + m \angle RMN = 180
+121 + m \angle RMN = 180
+m \angle RMN = 180 - 121
+m \angle RMN = 59
+
+Since MR || NP, and RN is a transversal, m \angle MRN = m \angle PNR = 33.
+Also, m \angle MNR = m \angle MRP = x, then m \angle RMN = x
+Since RN || MP, m \angle QRP = m \angle QNM = 33. Since angle MRO = 38, and m angle PNR = 33 and since sides MN and PR are parallel, and MR and NP are also parallel.
+
+Since MN and PR are parallel, angles MNR and MRP are alternate interior angles, and equal.
+Also m \angle NMP + m \angle MRP = 180. Thus m \angle RMN + m \angle MRP = 180
+Since m \angle MRP = 38 + m \angle QRP, we know that angle QRP + 38.
+We see that angles MRN and PNR are congruent alternate interior angles. Also m angle PRN = m angle MNR.
+In triangle RMN, m angle MRN = m angle PNR = 33. Then the interior angles of triangle RMN must add up to 180.
+m angle MRN + m angle NMR + m angle RMN = 180.
+33 + m angle NMR + 38 = 180.
+So 33 + m angle NMR =180 - 38. Thus m angle NMR = 142 - 33 which is 109.
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

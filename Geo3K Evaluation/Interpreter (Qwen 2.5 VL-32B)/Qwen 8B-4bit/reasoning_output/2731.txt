@@ -1,0 +1,446 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Parallelogram(A,B,C,D)
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(B,C)
+Line(C,D)
+Line(D,A)
+RightAngle(Angle(D,E,C))
+Equals(LengthOf(Line(A,B)), 13)
+Equals(LengthOf(Line(A,C)), 12)
+Equals(LengthOf(Line(D,E)), 5)
+IsSideOf(Line(A,B), Parallelogram(A,B,C,D))
+IsSideOf(Line(B,C), Parallelogram(A,B,C,D))
+IsSideOf(Line(C,D), Parallelogram(A,B,C,D))
+IsSideOf(Line(D,A), Parallelogram(A,B,C,D))
+Parallel(Line(A,B), Line(C,D))
+Parallel(Line(A,D), Line(B,C))
+
+QUESTION:
+Find the perimeter of the parallelogram. Round to the nearest tenth if necessary.
+
+CHOICES:
+A. 25
+B. 50
+C. 60
+D. 100
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+<think>
+Okay, let's try to figure out the perimeter of this parallelogram. So, first, I need to recall what a parallelogram is. A parallelogram has opposite sides that are equal in length and parallel. Also, the opposite angles are equal, and consecutive angles are supplementary. But wait, there's also something about diagonals bisecting each other. Hmm, but maybe that's not directly helpful here.
+
+Looking at the given predicates, there's a parallelogram ABCD. Points A, B, C, D are all points. The lines AB, BC, CD, DA form the sides. Also, there's a RightAngle at D, E, C. Wait, point E isn't mentioned elsewhere. Maybe that's part of another structure? Let me check again. Oh, there's a line DE mentioned, since LengthOf(Line(D,E)) is 5. So point E is connected to D and C, forming a right angle at E. That suggests that DE is perpendicular to EC, making a right angle at E. So triangle DEC is a right triangle?
+
+Also, the lengths given are: AB is 13 units, AC is 12 units, and DE is 5 units. Wait, AC is a diagonal of the parallelogram? Because in a parallelogram, the diagonals connect opposite vertices. So AC connects A to C, which would be one of the diagonals. And DE is 5 units. But how does that relate to the rest?
+
+Since ABCD is a parallelogram, AB equals CD, and AD equals BC. Also, the diagonals of a parallelogram bisect each other, but I'm not sure if that helps here. However, we have some right angles involved. The right angle at D, E, C implies that DE is perpendicular to EC. So DE and EC are perpendicular. Since DE is 5 units, and EC... Well, EC is part of the side BC? Or maybe EC is part of another line?
+
+Wait, let's think. Point E is connected to D and C. Since Angle(D,E,C) is a right angle, so at point E, the lines ED and EC meet at a right angle. Therefore, triangle DEC is a right-angled triangle with legs DE=5 and EC, and hypotenuse DC. Wait, but DC is a side of the parallelogram. Since ABCD is a parallelogram, DC should be equal to AB, which is 13. Wait, but if DC is 13, then in triangle DEC, which is right-angled, DE=5, DC=13. Then EC would be sqrt(13² -5²)=sqrt(169-25)=sqrt(144)=12. So EC=12. 
+
+But EC is part of the side BC? Because in the parallelogram, BC is connected to B and C. Wait, but EC is connected to E and C. How is E positioned? Is E on BC? If EC is part of BC, then EC would be a segment of BC. But since EC is 12, and BC is a side of the parallelogram. Wait, but in a parallelogram, adjacent sides are AB and BC. So AB is 13, BC is something. But earlier, we found EC=12. If EC is part of BC, then BC could be longer than 12? Or maybe EC is part of another line?
+
+Alternatively, perhaps E is a point such that DE is perpendicular to EC, making EC a vertical or horizontal line relative to DE. But without more info, maybe we need to use coordinates. Let me try coordinate geometry.
+
+Let me assign coordinates to the points. Let me place point D at the origin (0,0). Since DE is 5 units and forms a right angle at E, suppose DE is along the y-axis, so E would be at (0,5). Then EC would be along the x-axis from E, so point C would be at (x,5) where x is EC. Wait, but EC is the length we found as 12. Wait, earlier calculation said EC=12. So if EC is along the x-axis from E(0,5), then C would be at (12,5). Wait, but then DC is the distance from D(0,0) to C(12,5). Which would be sqrt((12)^2 + (5)^2) = sqrt(144+25)=sqrt(169)=13. Which matches the given length of AB as 13. Since DC is equal to AB in a parallelogram, so DC=AB=13. That checks out. So this coordinate system seems valid.
+
+So in this setup, D is (0,0), E is (0,5), C is (12,5). Now, since ABCD is a parallelogram, vector DC equals vector AB. Vector DC is from D(0,0) to C(12,5), so vector DC is (12,5). Therefore, vector AB should also be (12,5). Since AB is from A to B, so if we find coordinates of A and B, they should satisfy this.
+
+But we also know that the length of AC is 12. Wait, AC is the diagonal from A to C. Let me find coordinates of A and B. In a parallelogram, the coordinates can be determined based on vectors. Let me assume point A is at (a,b), then point B would be A + vector DC, which is (a+12, b+5). Wait, because vector AB equals vector DC. Alternatively, since in a parallelogram, the vector from A to B equals the vector from D to C. So yes, AB = DC.
+
+But also, since ABCD is a parallelogram, the coordinates of point B can be determined once we know A and D. Wait, maybe it's easier to use the fact that in a parallelogram, the midpoint of the diagonals coincide. The diagonals are AC and BD. So midpoint of AC should be same as midpoint of BD.
+
+We already have coordinates for C(12,5). Suppose point A is (x,y), then midpoint of AC is ((x+12)/2, (y+5)/2). Midpoint of BD: point B is (a,b), point D is (0,0). So midpoint of BD is ((a+0)/2, (b+0)/2) = (a/2, b/2). Setting these equal:
+
+(x+12)/2 = a/2 → x +12 = a  
+(y+5)/2 = b/2 → y +5 = b  
+
+So a = x +12, b = y +5. So point B is (a, b) = (x+12, y+5).
+
+Now, also, since AB is a side of the parallelogram, the vector from A to B is (a - x, b - y) = (12, 5), which matches vector DC. So that's consistent.
+
+Additionally, we know that the length of AC is 12. AC is from A(x,y) to C(12,5). So distance formula:
+
+√[(12 - x)^2 + (5 - y)^2] = 12  
+Squaring both sides:  
+(12 - x)^2 + (5 - y)^2 = 144  
+
+But from earlier, we had that b = y + 5, so y = b -5. Similarly, a = x +12, so x = a -12. But maybe substituting variables complicates. Alternatively, note that in this coordinate system, the coordinates of A are (x,y), and we need to find the perimeter of the parallelogram, which is 2*(AB + AD). We know AB is 13, as given. What about AD?
+
+AD is from A(x,y) to D(0,0). Its length is √[(x - 0)^2 + (y - 0)^2] = √(x² + y²). So perimeter is 2*(13 + √(x² + y²)). But we need to find √(x² + y²). How?
+
+From the equation above:  
+(12 - x)^2 + (5 - y)^2 = 144  
+Expand this:  
+144 - 24x + x² + 25 - 10y + y² = 144  
+Combine terms:  
+x² + y² -24x -10y + 169 = 144  
+x² + y² -24x -10y = -25  
+Hmm. Not sure yet. But we also know that AD^2 = x² + y². Let me denote AD^2 as k. Then:
+
+k -24x -10y = -25  
+But we need another equation to relate x and y. Perhaps we can use the fact that in the parallelogram, the coordinates of B are (x +12, y +5). Also, since ABCD is a parallelogram, the vector from B to C should be equal to the vector from A to D. Wait, vector BC equals vector AD. Vector BC is from B to C: (12 - (x+12), 5 - (y+5)) = (-x, -y). Vector AD is from A to D: (0 - x, 0 - y) = (-x, -y). So that's consistent. So that doesn't give new info.
+
+Alternatively, maybe consider that the length of AB is 13. AB is from A(x,y) to B(x+12, y+5). Distance squared is (12)^2 + (5)^2 = 144 +25=169, which matches the given length of AB being 13. So that checks out.
+
+So going back to the previous equation:  
+k -24x -10y = -25, where k = x² + y².  
+But how do we find k?
+
+Alternatively, maybe express x and y in terms of other variables. Wait, but we don't have enough equations. Maybe there's another relationship. Wait, but we also know that the coordinates of point E are (0,5), as per our initial assumption. But how does that relate to the rest?
+
+Wait, in the problem statement, there's a RightAngle at D, E, C. So the angle at E is a right angle. So DE is perpendicular to EC. In our coordinate system, DE goes from D(0,0) to E(0,5), which is vertical line. EC goes from E(0,5) to C(12,5), which is horizontal line. Hence, DE is vertical, EC is horizontal, so they are perpendicular. That satisfies the right angle condition.
+
+So everything up to here checks out. Now, how to find AD? Since AD is from A(x,y) to D(0,0), which we denoted as k = x² + y². But we need another equation involving x and y. Wait, maybe using the fact that ABCD is a parallelogram. For example, the coordinates of point C are (12,5), and point A is (x,y). Then, since ABCD is a parallelogram, vector AB equals vector DC. As before, but we already used that.
+
+Alternatively, perhaps considering the coordinates of point B. Since point B is (x +12, y +5). Also, since ABCD is a parallelogram, the order of the points matters. So AB is connected to BC, which is connected to CD, etc. Wait, but we already used that.
+
+Alternatively, maybe using the fact that in a parallelogram, the sum of the squares of the diagonals equals twice the sum of the squares of the sides. Wait, the formula is:  
+AC² + BD² = 2(AB² + AD²)
+
+We know AC is 12, so AC² = 144.  
+BD is the other diagonal, connecting B and D. Coordinates of B are (x +12, y +5), and D is (0,0). So BD² is [(x +12 - 0)^2 + (y +5 - 0)^2] = (x +12)^2 + (y +5)^2.
+
+So according to the formula:  
+144 + [(x +12)^2 + (y +5)^2] = 2*(13² + AD²)  
+Which simplifies to:  
+144 + (x +12)^2 + (y +5)^2 = 2*(169 + k)  
+Where k = x² + y². Expand (x+12)^2 + (y+5)^2:  
+x² +24x +144 + y² +10y +25 = (x² + y²) +24x +10y +169.  
+Therefore, the left side becomes 144 + (x² + y²) +24x +10y +169 = (x² + y²) +24x +10y +313.  
+Right side is 2*169 + 2k = 338 + 2k.  
+Thus:  
+(x² + y²) +24x +10y +313 = 338 + 2k  
+But k = x² + y², so substitute:  
+k +24x +10y +313 = 338 + 2k  
+Rearranged:  
+24x +10y +313 = 338 + k  
+Which gives:  
+k = 24x +10y +313 - 338 = 24x +10y -25.  
+Earlier, we had another equation: from AC² = 144 leading to k -24x -10y = -25.  
+So k -24x -10y = -25 ⇒ k = 24x +10y -25. Which matches the above. So this doesn't give us new info. Thus, we need another way to find k.
+
+Wait, but maybe we can find k using another method. Let me think. From the coordinates of point A(x,y), and knowing that the length of AC is 12. Earlier, we had:
+
+(12 - x)^2 + (5 - y)^2 = 144. Expanding this:
+
+(144 -24x +x²) + (25 -10y + y²) = 144  
+Which simplifies to x² + y² -24x -10y +169 = 144  
+Then x² + y² -24x -10y = -25  
+But k = x² + y², so:
+
+k -24x -10y = -25  
+Which rearranges to k = 24x +10y -25. But we also have from the diagonal formula that k = 24x +10y -25. So again, circular.
+
+Hmm, stuck here. Maybe there's another way. Let's think about the coordinates of point A. Since ABCD is a parallelogram, and we have coordinates for D, C, and B in terms of A. Also, we have the length of AC as 12. Wait, but AC is from A(x,y) to C(12,5). So that distance squared is (12-x)^2 + (5-y)^2 = 144. Which is the same as before. 
+
+Alternatively, maybe there's a different approach. Since ABCD is a parallelogram, then AB = CD = 13, and AD = BC. We need to find AD. Once we find AD, multiply by 2 and add AB multiplied by 2 for the perimeter.
+
+So if we can find AD, which is the distance from A to D. Let me think. How can we find AD?
+
+Wait, maybe using the right triangle. Earlier, we found that EC = 12. But EC is part of BC. Wait, EC was found as 12 in the right triangle DEC. But EC is a segment from E(0,5) to C(12,5), which is horizontal line of length 12. So EC = 12. So BC is a side of the parallelogram. In the parallelogram, BC is equal to AD. So AD = BC. But BC is from B to C. If EC is part of BC, then BC = BE + EC. Wait, but where is point E located? If E is on BC, then BE + EC = BC. But how long is BE?
+
+In our coordinate system, point B is (x+12, y+5). Point C is (12,5). So vector BC is from B to C: (12 - (x+12), 5 - (y+5)) = (-x, -y). So BC has length sqrt(x² + y²), which is AD. So BC = AD. So if EC is part of BC, then EC = 12, and BE would be BC - EC = AD - 12. But how to find BE?
+
+Alternatively, since E is connected to D and C, and we have coordinates for E as (0,5), and C as (12,5), then EC is horizontal line from (0,5) to (12,5), so EC is 12 units. So BC is from B to C, which we've determined has length AD. But if E lies somewhere along BC, then BE + EC = BC. But where is E located? It depends on the position of B.
+
+Wait, in our coordinate system, point E is at (0,5). So point E is fixed. Let me see if E lies on BC. Since BC is from B(x+12, y+5) to C(12,5). So parametrically, BC can be represented as (x+12 - t*x, y+5 - t*y), where t ranges from 0 to 1? No, better to write parametric equations. Let me parameterize BC. The vector from B to C is (-x, -y). So parametric equations for BC: starting at B(x+12, y+5), moving towards C(12,5). So any point on BC can be expressed as (x+12 - xt, y+5 - yt), where t ∈ [0,1].
+
+Now, point E(0,5) is supposed to lie on BC. So there exists a t such that:
+
+x+12 - xt = 0  
+and  
+y+5 - yt = 5  
+
+From the second equation: y +5 - yt = 5 → y(1 - t) = 0 → either y = 0 or t = 1. If t=1, then the point is C(12,5), which is not E unless E=C, which it isn't. So y must be 0. So y = 0. 
+
+Substituting y=0 into the first equation: x+12 - xt = 0 → x(1 - t) = -12. So t = 1 + 12/x. But t must be between 0 and 1 because E lies on BC. Therefore, 0 ≤ t ≤1. So 1 + 12/x must be between 0 and 1. Let's analyze:
+
+Case 1: t ≥0 → 1 + 12/x ≥0. Depending on x's sign. 
+
+But since x is a coordinate, it could be positive or negative. However, since EC is part of BC, and in our coordinate system, E is at (0,5), and C is at (12,5), so BC goes from B to C. If E is on BC, then depending on the direction. 
+
+But if y=0, then from the second equation, we have y=0. So point A has y-coordinate 0. So A is (x, 0). Then, since vector AB is (12,5), point B is (x+12, 0+5) = (x+12, 5). 
+
+Now, let's plug y=0 into the equation from AC length. Remember, we had:
+
+(12 - x)^2 + (5 - y)^2 = 144. With y=0, this becomes:
+
+(12 - x)^2 + (5 - 0)^2 = 144 → (12 -x)^2 +25 = 144 → (12 -x)^2 = 119 → 12 -x = ±√119 → x = 12 ∓√119. 
+
+So x = 12 - √119 or x = 12 + √119. 
+
+But then, from earlier, we have t = 1 + 12/x. Since t must be between 0 and 1, let's see:
+
+For x = 12 - √119. Let's compute √119 ≈ 10.9087. So 12 - 10.9087 ≈ 1.0913. So x ≈ 1.0913. Then t = 1 + 12 / 1.0913 ≈ 1 + 11.0 ≈ 12.0, which is greater than 1. Not allowed. 
+
+For x = 12 + √119 ≈ 12 + 10.9087 ≈ 22.9087. Then t = 1 + 12 / 22.9087 ≈ 1 + 0.524 ≈ 1.524, still >1. Not allowed. 
+
+This suggests contradiction. So maybe my assumption that E lies on BC is wrong. Wait, but the problem states that there's a right angle at D, E, C. So E is a point such that DE and EC are perpendicular. But why did I assume E is on BC? Maybe E is not on BC. Maybe it's somewhere else. 
+
+Wait, the problem says "RightAngle(Angle(D,E,C))", which means the angle at E between D-E-C is a right angle. So E is a point such that DE ⊥ EC. But E could be anywhere, not necessarily on BC. So my earlier assumption that E is on BC may be incorrect. 
+
+So let me backtrack. Maybe I shouldn't assume E is on BC. Instead, E is just some point such that DE and EC are perpendicular, forming a right angle at E. Given that DE is length 5, and EC is some length. 
+
+Earlier, I considered that triangle DEC is a right triangle with DE=5, EC=?, and DC=13 (since DC=AB=13). Using Pythagoras, EC = sqrt(13² -5²) = 12. So EC=12. But how does this relate to the parallelogram?
+
+Maybe EC is not along BC, but EC is another segment. For instance, EC could be a segment from E to C, with E somewhere else. But how does this help?
+
+Wait, since ABCD is a parallelogram, and we have coordinates for D(0,0), C(12,5). So DC is from (0,0) to (12,5), which has length 13. Then, EC is 12 units, and DE is 5 units, with DE ⊥ EC. So point E is such that DE=5 and EC=12, forming a right angle. There are infinitely many such points E, but in the context of the problem, maybe E is related to the parallelogram. 
+
+Wait, but the problem includes the predicate IsSideOf(Line(A,B), Parallelogram(A,B,C,D)), etc., but Line(A,B) is a side of the parallelogram. So AB is a side, BC is another side, etc. 
+
+Perhaps there's more information we haven't used. Let me list all given data again:
+
+- Parallelogram(A,B,C,D): so ABCD is a parallelogram with sides AB, BC, CD, DA.
+- Point(A), Point(B), Point(C), Point(D)
+- Line(A,B), Line(B,C), Line(C,D), Line(D,A): these are the sides.
+- RightAngle(Angle(D,E,C)): angle at E between D-E-C is right.
+- Equals(LengthOf(Line(A,B)), 13): AB=13
+- Equals(LengthOf(Line(A,C)), 12): AC=12
+- Equals(LengthOf(Line(D,E)), 5): DE=5
+- IsSideOf(Line(A,B), Parallelogram(...)) and others: confirming that AB, BC, CD, DA are sides.
+- Parallel(Line(A,B), Line(C,D)) and Parallel(Line(A,D), Line(B,C)): confirming parallelogram properties.
+
+So AC is a diagonal, length 12. DE is a segment of length 5, forming a right angle with EC. 
+
+Maybe there's a connection between AC and DE? Or perhaps using the right triangle DEC with DE=5, EC=12, DC=13, which are classic 5-12-13 triangle. So DC=13, which is equal to AB=13. So DC=AB, which makes sense.
+
+But how does this help find the perimeter? The perimeter of the parallelogram is 2*(AB + AD). We know AB=13, so need AD. 
+
+AD is the other side of the parallelogram. To find AD, maybe we can use the diagonal AC=12 and the properties of parallelograms. In a parallelogram, the sum of the squares of the diagonals equals twice the sum of the squares of the sides. 
+
+Formula: AC² + BD² = 2(AB² + AD²)
+
+We know AC=12, so AC²=144. Need BD². But we don't know BD. However, if we can find BD, we can solve for AD.
+
+But how to find BD? BD is the other diagonal, from B to D. 
+
+Alternatively, maybe using the law of cosines on the diagonals. In a parallelogram, the diagonals bisect each other, and we can relate them to the sides. But without knowing angles, this might not help. 
+
+Wait, but we know AC=12. Also, from the earlier right triangle DEC, we have DC=13, DE=5, EC=12. But EC is part of the parallelogram? Not sure. 
+
+Wait, if EC=12, and EC is part of some line. Maybe EC is equal to AD? Because in the parallelogram, AD equals BC. If EC is part of BC, then BC=EC + BE. But earlier attempts showed contradictions. 
+
+Alternatively, maybe EC is equal to AD? If EC=12, then AD=12? But then perimeter would be 2*(13+12)=50, which is option B. But let me verify if this is correct. 
+
+Assuming AD=12, then perimeter is 2*(13+12)=50. But why would AD=12? Because EC=12? Maybe there's a relation. 
+
+Wait, let's think again about the right triangle DEC. In this triangle, DE=5, EC=12, DC=13. This is a right triangle with legs 5 and 12, hypotenuse 13. Now, DC is a side of the parallelogram, which equals AB=13. So DC=13. Now, EC=12. Is there a reason why EC would be equal to AD?
+
+If EC is equal to AD, then AD=12, giving perimeter 2*(13+12)=50. But why would EC equal AD?
+
+Alternatively, maybe EC is part of the diagonal AC? Wait, AC is a diagonal of length 12. But EC is part of another line. 
+
+Wait, if we look at point E, which forms a right angle with D and C. So E is a point such that DE ⊥ EC. So triangle DEC is a right triangle. Now, if we consider that in the parallelogram, the diagonal AC is 12. Could there be a relation between AC and the triangle DEC?
+
+Maybe not directly. Unless there's some overlap. For example, if E lies on AC, then EC would be a segment of AC. But if E is on AC, then DE would be a line from D to E on AC, forming a right angle. But how?
+
+Let me try assuming E lies on AC. Let's say E is on AC. Then, DE is perpendicular to EC. Let me explore this possibility.
+
+Coordinates: Let's take D(0,0), C(12,5), as before. AC is from A to C. Let me find coordinates of A. Wait, earlier we tried assigning coordinates but got stuck. But if E is on AC, then we can define E as a point on AC such that DE ⊥ EC.
+
+Let me parametrize AC. Let’s say A is (x,y), C is (12,5). Parametric equation of AC: any point on AC can be written as A + t*(C - A) = (x + t*(12 -x), y + t*(5 - y)), where t ∈ [0,1]. Let E be a point on AC, so for some t, E is (x + t*(12 -x), y + t*(5 - y)).
+
+DE is the vector from D(0,0) to E, which is (x + t*(12 -x), y + t*(5 - y)). EC is the vector from E to C, which is (12 - [x + t*(12 -x)], 5 - [y + t*(5 - y)]) = (12 -x -t*(12 -x), 5 - y -t*(5 - y)).
+
+These two vectors DE and EC must be perpendicular, so their dot product is zero.
+
+Compute DE • EC = 0:
+
+[x + t*(12 -x)] * [12 -x -t*(12 -x)] + [y + t*(5 - y)] * [5 - y -t*(5 - y)] = 0
+
+Let me simplify this expression. Let me denote u = 12 -x, v = 5 - y. Then the first term becomes [x + t*u] * [u - t*u] = [x + tu] * u(1 - t) = u(x + tu)(1 - t). Similarly for the second term: [y + tv] * [v - tv] = v(y + tv)(1 - t). So overall:
+
+u(x + tu)(1 - t) + v(y + tv)(1 - t) = 0  
+Factor out (1 - t):
+
+[ux + utu + vy + tv²](1 - t) = 0
+
+Assuming t ≠ 1 (since E is not point C), then:
+
+ux + utu + vy + tv² = 0  
+But u = 12 -x, v = 5 - y. Substituting:
+
+(12 -x)x + t(12 -x)^2 + (5 - y)y + t(5 - y)^2 = 0  
+Group terms:
+
+[(12 -x)x + (5 - y)y] + t[(12 -x)^2 + (5 - y)^2] = 0  
+
+Now, note that (12 -x)x + (5 - y)y = 12x -x² +5y - y² = -(x² -12x) - (y² -5y). But not sure. Also, [(12 -x)^2 + (5 - y)^2] is the square of the length of AC, which is given as 12. Wait, AC is from A(x,y) to C(12,5), so its length squared is (12 -x)^2 + (5 - y)^2 = 144. So [(12 -x)^2 + (5 - y)^2] = 144.
+
+So substituting back:
+
+[(12 -x)x + (5 - y)y] + t * 144 = 0  
+But (12 -x)x + (5 - y)y = 12x -x² +5y - y² = -(x² -12x) - (y² -5y). Let me calculate x² -12x and y² -5y. 
+
+But we also know from earlier that (12 -x)^2 + (5 - y)^2 = 144. Expanding this: 144 -24x +x² +25 -10y +y² = 144 → x² + y² -24x -10y +169 = 144 → x² + y² -24x -10y = -25. 
+
+Let me rearrange this: x² -24x + y² -10y = -25. 
+
+Now, the term [(12 -x)x + (5 - y)y] is equal to 12x -x² +5y - y² = -(x² -12x) - (y² -5y). Let me call this expression as -(x² -12x + y² -5y). 
+
+But from the equation x² + y² -24x -10y = -25, we can rewrite x² + y² = 24x +10y -25. 
+
+So, -(x² -12x + y² -5y) = -(x² + y² -12x -5y) = -(24x +10y -25 -12x -5y) = -(12x +5y -25) = -12x -5y +25.
+
+Thus, the equation becomes:
+
+(-12x -5y +25) + 144t = 0  
+→ 144t = 12x +5y -25  
+→ t = (12x +5y -25)/144.
+
+But this is getting complicated. However, we also know that DE has length 5. DE is the distance from D(0,0) to E, which is the point on AC. Let me compute DE^2. 
+
+E is on AC, so coordinates of E are (x + t*(12 -x), y + t*(5 - y)). So DE^2 is [x + t*(12 -x)]^2 + [y + t*(5 - y)]^2 = 5^2 = 25.
+
+Expanding this:
+
+[x + t*(12 -x)]^2 + [y + t*(5 - y)]^2 = 25  
+Let me expand each term:
+
+First term: x² + 2tx(12 -x) + t²(12 -x)^2  
+Second term: y² + 2ty(5 - y) + t²(5 - y)^2  
+Adding them together:
+
+x² + y² + 2t[ x(12 -x) + y(5 - y) ] + t²[(12 -x)^2 + (5 - y)^2] = 25  
+
+We know that (12 -x)^2 + (5 - y)^2 = 144, so this becomes:
+
+x² + y² + 2t[ x(12 -x) + y(5 - y) ] + t² * 144 = 25  
+
+Now, from earlier, x² + y² = 24x +10y -25. Substitute this:
+
+24x +10y -25 + 2t[ x(12 -x) + y(5 - y) ] + 144t² = 25  
+
+Now, compute x(12 -x) + y(5 - y) = 12x -x² +5y - y² = -(x² -12x) - (y² -5y) = same as before, which we found equals -12x -5y +25. Wait, earlier we had this expression as -12x -5y +25? Wait, no, previously we had -(x² -12x + y² -5y) = -12x -5y +25? Wait, let me recheck:
+
+Previously, we had x² + y² -24x -10y = -25 → x² + y² = 24x +10y -25. Then, x(12 -x) + y(5 - y) = 12x -x² +5y - y² = -(x² -12x) - (y² -5y) = -(x² + y²) +12x +5y = -(24x +10y -25) +12x +5y = -24x -10y +25 +12x +5y = -12x -5y +25. Yes, that's correct.
+
+So substituting back:
+
+24x +10y -25 + 2t*(-12x -5y +25) + 144t² = 25  
+Let me distribute the 2t:
+
+24x +10y -25 -24xt -10yt +50t +144t² = 25  
+Now, group like terms:
+
+Terms with x: 24x -24xt = 24x(1 - t)  
+Terms with y: 10y -10yt = 10y(1 - t)  
+Constants: -25 +50t  
+And the 144t² term. 
+
+So:
+
+24x(1 - t) + 10y(1 - t) -25 +50t +144t² = 25  
+Combine the terms with (1-t):
+
+(24x +10y)(1 - t) + (-25 +50t) +144t² = 25  
+Now, from earlier, we had t = (12x +5y -25)/144. Let me substitute this into the equation. 
+
+Let me denote t = (12x +5y -25)/144. 
+
+Let me compute (24x +10y)(1 - t) + (-25 +50t) +144t². 
+
+First, expand (24x +10y)(1 - t) = (24x +10y) - (24x +10y)t.
+
+So the entire expression becomes:
+
+(24x +10y) - (24x +10y)t -25 +50t +144t² = 25.
+
+Let me combine terms:
+
+(24x +10y -25) + [- (24x +10y)t +50t] +144t² = 25.
+
+Factor t from the middle terms:
+
+(24x +10y -25) + t[-24x -10y +50] +144t² = 25.
+
+Now, substitute t = (12x +5y -25)/144.
+
+Let me compute each part:
+
+First, 24x +10y -25. Let me call this Term1.
+
+Next, -24x -10y +50. Let me call this Term2.
+
+Then, 144t².
+
+So the whole expression is Term1 + t*Term2 +144t² = 25.
+
+Now, substitute t:
+
+Term1 + [(12x +5y -25)/144]*Term2 +144*[ (12x +5y -25)/144 ]² = 25.
+
+This looks very complex, but perhaps there's a simplification. Let me see if I can find a relation between Term1 and Term2.
+
+Note that Term1 = 24x +10y -25.
+
+Term2 = -24x -10y +50 = -(24x +10y) +50.
+
+Let me see if Term1 relates to Term2. Let me write Term1 = 24x +10y -25 = -(24x +10y) +25. Wait, no: 24x +10y -25 = -( -24x -10y +25 ). Not sure.
+
+Alternatively, notice that Term1 + Term2 = (24x +10y -25) + (-24x -10y +50) = 25. So Term1 + Term2 = 25.
+
+So the expression becomes:
+
+Term1 + t*Term2 +144t² = 25  
+But Term1 + t*Term2 = 25 -144t². Wait, no, original expression is Term1 + t*Term2 +144t² = 25. So:
+
+Term1 + t*Term2 = 25 -144t². But Term1 + t*Term2 = 25 -144t². 
+
+But Term1 + Term2 = 25, so Term1 = 25 - Term2. Substituting:
+
+25 - Term2 + t*Term2 = 25 -144t²  
+→ 25 - Term2(1 - t) = 25 -144t²  
+→ -Term2(1 - t) = -144t²  
+→ Term2(1 - t) = 144t²  
+
+Now, Term2 = -24x -10y +50. And t = (12x +5y -25)/144.
+
+So substituting:
+
+(-24x -10y +50)[1 - (12x +5y -25)/144] = 144 * [(12x +5y -25)/144]^2
+
+This is extremely complex. At this point, I think this approach is too convoluted. Perhaps there's a simpler way. 
+
+Let me go back to the beginning. We have a parallelogram with AB=13, AC=12. We need to find AD. In a parallelogram, the diagonals bisect each other, and the formula relating diagonals and sides is AC² + BD² = 2(AB² + AD²). We know AC=12, AB=13, so:
+
+12² + BD² = 2*(13² + AD²)  
+144 + BD² = 2*(169 + AD²)  
+144 + BD² = 338 + 2AD²  
+Rearranged: BD² = 338 + 2AD² -144 = 194 + 2AD². 
+
+But we need another equation to relate BD and AD. Without additional information, this seems impossible. 
+
+Wait, but we also know from the right triangle DEC that EC=12. If EC is part of the parallelogram, perhaps it relates to AD or BD. 
+
+Wait, if EC=12 and EC is a segment from E to C, and if E is related to the parallelogram, maybe EC is equal to AD? If so, then AD=12. Then perimeter is 2*(13+12)=50, which is option B. 
+
+But why would EC=AD? Let me think. If E is a point such that DE=5 and EC=12, forming a right angle, and if EC is equal to AD, then AD=12. But why?
+
+Maybe because in the parallelogram, AD is one of the sides, and EC is another segment, possibly representing AD. But without a diagram, it's hard to tell. But given that EC=12 and the options include 50, which would mean AD=12, it might be the case. 
+
+Alternatively, let's assume AD=12 and check if it fits with the diagonal AC=12. 
+
+Using the formula AC² + BD² = 2(AB² + AD²). If AD=12, then:
+
+12² + BD² = 2*(13² +12²)  
+144 + BD² = 2*(169 + 144) = 2*313 = 626  
+BD² = 626 -144 = 482  
+BD = sqrt(482) ≈ 21.95. 
+
+But I don't know if this helps. However, if this is acceptable, then the perimeter would be 2*(13+12)=50, which is option B. 
+
+Given that the problem provides a right triangle with legs 
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

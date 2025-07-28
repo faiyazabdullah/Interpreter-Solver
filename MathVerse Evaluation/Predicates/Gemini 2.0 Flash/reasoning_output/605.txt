@@ -1,0 +1,72 @@
+================================================================================
+PROBLEM 605 - STEP-BY-STEP REASONING
+================================================================================
+Question: The side profile of a bridge is overlapped with the coordinate axes such that $(x, y)$ represents a point on the arc that is $x$ meters horizontally from one end of the bridge and $y$ meters vertically above the road. The bridge meets the road at coordinates $(0,0)$ and $(100,0)$, with the vertex at (50,50).
+
+Pedestrians are able to climb the full arch of the bridge. Find the average steepness of the climb over the interval $[0,20]$.
+================================================================================
+
+STEP 1: COMPREHENSIVE IMAGE ANALYSIS
+- The image shows a parabola overlapping a coordinate plane with x and y axes.
+- Points on the parabola are represented as (x, y).
+- The parabola passes through (0, 0) and (100, 0).
+- The vertex of the parabola is at (50, 50).
+- A point (20, 32) approximately lies on the parabola.
+
+STEP 6: CONSTRAINT AND RELATIONSHIP SYNTHESIS
+- The parabola can be represented by a quadratic equation of the form y = ax^2 + bx + c.
+- Since the parabola passes through (0, 0), c = 0.
+- Since the parabola passes through (100, 0), a(100)^2 + b(100) = 0, or 10000a + 100b = 0, which implies 100a + b = 0, or b = -100a.
+- The vertex is at (50, 50). The x-coordinate of the vertex is -b / 2a = 50, so b = -100a, which confirms our previous equation.
+- The y-coordinate of the vertex is a(50)^2 + b(50) = 50, so 2500a + 50b = 50, or 50a + b = 1.
+- Substituting b = -100a, we have 50a - 100a = 1, so -50a = 1, and a = -1/50.
+- Therefore, b = -100(-1/50) = 2.
+- The equation of the parabola is y = (-1/50)x^2 + 2x = (-1/50)x(x - 100).
+- We are asked to find the average steepness of the climb over the interval [0, 20].  This is the average rate of change of y with respect to x over this interval, which is the slope of the secant line between x=0 and x=20.  The average steepness is (y(20) - y(0))/(20 - 0).
+
+STEP 7: QUESTION-DRIVEN COMPLETENESS CHECK
+- The above steps have captured all the information given in the diagram and have found the equation for the parabola.
+- The problem asks to find the average steepness between [0,20].
+- y(0) = 0. y(20) = (-1/50)(20^2) + 2(20) = -400/50 + 40 = -8 + 40 = 32.
+- Average steepness = (32 - 0) / (20 - 0) = 32 / 20 = 8/5.
+
+PREDICATES:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Point(F)
+Line(l)
+Line(m)
+PointLiesOnLine(A,l)
+PointLiesOnLine(B,l)
+PointLiesOnLine(C,l)
+PointLiesOnLine(D,l)
+PointLiesOnLine(E,m)
+PointLiesOnLine(F,m)
+Equals(0,0)
+Equals(100,0)
+Equals(50,50)
+Point(P)
+PointLiesOnLine(P,l)
+PointLiesOnLine(P,m)
+Equals(20,32)
+Point(Origin)
+Equals(Origin,A)
+Equals(Origin,0)
+PointLiesOnLine(Origin,l)
+PointLiesOnLine(Origin,m)
+Parabola(m)
+PointLiesOnParabola(A,Parabola(m))
+PointLiesOnParabola(B,Parabola(m))
+PointLiesOnParabola(C,Parabola(m))
+PointLiesOnParabola(D,Parabola(m))
+PointLiesOnParabola(E,Parabola(m))
+PointLiesOnParabola(F,Parabola(m))
+IsVertexOf(E,Parabola(m))
+PointLiesOnParabola(P,Parabola(m))
+LengthOf(Line(A,B),100)
+LengthOf(Line(A,C),20)
+LengthOf(Line(E,F),50)
+LengthOf(Line(E,D),50)

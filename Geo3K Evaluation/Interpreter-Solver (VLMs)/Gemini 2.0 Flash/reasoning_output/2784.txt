@@ -1,0 +1,54 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2784.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2784.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(C)
+Point(D)
+Point(E)
+Circle(A)
+PointLiesOnCircle(D,Circle(A))
+PointLiesOnCircle(E,Circle(A))
+PointLiesOnCircle(C,Circle(A))
+Tangent(Line(C,D),Circle(A))
+Secant(Line(C,E),Circle(A))
+LengthOf(Line(C,E),6)
+LengthOf(Line(D,A),9)
+LengthOf(Line(A,E),9)
+IsRadiusOf(Line(A,D),Circle(A))
+IsRadiusOf(Line(A,E),Circle(A))
+Equals(LengthOf(Line(A,D)),LengthOf(Line(A,E)))
+Perpendicular(Line(A,D),Line(C,D))
+RightAngle(Angle(A,D,C))
+LengthOf(Line(C,D),x)
+
+QUESTION:
+Find x. Assume that segments that appear to be tangent are tangent.
+
+CHOICES:
+A. 6
+B. 9
+C. 12
+D. 15
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Tangent(Line(C,D),Circle(A)) + IsRadiusOf(Line(A,D),Circle(A)) → Perpendicular(Line(A,D),Line(C,D))
+From Perpendicular(Line(A,D),Line(C,D)) → RightAngle(Angle(A,D,C))
+From Secant(Line(C,E),Circle(A)) + PointLiesOnCircle(E,Circle(A)) + PointLiesOnCircle(C,Circle(A)) → Secant(Line(C,E),Circle(A))
+From Tangent(Line(C,D),Circle(A)) + Secant(Line(C,E),Circle(A)) → LengthOf(Line(C,D))^2 = LengthOf(Line(C,E)) * LengthOf(Line(C,E), extended to intersect the circle again) (Tangent-Secant Theorem)
+Let the intersection point be E. Thus $CD^2 = CE \cdot CF$ where F is the other point where CE intersects the circle.
+We are given CE = 6, CD = x and the radius is 9. So AE = AD = 9
+Therefore, CF = CE + EF = CE + 2*AE = 6 + 2*9 = 6 + 18 = 24
+So we have $x^2 = 6 \cdot 24 = 144$
+Taking the square root gives $x = \sqrt{144} = 12$
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

@@ -1,0 +1,586 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Triangle(A,B,C)
+Triangle(A,D,C)
+Triangle(C,D,B)
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(B,C)
+Line(A,C)
+Line(C,D)
+RightAngle(Angle(A,C,B))
+RightAngle(Angle(C,D,A))
+Right(Triangle(A,B,C))
+Right(Triangle(A,D,C))
+Perpendicular(Line(A,C),Line(B,C))
+Perpendicular(Line(C,D),Line(A,B))
+Equals(LengthOf(Line(A,D)),3)
+Equals(LengthOf(Line(D,B)),12)
+Equals(LengthOf(Line(A,C)),y)
+Equals(LengthOf(Line(B,C)),z)
+Equals(LengthOf(Line(C,D)),x)
+Similar(Triangle(A,D,C),Triangle(C,D,B))
+Similar(Triangle(A,D,C),Triangle(A,B,C))
+Similar(Triangle(C,D,B),Triangle(A,B,C))
+IsSideOf(Line(A,C), Triangle(A,B,C))
+IsSideOf(Line(B,C), Triangle(A,B,C))
+IsSideOf(Line(A,B), Triangle(A,B,C))
+IsSideOf(Line(A,D), Triangle(A,D,C))
+IsSideOf(Line(C,D), Triangle(A,D,C))
+IsSideOf(Line(A,C), Triangle(A,D,C))
+IsSideOf(Line(C,D), Triangle(C,D,B))
+IsSideOf(Line(D,B), Triangle(C,D,B))
+IsSideOf(Line(B,C), Triangle(C,D,B))
+IsAltitudeOf(Line(C,D), Triangle(A,B,C))
+Equals(LengthOf(Line(A,B)), Add(LengthOf(Line(A,D)), LengthOf(Line(D,B))))
+Equals(LengthOf(Line(A,B)),15)
+Equals(SquareOf(LengthOf(Line(A,B))), Add(SquareOf(LengthOf(Line(A,C))), SquareOf(LengthOf(Line(B,C)))))
+Equals(SquareOf(LengthOf(Line(A,C))), Add(SquareOf(LengthOf(Line(A,D))), SquareOf(LengthOf(Line(C,D)))))
+Equals(SquareOf(LengthOf(Line(B,C))), Add(SquareOf(LengthOf(Line(D,B))), SquareOf(LengthOf(Line(C,D)))))
+
+QUESTION:
+Find z.
+
+CHOICES:
+A. 6
+B. 6 \sqrt { 2 }
+C. 6 \sqrt { 3 }
+D. 6 \sqrt { 5 }
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's try to figure out how to find z here. So we have several triangles and some right angles, similar triangles, and lengths given. Let me start by listing out all the information given.
+
+First, there are points A, B, C, D. The lines AB, BC, AC, CD are mentioned. Also, there are right angles at Angle(A,C,B) and Angle(C,D,A). So that means triangle ABC is a right triangle at point C, since angle at C between A and B is a right angle. Similarly, angle at C between D and A is a right angle? Wait, no. Wait, RightAngle(Angle(C,D,A)). That would mean the angle at point C between points D and A. So line CD and line CA form a right angle at point C. So that implies that triangle ADC is also a right triangle at point C?
+
+Wait, but then triangle ADC has a right angle at C. And triangle ABC is a right triangle at C as well. Also, there are two more right triangles mentioned: Triangle(A,D,C) and Triangle(C,D,B). Wait, maybe I need to draw this mentally.
+
+Let me note down:
+
+Triangles:
+
+- Triangle(A,B,C): Right triangle at C (since RightAngle(Angle(A,C,B))).
+- Triangle(A,D,C): Right triangle at C (from RightAngle(Angle(C,D,A))). Because angle at C between D and A is right angle.
+- Triangle(C,D,B): So that's triangle CDB. It's mentioned that it's similar to others.
+
+Also, the Perpendicular conditions:
+
+Perpendicular(Line(A,C), Line(B,C)): Since Line(A,C) is perpendicular to Line(B,C). But since triangle ABC is right-angled at C, that makes sense because AC and BC are legs. So that checks out.
+
+Similarly, Perpendicular(Line(C,D), Line(A,B)): So line CD is perpendicular to line AB. Hmm. So line AB is horizontal? Or depends on orientation. Maybe coordinate system can help here.
+
+Also, given that Triangle(A,D,C) and Triangle(C,D,B) are similar to each other and to Triangle(A,B,C). So similarity relations.
+
+Additionally, there are equalities for lengths:
+
+Length of AD = 3, DB = 12, so AB = AD + DB = 3 + 12 = 15. Which matches the equality given: Equals(LengthOf(Line(A,B)),15).
+
+So AB is 15 units long.
+
+Moreover, they mention:
+
+SquareOf(LengthOf(Line(A,B))) equals SquareOf(AC) plus SquareOf(BC). Which is Pythagoras theorem for triangle ABC. Since ABC is right-angled at C.
+
+So AB² = AC² + BC². Given AB=15, so 15² = y² + z², where y is AC and z is BC.
+
+But also, another equation: SquareOf(AB) equals SquareOf(AD) + SquareOf(CD). Wait, no:
+
+Wait, the equations given are:
+
+Equals(SquareOf(LengthOf(Line(A,B))), Add(SquareOf(LengthOf(Line(A,C))), SquareOf(LengthOf(Line(B,C))))) → which is Pythagoras for triangle ABC.
+
+Then:
+
+Equals(SquareOf(LengthOf(Line(A,C))), Add(SquareOf(LengthOf(Line(A,D))), SquareOf(LengthOf(Line(C,D))))) → So AC² = AD² + CD². Since triangle ADC is right-angled at C, so AC is hypotenuse? Wait, wait. If angle at C between D and A is right angle, then triangle ADC has right angle at C, meaning sides CD and AC are legs, and AD is hypotenuse? Wait, no. Wait, the right angle is at C, so the legs are CD and AC, and hypotenuse is AD. Therefore, AD² = AC² + CD². Which matches the equation given: SquareOf(AD) = SquareOf(AC) + SquareOf(CD). Wait, but according to the given equation, SquareOf(AC) = SquareOf(AD) + SquareOf(CD)? Wait no:
+
+Wait the user wrote:
+
+Equals(SquareOf(LengthOf(Line(A,C))), Add(SquareOf(LengthOf(Line(A,D))), SquareOf(LengthOf(Line(C,D)))))
+
+Which would mean AC² = AD² + CD². But if triangle ADC is right-angled at C, then AD should be the hypotenuse. Hence, AD² = AC² + CD². So there seems to be a contradiction unless my understanding is wrong.
+
+Wait, perhaps I made a mistake here. Let me re-examine the problem statement.
+
+The problem says:
+
+RightAngle(Angle(C,D,A)) – which is the angle at point C between points D and A. So that's angle DCA. So that's angle between DC and CA. So in triangle ADC, angle at C is right angle. Therefore, triangle ADC is right-angled at C. Thus, the sides adjacent to the right angle are DC and AC, and the hypotenuse is DA. Therefore, DA² = DC² + AC². Therefore, SquareOf(DA) = SquareOf(DC) + SquareOf(AC). So that would imply DA² = DC² + AC². However, the given equation is SquareOf(AC) = SquareOf(AD) + SquareOf(CD). Which would be AC² = AD² + CD². Which contradicts unless AC is the hypotenuse. So that suggests either I misread the angle or there's a miscalculation.
+
+Alternatively, maybe the right angle is at D? No, the angle is Angle(C,D,A), which is angle at D? Wait, no. In standard notation, Angle(X,Y,Z) is the angle at Y between X and Z. So Angle(C,D,A) is the angle at D between points C and A. So that would mean that the angle at D between C and A. Therefore, triangle ADC has a right angle at D. Wait, that changes things. So if the right angle is at D, then the triangle ADC is right-angled at D. Then, the sides adjacent to the right angle are AD and CD, and hypotenuse is AC. Therefore, AC² = AD² + CD². Which matches the given equation: SquareOf(AC) = SquareOf(AD) + SquareOf(CD). Oh! So that resolves the confusion. So the right angle is at D, not at C. So earlier misunderstanding was due to incorrect interpretation of the angle.
+
+So, let me correct that. The RightAngle(Angle(C,D,A)) means that the angle at D between points C and A is a right angle. So triangle ADC is right-angled at D. Therefore, AC² = AD² + CD². Which aligns with the given equation. Great.
+
+Similarly, looking back at the other right angles. For example, the first right angle is Angle(A,C,B), which is the angle at C between A and B. So triangle ABC is right-angled at C. So that gives us AB² = AC² + BC².
+
+Now, moving on. There are similar triangles involved. The problem states:
+
+Similar(Triangle(A,D,C), Triangle(C,D,B))
+
+And also Similar(Triangle(A,D,C), Triangle(A,B,C))
+
+And Similar(Triangle(C,D,B), Triangle(A,B,C))
+
+Therefore, all three triangles are similar to each other. So Triangle ADC ~ Triangle CDB ~ Triangle ABC.
+
+Since they're similar, their corresponding sides are proportional.
+
+Let me denote:
+
+Let’s consider the similarity ratios.
+
+First, Triangle ADC ~ Triangle CDB.
+
+Let me think about their correspondence.
+
+Assuming the order of vertices matters. For example, Triangle(A,D,C) ~ Triangle(C,D,B). So vertex A corresponds to C, D corresponds to D, and C corresponds to B? Wait, but similarity requires the same order. So if Triangle(A,D,C) ~ Triangle(C,D,B), then:
+
+A corresponds to C,
+
+D corresponds to D,
+
+C corresponds to B.
+
+Therefore, the sides opposite these angles would correspond.
+
+In Triangle(A,D,C):
+
+Sides are AD, DC, AC.
+
+In Triangle(C,D,B):
+
+Sides are CD, DB, CB.
+
+So the ratio of similarity would be:
+
+AD / CD = DC / DB = AC / CB.
+
+Similarly, since Triangle ADC ~ Triangle CDB, the ratio of their corresponding sides is equal.
+
+Also, Triangle ADC ~ Triangle ABC. Let's check that. Triangle(A,D,C) ~ Triangle(A,B,C). So the correspondence would be A -> A, D -> B, C -> C? Not sure yet. Let me think.
+
+If Triangle(A,D,C) ~ Triangle(A,B,C), then the order of vertices is important. So the correspondence could be:
+
+A corresponds to A,
+
+D corresponds to B,
+
+C corresponds to C.
+
+Thus, the sides:
+
+AD corresponds to AB,
+
+DC corresponds to BC,
+
+AC corresponds to AC.
+
+Wait, but if that's the case, then the ratio of similarity would be AD/AB = DC/BC = AC/AC = 1. Which would imply AD = AB, DC = BC, etc., but since AD is given as 3 and AB is 15, that's impossible. So that can’t be the case.
+
+Alternative approach: Since all three triangles are similar, perhaps we can use proportions based on their side lengths.
+
+Given that Triangle ADC is similar to Triangle CDB, which is similar to Triangle ABC.
+
+Let me try to find relationships between their sides.
+
+Starting with Triangle ADC (~ Triangle CDB ~ Triangle ABC)
+
+First, Triangle ABC is right-angled at C. Its sides are AC, BC, AB. With AB = 15, AC = y, BC = z.
+
+Triangle ADC is right-angled at D. Its sides are AD = 3, CD = x, and AC = y (hypotenuse). So AC² = AD² + CD² → y² = 3² + x² → y² = 9 + x².
+
+Triangle CDB: Let me see. Points C, D, B. What is the type of triangle? It's mentioned that Triangle(C,D,B) is similar to others. Let me check its angles. Since Triangle ADC is similar to Triangle CDB, and Triangle ADC is right-angled at D, then Triangle CDB must also be right-angled at the corresponding angle. Since in Triangle ADC, the right angle is at D, then in Triangle CDB, the right angle would be at the corresponding vertex. From the similarity, if Triangle ADC ~ Triangle CDB, then the right angle in Triangle CDB is at D? Wait, original right angle in ADC is at D, so the corresponding angle in CDB would be at D? But Triangle CDB has points C, D, B. The right angle would be at D? Let me confirm.
+
+From the given, there is a Perpendicular(Line(C,D), Line(A,B)). So line CD is perpendicular to line AB. Since AB is the hypotenuse of triangle ABC, which is right-angled at C. So AB is the hypotenuse, and CD is perpendicular to AB. Therefore, line CD is perpendicular to AB, implying that CD is an altitude of triangle ABC? Wait, but in triangle ABC, the altitude from C would be different. Wait, but CD is connected to point D, which may not be on AB. Wait, but given that line CD is perpendicular to AB, and point D is part of other triangles.
+
+Alternatively, since CD is perpendicular to AB, and AB is length 15, and CD is connected to point C. Let me try to model coordinates.
+
+Perhaps assigning coordinates will make this easier. Let me place the points on a coordinate system.
+
+Let me set point C at the origin (0,0) since triangle ABC is right-angled at C. So point C is (0,0). Since ABC is right-angled at C, let me assume point A is along the x-axis and point B along the y-axis. Wait, but then line AB would be the hypotenuse. Alternatively, since line CD is perpendicular to AB, which might complicate things. Let me proceed step by step.
+
+Set coordinate system:
+
+Let’s place point C at (0, 0).
+
+Since triangle ABC is right-angled at C, let me assign coordinates:
+
+Let’s say point A is (a, 0) and point B is (0, b), so that AC is along x-axis from (0,0) to (a,0), and BC is along y-axis from (0,0) to (0,b). Then AB connects (a,0) to (0,b), and has length sqrt(a² + b²) = 15.
+
+Also, line CD is perpendicular to AB. Point D is somewhere such that CD is perpendicular to AB. Also, triangle ADC is right-angled at D, so point D lies such that CD is perpendicular to AD. Wait, earlier conclusion was that triangle ADC is right-angled at D. So angle at D between C and A is right angle. Therefore, vectors DC and DA are perpendicular.
+
+So, let me formalize coordinates.
+
+Let me define:
+
+Point C: (0, 0)
+
+Point A: (y, 0) since AC = y (assuming AC is along x-axis from C(0,0) to A(y,0))
+
+Point B: (0, z) since BC = z (along y-axis from C(0,0) to B(0,z))
+
+Then AB goes from (y, 0) to (0, z). The slope of AB is (z - 0)/(0 - y) = -z/y. Therefore, the line AB has slope -z/y.
+
+Since line CD is perpendicular to AB, the slope of CD is the negative reciprocal of AB's slope. So slope of CD is y/z.
+
+Point D lies on line CD, which starts at point C(0,0) and has direction vector determined by slope y/z. Wait, but we don't know where D is located except that CD is perpendicular to AB and that triangle ADC is right-angled at D.
+
+Wait, but triangle ADC has right angle at D. So point D lies somewhere such that CD ⊥ AD. Let me express coordinates of D.
+
+Let me parametrize line CD. Since CD is perpendicular to AB and passes through C(0,0). The direction vector of CD is (z, y) because the slope is y/z. Wait, slope is rise over run, so if slope is y/z, then direction vector is (z, y). So parametric equations for line CD: starting at C(0,0), direction vector (z, y). So any point D on line CD can be written as D(t*z, t*y) for some parameter t.
+
+But since triangle ADC is right-angled at D, then vectors DA and DC are perpendicular. Vector DA = A - D = (y - t*z, 0 - t*y). Vector DC = C - D = (-t*z, -t*y). Their dot product should be zero.
+
+Dot product of DA and DC:
+
+(y - t*z)(-t*z) + (-t*y)(-t*y) = 0
+
+Expanding:
+
+-t*z*(y - t*z) + t²*y² = 0
+
+Multiply through:
+
+-tyz + t² z² + t² y² = 0
+
+Factor t:
+
+t(-yz + t(z² + y²)) = 0
+
+Solutions are t=0 (which gives D=C, trivial) or:
+
+-yz + t(z² + y²) = 0 ⇒ t = yz/(y² + z²)
+
+Therefore, coordinates of D are:
+
+D_x = t*z = [yz/(y² + z²)] * z = y z² / (y² + z²)
+
+D_y = t*y = [yz/(y² + z²)] * y = y² z / (y² + z²)
+
+So D is at ( y z² / (y² + z² ), y² z / (y² + z² ) )
+
+Now, we also know that length AD is 3. Let's compute AD.
+
+Coordinates of A: (y, 0)
+
+Coordinates of D: ( y z² / (y² + z² ), y² z / (y² + z² ) )
+
+Vector AD: ( y z² / (y² + z² ) - y , y² z / (y² + z² ) - 0 )
+
+Compute components:
+
+Δx = y z² / (y² + z² ) - y = y [ z² - (y² + z² ) ] / (y² + z² ) = y [ -y² ] / denominator = - y³ / (y² + z² )
+
+Δy = y² z / (y² + z² )
+
+Therefore, length AD squared is:
+
+[ (- y³ / (y² + z² ))^2 + ( y² z / (y² + z² ))^2 ]
+
+= [ y^6 + y^4 z² ] / (y² + z² )² 
+
+Factor numerator:
+
+y^4 (y² + z² ) / (y² + z² )² ) = y^4 / (y² + z² )
+
+Therefore, AD² = y^4 / (y² + z² ) 
+
+But we are told that AD = 3, so AD² = 9. Therefore:
+
+y^4 / (y² + z² ) = 9 → Equation (1)
+
+We also know that AB = 15. Since AB is the hypotenuse of triangle ABC, which is right-angled at C, AB² = y² + z² = 15² = 225. So:
+
+y² + z² = 225 → Equation (2)
+
+Substituting Equation (2) into Equation (1):
+
+y^4 / 225 = 9 → y^4 = 2025 → y² = sqrt(2025) ? Wait, no. Wait, solving for y^4:
+
+y^4 = 9 * 225 = 2025
+
+So y² = sqrt(2025) ?
+
+Wait, no. Wait, y^4 = 2025 ⇒ y² = sqrt(2025) or y² = -sqrt(2025). But since lengths are positive, y² is positive. Therefore, y² = √2025 = 45. Wait, but √2025 is 45. Because 45² is 2025. Yes. So y² = 45. Therefore, y = sqrt(45) = 3√5.
+
+But wait, let me check:
+
+Wait, y^4 = 2025. Take square root both sides: y² = ±√2025. Since y² must be positive, y² = √2025. Wait, √2025 is 45. So yes, y² = 45. Therefore, y = 3√5.
+
+But we need to find z. From Equation (2): y² + z² = 225 ⇒ z² = 225 - y² = 225 - 45 = 180 ⇒ z = sqrt(180) = sqrt(36*5) = 6√5. Wait, but that would make z = 6√5. However, looking at the answer choices, option D is 6√5. But before jumping to conclusions, let me check if there are other constraints.
+
+But hold on, there is also the condition involving triangle CDB being similar to triangle ABC and ADC.
+
+Earlier, we considered only the AD=3 constraint and AB=15 leading us to z² = 180. But maybe there are more constraints from the similarities.
+
+Wait, the problem mentions that Triangle(A,D,C) is similar to Triangle(C,D,B), which is similar to Triangle(A,B,C). So we need to ensure that the ratios of sides are consistent.
+
+Let me check the similarity between Triangle ADC and Triangle CDB.
+
+Earlier, I derived coordinates of D. Now, let's find the sides of triangle CDB.
+
+Points C(0,0), D( y z² / (y² + z² ), y² z / (y² + z² ) ), B(0, z).
+
+So, triangle CDB has sides:
+
+CD: distance from C to D. Earlier, we had CD = x, which is given as x. But from our previous calculation, CD is the length from C(0,0) to D(t*z, t*y) where t = yz/(y² + z² ). Therefore, CD length is sqrt( (t*z)^2 + (t*y)^2 ) = t * sqrt(z² + y² ) = [ yz/(y² + z² ) ] * sqrt(y² + z² ) = yz / sqrt(y² + z² )
+
+But from Equation (2), sqrt(y² + z² ) = 15, so CD = yz / 15.
+
+Also, DB is the distance from D to B(0,z). Coordinates of D are ( y z² / S, y² z / S ), where S = y² + z² = 225. So coordinates of D are ( y z² / 225, y² z / 225 )
+
+Coordinates of B: (0, z). So vector from D to B is ( 0 - y z² / 225, z - y² z / 225 )
+
+Calculating the distance squared:
+
+( - y z² / 225 )² + ( z - y² z / 225 )² 
+
+Let me factor z terms:
+
+First term: y² z^4 / (225² )
+
+Second term: z² [ 1 - y² / 225 ]² = z² [ (225 - y²)/225 ]² 
+
+But from Equation (2): y² + z² = 225 ⇒ z² = 225 - y². Therefore, 225 - y² = z². So substituting:
+
+Second term becomes z² [ z² / 225 ]² = z^4 / 225² 
+
+So total distance squared is:
+
+[ y² z^4 + z^4 ] / 225² = z^4 (y² + 1 ) / 225² ?
+
+Wait, no:
+
+Wait first term is y² z^4 / 225² and second term is z^4 / 225² ?
+
+Wait, no. Let me recalculate:
+
+Original expression after substitution:
+
+First term: y² z^4 / (225² )
+
+Second term: z² * [ z² / 225 ]² = z² * z^4 / 225² = z^6 / 225² ?
+
+Wait, no. Wait, the second term is:
+
+Inside the brackets, it's [ z - y² z / 225 ] = z [ 1 - y² / 225 ] = z [ (225 - y²)/225 ] = z [ z² / 225 ] since z² = 225 - y². So the entire term is z * z² / 225 = z³ / 225. Then squaring that gives z^6 / 225². So total distance squared is:
+
+(y² z^4 + z^6 ) / 225² = z^4 ( y² + z² ) / 225² 
+
+But since y² + z² = 225, substitute:
+
+z^4 * 225 / 225² = z^4 / 225 
+
+Therefore, distance DB squared is z^4 / 225, so DB = z² / 15.
+
+But the problem states that DB = 12. Therefore:
+
+z² / 15 = 12 ⇒ z² = 180 ⇒ z = sqrt(180) = 6√5. Which matches our previous result.
+
+So that gives z = 6√5, which is option D.
+
+But let me check if this satisfies the other similarity conditions. For example, triangle ADC ~ triangle CDB. Let me verify the ratios.
+
+From earlier, Triangle ADC has sides:
+
+AD = 3, CD = yz / 15, AC = y.
+
+Triangle CDB has sides:
+
+CD = yz / 15, DB = z² / 15, CB = z.
+
+So the ratios of corresponding sides should be equal.
+
+Assuming similarity between ADC and CDB, the ratios should be:
+
+AD / CD = CD / DB = AC / CB.
+
+Check AD / CD = 3 / ( yz / 15 ) = 45 / yz.
+
+CD / DB = ( yz / 15 ) / ( z² / 15 ) ) = yz / z² = y / z.
+
+AC / CB = y / z.
+
+So for similarity, AD / CD must equal y / z. Therefore:
+
+45 / yz = y / z ⇒ cross multiplying: 45 z = y² z ⇒ divide both sides by z (assuming z ≠ 0):
+
+45 = y².
+
+But earlier we found y² = 45, which matches. So that holds true.
+
+Therefore, this confirms consistency. Hence, z² = 180, so z = sqrt(180) = 6√5. Therefore, the value of z is 6√5, which is option D.
+
+But let me check again if there are other constraints. Also, there is the similarity between Triangle ADC and Triangle ABC.
+
+Triangle ADC ~ Triangle ABC. Let me check the ratios.
+
+Triangle ADC has sides AD = 3, DC = yz / 15, AC = y.
+
+Triangle ABC has sides AC = y, BC = z, AB = 15.
+
+For similarity, the ratios should be equal. Assuming correspondence of angles, so the sides should be proportional.
+
+Assuming the correspondence is ADC ~ ABC, so AD corresponds to AB, DC corresponds to BC, and AC corresponds to AC.
+
+Wait, but AC is common to both triangles. So if AC corresponds to itself, then the ratio would be AC / AC = 1. But AD / AB = 3 / 15 = 1/5. So if the ratio is 1/5, then DC / BC should also be 1/5. DC is yz / 15, BC is z. So (yz / 15) / z = y / 15. This should equal 1/5. Therefore, y / 15 = 1/5 ⇒ y = 3. But earlier we found y² = 45 ⇒ y = 3√5 ≈ 6.7, which contradicts y = 3. So something's wrong here.
+
+Ah! So there's inconsistency here. This suggests that my assumption about the correspondence of the similar triangles may be incorrect.
+
+This indicates that my initial assumption about the correspondence of the similar triangles might be wrong. Therefore, I need to reconsider the correspondence when establishing the similarity between Triangle ADC and Triangle ABC.
+
+Maybe the correspondence isn't direct as I thought. Let me think again about the similarity.
+
+Given that Triangle(A,D,C) ~ Triangle(A,B,C). So the order of the vertices matters. So the correspondence is A→A, D→B, C→C? Or another order?
+
+Let me consider the angles. Triangle ADC has a right angle at D, while Triangle ABC has a right angle at C. So the right angles are at different vertices. Therefore, the correspondence of the right angles must be matched.
+
+In Triangle ADC, right angle is at D; in Triangle ABC, right angle is at C. Therefore, the similarity correspondence must map the right angle of ADC to the right angle of ABC. Hence, D corresponds to C.
+
+So the similarity is Triangle ADC ~ Triangle ABC with correspondence:
+
+A → A,
+
+D → C,
+
+C → B.
+
+Because the right angle at D maps to the right angle at C. Wait, but Triangle ABC has right angle at C, and Triangle ADC has right angle at D. So mapping D to C.
+
+Therefore, the correspondence would be:
+
+Vertex A corresponds to Vertex A,
+
+Vertex D corresponds to Vertex C,
+
+Vertex C corresponds to Vertex B.
+
+Hence, the sides:
+
+AD corresponds to AC,
+
+DC corresponds to CB,
+
+AC corresponds to AB.
+
+Therefore, ratios:
+
+AD / AC = DC / CB = AC / AB.
+
+So:
+
+AD / AC = DC / CB = AC / AB.
+
+Let me write that down:
+
+AD / AC = DC / CB = AC / AB.
+
+We have AD = 3, AC = y, DC = yz / 15 (as computed earlier), CB = z, AB = 15.
+
+So:
+
+3 / y = ( yz / 15 ) / z = y / 15.
+
+So equate the first ratio and third ratio:
+
+3 / y = y / 15 ⇒ Cross-multiplying: 3 * 15 = y² ⇒ 45 = y² ⇒ y = sqrt(45) = 3√5, which matches our earlier result.
+
+Also, the second ratio: DC / CB = ( yz / 15 ) / z = y / 15. Which is the same as above. So this holds.
+
+Thus, the similarity condition holds, confirming our values for y and z.
+
+Therefore, z² = 180 ⇒ z = sqrt(180) = 6√5. So z is 6√5, which is option D.
+
+But wait, the answer choices include D as 6√5. So that's the answer.
+
+But let me just double-check everything once more.
+
+From earlier steps:
+
+We found that z² = 180 ⇒ z = sqrt(180) = sqrt(36*5) = 6√5. Correct.
+
+So the answer is D. Therefore, Final Answer: D.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+To determine the value of $ z $, we begin by analyzing the geometric configuration described in the problem. We’re given multiple right triangles, their similarity, and specific length constraints.
+
+---
+
+### **Step 1: Understanding the Geometry**
+
+We are given the following key geometric facts:
+
+- Triangle $ \triangle ABC $ is right-angled at $ C $, i.e., $ \angle C = 90^\circ $.
+- Triangle $ \triangle ADC $ is right-angled at $ D $, i.e., $ \angle D = 90^\circ $.
+- Triangle $ \triangle CDB $ is similar to both $ \triangle ABC $ and $ \triangle ADC $, suggesting all three triangles share the same shape (i.e., same angles and proportional sides).
+- Specific segment lengths:
+  - $ AD = 3 $
+  - $ DB = 12 $
+  - $ AB = 15 $ (from the sum of $ AD + DB $)
+  - $ AB^2 = AC^2 + BC^2 $ (Pythagorean Theorem applied to right triangle $ \triangle ABC $)
+  - $ AC^2 = AD^2 + CD^2 $ (Pythagorean Theorem applied to right triangle $ \triangle ADC $)
+  - $ DB^2 = CD^2 + BC^2 $ (derived via similarity and proportionality)
+
+---
+
+### **Step 2: Applying the Pythagorean Theorem and Proportionality**
+
+Using the fact that triangle $ \triangle ABC $ is right-angled at $ C $:
+
+$$
+AB^2 = AC^2 + BC^2 \Rightarrow 15^2 = y^2 + z^2 \Rightarrow y^2 + z^2 = 225 \tag{1}
+$$
+
+Using the fact that triangle $ \triangle ADC $ is right-angled at $ D $:
+
+$$
+AC^2 = AD^2 + CD^2 \Rightarrow y^2 = 3^2 + x^2 \Rightarrow y^2 = 9 + x^2 \tag{2}
+$$
+
+From the similar triangles $ \triangle ADC \sim \triangle CDB $, we get:
+
+$$
+\frac{AD}{CD} = \frac{CD}{DB} = \frac{AC}{CB}
+$$
+
+Substitute known values:
+
+$$
+\frac{3}{x} = \frac{x}{12} \Rightarrow x^2 = 36 \Rightarrow x = 6
+$$
+
+Now plug $ x = 6 $ into equation (2):
+
+$$
+y^2 = 9 + 36 = 45 \Rightarrow y = \sqrt{45} = 3\sqrt{5}
+$$
+
+Now plug $ y = 3\sqrt{5} $ into equation (1):
+
+$$
+(3\sqrt{5})^2 + z^2 = 225 \Rightarrow 45 + z^2 = 225 \Rightarrow z^2 = 180
+\Rightarrow z = \sqrt{180} = \sqrt{36 \cdot 5} = 6\sqrt{5}
+$$
+
+---
+
+### **Conclusion**
+
+All geometric and algebraic constraints are satisfied with the value of $ z = 6\sqrt{5} $, and this value is directly supported by both the Pythagorean Theorem and the similarity of triangles.
+
+---
+
+**Final Answer:**  
+$$
+\boxed{\text{D}}
+$$
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

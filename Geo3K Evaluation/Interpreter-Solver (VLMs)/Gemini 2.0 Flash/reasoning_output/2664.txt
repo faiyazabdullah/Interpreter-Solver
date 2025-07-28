@@ -1,0 +1,103 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2664.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2664.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Point(F)
+Point(G)
+Point(H)
+Point(I)
+Point(J)
+Circle(I)
+PointLiesOnCircle(E,Circle(I))
+PointLiesOnCircle(F,Circle(I))
+PointLiesOnCircle(C,Circle(I))
+PointLiesOnCircle(D,Circle(I))
+PointLiesOnCircle(G,Circle(I))
+PointLiesOnCircle(J,Circle(I))
+Line(A,E)
+Line(A,J)
+Line(B,D)
+Line(B,G)
+Line(F,E)
+Line(C,D)
+Line(F,G)
+Line(C,E)
+IntersectAt(Line(F,G),Line(C,E),Line(F,G),Point(H))
+PointLiesOnLine(A,Line(A,E))
+PointLiesOnLine(A,Line(A,J))
+PointLiesOnLine(E,Line(A,E))
+PointLiesOnLine(J,Line(A,J))
+PointLiesOnLine(B,Line(B,D))
+PointLiesOnLine(B,Line(B,G))
+PointLiesOnLine(D,Line(B,D))
+PointLiesOnLine(G,Line(B,G))
+PointLiesOnLine(F,Line(F,G))
+PointLiesOnLine(G,Line(F,G))
+PointLiesOnLine(C,Line(C,E))
+PointLiesOnLine(E,Line(C,E))
+MeasureOf(Angle(E,A,J),15)
+MeasureOf(Arc(F,C),95)
+Equals(MeasureOf(Angle(F,I,C)),95)
+
+QUESTION:
+What is the measure of \angle B if m \angle A = 10?
+
+CHOICES:
+A. 30
+B. 35
+C. 47.5
+D. 90
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From MeasureOf(Arc(F,C),95) + Circle property → MeasureOf(Angle(F,E,C)) = 95/2 = 47.5
+From PointLiesOnCircle(E,Circle(I)) + PointLiesOnCircle(F,Circle(I)) + PointLiesOnCircle(C,Circle(I)) + PointLiesOnCircle(G,Circle(I)) → Quadrilateral CEFG is cyclic quadrilateral
+From Cyclic quadrilateral CEFG → Angle(F,G,C) + Angle(F,E,C) = 180 → Angle(F,G,C) = 180 - 47.5 = 132.5
+From MeasureOf(Angle(E,A,J),15) + MeasureOf(Angle(A), 10) (given new value) → MeasureOf(Angle(E,A,J),10)
+From Line(A,E) + Line(A,J) → Angle(A,E,J) is exterior angle of triangle AJE.
+From Angle(E,A,J) = 10 → Angle(E,A,J) = 10 degrees.
+In quadrilateral AEHG, Angle(AEH) + Angle(AHG) + Angle(EGH) + Angle(EAG) = 360 degrees
+Angle(AEH) = Angle(AEF), Angle(EGH) = Angle(DGB)
+From Line(F,G) + Line(C,E) + IntersectAt(Line(F,G),Line(C,E),Line(F,G),Point(H)) → Angle(E,H,G) + Angle(F,H,E) = 180
+Angle(E,H,G) = Angle(F,H,C)
+
+Angle(AEH) + Angle(FHC) = 180 (angles of quad. AEHF)
+
+In triangle ABG, angle A + angle B + angle AGB = 180.
+Angle(AGB) + angle(FGC) = 180, angle(AGB) = 180-angle(FGC)
+Angle A + angle B + 180-angle(FGC) = 180.
+Angle A + angle B = angle FGC
+Angle B = angle FGC - angle A
+
+The angle FGC and A are known now
+Angle FGC = supplementary of Angle FGE.
+Since quadrilateral CFEG is cyclic, then AngleCFE + Angle CGE = 180 and Angle FCG + AngleFEG = 180.
+Arc FC = 95 therefore Angle FEC = 95/2 = 47.5.
+Angle FEG = supplementary of Angle FCG.
+AngleFEJ = AngleFEG + Angle GEJ.
+In triangle AEJ, AngleAEJ + AngleAJE + AngleEAJ = 180.
+Angle EAJ = 10.
+AngleAEJ + AngleAJE = 170.
+
+AngleFEJ = AngleAEJ - AngleAEF = 170- AngleAJE - AngleAEF = 170-Angle AJE -47.5 = AngleFEJ =47.5
+AngleFEJ = AngleFEG - AngleJEG
+
+Angle FGC = Angle FGE = Angle E = Angle B +10 Angle GEJ +10
+Angle FGC = 47.5+Angle A
+Since Angle FGC = Angle FBC
+
+Since m<A =10 , Angle B = 35 is close to it
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

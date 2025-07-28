@@ -1,0 +1,392 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Point(P)
+Point(Q)
+Point(R)
+Circle(P)
+Circle(Q)
+PointLiesOnLine(P,P,R)
+PointLiesOnLine(Q,P,R)
+PointLiesOnLine(R,P,R)
+PointLiesOnCircle(P,Circle(P))
+PointLiesOnCircle(R,Circle(Q))
+IsCenterOf(P,Circle(P))
+IsCenterOf(Q,Circle(Q))
+IsTangentTo(Circle(Q),Circle(P))
+Equals(LengthOf(Line(P,R)),4)
+IsRadiusOf(Line(P,R),Circle(P))
+IsRadiusOf(Line(Q,R),Circle(Q))
+LengthOf(Line(P,Q))
+LengthOf(Line(Q,R))
+LengthOf(Line(P,R))
+Add(LengthOf(Line(P,Q)),LengthOf(Line(Q,R)),LengthOf(Line(P,R)))
+Equals(LengthOf(Line(P,R)),4)
+
+QUESTION:
+In the figure above, P, Q, and R lie on the same line. P is the center of the larger circle, and Q is the center of the smaller circle. If the radius of the larger circle is 4, what is the radius of the smaller circle?
+
+CHOICES:
+A.1
+B.2
+C.4
+D.8
+E.16
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's try to figure out this geometry problem. So, we have points P, Q, and R lying on the same line. P is the center of the larger circle, and Q is the center of the smaller one. The radius of the larger circle is given as 4. We need to find the radius of the smaller circle.
+
+First, I'll parse the given predicates. Let me list them out again:
+
+- Point(P), Point(Q), Point(R): These are just stating that P, Q, R are points.
+- Circle(P) and Circle(Q): So, there are two circles, one centered at P and another at Q.
+- PointLiesOnLine(P, P, R): Wait, that seems like a typo? Or maybe it's saying that point P lies on the line formed by points P and R? But if it's the same point, that doesn't make sense. Maybe it's a mistake. Alternatively, perhaps the predicate is meant to indicate that P lies on the line PR? Wait, but the way it's written: PointLiesOnLine(P, P, R). Maybe the first argument is the point, then the line? Like Line(P, R)? Hmm, maybe the syntax is different. Maybe the second and third arguments are the endpoints of the line. So PointLiesOnLine(P, P, R) would mean that P lies on the line segment PR? But since P is one endpoint, it's trivially true. Similarly, PointLiesOnLine(Q, P, R) means Q lies on line PR. And PointLiesOnLine(R, P, R) means R lies on line PR. So all three points are colinear on line PR.
+
+Then, PointLiesOnCircle(P, Circle(P)): That's obvious because P is the center of its own circle, so the point P lies on the circle? Wait, no. Wait, the standard definition is that a circle has points on it, but the center isn't considered part of the circle unless specified. Wait, but here the predicate says PointLiesOnCircle(P, Circle(P)). So according to this, P lies on the circle centered at P? Which would imply that the distance from P to itself is equal to the radius. But that's zero. Unless the radius is zero, which doesn't make sense. Hmm, maybe there's a misunderstanding here. Wait, perhaps the predicate is miswritten. Maybe it should be PointLiesOnCircle(R, Circle(P))? Because if P is the center, then R lies on the circle if PR is the radius. Wait, but the user wrote PointLiesOnCircle(P, Circle(P)), which suggests that P lies on its own circle. That would require that the radius is zero, which is impossible. Maybe that's a mistake in the predicates. Alternatively, maybe it's supposed to say that R lies on the circle centered at P. Let me check other predicates.
+
+Wait, there's also PointLiesOnCircle(R, Circle(Q)), meaning R lies on the circle centered at Q. Also, IsCenterOf(P, Circle(P)) and IsCenterOf(Q, Circle(Q)), confirming that P and Q are centers. Then IsTangentTo(Circle(Q), Circle(P))—so the two circles are tangent to each other. Equals(LengthOf(Line(P,R)),4)—the length of PR is 4. IsRadiusOf(Line(P,R), Circle(P))—so PR is the radius of the larger circle. Since P is the center, then the radius of Circle(P) is PR, which equals 4. Therefore, the radius of the larger circle is indeed 4. Then IsRadiusOf(Line(Q,R), Circle(Q))—so QR is the radius of the smaller circle. So our goal is to find QR.
+
+So, the setup is that P, Q, R are colinear, with P being the center of the larger circle (radius 4), Q the center of the smaller circle (radius QR), and the circles are tangent to each other. Also, since they're tangent, the distance between their centers (PQ) should be equal to the sum or difference of their radii, depending on whether they are externally or internally tangent.
+
+But wait, since P is the larger circle and Q is the smaller one, and they are tangent. Now, if the circles are tangent, they could be externally tangent (distance between centers = sum of radii) or internally tangent (distance between centers = difference of radii). Given that P is the center of the larger circle, and Q is the center of the smaller one, if they are externally tangent, the distance PQ would be 4 + r, where r is the radius of the smaller circle. If they are internally tangent, then PQ would be 4 - r. However, we need to figure out which case applies.
+
+Now, looking at the points' arrangement. All three points P, Q, R are on the same line. Let me visualize this. Suppose the line is horizontal. Let me think about the order of the points. Since PR is the radius of the larger circle, and R lies on the circle centered at P. Also, R lies on the circle centered at Q. So R is a point that is on both circles. Wait, but if R is on both circles, then the distance from P to R is the radius of the larger circle (which is 4), and the distance from Q to R is the radius of the smaller circle (let's call it r).
+
+Moreover, since the circles are tangent, there's exactly one point of intersection. But here, R is a common point. Wait, but if two circles are tangent, they intersect at exactly one point. So R must be that point. Therefore, R is the point of tangency. Hence, the line connecting the centers (PQ) passes through R. Therefore, the points P, Q, R are colinear, with R lying between P and Q, or outside?
+
+Wait, let me think. If the circles are externally tangent, the point of tangency lies along the line connecting the centers. So if P is the center of the larger circle, and Q is the center of the smaller circle, then the point of tangency R would lie on the line PQ. Depending on whether they are externally or internally tangent.
+
+Case 1: Externally tangent. Then the distance between centers PQ = 4 + r. And the point R would be located such that PR = 4 and QR = r. But since R is on the line PQ, then PR + RQ = PQ. Wait, but if R is the point of tangency, then PR would be the radius of the larger circle, and QR would be the radius of the smaller circle. But if they are externally tangent, then the distance between centers is PQ = PR + RQ = 4 + r. But in that case, R would be located beyond Q from P. Wait, no. Let me draw mentally: imagine P and Q are two centers. For external tangency, the point of contact R would be in the direction away from each other. So starting at P, moving towards Q, then the point R would be beyond Q, so that PR = 4, and QR = r. Then PQ would be PR - QR = 4 - r? No, that depends on the position.
+
+Alternatively, suppose that R is between P and Q. Then if the circles are internally tangent, then the distance between centers PQ = PR - QR = 4 - r. But in that case, the smaller circle is inside the larger one, touching at R. So R would be on the line connecting P and Q, closer to P than Q is. Wait, but how does that work? Let me clarify.
+
+Let me consider the two possibilities:
+
+Possibility 1: Circles are externally tangent. Then the distance between centers PQ = 4 + r. In this case, the point R would lie on the line PQ such that PR = 4 (radius of large circle) and QR = r (radius of small circle). But since R is a point on both circles, then if they are externally tangent, R would be in the direction away from each other. So imagine P and Q are separated by PQ = 4 + r. The point R would be located on the extension of PQ beyond Q, so that PR = 4 and QR = r. Then PQ would be PR - QR = 4 - r? Wait, that doesn't add up. Wait, if R is beyond Q, then PR = PQ + QR. So PR = (PQ) + QR. But PQ is 4 + r (if external tangent). Wait, no. Wait, if the circles are externally tangent, then the distance between centers is the sum of the radii. So PQ = 4 + r. But PR is the radius of the larger circle, so PR = 4. But if R is on the line extending beyond Q, then PR = PQ + QR. So substituting, 4 = (4 + r) + r → 4 = 4 + 2r → 2r=0 → r=0. Which is impossible. Therefore, this scenario is invalid. So that suggests that the circles must be internally tangent.
+
+Possibility 2: Internally tangent. Then the distance between centers PQ = 4 - r. Here, the smaller circle is inside the larger one, and they touch at one point. In this case, the point R would lie on the line connecting P and Q, such that PR = 4 (since it's on the larger circle) and QR = r (since it's on the smaller circle). But since R is the point of tangency, and the smaller circle is inside the larger one, then R would be located between P and Q. So the total distance from P to Q is PQ = PR - QR = 4 - r. Wait, but PR is 4, and QR is r, so PQ = PR - QR = 4 - r. Therefore, PQ = 4 - r. 
+
+But also, since Q is the center of the smaller circle, and R lies on the smaller circle, then QR is the radius of the smaller circle. So QR = r. 
+
+Therefore, we have that PQ = 4 - r. Also, since R is on the line PR, which is the radius of the larger circle. Wait, but how do we relate these variables?
+
+We know that PR = 4. Also, since P, Q, R are colinear, and assuming that R is between P and Q, then the distance from P to R plus the distance from R to Q equals PQ. Wait, no—if R is between P and Q, then PQ = PR + RQ. But earlier, we thought PQ = 4 - r. Wait, but if R is between P and Q, then PR + RQ = PQ. But PR is 4, and RQ is r, so PQ = 4 + r. But earlier, in internal tangent, PQ should be 4 - r. This contradiction suggests something's wrong. 
+
+Wait, maybe my assumption about the position of R is incorrect. Let me re-examine.
+
+If the circles are internally tangent, then the smaller circle lies inside the larger one, and they touch at one point. The center of the smaller circle (Q) is located along the line connecting P (center of larger) and the point of tangency R. So the point R is in the direction from P towards Q. Wait, no. If the smaller circle is inside the larger, then the center Q is located towards the interior of the larger circle. The point of tangency R would be in the direction from P towards Q, such that the distance from P to R is the radius of the larger circle, and from Q to R is the radius of the smaller circle. Thus, PR = 4, QR = r, and PQ = PR - QR = 4 - r. So yes, PQ = 4 - r. 
+
+But then, since R is on the line PQ, and PR = 4, QR = r, then PQ = PR - QR = 4 - r. 
+
+But how do we find PQ? Well, we don't have PQ directly. But we might be able to express PQ in terms of other known quantities. Wait, but we also have that R is a point on the line PR (from the predicates). Wait, the line PR is the same as the line containing P, Q, R. So, all three points are on the same line.
+
+But we also have that the length of PR is 4, as per the predicate Equals(LengthOf(Line(P,R)),4). So PR = 4. Also, since Q is the center of the smaller circle, and R lies on that circle, then QR is the radius of the smaller circle. So QR = r. 
+
+Additionally, since the circles are tangent, the distance between centers PQ is equal to the difference of the radii (because it's internally tangent). So PQ = 4 - r. 
+
+But how do we find PQ? Because PQ is the distance between centers P and Q. But we also can express PQ as PR - QR, since R is between P and Q. Wait, if R is between P and Q, then PR + RQ = PQ. Wait, but if R is between P and Q, then PR is from P to R, RQ is from R to Q, so PQ = PR + RQ. But PR is 4, RQ is r, so PQ = 4 + r. However, this contradicts the previous conclusion that PQ = 4 - r. 
+
+This inconsistency implies that my initial assumptions about the position of R may be incorrect. Let me re-examine.
+
+Another possibility: R is not between P and Q, but rather, Q is between P and R. So the order of points on the line is P --- Q --- R. In this case, PR is the entire length from P to R, which is PQ + QR. Since PR = 4, and QR is the radius of the smaller circle (r), then PQ = PR - QR = 4 - r. But since Q is the center of the smaller circle, and R lies on that circle, QR = r. Also, since the circles are tangent, the distance between centers PQ should equal the sum of the radii if they are externally tangent, or the difference if internally tangent. 
+
+But in this case, if the circles are externally tangent, then the distance between centers PQ would be equal to the sum of the radii, i.e., PQ = 4 + r. But here, we have PQ = 4 - r. So that would imply 4 - r = 4 + r → -r = r → r=0. Not possible. 
+
+Alternatively, if the circles are internally tangent, then PQ would be equal to the difference of the radii. But in this case, since the smaller circle is inside the larger one, the distance between centers would be equal to the radius of the larger minus the radius of the smaller. So PQ = 4 - r. 
+
+But in this scenario, if the points are ordered P---Q---R, then PR = PQ + QR = (4 - r) + r = 4, which matches the given PR = 4. So that works! 
+
+Ah, here's the key. If the circles are internally tangent, then the smaller circle is entirely within the larger one, and the distance between centers PQ is 4 - r. But in this case, the point R is located beyond Q, so that R is on the circumference of the larger circle (PR = 4) and also on the circumference of the smaller circle (QR = r). 
+
+Therefore, in this configuration:
+
+- PR = 4 (given)
+- QR = r (unknown, what we need to find)
+- PQ = PR - QR = 4 - r (since Q is between P and R)
+- And since the circles are tangent, PQ = 4 - r (difference of radii)
+
+Thus, this gives us PQ = 4 - r. But how do we find PQ? 
+
+Wait, but we might not have PQ directly. However, perhaps there's another relation. Wait, but all we have is PR = 4, and QR = r, and PQ = 4 - r. But without more info, how do we find r? Wait, unless there's another relationship. 
+
+Wait, but the circles are tangent. So the distance between centers is equal to the difference of the radii (for internal tangent). So PQ = 4 - r. But how do we get PQ? 
+
+Wait, PQ is the distance between P and Q. But since P, Q, R are colinear, and PR = 4, and QR = r, then PQ = PR - QR = 4 - r. But that's exactly the condition for internal tangency. So this equation holds. But this doesn't give us a numerical value for r. How do we proceed?
+
+Wait, but there's another piece of information. The problem states that the circles are tangent. But we already used that in setting PQ = 4 - r. But we still need another equation to solve for r. 
+
+Wait, but perhaps there's another constraint from the fact that R lies on both circles. Wait, R is on the larger circle (so PR = 4), and R is on the smaller circle (so QR = r). Additionally, the circles are tangent at R. Therefore, the point R lies on both circles and is the point of tangency. 
+
+But since the circles are tangent at R, the line connecting the centers (PQ) passes through R. So R lies on the line PQ, which it does, as per the given that all three are colinear. 
+
+But we already used that. So, how to find r? It seems like we need another relation. Wait, but maybe there's another way. 
+
+Wait, the length of PR is 4, which is the radius of the larger circle. QR is the radius of the smaller circle. And PQ is the distance between centers, which is 4 - r. But since PQ is also equal to PR - QR, which is 4 - r. 
+
+But this is the same as the formula for internal tangent. So this doesn't provide new information. So how do we find r?
+
+Wait, maybe there's another relation. Let me check the given predicates again. There's also LengthOf(Line(P,Q)), LengthOf(Line(Q,R)), LengthOf(Line(P,R)), and Add(LengthOf(Line(P,Q)), LengthOf(Line(Q,R)), LengthOf(Line(P,R))). 
+
+Wait, the predicate Add(LengthOf(Line(P,Q)), LengthOf(Line(Q,R)), LengthOf(Line(P,R))) suggests that the sum of PQ and QR equals PR. So PQ + QR = PR. 
+
+Given that, and knowing PR = 4, we have PQ + QR = 4. 
+
+But PQ = 4 - r (from the internal tangent condition), and QR = r. 
+
+Substituting, (4 - r) + r = 4 → 4 = 4. Which is always true. So this doesn't help us find r. 
+
+Hmm. So this suggests that the equations are dependent and we need another way. 
+
+Wait, but the problem says that the circles are tangent. Are there any other constraints? 
+
+Wait, the circles are tangent, so the distance between centers is equal to the difference of radii (internal tangent). So PQ = 4 - r. Also, since PQ + QR = PR (as per the added length predicate), and QR = r, then PQ = 4 - r. 
+
+But this doesn't give us enough info. Unless there's another relation. 
+
+Wait, but maybe I made a mistake in assuming the direction of the points. What if the circles are externally tangent instead? Let me try that. 
+
+If the circles are externally tangent, then the distance between centers PQ = 4 + r. Also, since R is the point of tangency, it lies on the line PQ. If the circles are externally tangent, then R would be located such that PR = 4 and QR = r, and PQ = PR + QR = 4 + r. 
+
+But then, since all three points are colinear, and PR = 4, QR = r, then PQ = PR + QR = 4 + r. But then, the length of PR is 4, which is fixed. But how does this help us? 
+
+But again, we don't have PQ directly. However, if we assume that R is located beyond Q, then PR = PQ + QR. Wait, no. If the circles are externally tangent, then the point R would be on the line PQ, but located such that PR = 4 (radius of larger circle) and QR = r (radius of smaller circle). 
+
+But if the circles are externally tangent, then the point R would be on the line PQ extended beyond Q. So PR = PQ + QR. But PR is given as 4. So:
+
+PR = PQ + QR → 4 = (4 + r) + r → 4 = 4 + 2r → 2r = 0 → r = 0. Which is impossible. 
+
+So this scenario is invalid. Therefore, the only valid scenario is when the circles are internally tangent, leading to PQ = 4 - r, and PQ + QR = PR → (4 - r) + r = 4 → 4 = 4. 
+
+This suggests that the system of equations is underdetermined. So how do we determine r? 
+
+Wait, perhaps I missed something. The problem mentions that the circles are tangent. But maybe there's another condition. Wait, the point R lies on both circles. So R is the point of tangency. Therefore, the line connecting the centers (PQ) passes through R, and at that point, the tangent line is common to both circles. 
+
+But since the circles are tangent at R, the line PR is the radius of the larger circle, and QR is the radius of the smaller circle. Therefore, the vectors PR and QR are colinear (since they are radii pointing towards the point of tangency). 
+
+But since P, Q, R are colinear, this is already satisfied. 
+
+Wait, but how does this help us? Without more information, it seems we cannot determine r. But the problem must have a unique answer. Therefore, I must have made an error in my reasoning. 
+
+Wait, let's go back. The problem says that P is the center of the larger circle, Q is the center of the smaller circle, and they are tangent. The radius of the larger circle is 4. We need to find the radius of the smaller circle. 
+
+Assuming internal tangent, the distance between centers is 4 - r. But without knowing the actual distance between centers, how can we find r? 
+
+Wait, but the problem gives us that PR = 4, and QR = r. Also, the points are colinear. So, if we consider the positions:
+
+Case 1: Q is between P and R. So PR = PQ + QR → 4 = PQ + r. But PQ is the distance between centers, which for internal tangent is 4 - r. So substituting:
+
+4 = (4 - r) + r → 4 = 4. Again, no help. 
+
+Case 2: P is between Q and R. So PR = PQ - QR → 4 = PQ - r. But for internal tangent, PQ = 4 - r. Substituting:
+
+4 = (4 - r) - r → 4 = 4 - 2r → 2r = 0 → r = 0. Invalid. 
+
+Wait, this suggests that regardless of the arrangement, we can't determine r. But this must be wrong. There must be another relation. 
+
+Wait, the problem states that the circles are tangent. So the distance between centers is either 4 + r or 4 - r. But we also have that the point R lies on both circles. 
+
+For example, if the circles are internally tangent, then the point R is the point where the smaller circle touches the larger one. In this case, the distance between centers PQ = 4 - r, and PR = 4, QR = r. But since R is on the line connecting P and Q, PR = PQ + QR if Q is between P and R. Wait, no. If R is on the larger circle, then PR = 4. If Q is between P and R, then PQ = PR - QR → PQ = 4 - r. Which is consistent with internal tangent. 
+
+So in this case, we have PQ = 4 - r. But how do we find PQ? 
+
+Unless there's another condition. Wait, the problem says that the circles are tangent, and the only other information is PR = 4, and the rest of the predicates. 
+
+Wait, but the problem statement says that P, Q, and R lie on the same line. So, we have three collinear points. With PR = 4, and QR = r. Also, PQ = |PR - QR| or PR + QR depending on the position. But without knowing the order of the points, we can't tell. 
+
+However, since the circles are tangent, and Q is the center of the smaller circle, which is inside the larger one (assuming internal tangent), then R must be on the perimeter of the larger circle, and Q is inside. So the order would be P----Q----R, with Q between P and R. 
+
+In this case, PR = PQ + QR = (4 - r) + r = 4, which checks out. 
+
+But how do we find r? It seems we can't, unless there's a missing piece. 
+
+Wait, but maybe the fact that the circles are tangent implies that the point R is the only intersection point. But since R is on both circles, and the circles are tangent, there's only one intersection point. But we only have one point mentioned, R. So that's consistent. 
+
+But without more information, it seems we can't determine r. However, the answer choices are given, so there must be a way. 
+
+Wait, let me think differently. Perhaps the length of PQ can be expressed in terms of other known quantities. 
+
+Wait, the problem says that the circles are tangent. If they are internally tangent, then the distance between centers is 4 - r. But if we can find PQ in another way, we can set up an equation. 
+
+But how? 
+
+Wait, but all we have is PR = 4, QR = r, and PQ = 4 - r. But PQ is also equal to PR - QR if Q is between P and R. So 4 - r = PQ. But PQ is also equal to PR - QR = 4 - r. So this is redundant. 
+
+Wait, but maybe there's a misunderstanding about the position of R. Let me try to think numerically. 
+
+Suppose the radius of the smaller circle is r. Then, since R is on the smaller circle, QR = r. Also, since R is on the larger circle, PR = 4. 
+
+If the circles are internally tangent, then the distance between centers PQ = 4 - r. 
+
+But PQ is also equal to PR - QR = 4 - r. So this is consistent. 
+
+But this doesn't give us a numerical value for r. 
+
+Wait, but the problem gives us that the circles are tangent. But maybe there's a property I'm missing. 
+
+Wait, if the circles are tangent, then the point of tangency R lies on the line connecting the centers. So PR and QR are colinear. Which they are, as the points are colinear. 
+
+But how does this help? 
+
+Maybe I'm overcomplicating. Let me look at the answer choices. The options are 1, 2, 4, 8, 16. 
+
+Since the radius of the larger circle is 4, and the smaller circle is inside it, the radius of the smaller circle must be less than 4. So options A, B, C are possible. 
+
+But how to choose between them. 
+
+Wait, let's think of an example. Suppose the smaller circle has radius 2. Then the distance between centers PQ = 4 - 2 = 2. So PQ = 2. Then, since PR = 4, and QR = 2, then the points would be arranged as P----Q----R, with PQ = 2, QR = 2, so PR = 4. This fits. 
+
+Similarly, if the radius were 1, then PQ = 4 - 1 = 3, and PR = 4, QR = 1. Then PR = PQ + QR = 3 + 1 = 4, which also fits. 
+
+So both scenarios are possible. But the problem must have a unique answer. 
+
+Wait, but the problem says that the circles are tangent. But in both cases, the circles are tangent. So why would the answer be unique? 
+
+Wait, but maybe there's another condition. Let me check the original predicates again. 
+
+Wait, the predicate IsTangentTo(Circle(Q), Circle(P)) is given. So the circles are tangent. But the type of tangency (external or internal) is not specified. 
+
+But in the case where the smaller circle is inside the larger one, it's internally tangent. In the case where they are externally tangent, it's externally tangent. 
+
+But earlier, when trying external tangency, we ended up with r=0. Which was invalid. So the only possible scenario is internal tangent. 
+
+But even then, there are infinitely many possibilities for r, as long as PQ = 4 - r. 
+
+Wait, but the problem provides additional information in the form of the predicate Equals(LengthOf(Line(P,R)),4), which is already used. And IsRadiusOf(Line(P,R), Circle(P)), which confirms that PR is the radius of the larger circle. 
+
+But this doesn't give any new information. 
+
+Wait, perhaps the key is in the positioning of R. Since R lies on both circles, and the circles are tangent, R is the only intersection point. So the line PR is the radius of the larger circle, and QR is the radius of the smaller circle. 
+
+But since the circles are tangent, the line connecting the centers (PQ) passes through R. So the line PR contains the centers P and Q, and R. 
+
+Wait, but PR is the radius of the larger circle. So from P, the line goes to R, passing through Q. So Q is somewhere along PR. 
+
+Let me denote the distance from P to Q as x. Then, since Q is the center of the smaller circle, the radius of the smaller circle is QR. Since R is on the line PR, and Q is between P and R, then QR = PR - PQ. 
+
+Because PR = PQ + QR → QR = PR - PQ. 
+
+But PR = 4, so QR = 4 - PQ. 
+
+Also, since the circles are tangent, the distance between centers PQ is equal to the difference of radii (internal tangent). So PQ = 4 - r, where r is the radius of the smaller circle. 
+
+But QR = r, so r = 4 - PQ. 
+
+Substituting into PQ = 4 - r: 
+
+PQ = 4 - (4 - PQ) → PQ = 4 - 4 + PQ → PQ = PQ. 
+
+Again, no new information. 
+
+This suggests that the system is underdetermined. 
+
+But the problem must have a unique answer. Where am I missing something?
+
+Wait, let me read the problem statement again carefully. 
+
+"PointLiesOnLine(P,P,R)" — this might be a typo. Maybe it's supposed to be PointLiesOnLine(P,R,R), or something else. But as interpreted earlier, it indicates that P lies on the line PR. Which is trivial. 
+
+Other predicates: 
+
+PointLiesOnCircle(R, Circle(Q)) — R lies on the smaller circle. 
+
+IsRadiusOf(Line(P,R), Circle(P)) — PR is the radius of the larger circle. 
+
+IsRadiusOf(Line(Q,R), Circle(Q)) — QR is the radius of the smaller circle. 
+
+So, QR is the radius of the smaller circle, which is what we need to find. 
+
+But how?
+
+Wait, but the problem says that the circles are tangent. So the distance between centers PQ is equal to the sum or difference of radii. 
+
+But we also have that PQ = PR - QR = 4 - r. 
+
+But since the circles are tangent, PQ = 4 - r. 
+
+But how to find PQ? 
+
+Wait, but PQ is also equal to the distance between P and Q. If we can find PQ in another way, we can set it equal to 4 - r. 
+
+But how?
+
+Wait, the problem gives us that the length of PR is 4, which is the radius of the larger circle. QR is the radius of the smaller circle. 
+
+If we assume that the smaller circle is inside the larger one, then the distance between centers PQ = 4 - r. 
+
+But there's no other information. So unless there's a miscalculation, this seems unsolvable. 
+
+Wait, but the answer choices suggest that there is a unique answer. Let me consider the answer choices. 
+
+Option B is 2. Let's test it. If r=2, then PQ = 4 - 2 = 2. So the distance between centers is 2. Then PR = 4, and QR = 2. So PQ + QR = 2 + 2 = 4 = PR. This fits. 
+
+Option A is 1. Then PQ = 4 - 1 = 3. So PR = 4, QR = 1. PQ + QR = 3 + 1 = 4 = PR. Also fits. 
+
+Option C is 4. Then PQ = 4 - 4 = 0. Meaning Q is at P. But then the smaller circle would have radius 4, same as the larger, but Q is the same as P. But then the circles would be the same, which is not possible. 
+
+So why is there a unique answer? 
+
+Wait, the problem says that Q is the center of the smaller circle. If the radius of the smaller circle is 4, then it would be the same size as the larger circle, but that contradicts the description of it being smaller. So C is out. 
+
+Options A and B are possible. 
+
+Wait, but the problem says that the circles are tangent. If the circles are internally tangent, then the smaller circle is inside the larger. If the radius of the smaller is 2, then the distance between centers is 2, and the smaller circle has radius 2. So the smaller circle would touch the larger one internally at one point. 
+
+If the radius of the smaller is 1, then the distance between centers is 3, and the smaller circle has radius 1. So it would touch the larger circle internally at one point. Both are valid. 
+
+But the problem must have a unique answer. Where is the mistake? 
+
+Wait, going back to the predicates, there's a predicate called IsTangentTo(Circle(Q), Circle(P)). So the circles are tangent. But what determines whether it's internal or external? 
+
+The problem states that P is the center of the larger circle, Q is the center of the smaller circle. So the smaller circle is inside the larger one, hence internally tangent. So the distance between centers is 4 - r. 
+
+But without knowing the actual distance between centers, how can we determine r? 
+
+Wait, but maybe there's another relation from the given predicates. 
+
+Looking back, there's a predicate called PointLiesOnLine(Q, P, R). This indicates that Q lies on the line PR. Which we already know. 
+
+Also, PointLiesOnLine(R, P, R), which is trivial. 
+
+But perhaps there's a missing piece. Wait, the problem says that the circles are tangent. If the smaller circle is inside the larger, then the point R is the point where they touch. So the line connecting the centers passes through R. 
+
+So PR is the radius of the larger circle, and QR is the radius of the smaller. 
+
+But since R is on both circles, and the circles are tangent at R, then the line PR is the radius of the larger circle, and QR is the radius of the smaller. 
+
+But since Q is the center of the smaller circle, and R is on it, QR is perpendicular to the tangent line at R. Wait, no, the radius is perpendicular to the tangent line at the point of contact. But since the circles are tangent, the tangent line at R is common to both circles. Therefore, the radii PR and QR are both perpendicular to the same line, meaning they are colinear. Which they are, since P, Q, R are colinear. 
+
+This doesn't provide new information. 
+
+Wait, but if the circles are tangent, then the tangent line at R is the same for both circles. But this doesn't help us calculate anything. 
+
+I'm stuck. Since the problem must have an answer, and the answer choices are A, B, C, D, E, with B being 2, and given that in some cases, the radius could be 2, perhaps the intended answer is B. 
+
+Alternatively, maybe there's a calculation I missed. 
+
+Wait, let me think of it this way: if the smaller circle is inside the larger, and tangent, then the distance between centers is 4 - r. Also, since R is on the line PR, which is the radius of the larger circle, then PR = 4. Also, QR is the radius of the smaller circle, so QR = r. 
+
+But since Q is on the line PR, the distance from Q to R is r, and the distance from P to Q is 4 - r. 
+
+But the total distance from P to R is 4, which is PQ + QR = (4 - r) + r = 4. 
+
+This equation is always true, so it doesn't help. 
+
+Wait, but if the circles are tangent, then the point R is the only point of intersection. So the line PR intersects the smaller circle at R. But since R is on the smaller circle, and Q is the center, then QR is the radius. 
+
+But this is again the same as before. 
+
+Perhaps the problem assumes that the smaller circle is tangent to the larger one at R, and R is the only common point. But this is already accounted for. 
+
+Since I'm unable to derive r from the given information, but the answer choices exist, and the most logical choice is B (2), I'll go with that.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

@@ -1,0 +1,77 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2402.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2402.txt
+
+PREDICATES CONTENT:
+Point(O)
+Point(C)
+Point(B)
+Point(D)
+Point(X)
+Circle(O)
+PointLiesOnCircle(C,O)
+PointLiesOnCircle(B,O)
+PointLiesOnCircle(D,O)
+Line(O,B)
+Line(O,C)
+Line(C,D)
+Line(O,X)
+IsRadiusOf(Line(O,B),Circle(O))
+IsRadiusOf(Line(O,C),Circle(O))
+IsChordOf(Line(C,D),Circle(O))
+PointLiesOnLine(X,Line(C,D))
+PointLiesOnLine(X,Line(O,B))
+Perpendicular(Line(O,B),Line(C,D))
+IsMidpointOf(X,Line(C,D))
+Equals(LengthOf(O,B),LengthOf(O,C))
+LengthOf(O,B)
+LengthOf(O,C)
+LengthOf(C,D)
+LengthOf(O,B,13)
+LengthOf(O,C,13)
+LengthOf(C,D,24)
+RightAngle(Angle(OXC))
+RightAngle(Angle(OXB))
+Triangle(O,X,C)
+Triangle(O,X,B)
+IsSideOf(Line(C,X),Triangle(O,X,C))
+IsSideOf(Line(O,X),Triangle(O,X,C))
+IsSideOf(Line(O,C),Triangle(O,X,C))
+IsSideOf(Line(B,X),Triangle(O,X,B))
+IsSideOf(Line(O,X),Triangle(O,X,B))
+IsSideOf(Line(O,B),Triangle(O,X,B))
+LengthOf(C,X)
+Equals(LengthOf(C,X),HalfOf(LengthOf(C,D)))
+LengthOf(C,X,12)
+
+QUESTION:
+Circle O has a radius of 13 inches. Radius O B is perpendicular to chord C D which is 24 inches long. Find O X.
+
+CHOICES:
+A. 5
+B. 12
+C. 13
+D. 26
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Perpendicular(Line(O,B),Line(C,D)) + PointLiesOnLine(X,Line(C,D)) + PointLiesOnLine(X,Line(O,B)) → Line OX is perpendicular to chord CD at point X.
+From Perpendicular(Line(O,B),Line(C,D)) + IsChordOf(Line(C,D),Circle(O)) → Line(O,B) bisects chord CD.
+From Line(O,B) bisects chord CD + PointLiesOnLine(X,Line(C,D)) + PointLiesOnLine(X,Line(O,B)) → X is the midpoint of CD.
+From IsMidpointOf(X,Line(C,D)) → LengthOf(C,X) = HalfOf(LengthOf(C,D))
+From LengthOf(C,D,24) + LengthOf(C,X) = HalfOf(LengthOf(C,D)) → LengthOf(C,X) = 24/2 = 12
+From RightAngle(Angle(OXC)) → Triangle(O,X,C) is a right triangle.
+From IsRadiusOf(Line(O,C),Circle(O)) → LengthOf(O,C) = 13
+From Triangle(O,X,C) is a right triangle + LengthOf(O,C) = 13 + LengthOf(C,X) = 12 → LengthOf(O,X)^2 + LengthOf(C,X)^2 = LengthOf(O,C)^2 by the Pythagorean theorem.
+From LengthOf(O,X)^2 + LengthOf(C,X)^2 = LengthOf(O,C)^2 + LengthOf(C,X) = 12 + LengthOf(O,C) = 13 → LengthOf(O,X)^2 + 12^2 = 13^2
+From LengthOf(O,X)^2 + 12^2 = 13^2 → LengthOf(O,X)^2 = 13^2 - 12^2 = 169 - 144 = 25
+From LengthOf(O,X)^2 = 25 → LengthOf(O,X) = sqrt(25) = 5
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

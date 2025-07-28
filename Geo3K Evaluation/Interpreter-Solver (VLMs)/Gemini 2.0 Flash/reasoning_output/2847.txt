@@ -1,0 +1,69 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2847.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2847.txt
+
+PREDICATES CONTENT:
+Point(C)
+Point(H)
+Point(J)
+Point(K)
+Point(L)
+Point(B)
+Point(E)
+Circle(C)
+PointLiesOnCircle(J,Circle(C))
+PointLiesOnCircle(K,Circle(C))
+PointLiesOnCircle(L,Circle(C))
+Line(H,B)
+Line(K,E)
+Tangent(Line(H,B),Circle(C))
+Secant(Line(K,E),Circle(C))
+IntersectAt(Line(H,B),Line(K,E),Line(J,K),Point(J))
+MeasureOf(Angle(I,J,B),116)
+IsRadiusOf(Line(C,J),Circle(C))
+IsRadiusOf(Line(C,K),Circle(C))
+Equals(LengthOf(Line(C,J)),LengthOf(Line(C,K)))
+PointLiesOnLine(H,Line(H,B))
+PointLiesOnLine(J,Line(H,B))
+PointLiesOnLine(B,Line(H,B))
+PointLiesOnLine(K,Line(K,E))
+PointLiesOnLine(E,Line(K,E))
+Arc(J,K,L)
+IsChordOf(Line(J,K),Circle(C))
+IsChordOf(Line(K,L),Circle(C))
+IsChordOf(Line(J,L),Circle(C))
+
+QUESTION:
+Find m \widehat J K L.
+
+CHOICES:
+A. 116
+B. 184
+C. 232
+D. 298
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Tangent(Line(H,B),Circle(C)) and PointLiesOnLine(J,Line(H,B)) → Line(H,B) is tangent to circle C at point J.
+From Tangent(Line(H,B),Circle(C)) at point J and IsRadiusOf(Line(C,J),Circle(C)) → Line(C,J) is perpendicular to Line(H,B).
+From Line(C,J) is perpendicular to Line(H,B) → Angle(C,J,B) is a right angle.
+From Angle(C,J,B) is a right angle → MeasureOf(Angle(C,J,B)) = 90.
+From MeasureOf(Angle(I,J,B),116) and MeasureOf(Angle(C,J,B)) = 90 → MeasureOf(Angle(I,J,C)) = MeasureOf(Angle(I,J,B)) - MeasureOf(Angle(C,J,B)) = 116 - 90 = 26.
+From MeasureOf(Angle(I,J,C)) = 26 → MeasureOf(Angle(K,J,C)) = 26.
+From IsRadiusOf(Line(C,J),Circle(C)) and IsRadiusOf(Line(C,K),Circle(C)) → LengthOf(Line(C,J)) = LengthOf(Line(C,K)).
+From LengthOf(Line(C,J)) = LengthOf(Line(C,K)) → Triangle(C,J,K) is an isosceles triangle.
+From Triangle(C,J,K) is an isosceles triangle → Angle(C,J,K) = Angle(C,K,J).
+From Angle(C,J,K) = Angle(C,K,J) and MeasureOf(Angle(K,J,C)) = 26 → MeasureOf(Angle(C,K,J)) = 26.
+From MeasureOf(Angle(C,K,J)) = 26 and MeasureOf(Angle(K,J,C)) = 26 → MeasureOf(Angle(J,C,K)) = 180 - 26 - 26 = 128.
+From MeasureOf(Angle(J,C,K)) = 128 → The measure of arc JK is 128.
+From Circle(C) → The full circle has 360 degrees.
+From The measure of arc JK is 128 → MeasureOf(arc(J,K,L)) = 360 - 128 = 232.
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

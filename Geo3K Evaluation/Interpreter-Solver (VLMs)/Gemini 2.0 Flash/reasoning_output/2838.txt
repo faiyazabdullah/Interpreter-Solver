@@ -1,0 +1,74 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2838.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2838.txt
+
+PREDICATES CONTENT:
+Point(L)
+Point(N)
+Point(K)
+Point(R)
+Point(Q)
+Point(P)
+Point(M)
+Line(L,N)
+Line(N,K)
+Line(L,M)
+Line(M,K)
+Line(R,P)
+Line(Q,P)
+Line(Q,R)
+Line(N,Q)
+Line(N,M)
+Line(P,R)
+Line(L,K)
+RightAngle(Angle(L,N,M))
+RightAngle(Angle(K,M,L))
+Perpendicular(Line(N,Q),Line(R,P))
+Perpendicular(Line(N,M),Line(L,M))
+Parallel(Line(K,L),Line(R,P))
+Equals(LengthOf(K,N),9)
+Equals(LengthOf(L,N),16)
+Equals(LengthOf(P,M),Mul(2,LengthOf(K,P)))
+PointLiesOnLine(Q,Line(R,P))
+PointLiesOnLine(Q,Line(N,M))
+PointLiesOnLine(N,Line(L,K))
+PointLiesOnLine(R,Line(L,M))
+PointLiesOnLine(P,Line(M,K))
+PointLiesOnLine(M,Line(N,M))
+PointLiesOnLine(N,Line(N,M))
+
+QUESTION:
+If P R \parallel K L, K N = 9, L N = 16, P M = 2 K P, find P R.
+
+CHOICES:
+A. 15
+B. 32 / 2
+C. \frac { 50 } { 3 }
+D. 17
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Line(L,N) + Line(N,K) + PointLiesOnLine(N,Line(L,K)) → L, N, K are collinear.
+From Equals(LengthOf(K,N),9) + Equals(LengthOf(L,N),16) → LengthOf(L,K) = LengthOf(L,N) + LengthOf(K,N) = 16 + 9 = 25.
+From RightAngle(Angle(L,N,M)) → Angle(L,N,M) = 90 degrees.
+From RightAngle(Angle(K,M,L)) → Angle(K,M,L) = 90 degrees.
+From Perpendicular(Line(N,Q),Line(R,P)) → Angle(N,Q,R) = 90 degrees.
+From Parallel(Line(K,L),Line(R,P)) → Line(K,L) || Line(R,P).
+From Line(N,M) + Line(L,M) + Line(K,M) → Triangle(L,M,K).
+From PointLiesOnLine(R,Line(L,M)) + PointLiesOnLine(P,Line(M,K)) + Parallel(Line(K,L),Line(R,P)) → Triangle(M,R,P) ~ Triangle(M,L,K).
+Let LengthOf(K,P) = x. From Equals(LengthOf(P,M),Mul(2,LengthOf(K,P))) → LengthOf(P,M) = 2x.
+LengthOf(M,K) = LengthOf(P,M) + LengthOf(K,P) = 2x + x = 3x.
+Therefore, the ratio of sides in similar triangles is LengthOf(M,P) / LengthOf(M,K) = LengthOf(R,P) / LengthOf(L,K)
+2x / 3x = LengthOf(R,P) / 25
+2/3 = LengthOf(R,P) / 25
+LengthOf(R,P) = (2 * 25) / 3 = 50 / 3.
+From PointLiesOnLine(Q,Line(R,P)) → Q lies on R P.
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

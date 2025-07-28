@@ -1,0 +1,78 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2414.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2414.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Line(A,B)
+Line(A,C)
+Line(A,D)
+Line(A,E)
+Line(B,C)
+Line(C,D)
+Line(D,E)
+PointLiesOnLine(E,A,D)
+Triangle(A,B,C)
+Triangle(A,D,E)
+Quadrilateral(B,C,D,E)
+Parallel(Line(B,C),Line(D,E))
+LengthOf(Line(A,B),12)
+LengthOf(Line(A,C),16)
+LengthOf(Line(D,E),5)
+Similar(Triangle(A,B,C),Triangle(A,D,E))
+RatioOf(LengthOf(Line(A,B)),LengthOf(Line(A,D)))
+RatioOf(LengthOf(Line(A,C)),LengthOf(Line(A,E)))
+RatioOf(LengthOf(Line(B,C)),LengthOf(Line(D,E)))
+Equals(RatioOf(LengthOf(Line(A,B)),LengthOf(Line(A,D))),RatioOf(LengthOf(Line(A,C)),LengthOf(Line(A,E))))
+Equals(RatioOf(LengthOf(Line(A,C)),LengthOf(Line(A,E))),RatioOf(LengthOf(Line(B,C)),LengthOf(Line(D,E))))
+Equals(RatioOf(LengthOf(Line(A,B)),LengthOf(Line(A,D))),RatioOf(LengthOf(Line(B,C)),LengthOf(Line(D,E))))
+
+QUESTION:
+Find A E if A B = 12, A C = 16, and E D = 5.
+
+CHOICES:
+A. 12
+B. 15
+C. 16
+D. 20
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Similar(Triangle(A,B,C),Triangle(A,D,E)) + RatioOf(LengthOf(Line(A,C)),LengthOf(Line(A,E))) → LengthOf(Line(A,C)) / LengthOf(Line(A,E)) = LengthOf(Line(A,B)) / LengthOf(Line(A,D))
+From Similar(Triangle(A,B,C),Triangle(A,D,E)) + RatioOf(LengthOf(Line(B,C)),LengthOf(Line(D,E))) → LengthOf(Line(B,C)) / LengthOf(Line(D,E)) = LengthOf(Line(A,B)) / LengthOf(Line(A,D))
+From Similar(Triangle(A,B,C),Triangle(A,D,E)) → LengthOf(Line(B,C)) / LengthOf(Line(D,E)) = LengthOf(Line(A,C)) / LengthOf(Line(A,E))
+From Parallel(Line(B,C),Line(D,E)) + Similar(Triangle(A,B,C),Triangle(A,D,E)) + LengthOf(Line(D,E),5) →  LengthOf(Line(B,C)) / 5 = LengthOf(Line(A,C)) / LengthOf(Line(A,E))
+From PointLiesOnLine(E,A,D) → LengthOf(Line(A,D)) = LengthOf(Line(A,E)) + LengthOf(Line(D,E))
+From LengthOf(Line(A,B),12) + LengthOf(Line(A,C),16) + LengthOf(Line(D,E),5) → 12 / LengthOf(Line(A,D)) = 16 / LengthOf(Line(A,E)) = LengthOf(Line(B,C)) / 5
+Let's use 12 / LengthOf(Line(A,D)) = 16 / LengthOf(Line(A,E)).
+Therefore, 12 * LengthOf(Line(A,E)) = 16 * LengthOf(Line(A,D))
+12 * LengthOf(Line(A,E)) = 16 * (LengthOf(Line(A,E)) + 5)
+12 * LengthOf(Line(A,E)) = 16 * LengthOf(Line(A,E)) + 80
+-4 * LengthOf(Line(A,E)) = 80
+LengthOf(Line(A,E)) = -20
+However length can't be negative.
+Let A B = 12, A C = 16, D E = 5.
+Since triangle A B C ~ triangle A D E, A B / A D = A C / A E = B C / D E.
+Therefore 12 / A D = 16 / A E = B C / 5.
+16 / A E = 12 / (A E + 5). Then 16 * (A E + 5) = 12 * A E.
+16 A E + 80 = 12 A E. Then 4 A E = -80, so A E = -20. This is impossible.
+
+Since triangle A B C ~ triangle A D E, then A B / A D = A C / A E = B C / D E.
+Given A B = 12, A C = 16, D E = 5.
+Therefore, 12 / A D = 16 / A E = B C / 5.
+A C / A E = A B / A D. Then 16 / A E = 12 / A D, so 16 / A E = 12 / (A E - 5).
+16 * (A E - 5) = 12 * A E, which is 16 A E - 80 = 12 A E.
+4 A E = 80, so A E = 20.
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

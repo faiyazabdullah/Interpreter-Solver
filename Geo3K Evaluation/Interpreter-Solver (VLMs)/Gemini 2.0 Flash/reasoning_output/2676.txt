@@ -1,0 +1,63 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2676.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2676.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(M)
+Point(N)
+Line(A,B)
+Line(A,C)
+Line(B,C)
+Line(M,N)
+Triangle(A,B,C)
+PointLiesOnLine(M,Line(A,B))
+PointLiesOnLine(N,Line(A,C))
+Parallel(Line(M,N),Line(B,C))
+LengthOf(Line(B,M),24)
+LengthOf(Line(A,M),Add(Mul(4,x),-6))
+LengthOf(Line(A,N),Add(Mul(3,x),-2))
+LengthOf(Line(N,C),20)
+Similar(Triangle(A,M,N),Triangle(A,B,C))
+IsSideOf(Line(A,B),Triangle(A,B,C))
+IsSideOf(Line(A,C),Triangle(A,B,C))
+IsSideOf(Line(B,C),Triangle(A,B,C))
+IsSideOf(Line(M,N),Triangle(A,M,N))
+IsSideOf(Line(A,M),Triangle(A,M,N))
+IsSideOf(Line(A,N),Triangle(A,M,N))
+Add(LengthOf(Line(A,M)),LengthOf(Line(B,M)))
+Add(LengthOf(Line(A,N)),LengthOf(Line(N,C)))
+
+QUESTION:
+M N \parallel B C. Solve for x.
+
+CHOICES:
+A. 6
+B. 9
+C. 12
+D. 15
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallel(Line(M,N),Line(B,C)) + Similar(Triangle(A,M,N),Triangle(A,B,C)) → The sides of the triangles are proportional.
+From LengthOf(Line(B,M),24) + LengthOf(Line(A,M),Add(Mul(4,x),-6)) → LengthOf(Line(A,B),Add(LengthOf(Line(A,M)),LengthOf(Line(B,M)))) → LengthOf(Line(A,B),Add(Add(Mul(4,x),-6),24)) → LengthOf(Line(A,B),Add(Mul(4,x),18))
+From LengthOf(Line(A,N),Add(Mul(3,x),-2)) + LengthOf(Line(N,C),20) → LengthOf(Line(A,C),Add(LengthOf(Line(A,N)),LengthOf(Line(N,C)))) → LengthOf(Line(A,C),Add(Add(Mul(3,x),-2),20)) → LengthOf(Line(A,C),Add(Mul(3,x),18))
+From Similar(Triangle(A,M,N),Triangle(A,B,C)) → LengthOf(Line(A,M))/LengthOf(Line(A,B)) = LengthOf(Line(A,N))/LengthOf(Line(A,C))
+From LengthOf(Line(A,M),Add(Mul(4,x),-6)) + LengthOf(Line(A,B),Add(Mul(4,x),18)) + LengthOf(Line(A,N),Add(Mul(3,x),-2)) + LengthOf(Line(A,C),Add(Mul(3,x),18)) → (4x - 6)/(4x + 18) = (3x - 2)/(3x + 18)
+→ (4x - 6)(3x + 18) = (3x - 2)(4x + 18)
+→ 12x^2 + 72x - 18x - 108 = 12x^2 + 54x - 8x - 36
+→ 12x^2 + 54x - 108 = 12x^2 + 46x - 36
+→ 54x - 108 = 46x - 36
+→ 8x = 72
+→ x = 9
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

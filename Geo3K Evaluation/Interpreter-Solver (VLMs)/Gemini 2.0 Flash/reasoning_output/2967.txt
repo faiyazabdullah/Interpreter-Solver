@@ -1,0 +1,61 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2967.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2967.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Line(A,B)
+Line(A,C)
+Line(B,C)
+Line(D,E)
+PointLiesOnLine(D,Line(A,C))
+PointLiesOnLine(E,Line(B,C))
+Parallel(Line(A,B),Line(D,E))
+LengthOf(Line(C,D),2)
+LengthOf(Line(C,A),10)
+LengthOf(Line(C,E),t-2)
+LengthOf(Line(E,B),t+1)
+Triangle(A,B,C)
+Triangle(D,E,C)
+Similar(Triangle(A,B,C),Triangle(D,E,C))
+IsSideOf(Line(A,C),Triangle(A,B,C))
+IsSideOf(Line(B,C),Triangle(A,B,C))
+IsSideOf(Line(D,C),Triangle(D,E,C))
+IsSideOf(Line(E,C),Triangle(D,E,C))
+
+QUESTION:
+If C E = t - 2. E B = t + 1, C D = 2, and C A = 10, find C E.
+
+CHOICES:
+A. 1
+B. 2
+C. 3
+D. 4
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallel(Line(A,B),Line(D,E)) + Triangle(A,B,C) + Triangle(D,E,C) → Similar(Triangle(A,B,C),Triangle(D,E,C)) (If two lines are parallel, and they are intersected by two other lines that create triangles, those triangles are similar)
+From Similar(Triangle(A,B,C),Triangle(D,E,C)) → Line(A,C)/Line(D,C) = Line(B,C)/Line(E,C) (Corresponding sides of similar triangles are proportional)
+From PointLiesOnLine(E,Line(B,C)) → Line(B,C) = Line(C,E) + Line(E,B) (Segment addition postulate)
+From Line(A,C)/Line(D,C) = Line(B,C)/Line(E,C) + LengthOf(Line(C,D),2) + LengthOf(Line(C,A),10) + LengthOf(Line(C,E),t-2) + LengthOf(Line(E,B),t+1) → 10/2 = (t-2+t+1)/(t-2) (Substitute given values into the proportion)
+From 10/2 = (t-2+t+1)/(t-2) → 5 = (2t-1)/(t-2) (Simplify the equation)
+From 5 = (2t-1)/(t-2) → 5(t-2) = 2t-1 (Multiply both sides by t-2)
+From 5(t-2) = 2t-1 → 5t-10 = 2t-1 (Distribute on the left side)
+From 5t-10 = 2t-1 → 3t = 9 (Subtract 2t from both sides and add 10 to both sides)
+From 3t = 9 → t = 3 (Divide both sides by 3)
+From LengthOf(Line(C,E),t-2) + t = 3 → LengthOf(Line(C,E),3-2) (Substitute t=3)
+From LengthOf(Line(C,E),3-2) → LengthOf(Line(C,E),1) (Simplify)
+CE = 1
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

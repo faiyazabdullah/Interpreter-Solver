@@ -1,0 +1,70 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2443.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2443.txt
+
+PREDICATES CONTENT:
+Point(P)
+Point(Q)
+Point(R)
+Point(S)
+Triangle(P,Q,R)
+PointLiesOnLine(S,Line(P,R))
+RightAngle(Angle(P,Q,R))
+MeasureOf(Angle(P,Q,R),90)
+MeasureOf(Angle(Q,P,R),51)
+MeasureOf(Angle(P,R,Q),33)
+IntersectAt(Line(P,R),Line(Q,S),Point(S))
+Angle(P,S,R)
+Angle(1)
+Equals(Angle(1),Angle(P,S,R))
+Angle(2)
+Triangle(Q,S,R)
+Triangle(P,Q,S)
+PointLiesOnLine(S,Line(Q,R))
+
+QUESTION:
+Find m \angle 1.
+
+CHOICES:
+A. 39
+B. 84
+C. 108
+D. 129
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Triangle(P,Q,R) + MeasureOf(Angle(P,Q,R),90) + MeasureOf(Angle(Q,P,R),51) + MeasureOf(Angle(P,R,Q),33) → m \angle PQR = 90, m \angle QPR = 51, m \angle PRQ = 33
+From Triangle(P,Q,R) → m \angle PQR + m \angle QPR + m \angle PRQ = 180
+From m \angle PQR + m \angle QPR + m \angle PRQ = 180 → 90 + m \angle QPR + m \angle PRQ = 180
+From 90 + m \angle QPR + m \angle PRQ = 180 → m \angle QPR + m \angle PRQ = 90
+From Angle(P,S,R) + PointLiesOnLine(S,Line(P,R)) → Angle(P,S,R) is an exterior angle of Triangle(Q,S,R).
+From Angle(P,S,R) is an exterior angle of Triangle(Q,S,R) → m \angle PSR = m \angle SQR + m \angle QRS
+From Triangle(Q,R,P) → m \angle RPQ + m \angle PQR + m \angle QRP = 180
+From m \angle RPQ = 51, m \angle PQR = 90, m \angle QRP = 33 → 51+90+33 = 174
+From triangle(P,Q,R) the sum of the angles must be 180 degrees.
+From Triangle(P,Q,R) → m \angle RPQ + m \angle PQR + m \angle QRP = 180
+From m \angle RPQ + m \angle PQR + m \angle QRP = 180 → 51 + 90 + 33 = 174 !=180
+
+There is an error in the angle given. m \angle RPQ is shown as 51 which means that the other angle QRP is calculated as 39.
+Given m \angle QRP is 33, then 51+90+33=174 !=180
+
+ASSUMPTION: I am going to assume that the angles shown in the diagram are correct.
+Assume m \angle PQR is 90
+Assume m \angle PRQ is 33
+So m \angle RPQ must be 57
+Angle PSR is an external angle to QSR, so Angle PSR=90+2*33 = 123 degrees
+From Triangle(Q,S,R), m\angle QSR + m\angle SQR + m\angle SRQ = 180
+m\angle SQR= 90, m\angle SRQ =33, so m\angle QSR = 180-90-33 = 57
+Angle PSR and Angle QSR are supplementary
+m\angle PSR + m\angle QSR = 180
+If we assume that angle QPR= 51,
+m\angle PSR = 180 - 51 = 129
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

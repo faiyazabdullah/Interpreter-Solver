@@ -1,0 +1,61 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2501.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2501.txt
+
+PREDICATES CONTENT:
+Triangle(P,Q,R)
+Triangle(P,S,T)
+Point(P)
+Point(Q)
+Point(R)
+Point(S)
+Point(T)
+PointLiesOnLine(S,Line(P,R))
+PointLiesOnLine(T,Line(P,Q))
+Line(P,Q)
+Line(P,R)
+Line(R,Q)
+Line(S,T)
+Parallel(Line(S,T),Line(R,Q))
+LengthOf(Line(P,S),12.5)
+LengthOf(Line(S,R),5)
+LengthOf(Line(P,T),15)
+Similar(Triangle(P,S,T),Triangle(P,R,Q))
+Angle(P,S,T)
+Angle(P,R,Q)
+Equals(MeasureOf(Angle(P,S,T)),MeasureOf(Angle(P,R,Q)))
+Angle(P,T,S)
+Angle(P,Q,R)
+Equals(MeasureOf(Angle(P,T,S)),MeasureOf(Angle(P,Q,R)))
+
+QUESTION:
+In \triangle P Q R, S T \parallel R Q. If P S = 12.5, S R = 5, and P T = 15, find T Q.
+
+CHOICES:
+A. 5
+B. 6
+C. 6.5
+D. 12.5
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Triangle(P,Q,R) and Triangle(P,S,T) and PointLiesOnLine(S,Line(P,R)) and PointLiesOnLine(T,Line(P,Q)) → P,S,R are collinear and P,T,Q are collinear.
+From Parallel(Line(S,T),Line(R,Q)) → Line(S,T) \parallel Line(R,Q).
+From Parallel(Line(S,T),Line(R,Q)) + [Corresponding Angles Theorem] → MeasureOf(Angle(P,S,T)) = MeasureOf(Angle(P,R,Q))
+From Parallel(Line(S,T),Line(R,Q)) + [Corresponding Angles Theorem] → MeasureOf(Angle(P,T,S)) = MeasureOf(Angle(P,Q,R))
+From MeasureOf(Angle(P,S,T)) = MeasureOf(Angle(P,R,Q)) and MeasureOf(Angle(P,T,S)) = MeasureOf(Angle(P,Q,R)) → Angle(P,S,T) = Angle(P,R,Q) and Angle(P,T,S) = Angle(P,Q,R).
+From Angle(P,S,T) = Angle(P,R,Q) and Angle(P,T,S) = Angle(P,Q,R) + [AA Similarity Postulate] → Triangle(P,S,T) \sim Triangle(P,R,Q)
+From LengthOf(Line(P,S),12.5) and LengthOf(Line(S,R),5) → LengthOf(Line(P,R)) = LengthOf(Line(P,S)) + LengthOf(Line(S,R)) = 12.5 + 5 = 17.5
+From LengthOf(Line(P,T),15) + Triangle(P,S,T) \sim Triangle(P,R,Q) → P S / P R = P T / P Q
+From P S / P R = P T / P Q and LengthOf(Line(P,S),12.5) and LengthOf(Line(P,R),17.5) and LengthOf(Line(P,T),15) → 12.5 / 17.5 = 15 / P Q
+From 12.5 / 17.5 = 15 / P Q → P Q = (15 * 17.5) / 12.5 = 262.5 / 12.5 = 21
+From LengthOf(Line(P,T),15) and LengthOf(Line(P,Q),21) → LengthOf(Line(T,Q)) = LengthOf(Line(P,Q)) - LengthOf(Line(P,T)) = 21 - 15 = 6
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

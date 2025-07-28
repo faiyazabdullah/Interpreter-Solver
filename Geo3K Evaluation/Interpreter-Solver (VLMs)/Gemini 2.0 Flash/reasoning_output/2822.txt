@@ -1,0 +1,54 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2822.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2822.txt
+
+PREDICATES CONTENT:
+Trapezoid(T,R,S,V)
+Point(T)
+Point(R)
+Point(S)
+Point(V)
+Point(M)
+Point(N)
+PointLiesOnLine(M,Line(T,V))
+PointLiesOnLine(N,Line(R,S))
+IsMidpointOf(M,Line(T,V))
+IsMidpointOf(N,Line(R,S))
+LengthOf(Line(T,R))
+LengthOf(Line(M,N))
+Equals(LengthOf(Line(T,R)),32)
+Equals(LengthOf(Line(M,N)),25)
+Parallel(Line(T,R),Line(V,S))
+IsLegOf(Line(T,V),Trapezoid(T,R,S,V))
+IsLegOf(Line(R,S),Trapezoid(T,R,S,V))
+IsBaseOf(Line(T,R),Trapezoid(T,R,S,V))
+IsBaseOf(Line(V,S),Trapezoid(T,R,S,V))
+IsMedianOf(Line(M,N),Trapezoid(T,R,S,V))
+Equals(LengthOf(Line(M,N)), AverageOf(LengthOf(Line(T,R)), LengthOf(Line(V,S))))
+Equals(Mul(2,LengthOf(Line(M,N))),SumOf(LengthOf(Line(T,R)), LengthOf(Line(V,S))))
+
+QUESTION:
+For trapezoid T R S V, M and N are midpoints of the legs. If T R = 32 and M N = 25, find V S.
+
+CHOICES:
+A. 18
+B. 36
+C. 50
+D. 64
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From IsMedianOf(Line(M,N),Trapezoid(T,R,S,V)) + Equals(LengthOf(Line(M,N)), AverageOf(LengthOf(Line(T,R)), LengthOf(Line(V,S)))) → LengthOf(Line(M,N)) = (LengthOf(Line(T,R)) + LengthOf(Line(V,S)))/2
+From LengthOf(Line(T,R)) = 32 + LengthOf(Line(M,N)) = 25 → 25 = (32 + LengthOf(Line(V,S)))/2
+From 25 = (32 + LengthOf(Line(V,S)))/2 → 50 = 32 + LengthOf(Line(V,S))
+From 50 = 32 + LengthOf(Line(V,S)) → LengthOf(Line(V,S)) = 50 - 32
+From LengthOf(Line(V,S)) = 50 - 32 → LengthOf(Line(V,S)) = 18
+
+Final Answer: A
+
+====================================================================================================
+EXTRACTED ANSWER: A
+====================================================================================================

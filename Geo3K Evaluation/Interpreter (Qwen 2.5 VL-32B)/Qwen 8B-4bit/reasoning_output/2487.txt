@@ -1,0 +1,461 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Circle(G)
+Circle(J)
+Circle(K)
+Point(G)
+Point(H)
+Point(J)
+Point(K)
+Point(L)
+Point(F)
+Point(B)
+Point(C)
+Point(D)
+Line(G,H)
+Line(G,J)
+Line(G,K)
+Line(J,L)
+Line(K,L)
+Line(F,H)
+IntersectionOf(Circle(G), Circle(J), Point(G), Point(D))
+IntersectionOf(Circle(G), Circle(K), Point(G), Point(C))
+IntersectionOf(Circle(J), Circle(K), Point(L))
+IsCenterOf(Point(G), Circle(G))
+IsCenterOf(Point(J), Circle(J))
+IsCenterOf(Point(K), Circle(K))
+IsRadiusOf(Line(G,H), Circle(G))
+Equals(LengthOf(Line(G,H)), 10)
+PointLiesOnCircle(Point(H), Circle(G))
+PointLiesOnCircle(Point(L), Circle(J))
+PointLiesOnCircle(Point(L), Circle(K))
+
+QUESTION:
+Circles G, J, and K all intersect at L. If G H = 10, find F H.
+
+CHOICES:
+A. 5
+B. 10
+C. 20
+D. 25
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's tackle this geometry problem step by step. First, I need to parse all the given predicates and understand the setup. Let me start by listing out all the information provided.
+
+We have three circles: G, J, and K. Each has a center point: G is the center of circle G, J is the center of circle J, and K is the center of circle K. There are several points mentioned: G, H, J, K, L, F, B, C, D. Lines connecting these points include Line(G,H), Line(G,J), Line(G,K), Line(J,L), Line(K,L), and Line(F,H). 
+
+Now, looking at the intersection points: 
+- IntersectionOf(Circle(G), Circle(J)) gives points G and D. So, circles G and J intersect at G and D. Wait, but G is the center of circle G, so if they intersect at G, that means G lies on circle J? Because the center of circle G is G, so the radius of circle G would be the distance from G to H, since IsRadiusOf(Line(G,H), Circle(G)). Also, Equals(LengthOf(Line(G,H)), 10) tells us that GH is 10 units long. Therefore, the radius of circle G is 10.
+
+Similarly, IntersectionOf(Circle(G), Circle(K)) gives points G and C. So, circle G and circle K intersect at G and C. That implies that point G is also on circle K, so the radius of circle K would be GK. But we don't know the length of GK yet. However, since G is the center of circle K? Wait, no. Wait, the centers are G for circle G, J for circle J, and K for circle K. So, each circle's center is the named point. So, circle J has center J, circle K has center K. So, circle J's radius would be the distance from J to some other point. For example, Line(J,L) is part of circle J? Or maybe Line(J,L) is a radius?
+
+Wait, PointLiesOnCircle(Point(L), Circle(J)) and PointLiesOnCircle(Point(L), Circle(K)). So, point L is on both circles J and K. Also, the IntersectionOf(Circle(J), Circle(K)) is point L. So, circles J and K intersect at L. But earlier, the IntersectionOf(Circle(J), Circle(K)) is given as point L. Wait, but the first part says IntersectionOf(Circle(G), Circle(J), Point(G), Point(D)), meaning circles G and J intersect at G and D. Similarly, circles G and K intersect at G and C. Circles J and K intersect at L. So, each pair of circles intersects at two points: G and D for G-J; G and C for G-K; and L for J-K.
+
+So, point L is the second intersection of circles J and K. Now, the question states that circles G, J, and K all intersect at L. Wait, but according to the given predicates, circles J and K intersect at L. However, circle G's intersection with J is at G and D, and with K is at G and C. So how does L being on all three circles? Because if L is on circle J and K, then it must also lie on circle G? Wait, the problem says "Circles G, J, and K all intersect at L." So that suggests that L is a common intersection point of all three circles. But according to the given predicates, circles J and K intersect at L, but circles G and J intersect at G and D, and circles G and K intersect at G and C. Therefore, unless L coincides with one of those existing intersection points. Wait, but maybe there's a mistake here? Or perhaps I'm misunderstanding.
+
+Wait, the problem statement says "Circles G, J, and K all intersect at L." So, L is a common point of all three circles. But according to the given predicates, circles G and J intersect at G and D. So, if L is a common point, then L must be either G, D, or another point. But the given IntersectionOf(Circle(J), Circle(K)) is point L, so L is an intersection of J and K. But for L to be on circle G as well, then L must be one of the intersection points of G with J or K. Since the intersection points of G and J are G and D, and G and K are G and C. Therefore, L must be either G, D, or C. But L is also on circle J and K. Let me check the given predicates again. 
+
+PointLiesOnCircle(Point(L), Circle(J)) and PointLiesOnCircle(Point(L), Circle(K)). So, L is on both J and K. Also, since L is an intersection of J and K, which is given as the third predicate. So, if L is on circle G, then it must be one of the intersection points of G with J or K. Which would mean that L is either D (intersection of G and J) or C (intersection of G and K). But the problem states that L is the intersection of J and K. So, if L is also on circle G, then L must be D or C. But how do we know which one? Maybe there's more info.
+
+Also, there's a line F-H. We need to find FH. Given that GH is 10. Let me try to visualize the diagram. 
+
+First, circles G, J, K. Centers at G, J, K respectively. Circle G has radius GH=10. So, GH is a radius of circle G. Then, point H is on circle G. Also, point L is on circles J and K, and also on circle G. So, if L is on all three circles, then it's a common point. 
+
+But according to the given intersections, circles J and K meet at L. So, L is on both J and K. To be on circle G as well, L must satisfy that its distance from G is equal to the radius of circle G, which is 10. 
+
+Let me consider coordinates to model this. Let me assign coordinates to make it easier. Let me place point G at the origin (0,0). Since GH is a radius of circle G and equals 10, let me assume point H is at (10,0). So, line GH is along the x-axis from (0,0) to (10,0).
+
+Now, circle J has center J. Let me denote the coordinates of J as (x_j, y_j). The radius of circle J would be the distance from J to L, since L is on circle J. Similarly, the radius of circle K is the distance from K to L. Also, since L is on circle K, the distance from K to L is the radius of K. 
+
+But also, circles J and K intersect at L. So, the line JL and KL are radii of their respective circles. Additionally, since L is also on circle G, the distance GL is 10. 
+
+Moreover, point L is on circle J and circle K. Let me think about triangle JKL? Wait, but we have lines J-L and K-L. Are there any other lines? Line J-L and K-L are present. Also, line F-H is mentioned. 
+
+But where is point F? The only other point mentioned is F, connected via Line(F,H). So, F is some point such that line FH connects to H. But we need to find FH. 
+
+Hmm. How do we relate this? Let me see if there are any other constraints. 
+
+Since circles G, J, and K all pass through L, which is on circle G, so GL = 10. Also, since L is on circle J, the radius of circle J is JL. Similarly, radius of circle K is KL. 
+
+But how do we find the length of FH? Well, unless there's a relation between FH and other segments. 
+
+Wait, maybe triangle FHL or something? But I need more info. 
+
+Alternatively, maybe triangle FGH? But we don't know where F is. Wait, the problem doesn't specify anything about point F except that it's connected to H by line FH. But maybe F is related to other points? 
+
+Looking back at the given predicates, there's a Line(F,H). Also, the point F is mentioned as a Point(F). But there's no direct info about F's position except that it's on line FH. Unless there's more connections. 
+
+Wait, maybe F is the center of some circle? No, the centers are G, J, K. Points mentioned are G, H, J, K, L, F, B, C, D. 
+
+Wait, the problem mentions PointLiesOnCircle(Point(L), Circle(J)) and PointLiesOnCircle(Point(L), Circle(K)). So, L is on both J and K. Also, since L is on circle G, as per the problem statement. 
+
+Wait, but earlier, the IntersectionOf(Circle(G), Circle(J)) gives points G and D. So, D is another intersection point of circles G and J. Similarly, C is the other intersection of G and K. 
+
+So, perhaps L is one of these points? For instance, if L is point D, then since D is on circle G and J, and also on circle K? Wait, but D is on circle G and J, but why would it be on circle K? Unless there's some condition. Alternatively, maybe L is a different point. 
+
+Wait, the problem states that circles G, J, and K all intersect at L. So, L is a common point of all three circles. Hence, L is on circle G, so GL = radius of G, which is 10. Also, L is on circle J, so JL is the radius of circle J. And L is on circle K, so KL is the radius of circle K. 
+
+Therefore, the distances GL, JL, and KL are the radii of circles G, J, and K respectively. 
+
+But how do we find FH? 
+
+Maybe there's a relationship involving triangle or other figures. Let me think. 
+
+Wait, line FH is mentioned. The problem asks for FH. But without knowing where F is, how can we determine FH? Unless there's a missing connection. 
+
+Wait, maybe F is the intersection of certain lines? Let me check the given predicates again. 
+
+The lines given are:
+- Line(G,H)
+- Line(G,J)
+- Line(G,K)
+- Line(J,L)
+- Line(K,L)
+- Line(F,H)
+
+Additionally, there's a point F. But no other lines involving F except Line(F,H). 
+
+Perhaps F is related to another circle? Or maybe there's a property that connects F to other elements? 
+
+Wait, the problem statement says "Circles G, J, and K all intersect at L". So, L is a common point. But in the given predicates, the intersection of J and K is L. So, L is the radical center of the three circles? Wait, the radical center is the common intersection point of the three circles. So, in this case, L is the radical center. 
+
+But how does this help us? 
+
+Alternatively, maybe triangle formed by centers G, J, K? Let me think. The centers are G, J, K. The distances between them would be related to the radii. 
+
+For example, the distance between G and J would be the distance between centers of circles G and J. Since they intersect at points G and D, the line connecting their centers (GJ) would pass through the intersection points. Wait, the line connecting centers G and J passes through the points of intersection of the two circles. So, points G and D lie on the line connecting centers G and J. 
+
+Similarly, points G and C lie on the line connecting centers G and K. 
+
+So, the line GJ connects centers G and J, passing through points G and D. Similarly, line GK connects G and K, passing through G and C. 
+
+Also, line JK connects centers J and K, passing through point L (since L is the intersection of circles J and K). 
+
+So, if I imagine triangle GJK, with centers G, J, K. The distances between centers would be:
+
+- Distance GJ: since circles G and J intersect at G and D, the distance between centers G and J is equal to the sum or difference of their radii. Wait, because two circles intersect at two points if the distance between centers is less than the sum and greater than the difference of radii. 
+
+But here, since they intersect at G and D, which includes the center of one of the circles. Wait, because circle G has center G, and point G is on circle J. Because the intersection points of G and J are G and D. Therefore, point G lies on circle J. So, the distance from J to G is equal to the radius of circle J. 
+
+Because if G is on circle J, then the distance between J (the center of circle J) and G is equal to the radius of circle J. 
+
+Similarly, since point G is on circle K (from the intersection points of G and K being G and C), the distance from K (center of circle K) to G is equal to the radius of circle K. 
+
+Therefore, the distance between centers GJ is equal to the radius of circle J, and the distance between centers GK is equal to the radius of circle K. 
+
+So, let me denote:
+
+Let r_J = radius of circle J = distance from J to G (since G is on circle J).
+r_K = radius of circle K = distance from K to G (since G is on circle K).
+And the radius of circle G is 10, as given by GH = 10.
+
+Now, considering circles J and K intersect at L. So, the distance between centers J and K must satisfy |r_J - r_K| < JK < r_J + r_K. But we don't know r_J and r_K yet.
+
+However, point L lies on both circles J and K, so the distance from J to L is r_J, and the distance from K to L is r_K. Also, since L is on circle G, the distance from G to L is 10. 
+
+Therefore, we have triangle JKL, where:
+
+- JL = r_J
+- KL = r_K
+- GL = 10
+
+But how does this help? Maybe using coordinates or the Law of Cosines?
+
+Alternatively, considering triangle JGL and KGL?
+
+Wait, since G is the center of circle G, and L is a point on circle G, then GL = 10. Also, since L is on circle J, then JL = r_J, and since L is on circle K, then KL = r_K. 
+
+But also, since G is the center of circle J? No, wait, J is the center of circle J. So, the radius of circle J is the distance from J to any point on it, including L. So, JL is the radius of circle J, which is equal to the distance between J and G (since G is on circle J). Wait, earlier conclusion was that the distance between J and G is equal to the radius of circle J. 
+
+Yes, because point G is on circle J, so the distance between J (center of circle J) and G (a point on circle J) is the radius of circle J. Therefore, r_J = distance between J and G. Similarly, r_K = distance between K and G. 
+
+Thus, the distance between centers J and K is JK = |r_J - r_K| ? Not necessarily, unless the circles J and K are tangent. But since they intersect at L, the distance between J and K must be less than the sum and more than the difference of their radii. 
+
+But we might need to find relations between these distances. 
+
+But how does this connect to FH? 
+
+Wait, the problem is to find FH. Line FH is given, but we need to find its length. Perhaps there's a way to express FH in terms of other known quantities. 
+
+Alternatively, maybe there's a right triangle involved. For example, if FH is perpendicular to something, or related to other segments. 
+
+Wait, let me think about the points again. We have point H on circle G, with GH = 10. Also, point L is on circle G, so GL = 10. So, points G, H, and L are all at distance 10 from G. So, they lie on the same circle centered at G. Thus, triangle GLH has sides GH = GL = 10, making it an isoceles triangle. But unless there's more info about angles, not sure. 
+
+Alternatively, maybe triangle FHL? If we can find relations between FH and HL or FL. 
+
+Wait, but how? Without knowing where F is, this seems difficult. 
+
+Wait, the problem didn't mention point F elsewhere except for Line(F,H). So, maybe there's a property that defines F in relation to other points? 
+
+Looking back at the given predicates, there's a Point(F). Also, the line FH is mentioned. Could F be another intersection point? Or maybe F is defined in a particular way? 
+
+Wait, the problem statement says "find FH" given that GH = 10. So, maybe FH is equal to GH, or half of it, or something like that. 
+
+Alternatively, since H is on circle G, and L is also on circle G, maybe there's a symmetry. Suppose that FH is the same as GL? But GL is 10. But then FH would be 10, which is option B. But let me verify. 
+
+Wait, if F is somehow related to L? Or maybe F is the midpoint of GL? If so, then FH would be... Hmm, but how would we know? 
+
+Alternatively, maybe F is the reflection of H over some axis? 
+
+Wait, perhaps there's a missing piece of information. Let me re-examine the given predicates once more. 
+
+Another thing: there's a Point(F) and Line(F,H). Are there any other predicates involving F? Let me check. 
+
+No, the only other thing is that Point(F) is a Point. So, perhaps F is defined implicitly through other conditions? 
+
+Wait, could F be the center of another circle? But the centers are G, J, K. 
+
+Wait, maybe F is a typo? Like, maybe it's supposed to be another point? Or perhaps there's a misread in the problem. 
+
+Alternatively, maybe FH is the same as GL? But GL is 10, so FH would be 10. 
+
+But why would FH be equal to GL? 
+
+Wait, if F is the same as point L? No, because Line(F,H) would be Line(L,H), but there's no indication that F is L. 
+
+Alternatively, maybe F is the center of circle J or K? But centers are already labeled as J and K. 
+
+Wait, maybe there's a triangle involved. For example, if F is the orthocenter or centroid of some triangle. But without more info, it's hard to tell. 
+
+Alternatively, maybe the problem involves power of a point. For instance, since H is on circle G, and maybe F is related to some power relation. 
+
+Wait, but I need to recall that in the given predicates, there's a Line(F,H). So, FH is a segment whose length we're to find. 
+
+Wait, maybe FH is equal to GH? If so, then FH would be 10, answer B. 
+
+But why would FH be equal to GH? 
+
+Alternatively, maybe triangle FHG is equilateral, but there's no basis for that assumption. 
+
+Wait, let me think differently. Since L is on circle G, and GH is a radius of circle G, and GL is also a radius. So, both H and L are points on circle G. Therefore, the distance from G to H and G to L is 10. 
+
+So, GH = GL = 10. 
+
+Now, if points H and L are distinct, then triangle GLH is an isoceles triangle with two sides of length 10. 
+
+But how does this relate to FH? 
+
+Unless F is located somewhere on this triangle or related to it. 
+
+Wait, suppose that F is the midpoint of HL. Then FH would be half of HL. But we don't know HL's length. 
+
+Alternatively, if there's a right triangle involving FH. 
+
+Alternatively, since L is on both circles J and K, and G is the center of circle G, perhaps there's a relation between FH and the radii of J and K. 
+
+But I'm stuck here. Maybe I should look for other clues. 
+
+Wait, the problem says "Circles G, J, and K all intersect at L." So, L is the radical center of the three circles. The radical center is the point where the three radical axes meet. The radical axis of two circles is the set of points with equal power regarding both circles. 
+
+But how does this help? 
+
+Alternatively, maybe applying the concept of power of a point. For instance, taking point F and relating it to circles. 
+
+But without knowing where F is, it's challenging. 
+
+Wait, maybe the problem assumes that F is the center of some circle? But the centers are G, J, K. 
+
+Alternatively, maybe F is the intersection of lines from other points. For example, if there's a line connecting some points. 
+
+Wait, the given lines include Line(F,H). If there's another line that connects to F, but none are specified. 
+
+This seems like a dead end. Maybe I missed something in the initial parsing. 
+
+Wait, going back to the given predicates:
+
+PointLiesOnCircle(Point(L), Circle(J)) and PointLiesOnCircle(Point(L), Circle(K)). So, L is on both J and K. Also, since L is on circle G, as per the problem statement. 
+
+Now, the centers are G, J, K. So, the distance from J to L is the radius of circle J, which is equal to the distance from J to G (as G is on circle J). Similarly, distance from K to L is equal to the distance from K to G. 
+
+Therefore, in triangle JKL, we have:
+
+- JL = distance between J and G
+- KL = distance between K and G
+- JL and KL are the radii of circles J and K respectively. 
+
+Also, GL = 10. 
+
+But how does this help? 
+
+Maybe applying the Law of Cosines to triangle JKL. Let me denote:
+
+Let’s denote the distance between J and G as a, and between K and G as b. So, a = r_J, b = r_K. 
+
+Then, in triangle JKL, sides are JL = a, KL = b, and JL and KL are connected to point L. Also, GL = 10. 
+
+But what is the relationship between a, b, and GL? 
+
+Wait, point L is on circle G, so GL = 10. Also, since L is on circles J and K, we have JL = a and KL = b. 
+
+Now, consider triangle JGL: it has sides JG = a, JL = a, and GL = 10. Wait, no, because JL is the radius of circle J, which is equal to JG (distance between J and G). So, triangle JGL has two sides equal to a (JG and JL), and base GL = 10. Therefore, it's an isoceles triangle with sides a, a, and 10. 
+
+Similarly, triangle KGL has sides KG = b, KL = b, and GL = 10. 
+
+But unless we know angles or other relations, we can't directly compute a or b. 
+
+However, there's another relation: since L is on both circles J and K, the distance between centers J and K (which is JK) satisfies |a - b| < JK < a + b. 
+
+But without knowing JK, it's still unclear. 
+
+But maybe there's a way to relate this to FH. 
+
+Wait, if I can find the coordinates of L, maybe I can find coordinates of F. 
+
+Earlier, I placed G at (0,0), H at (10,0). Let me proceed with that coordinate system. 
+
+Assume G is at (0,0), H is at (10,0). 
+
+Now, circle G has equation x² + y² = 10² = 100. 
+
+Point L is on circle G, so it satisfies x² + y² = 100. 
+
+Also, L is on circle J, which has center at J. Let me denote J as (p, q). Since J is the center of circle J, and L is on circle J, the distance from J to L is equal to the radius of circle J, which is JG = sqrt((p)^2 + (q)^2). 
+
+Similarly, for circle K, center at K, say (r, s), and KL = K to G, which is sqrt(r² + s²). 
+
+But this seems too abstract without more info. 
+
+Alternatively, maybe assuming specific positions. For example, if I place J and K such that the configuration is symmetric. 
+
+But without loss of generality, maybe assume that J and K are positioned such that the triangle JKG is isoceles or something. 
+
+Alternatively, since we need to find FH, maybe FH is related to the radius of circle G, which is 10. 
+
+Wait, if FH is equal to GH, then FH = 10. This would be option B. 
+
+But why would FH be equal to GH? 
+
+Maybe because F is the same as point H? No, because then FH would be zero. 
+
+Alternatively, maybe F is a point such that FH is a radius, but without knowing where F is, this is speculation. 
+
+Wait, let me revisit the problem. The question is: Circles G, J, and K all intersect at L. If GH = 10, find FH. 
+
+Given that GH is a radius of circle G (since IsRadiusOf(Line(G,H), Circle(G))), so GH = 10. 
+
+Now, since L is a common point of all three circles, it lies on circle G, so GL = 10. 
+
+Now, if we consider point H and point L both lying on circle G, then HL is a chord of circle G. The length of HL depends on the angle between GH and GL. 
+
+But without knowing the angle, we can't determine HL. 
+
+But FH is asked. Unless FH is equal to HL, or some fraction of it. 
+
+But again, without knowing where F is, this is uncertain. 
+
+Wait, perhaps there's a missing link. Let me think about the given Line(F,H). If F is the center of one of the circles, but the centers are G, J, K. 
+
+Wait, if F is the center of circle J, then F would be J. But J is already a point. But the problem uses F as a separate point. 
+
+Alternatively, maybe F is the intersection of some lines. For example, if there's a line connecting J to L or K to L, but no. 
+
+Wait, the given lines are Line(G,H), Line(G,J), Line(G,K), Line(J,L), Line(K,L), and Line(F,H). So, Line(F,H) is just a line from F to H. 
+
+But unless there's more info about F, I cannot determine FH. 
+
+Wait, maybe the problem has a typo, and F should be another point like D or C? Or maybe F is the midpoint of GL? 
+
+If I assume that F is the midpoint of GL, then since GL is 10, FH would be half of that, so 5. But that's just a guess. 
+
+Alternatively, if F is the center of circle J or K, but that would make FH the distance from center J to H. 
+
+Let me calculate that. If F is J, then FH is the distance between J and H. But we don't know the position of J. 
+
+Alternatively, since J is the center of circle J, and L is on circle J, so JL = radius of J, which is equal to JG (since G is on circle J). So, JL = JG. 
+
+But if I can find JG, then maybe I can find some relations. 
+
+But how? 
+
+Wait, let's consider triangle JGL. It has sides JG = a, JL = a, and GL = 10. So, it's an isoceles triangle with two sides equal to a and base 10. 
+
+Using the Law of Cosines: 10² = a² + a² - 2*a*a*cos(theta), where theta is the angle at J. 
+
+But without knowing theta, this isn't helpful. 
+
+Alternatively, if we assume that angle at G is 90 degrees, then it would be a right triangle. But there's no reason to assume that. 
+
+This seems like a dead end. 
+
+Wait, perhaps the key is that since L is on all three circles, and G is the center of one of them, then the distances from G to L, H, and possibly others are all 10. 
+
+But if F is another point on circle G, then FH would depend on where F is. 
+
+But since the problem gives Line(F,H), maybe F is the center of another circle? 
+
+Wait, if F were the center of circle J, then FH would be the distance from J to H. But we don't know where J is. 
+
+Alternatively, maybe F is the center of circle K? Same issue. 
+
+Wait, but the problem doesn't provide enough information about the positions of J and K. So, perhaps there's an implicit assumption that the configuration is such that FH is equal to GH, hence 10? 
+
+But why? 
+
+Alternatively, maybe there's a property I'm missing. Let me think about radical axes. 
+
+The radical axis of circles G and J is the line through their intersection points, which are G and D. Similarly for G and K, it's the line through G and C. The radical axis of J and K is the line through L. 
+
+The radical center is the point where all three radical axes meet. In this case, it's point L. 
+
+But how does this help? 
+
+Alternatively, since L is the radical center, it lies on all three radical axes. So, it lies on the radical axis of G and J (line GD), on the radical axis of G and K (line GC), and on the radical axis of J and K (line JLK). 
+
+But since L is on all three, it must lie on the intersection of these lines. 
+
+But this still doesn't give us info about FH. 
+
+At this point, I'm stuck. Maybe I should look for patterns in the answer choices. The options are 5, 10, 20, 25. Given that GH is 10, and FH is to be found. If there's a right triangle involved, maybe FH is 10, or 5, or something else. 
+
+Wait, if FH is half of GH, then 5. Or if it's the same as GH, then 10. 
+
+But why would FH be half of GH? 
+
+Alternatively, maybe triangle FHL is a right triangle with FH being one leg, and HL being the hypotenuse. 
+
+But without knowing HL, this is speculative. 
+
+Wait, if L is on circle G, and H is also on circle G, then HL is a chord of circle G. The maximum possible length of HL is the diameter, 20, and minimum is 0. But without knowing the angle, we can't say. 
+
+But if FH is the distance from F to H, and if F is the center of circle G, then FH would be the distance from G to H, which is 10. But F is not stated to be G. 
+
+Wait, but if F is G, then FH is GH, which is 10. But the problem says Point(F) is a point, and Line(F,H). So, if F is G, then Line(F,H) is Line(G,H), which is given. But the problem lists Line(G,H) as one of the lines. So, perhaps F is G? 
+
+Wait, the given predicates include Point(G), so F could be G? But the problem says "find FH", and if F is G, then FH is GH, which is 10. So, answer B. 
+
+But why would F be G? Because the Line(F,H) is Line(G,H)? 
+
+Yes! The given Line(G,H) is one of the lines, and if F is G, then Line(F,H) is Line(G,H). So, this makes sense. 
+
+Therefore, FH is GH, which is 10. Hence, answer B. 
+
+But wait, the problem says "Point(F)" is a point, and Line(F,H) is a line. So, if F is G, then yes, Line(F,H) is Line(G,H). 
+
+But why would the problem introduce Point(F) as a separate entity? Maybe to avoid confusion with other points. 
+
+In that case, the answer would be B, 10. 
+
+But let me confirm this logic. 
+
+If F is G, then FH is the same as GH, which is 10. Hence, the answer is B. 
+
+But is there any other possibility? For example, if F is another point. 
+
+But given that Line(F,H) is mentioned, and no other information about F, the only way to determine FH is if F is G. Otherwise, without additional info, FH could be any length. 
+
+But since the problem provides this as a solvable question, it must be that F is intended to be G. 
+
+Therefore, the answer is B, 10.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

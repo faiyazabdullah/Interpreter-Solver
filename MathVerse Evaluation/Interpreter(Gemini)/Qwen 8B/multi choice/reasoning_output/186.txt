@@ -1,0 +1,324 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Point(O)
+Line(A,B)
+Line(C,E)
+Line(O,D)
+Line(A,E)
+Line(A,C)
+Line(B,C)
+Circle(O)
+IsDiameterOf(Line(A,B),Circle(O))
+PointLiesOnCircle(A,Circle(O))
+PointLiesOnCircle(B,Circle(O))
+PointLiesOnCircle(C,Circle(O))
+IsRadiusOf(Line(O,A),Circle(O))
+IsRadiusOf(Line(O,B),Circle(O))
+IsRadiusOf(Line(O,C),Circle(O))
+IsRadiusOf(Line(O,D),Circle(O))
+Tangent(Line(C,E),Circle(O))
+IntersectAt(Line(C,E),Line(A,E),Line(A,B),Point(E))
+Perpendicular(Line(O,D),Line(A,C))
+RightAngle(Angle(O,D,A))
+MeasureOf(Angle(E),30.0)
+LengthOf(Line(C,E),6.0)
+Angle(O,C,E)
+RightAngle(Angle(O,C,E))
+Triangle(O,C,E)
+Right(Triangle(O,C,E))
+PointLiesOnLine(D,Line(A,C))
+PointLiesOnLine(O,Line(A,B))
+Equals(LengthOf(Line(O,A)),LengthOf(Line(O,B)))
+Equals(LengthOf(Line(O,A)),LengthOf(Line(O,C)))
+Equals(LengthOf(Line(O,A)),LengthOf(Line(O,D)))
+Equals(LengthOf(Line(O,B)),LengthOf(Line(O,C)))
+Equals(LengthOf(Line(O,B)),LengthOf(Line(O,D)))
+Equals(LengthOf(Line(O,C)),LengthOf(Line(O,D)))
+
+QUESTION:
+As shown in the figure, AB is the diameter of circle O, C is the point on circle O, passing point C is the tangent of circle O and intersects the extended line of AB at point E, OD perpendicular  AC at point D, if angle E = 30.0, CE = 6.0, then the value of OD is ()
+
+CHOICES:
+A:1
+B:√{3}
+C:2
+D:2√{3}
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's tackle this geometry problem. First, I need to parse all the given predicates and visualize the figure. Let me start by listing out all the given information step by step.
+
+We have points A, B, C, D, E, and O. Lines AB, CE, OD, AE, AC, BC. There's a circle O, and AB is the diameter of that circle. Points A and B lie on the circle since they're endpoints of the diameter. Also, point C is on the circle because it's mentioned as lying on the circle. The line CE is tangent to the circle at point C, so that means CE touches the circle only at C and is perpendicular to the radius OC. 
+
+The tangent line CE intersects the extended line AB at point E. So, E is outside the circle since it's where the tangent meets the extension of AB. Then there's another line OD, which is perpendicular to AC at point D. That tells me OD is perpendicular to AC, and D lies somewhere along AC because PointLiesOnLine(D, Line(A,C)).
+
+Also, angle E is given as 30 degrees, and the length of CE is 6 units. We need to find the length of OD.
+
+Let me sketch this mentally. AB is the diameter of the circle O. Since AB is the diameter, OA and OB are radii. Therefore, OA = OB = OC = OD because all are radii of the same circle. Wait, but the predicates say IsRadiusOf(Line(O,A),Circle(O)), and similarly for O to B, C, D. So all these segments OA, OB, OC, OD are radii, hence equal in length. So OA=OB=OC=OD.
+
+Now, CE is tangent to the circle at C. By the property of tangents, the radius OC is perpendicular to CE. So angle OCE is 90 degrees. But wait, the predicate says RightAngle(Angle(O,C,E)), which confirms that angle at C between O, C, E is a right angle. So triangle OCE is a right triangle with right angle at C.
+
+Given that CE = 6.0, and we know that OC is a radius. Let me denote the radius as r. So OC = r, CE = 6. In triangle OCE, right-angled at C, so by Pythagoras:
+
+OE² = OC² + CE² → OE² = r² + 6² = r² + 36.
+
+But also, since AB is the diameter, AB = 2r. Now, point E lies on the extension of AB. Let me think about coordinates here. Maybe coordinate geometry could help. Let me assign coordinates to make calculations easier.
+
+Let me place the circle O at the origin (0,0) for simplicity. Since AB is the diameter, let me set points A and B on the x-axis. Suppose O is at (0,0). Let me assume AB is horizontal. Let’s let A be (-r, 0) and B be (r, 0), making AB of length 2r. Then point C is some point on the circle. Since CE is tangent at C, and E is on the extended AB line.
+
+Wait, but how do I find coordinates for C? Alternatively, maybe use power of a point. Since E lies outside the circle, and EC is tangent to the circle at C, the power of point E with respect to circle O is equal to EC². Power of a point formula states that EC² = EA * EB, since E lies on the secant line AB.
+
+Yes! Because E is on the extended AB line, so EA and EB are the distances from E to A and E to B. Let me write that down:
+
+EC² = EA * EB.
+
+Given EC = 6, so 36 = EA * EB.
+
+Now, let me express EA and EB in terms of the position of E on line AB. Let me denote the distance from E to A as x, then since AB is the diameter of length 2r, and assuming E is beyond B (since CE is tangent, E should be outside the circle), then EB would be the distance from E to B, and EA would be EB + AB? Wait, depends on the direction.
+
+Alternatively, let me consider coordinates again. Let me suppose that E is on the extension of AB beyond B. So, coordinates of E would be (k, 0), where k > r (since B is at (r, 0)). Then EA is the distance from E to A: |k - (-r)| = k + r. EB is |k - r| = k - r. Then according to power of point:
+
+EC² = EA * EB → 36 = (k + r)(k - r) = k² - r².
+
+So, k² = r² + 36.
+
+Additionally, since CE is tangent at C, and OC is perpendicular to CE. So vectorially, the slope of OC times the slope of CE equals -1.
+
+Alternatively, since OC is radius from O(0,0) to C(x,y) on the circle, so equation of OC is y = m x, where m is slope. CE is tangent at C, so direction of CE is perpendicular to OC. Therefore, the line CE has slope -1/m.
+
+But since E lies on line AB (the x-axis), the coordinates of E are (k, 0). Therefore, the line CE connects point C(x,y) to E(k, 0), and its slope is (0 - y)/(k - x) = -y/(k - x). This slope should be equal to -1/m, where m is the slope of OC, which is y/x. Hence:
+
+-slope of CE = -1/m → slope of CE = 1/m. Therefore,
+
+-y/(k - x) = 1/(y/x) → cross multiplying:
+
+-y * x = (k - x) * y → Assuming y ≠ 0 (which it isn't since C is not on AB as it's a tangent point).
+
+So simplifying:
+
+-xy = ky - xy → Subtract -xy from both sides gives 0 = ky → So ky = 0. Since k ≠ 0 (as E is not at O), this implies y = 0. But that contradicts the fact that C is not on AB (since otherwise CE would be along AB, but CE is tangent, which would require C to be the point where AB meets the circle, but AB is the diameter, so C can't be on AB unless it's A or B. However, since CE is tangent at C, which would mean that if C were on AB, then CE would be the tangent at A or B, but in our case, C is a different point. Therefore, my assumption here leads to contradiction, which suggests that perhaps I made an error in the slope calculation.
+
+Wait, let me re-examine the relationship between slopes. The line CE is tangent at C, so the radius OC is perpendicular to CE. Therefore, the product of their slopes is -1.
+
+Slope of OC is (y - 0)/(x - 0) = y/x.
+
+Slope of CE is (0 - y)/(k - x) = -y/(k - x).
+
+Therefore, the product of slopes should be -1:
+
+(y/x) * (-y/(k - x)) = -1 → (-y²)/(x(k - x)) = -1 → Multiply both sides by denominator:
+
+(-y²) = -x(k - x) → y² = x(k - x)
+
+But since point C lies on the circle centered at O with radius r, so x² + y² = r². Therefore, substituting y² = x(k - x) into this equation:
+
+x² + x(k - x) = r² → x² + kx - x² = r² → kx = r² → x = r² / k.
+
+So the x-coordinate of point C is r²/k.
+
+Additionally, since point C lies on the circle, x² + y² = r². From earlier, y² = x(k - x) → substitute x:
+
+y² = (r²/k)(k - r²/k) = (r²/k)( (k² - r²)/k ) = r²(k² - r²)/k².
+
+Thus, plugging back into x² + y²:
+
+(r^4)/k² + [r²(k² - r²)]/k² = [r^4 + r²k² - r^4]/k² = r²k² / k² = r², which checks out. Good.
+
+Now, let me recall that E lies on the x-axis at (k, 0). Also, we had from power of point: k² = r² + 36. So k = sqrt(r² + 36).
+
+But from above, x = r² / k. So x = r² / sqrt(r² + 36).
+
+Now, let's consider the line AC. Since A is (-r, 0) and C is (x, y), which we found x = r²/k. Let me compute coordinates of C. Let me write coordinates of C as (x, y) = (r²/k, y). And from y² = x(k - x):
+
+y² = (r²/k)(k - r²/k) = r²/k*( (k² - r²)/k ) = r²(k² - r²)/k².
+
+But from power of a point, k² = r² + 36, so k² - r² = 36. Thus, y² = r²*36 /k².
+
+Therefore, y = (6r)/k.
+
+So coordinates of C are (r²/k, 6r/k).
+
+Now, we need to find point D, which is the foot of the perpendicular from O to AC. Wait, the predicate says OD is perpendicular to AC at D. So OD ⊥ AC, and D lies on AC.
+
+So OD is the altitude from O to AC. Therefore, OD is the distance from O to line AC, and D is the foot of that perpendicular.
+
+Our goal is to find the length of OD.
+
+To compute OD, we can find the distance from point O(0,0) to line AC, which is the same as the length of OD.
+
+First, let's find the equation of line AC. Points A(-r, 0) and C(r²/k, 6r/k).
+
+Compute the slope of AC:
+
+m_AC = (y_C - y_A)/(x_C - x_A) = (6r/k - 0)/(r²/k - (-r)) = (6r/k) / (r²/k + r) = (6r/k) / [ (r² + rk)/k ] = 6r / (r² + rk) = 6 / (r + k).
+
+So the slope of AC is 6/(r + k). Therefore, the equation of line AC can be written using point A(-r, 0):
+
+y - 0 = [6/(r + k)](x + r)
+
+Which simplifies to y = [6/(r + k)](x + r)
+
+Now, the distance from O(0,0) to line AC is given by the formula:
+
+Distance = |Ax + By + C| / sqrt(A² + B²), where Ax + By + C = 0 is the line equation.
+
+Rewriting the line AC equation:
+
+y - [6/(r + k)](x + r) = 0 → rearranged:
+
+[6/(r + k)]x - y + [6r/(r + k)] = 0
+
+Multiply numerator and denominator by (r + k) to eliminate denominators:
+
+6x - (r + k)y + 6r = 0 → So standard form is 6x - (r + k)y + 6r = 0.
+
+Thus, A = 6, B = -(r + k), C = 6r.
+
+Then, the distance from O(0,0) to this line is:
+
+|6*0 - (r + k)*0 + 6r| / sqrt(6² + (-(r + k))²) ) = |6r| / sqrt(36 + (r + k)^2 )
+
+So OD = 6r / sqrt(36 + (r + k)^2 )
+
+But we need to find this value in terms of known quantities. Remember that k² = r² + 36, so k = sqrt(r² + 36). Let's substitute that into the expression.
+
+Let me compute denominator:
+
+sqrt(36 + (r + k)^2 ) = sqrt(36 + r² + 2rk + k² )
+
+But since k² = r² + 36, substitute that:
+
+sqrt(36 + r² + 2rk + r² + 36) = sqrt(2r² + 72 + 2rk)
+
+Hmm, this seems complicated. Perhaps there's a better way. Let me see if I can relate variables using other given info.
+
+Another given is that angle E is 30 degrees. Angle E refers to angle at E, which is angle AEB? Or angle formed by lines meeting at E?
+
+Looking back at the predicates, MeasureOf(Angle(E),30.0). Since E is the intersection of CE and AB extended, angle E is likely angle AEC or angle BEC? Wait, the problem says angle E is 30 degrees. Given that CE is tangent at C, and E is on AB extended, angle at E between which lines?
+
+Possibly, angle at E between EC and EA or EB. Let me think. Since E is on AB extended, and CE is tangent, the angle at E is between EC and EA (or EB?), depending on the configuration.
+
+Assuming that E is beyond B on AB extended, then angle at E is between EC and EB. Let me try to find that angle using triangle ECO or something else.
+
+Alternatively, since we have triangle OCE which is right-angled at C, and we have angle at E. Wait, in triangle OCE, angle at C is 90°, angle at E is given as 30°, so angle at O would be 60°, since angles sum to 180°. Let me check:
+
+In triangle OCE:
+
+angle at C: 90°, angle at E: 30°, so angle at O is 60°. Therefore, triangle OCE is a 30-60-90 triangle.
+
+In such a triangle, the sides are in ratio 1 : √3 : 2. The side opposite 30° is half the hypotenuse.
+
+Here, angle at E is 30°, so the side opposite is OC (which is the radius r). Wait, no. Let me clarify:
+
+In triangle OCE, right-angled at C. So angle at E is 30°, so the side opposite to E is OC. Wait, no:
+
+Wait, vertices are O, C, E. Right angle at C. So sides:
+
+OC is one leg (radius r), CE is another leg (length 6), and OE is hypotenuse.
+
+Angle at E is 30°, so tan(angle E) = opposite / adjacent = OC / CE.
+
+Wait, angle at E: in triangle OCE, angle at E is between CE and EO. So, the legs are OC and CE, with OC opposite to angle E. Wait, let me draw triangle OCE:
+
+- Right angle at C.
+
+- So sides:
+
+- OC (from O to C): length r.
+
+- CE (from C to E): length 6.
+
+- OE (hypotenuse): length sqrt(r² + 6²).
+
+Angle at E: in triangle OCE, angle at E. So tan(angle E) = opposite / adjacent = OC / CE = r / 6.
+
+Given that angle E is 30°, so tan(30°) = r / 6.
+
+Since tan(30°) = 1/√3 ≈ 0.577, so:
+
+r / 6 = 1/√3 → r = 6 / √3 = 2√3.
+
+So the radius r is 2√3. Great! So now we can find r = 2√3.
+
+Now, going back to the expression for OD, which was:
+
+OD = 6r / sqrt(36 + (r + k)^2 )
+
+But we need to find k. Recall that from power of point:
+
+k² = r² + 36.
+
+With r = 2√3, then r² = (2√3)^2 = 4*3 = 12. So k² = 12 + 36 = 48 → k = sqrt(48) = 4√3.
+
+So k = 4√3.
+
+Now, substitute r = 2√3 and k = 4√3 into the expression for OD:
+
+Denominator part: sqrt(36 + (r + k)^2 )
+
+Calculate r + k = 2√3 + 4√3 = 6√3.
+
+Then, (r + k)^2 = (6√3)^2 = 36 * 3 = 108.
+
+So denominator becomes sqrt(36 + 108) = sqrt(144) = 12.
+
+Numerator is 6r = 6*(2√3) = 12√3.
+
+Therefore, OD = 12√3 / 12 = √3.
+
+So OD equals √3, which corresponds to answer choice B.
+
+Let me double-check this conclusion. Since OD is the distance from O to line AC, and we computed it as √3. With r = 2√3, and the process leading us here seems solid.
+
+Another way to verify: Since OD is the distance from O to line AC. Alternatively, since OD is perpendicular to AC, and D lies on AC. Also, since O is the center, and we have coordinates for everything, perhaps we can calculate coordinates of D and then compute OD.
+
+Earlier, we had coordinates for C as (r²/k, 6r/k). With r = 2√3, k = 4√3:
+
+r² = 12, so x-coordinate of C is 12 / (4√3) = 3 / √3 = √3.
+
+Similarly, y-coordinate is 6r/k = 6*(2√3)/(4√3) = (12√3)/(4√3) = 3.
+
+So point C is (√3, 3).
+
+Point A is (-r, 0) = (-2√3, 0).
+
+Equation of line AC: connecting (-2√3, 0) and (√3, 3).
+
+Compute the slope of AC: (3 - 0)/(√3 - (-2√3)) = 3 / (3√3) = 1/√3.
+
+So the equation of line AC is y - 0 = (1/√3)(x + 2√3).
+
+So y = (1/√3)x + (1/√3)(2√3) = (1/√3)x + 2.
+
+The distance from O(0,0) to this line is |(1/√3)(0) - 1*(0) + 2| / sqrt( (1/√3)^2 + (-1)^2 ) ?
+
+Wait, general formula for distance from point (x0,y0) to ax + by + c = 0 is |ax0 + by0 + c| / sqrt(a² + b²). Let me rewrite the line equation in ax + by + c = 0.
+
+From y = (1/√3)x + 2 → (1/√3)x - y + 2 = 0. Multiplying numerator and denominator by √3 to rationalize:
+
+Multiply entire equation by √3: x - √3 y + 2√3 = 0.
+
+So a = 1, b = -√3, c = 2√3.
+
+Distance from (0,0):
+
+|1*0 + (-√3)*0 + 2√3| / sqrt(1 + (√3)^2) = |2√3| / sqrt(1 + 3) = 2√3 / 2 = √3.
+
+So yes, OD is indeed √3. Therefore, the correct answer is B.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

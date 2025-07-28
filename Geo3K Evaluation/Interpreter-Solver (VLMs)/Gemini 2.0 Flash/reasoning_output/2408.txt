@@ -1,0 +1,55 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2408.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2408.txt
+
+PREDICATES CONTENT:
+Point(X)
+Point(Y)
+Point(Z)
+Point(M)
+Point(N)
+Line(X,Y)
+Line(Y,Z)
+Line(X,Z)
+Line(X,N)
+Line(N,Z)
+Line(X,M)
+Line(M,Y)
+PointLiesOnLine(M,Line(X,Y))
+PointLiesOnLine(N,Line(X,Z))
+LengthOf(XN,6)
+LengthOf(XM,2)
+LengthOf(XY,10)
+Add(XM,MY,XY)
+Add(XN,NZ,XZ)
+Sub(XY,XM,MY)
+Equals(SumOf(XM,LengthOf(MY)),LengthOf(XY))
+Equals(SumOf(LengthOf(XN),LengthOf(NZ)),LengthOf(XZ))
+
+QUESTION:
+If X N = 6, X M = 2, and X Y = 10, find N Z.
+
+CHOICES:
+A. 12
+B. 16
+C. 24
+D. 32
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From LengthOf(XN,6) + LengthOf(XM,2) + LengthOf(XY,10) + PointLiesOnLine(M,Line(X,Y)) + PointLiesOnLine(N,Line(X,Z)) + Add(XM,MY,XY) + Add(XN,NZ,XZ) + Sub(XY,XM,MY) → MY = XY - XM = 10 - 2 = 8
+From LengthOf(XN,6) + LengthOf(XM,2) + LengthOf(XY,10) + PointLiesOnLine(M,Line(X,Y)) + PointLiesOnLine(N,Line(X,Z)) + Add(XM,MY,XY) + Add(XN,NZ,XZ) + Equals(SumOf(XM,LengthOf(MY)),LengthOf(XY)) + Equals(SumOf(LengthOf(XN),LengthOf(NZ)),LengthOf(XZ)) → The image shows that triangle XMN is similar to triangle XYZ.
+From similarity → XM/XY = XN/XZ
+From XM/XY = XN/XZ + LengthOf(XN,6) + LengthOf(XM,2) + LengthOf(XY,10) → 2/10 = 6/XZ
+From 2/10 = 6/XZ → XZ = (6 * 10) / 2 = 60 / 2 = 30
+From LengthOf(XN,6) + Add(XN,NZ,XZ) + LengthOf(XZ,30) → XN + NZ = XZ → 6 + NZ = 30
+From 6 + NZ = 30 → NZ = 30 - 6 = 24
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

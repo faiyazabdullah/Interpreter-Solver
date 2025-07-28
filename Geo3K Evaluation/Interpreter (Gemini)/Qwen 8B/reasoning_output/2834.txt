@@ -1,0 +1,466 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Point(A)
+Point(Y)
+Point(B)
+Point(N)
+Line(A,Y)
+Line(Y,B)
+Line(A,B)
+Line(A,N)
+Line(N,B)
+Triangle(A,Y,B)
+Triangle(A,N,Y)
+Triangle(A,N,B)
+RightAngle(Angle(Y,A,B))
+RightAngle(Angle(A,N,B))
+Equals(LengthOf(Line(A,Y)), 5)
+Equals(SumOf(LengthOf(Line(Y,N)), LengthOf(Line(N,B))), 14)
+Equals(LengthOf(Line(A,N)), x)
+Equals(LengthOf(Line(A,B)), z)
+Equals(LengthOf(Line(Y,B)), y)
+Perpendicular(Line(A,Y), Line(A,B))
+Perpendicular(Line(A,N), Line(Y,B))
+Similar(Triangle(A,Y,B), Triangle(A,N,B))
+Similar(Triangle(A,Y,B), Triangle(A,N,Y))
+RatioOf(LengthOf(Line(A,Y)), LengthOf(Line(Y,B)), LengthOf(Line(A,N)), LengthOf(Line(N,B)))
+RatioOf(LengthOf(Line(A,Y)), LengthOf(Line(Y,B)), LengthOf(Line(A,B)), LengthOf(Line(A,Y)))
+RatioOf(LengthOf(Line(A,N)), LengthOf(Line(N,B)), LengthOf(Line(A,B)), LengthOf(Line(A,Y)))
+IsSideOf(Line(A,Y), Triangle(A,Y,B))
+IsSideOf(Line(Y,B), Triangle(A,Y,B))
+IsSideOf(Line(A,B), Triangle(A,Y,B))
+IsSideOf(Line(A,N), Triangle(A,N,B))
+IsSideOf(Line(N,B), Triangle(A,N,B))
+IsSideOf(Line(A,B), Triangle(A,N,B))
+IsSideOf(Line(A,N), Triangle(A,N,Y))
+IsSideOf(Line(Y,N), Triangle(A,N,Y))
+IsSideOf(Line(A,Y), Triangle(A,N,Y))
+
+QUESTION:
+Find z.
+
+CHOICES:
+A. \sqrt { 19 }
+B. 5
+C. 3 \sqrt { 19 }
+D. 14
+
+====================================================================================================
+MODEL'S INTERNAL REASONING (THINKING MODE):
+====================================================================================================
+Okay, let's try to tackle this geometry problem. First, I need to parse all the given information carefully. Let me start by listing out all the constraints and see how they relate to each other.
+
+We have points A, Y, B, N. There are several lines connecting them: AY, YB, AB, AN, NB. Triangles mentioned are AYB, ANY, ANB. Also, there are right angles at Angle(YAB) and Angle(ANB). So that means triangle AYB is right-angled at A, and triangle ANB is right-angled at N. Wait, no—right angle at Angle(A,N,B)? Let me check again. The RightAngle(Angle(Y,A,B)) implies that angle at A between Y and B is a right angle. Similarly, RightAngle(Angle(A,N,B)) means angle at N between A and B is a right angle. Hmm.
+
+Also, lengths: AY = 5, Sum of YN + NB = 14. Then, AN = x, AB = z, YB = y. And some perpendicularity conditions: AY is perpendicular to AB (since Perpendicular(Line(A,Y), Line(A,B))). That makes sense because if AY is perpendicular to AB, then angle at A between AY and AB is 90 degrees, which matches the first right angle. Then, another condition: Perpendicular(Line(A,N), Line(Y,B)). So line AN is perpendicular to line YB. Interesting.
+
+Then we have similar triangles: Triangle AYB ~ Triangle ANB and also Triangle AYB ~ Triangle ANY. So similarity relations here. Also, ratios involving lengths. The RatioOf statements might indicate proportionality based on similar triangles.
+
+The question is to find z, which is the length of AB.
+
+Let me try to visualize the figure. Since there's a right angle at A for triangle AYB, so AY and AB are legs, and YB is hypotenuse. Then, since AY=5, and AB=z, then YB would be sqrt(AY² + AB²) = sqrt(25 + z²). But wait, but there's also a ratio given. Let me think about the similar triangles.
+
+First, Triangle AYB ~ Triangle ANB. Let me write down the correspondence. If they are similar, their corresponding sides should be proportional. Which sides correspond? Let me check the order. Triangle AYB ~ Triangle ANB. So vertex A corresponds to A, Y corresponds to N, B corresponds to B? Or maybe different?
+
+Wait, similar triangles: Triangle AYB ~ Triangle ANB. The order of vertices matters. So A corresponds to A, Y corresponds to N, B corresponds to B? Wait, but then angle at A in both triangles. Let me check the angles. In Triangle AYB, right angle at A. In Triangle ANB, right angle at N. So if they are similar, the right angles must correspond. Therefore, the right angle in AYB (at A) corresponds to the right angle in ANB (at N). Therefore, the correspondence is A -> N, Y -> B, B -> A? Wait, maybe I need to get the order right.
+
+Alternatively, perhaps Triangle AYB ~ Triangle ANB with the right angles at A and N respectively. So the right angles are corresponding. Therefore, the correspondence would be AYB ~ ANB such that angle at A (right angle) corresponds to angle at N (right angle). Therefore, side AY corresponds to side AN, side AB corresponds to side NB, and side YB corresponds to side NB? Wait, maybe not. Let me recall the notation: when two triangles are similar, the order of the letters indicates the correspondence. So Triangle AYB ~ Triangle ANB would mean:
+
+Angle A corresponds to Angle A? No, because Triangle AYB has right angle at A, while Triangle ANB has right angle at N. Therefore, the correspondence must be such that the right angles correspond. So, if Triangle AYB ~ Triangle ANB, then angle at A (in AYB) corresponds to angle at N (in ANB). Therefore, the order would be AYB ~ NAB? Maybe I need to adjust the order. Alternatively, perhaps it's Triangle AYB ~ Triangle NBA? Not sure yet. Maybe better to use variables and set up proportions.
+
+Alternatively, since Triangle AYB and Triangle ANB are similar, then the ratio of their corresponding sides should be equal. Let me denote the sides.
+
+In Triangle AYB: sides are AY = 5, AB = z, YB = sqrt(25 + z²).
+
+In Triangle ANB: sides are AN = x, NB = ?, AB = z. Wait, but Triangle ANB has right angle at N. So sides are AN (perpendicular), NB (base), and AB as hypotenuse. Wait, but AB is common? Wait, AB is connected to point A and B. Wait, in Triangle ANB, the sides are AN, NB, and AB. Since it's right-angled at N, then AN and NB are the legs, and AB is the hypotenuse. Therefore, by Pythagoras:
+
+AN² + NB² = AB² → x² + NB² = z².
+
+But also, there's another condition: sum of YN + NB = 14. So YN + NB = 14. Wait, YN is part of line YN? How is YN related?
+
+Looking back, we have lines: AY, YB, AB, AN, NB. Also, Triangle AYN? Wait, Triangle A,N,Y is mentioned. So points A, N, Y form a triangle. Also, the Perpendicular(Line(A,N), Line(Y,B)) — so AN is perpendicular to YB. So line AN is perpendicular to line YB.
+
+So line YB is the hypotenuse of Triangle AYB, which has length y. Wait, earlier we had YB = y. So YB = y, and since AY=5, AB=z, then by Pythagoras, y² = 5² + z² → y = √(25 + z²).
+
+Now, since AN is perpendicular to YB. So line AN is perpendicular to line YB. Let me think about coordinates. Maybe assigning coordinates to points can help.
+
+Let me place point A at the origin (0,0). Since AY is perpendicular to AB, and assuming AB is along the x-axis, and AY is along the y-axis. Let me define coordinates accordingly.
+
+Let’s assign coordinates:
+
+- Point A: (0, 0)
+
+Since AY is vertical (assuming AB is horizontal). Let me suppose AB lies along x-axis, and AY lies along y-axis.
+
+Therefore:
+
+- Point B is somewhere along x-axis. Let me say B is at (z, 0), since AB has length z.
+
+- Point Y is along the y-axis, so Y is at (0, 5), since AY = 5.
+
+Now, line YB connects Y(0,5) to B(z,0). The equation of line YB can be determined.
+
+Then, line AN is perpendicular to line YB. Also, point N is connected to A and B via lines AN and NB. Also, Triangle ANB is right-angled at N, meaning that AN ⊥ NB. So point N lies somewhere such that AN is perpendicular to NB.
+
+Additionally, we have Triangle AYB ~ Triangle ANB. Let me explore this similarity.
+
+First, Triangle AYB has vertices at A(0,0), Y(0,5), B(z,0). It's a right triangle with legs AY=5 and AB=z, hypotenuse YB=y.
+
+Triangle ANB is right-angled at N, with legs AN=x and NB=?, hypotenuse AB=z.
+
+Given that these triangles are similar. So the ratio of corresponding sides should be equal.
+
+Which sides correspond? Since Triangle AYB ~ Triangle ANB, the correspondence could be AY corresponds to AN, YB corresponds to AB, and AB corresponds to NB? Or need to determine based on angles.
+
+Since Triangle AYB is right-angled at A, and Triangle ANB is right-angled at N. Therefore, the right angles correspond. So the correspondence would be:
+
+Angle A (right angle in AYB) corresponds to Angle N (right angle in ANB).
+
+Therefore, the sides opposite these angles would be proportional. In Triangle AYB, the side opposite the right angle (angle A) is YB. In Triangle ANB, the side opposite the right angle (angle N) is AB. Therefore, YB / AB = ratio of similarity.
+
+Similarly, other sides would follow. So the ratio of similarity between Triangle AYB and Triangle ANB is YB / AB = (y)/z.
+
+But also, since they are similar, the ratio of corresponding sides should hold. For example, AY/AN = AB/NB = YB/AB.
+
+So AY corresponds to AN, AB corresponds to NB, and YB corresponds to AB.
+
+Wait, let me check:
+
+If Triangle AYB ~ Triangle ANB, then:
+
+Angle A (right) ↔ Angle N (right)
+
+Angle Y ↔ Angle A ?
+
+Wait, maybe I need to write down the correspondence properly. Let me denote the similarity as AYB ~ ANB. So the order of vertices is important. So:
+
+Vertex A in AYB corresponds to Vertex A in ANB? No, because the right angles are at different positions. Alternatively, maybe the correspondence is A ↔ N, Y ↔ A, B ↔ B? Not sure. This seems confusing. Maybe using ratios instead.
+
+Since Triangle AYB ~ Triangle ANB, then the ratio of their corresponding sides is equal. Let me consider the sides adjacent to the right angles.
+
+In Triangle AYB, the legs are AY and AB. In Triangle ANB, the legs are AN and NB. Since they are similar, the ratio of AY to AN equals the ratio of AB to NB. Also, the ratio of AY to AB equals the ratio of AN to NB? Wait, not sure. Let me think of the similarity ratio.
+
+Suppose the similarity ratio is k, so that each side in Triangle AYB is k times the corresponding side in Triangle ANB.
+
+But since the right angles are at different positions, need to map the sides correctly. Let me think of the sides:
+
+In Triangle AYB: legs AY and AB; hypotenuse YB.
+
+In Triangle ANB: legs AN and NB; hypotenuse AB.
+
+So if they are similar, then the legs of one triangle correspond to the legs of the other. So AY corresponds to AN, AB corresponds to NB, and YB corresponds to AB.
+
+Thus:
+
+AY / AN = AB / NB = YB / AB.
+
+From this, we can write:
+
+AY / AN = AB / NB → 5/x = z / NB → NB = (x*z)/5.
+
+Also, AB / NB = YB / AB → z / NB = y / z → cross-multiplying gives z² = y * NB.
+
+But we already have NB = (xz)/5, so substituting:
+
+z² = y*(xz)/5 → z = (y*x)/5 → y = (5z)/x.
+
+But we also know from the Pythagorean theorem in Triangle AYB that y² = 5² + z² → y = √(25 + z²).
+
+So combining these equations:
+
+√(25 + z²) = (5z)/x → square both sides:
+
+25 + z² = (25z²)/x² → Multiply both sides by x²:
+
+25x² + z²x² = 25z² → Rearranged:
+
+25x² = 25z² - z²x² → Hmm, not sure if helpful yet.
+
+But we also have another condition: the sum YN + NB = 14. We need to express YN in terms of other variables.
+
+To find YN, note that YN is part of line YN. Let me think about coordinates again. Earlier, I placed coordinates as follows:
+
+A(0,0), Y(0,5), B(z,0). Now, we need to find coordinates of N such that:
+
+1. AN is perpendicular to YB.
+
+2. Triangle ANB is right-angled at N.
+
+So first, find equation of line YB. Points Y(0,5) and B(z,0). The slope of YB is (0-5)/(z-0) = -5/z. Therefore, the slope of line YB is -5/z. Since line AN is perpendicular to YB, its slope is the negative reciprocal, which is z/5.
+
+So line AN passes through A(0,0) and has slope z/5. Therefore, parametric equations for line AN can be written as x = t, y = (z/5)t, where t is parameter.
+
+Point N lies somewhere on this line. Also, point N is connected to B(z,0), forming segment NB. Additionally, Triangle ANB is right-angled at N. Therefore, vectors NA and NB are perpendicular.
+
+Wait, since Triangle ANB is right-angled at N, then vectors NA and NB are perpendicular. Vector NA = A - N = (0 - Nx, 0 - Ny) = (-Nx, -Ny). Vector NB = B - N = (z - Nx, 0 - Ny) = (z - Nx, -Ny). Their dot product should be zero:
+
+(-Nx)(z - Nx) + (-Ny)(-Ny) = 0 → -Nx(z - Nx) + Ny² = 0 → -zNx + Nx² + Ny² = 0.
+
+But since N lies on line AN, which has parametric equations x = t, y = (z/5)t. So Nx = t, Ny = (z/5)t.
+
+Substituting into above equation:
+
+-z*t + t² + [(z/5)t]^2 = 0 → -zt + t² + (z²/25)t² = 0.
+
+Factor out t:
+
+t[-z + t + (z²/25)t] = 0 → solutions t=0 (which is point A, not N) and:
+
+-z + t + (z²/25)t = 0 → t[1 + z²/25] = z → t = z / [1 + z²/25] = z / [(25 + z²)/25)] = (25z)/(25 + z²).
+
+Therefore, coordinates of N are:
+
+Nx = t = (25z)/(25 + z²),
+
+Ny = (z/5)t = (z/5)*(25z)/(25 + z²) = (5z²)/(25 + z²).
+
+So coordinates of N are ((25z)/(25 + z²), (5z²)/(25 + z²)).
+
+Now, we need to compute YN. Point Y is at (0,5). Point N is at ((25z)/(25+z²), (5z²)/(25+z²)).
+
+Compute distance YN:
+
+Δx = (25z/(25+z²)) - 0 = 25z/(25+z²)
+
+Δy = (5z²/(25+z²)) - 5 = [5z² - 5(25 + z²)] / (25 + z²) = [5z² - 125 -5z²]/denominator = (-125)/(25 + z²)
+
+Therefore, YN squared is [ (25z)^2 + (-125)^2 ] / (25 + z²)^2
+
+Wait, more precisely:
+
+Distance YN = sqrt[(Δx)^2 + (Δy)^2]
+
+So:
+
+(Δx)^2 = [25z/(25 + z²)]² = 625z²/(25 + z²)^2
+
+(Δy)^2 = [ -125/(25 + z²) ]² = 15625/(25 + z²)^2
+
+Total YN^2 = [625z² + 15625]/(25 + z²)^2 = [625(z² + 25)] / (25 + z²)^2 ) = 625 / (25 + z²)
+
+Therefore, YN = 25 / sqrt(25 + z²)
+
+But earlier, we were told that YN + NB = 14. So need to find NB.
+
+NB is the length from N to B. Coordinates of N are ((25z)/(25+z²), (5z²)/(25+z²)), and B is at (z, 0). Compute NB:
+
+Δx = z - 25z/(25 + z²) = [z(25 + z²) - 25z]/(25 + z²) = [25z + z³ -25z]/(25 + z²) = z³/(25 + z²)
+
+Δy = 0 - 5z²/(25 + z²) = -5z²/(25 + z²)
+
+So NB squared is [z³/(25 + z²)]² + [ -5z²/(25 + z²) ]² = [ z^6 + 25z^4 ] / (25 + z²)^2 = z^4(z² +25)/ (25 + z²)^2 ) = z^4/(25 + z²)
+
+Therefore, NB = z² / sqrt(25 + z²)
+
+So YN + NB = 25/sqrt(25 + z²) + z²/sqrt(25 + z²) = (25 + z²)/sqrt(25 + z²) ) = sqrt(25 + z²)
+
+But according to the problem statement, this sum equals 14. Therefore:
+
+sqrt(25 + z²) = 14 → square both sides:
+
+25 + z² = 196 → z² = 196 -25 = 171 → z = sqrt(171) = sqrt(9*19) = 3*sqrt(19)
+
+Wait, so z is 3√19. Looking at the answer choices, option C is 3√19. But let me verify my steps again because this seems straightforward but I want to make sure I didn't make any mistake.
+
+Let me recap:
+
+We found that YN + NB = sqrt(25 + z²) = 14 → 25 + z² = 196 → z² = 171 → z = sqrt(171) = 3√19. Yes, since 171 factors into 9*19, so sqrt(9*19)=3√19.
+
+But looking at the answer choices, option C is 3√19. However, let me check if there's another way this could be approached, considering the similar triangles.
+
+Earlier, we had from the similarity of Triangle AYB ~ Triangle ANB. From the similarity, we had earlier that y = (5z)/x, and also y² = 25 + z². Also, from the expression for YN + NB = 14 leading us directly to sqrt(25 + z²) = 14. Hence z² = 171. Thus, z = sqrt(171) = 3√19. So answer is C.
+
+But let me check if there's another constraint that I missed. Also, there's another ratio given: RatioOf(LengthOf(Line(A,Y)), LengthOf(Line(Y,B)), LengthOf(Line(A,N)), LengthOf(Line(N,B))) which may imply something else. But perhaps that was used in the similarity?
+
+Wait, the RatioOf statements might be redundant once we've considered the similar triangles. Let me check.
+
+Another ratio: RatioOf(LengthOf(Line(A,Y)), LengthOf(Line(Y,B)), LengthOf(Line(A,B)), LengthOf(Line(A,Y))). So that's AY/YB = AB/AY. Which would imply that AY/YB = AB/AY → AY² = YB * AB. Which is consistent with the Pythagorean theorem? Let me see.
+
+From Triangle AYB, AY² + AB² = YB² → rearranged as YB² = AY² + AB² → YB = sqrt(AY² + AB²). So AY² = YB² - AB². But according to the ratio AY/YB = AB/AY → cross multiply: AY² = AB * YB. So unless AB * YB = YB² - AB² → AB * YB = YB² - AB² → AB² + AB * YB - YB² = 0. This seems like a quadratic equation in AB. But maybe this comes from the similarity?
+
+Alternatively, since Triangle AYB ~ Triangle ANB, then AY / AN = AB / NB = YB / AB. From before, we had AY / AN = AB / NB. Which led us to expressions that eventually helped us find YN + NB. But regardless, the key relation came from YN + NB = 14 leading us to z = 3√19. 
+
+Another ratio mentioned is RatioOf(LengthOf(Line(A,N)), LengthOf(Line(N,B)), LengthOf(Line(A,B)), LengthOf(Line(A,Y))). So this would be AN/NB = AB/AY. Which from previous, since Triangle AYB ~ Triangle ANB, then AB/NB = AY/AN. Which is the same as AN/NB = AY/AB. Wait, maybe I need to check.
+
+But regardless, the critical path was finding YN + NB = sqrt(25 + z²) = 14, leading to z² = 171, hence z = 3√19. Therefore, answer C.
+
+But let me check if there are alternative approaches. For instance, using coordinate geometry, we found that the sum YN + NB equals sqrt(25 + z²). Given that sum equals 14, solving gives z = sqrt(171) = 3√19. So yes, answer C.
+
+But let me confirm with another approach. Suppose we use the similar triangles. From Triangle AYB ~ Triangle ANB, so ratios:
+
+AY / AN = AB / NB = YB / AB.
+
+From AY / AN = AB / NB → 5/x = z / NB → NB = (xz)/5.
+
+From AB / NB = YB / AB → z / NB = y / z → z² = y * NB → substitute NB = xz/5 → z² = y*(xz)/5 → y = (5z)/x.
+
+But also, from Triangle AYB, y² = 5² + z² → y = sqrt(25 + z²). So:
+
+sqrt(25 + z²) = (5z)/x → squaring: 25 + z² = 25z² / x² → x²(25 + z²) = 25z² → x² = (25z²)/(25 + z²).
+
+But also, we need to find another relation involving x. Since line AN is perpendicular to YB, and we found coordinates of N, which gave us coordinates dependent on z. But perhaps we can find x from the coordinates. Since point N lies on line AN, whose length is x. Because AN is a leg of Triangle ANB, which is right-angled at N, so AN = x.
+
+Coordinates of N are ((25z)/(25 + z²), (5z²)/(25 + z²)). Distance from A(0,0) to N is sqrt( [25z/(25 + z²)]² + [5z²/(25 + z²)]² )
+
+Calculating:
+
+= sqrt( [625z² + 25z^4]/(25 + z²)^2 )
+
+= sqrt( [25z²(25 + z²)] / (25 + z²)^2 ) )
+
+= sqrt(25z² / (25 + z²)) )
+
+= (5z)/sqrt(25 + z²)
+
+But this is equal to x, since AN = x. Therefore:
+
+x = 5z / sqrt(25 + z²)
+
+From earlier, we had y = 5z / x → substituting x:
+
+y = 5z / [5z / sqrt(25 + z²)] ) = sqrt(25 + z²), which matches our earlier result.
+
+But we still need another equation to relate variables. However, the key equation came from YN + NB = 14, which we found to be sqrt(25 + z²) = 14, leading to z = sqrt(171) = 3√19.
+
+Therefore, the correct answer is C.
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+To solve the problem, we begin by analyzing the geometric structure and applying the given constraints systematically.
+
+---
+
+### **Step 1: Coordinate Setup**
+
+We assume a coordinate system to simplify the relationships:
+
+- Place point $ A $ at the origin: $ A = (0, 0) $
+- Since $ \angle A $ is a right angle in triangle $ \triangle AYB $, place $ Y $ vertically along the y-axis: $ Y = (0, 5) $
+- Since $ AB $ is horizontal due to the right angle at $ A $, place $ B $ along the x-axis: $ B = (z, 0) $
+
+This setup ensures that $ AY = 5 $ and $ AB = z $, satisfying the given constraint $ \text{Length}(AY) = 5 $.
+
+---
+
+### **Step 2: Use Similarity of Triangles**
+
+We’re told that:
+
+- $ \triangle AYB \sim \triangle ANB $
+- $ \triangle AYB \sim \triangle ANY $
+
+These similarities give us proportional relationships among the sides of the triangles.
+
+From the similarity of $ \triangle AYB \sim \triangle ANB $, the ratio of corresponding sides is constant:
+
+$$
+\frac{AY}{AN} = \frac{AB}{NB}
+$$
+
+Plugging known values:
+
+$$
+\frac{5}{x} = \frac{z}{NB} \Rightarrow NB = \frac{xz}{5}
+$$
+
+Also, from the second similarity $ \triangle AYB \sim \triangle ANY $, we derive additional relationships, but the most useful will come from the sum of segments $ YN + NB = 14 $.
+
+---
+
+### **Step 3: Determine Coordinates of Point $ N $**
+
+Given that $ AN \perp YB $, we find the direction vector of line $ YB $. Using points $ Y = (0, 5) $ and $ B = (z, 0) $, the slope of $ YB $ is:
+
+$$
+m_{YB} = \frac{0 - 5}{z - 0} = -\frac{5}{z}
+\Rightarrow m_{AN} = \frac{z}{5} \quad (\text{negative reciprocal})
+$$
+
+So, the line $ AN $ has the equation:
+
+$$
+y = \frac{z}{5}x
+$$
+
+Parametrize this line as:
+
+$$
+(x_N, y_N) = (t, \frac{z}{5}t)
+$$
+
+Using the fact that $ \triangle ANB $ is a right triangle at $ N $, we apply the dot product condition:
+
+$$
+\vec{NA} \cdot \vec{NB} = 0
+\Rightarrow \left(\frac{z}{5}t, t\right) \cdot \left(z - t, -\frac{z}{5}t\right) = 0
+$$
+
+After simplifying, we find:
+
+$$
+t = \frac{25z}{25 + z^2}
+$$
+
+Thus, the coordinates of $ N $ are:
+
+$$
+N = \left( \frac{25z}{25 + z^2}, \frac{5z^2}{25 + z^2} \right)
+$$
+
+---
+
+### **Step 4: Compute $ YN + NB = 14 $**
+
+**a)** Compute $ YN $:
+
+$$
+YN = \sqrt{\left(\frac{25z}{25 + z^2}\right)^2 + \left(5 - \frac{5z^2}{25 + z^2}\right)^2}
+= \frac{25}{\sqrt{25 + z^2}}
+$$
+
+**b)** Compute $ NB $:
+
+$$
+NB = \sqrt{\left(z - \frac{25z}{25 + z^2}\right)^2 + \left(0 - \frac{5z^2}{25 + z^2}\right)^2}
+= \frac{z^2}{\sqrt{25 + z^2}}
+$$
+
+So,
+
+$$
+YN + NB = \frac{25}{\sqrt{25 + z^2}} + \frac{z^2}{\sqrt{25 + z^2}} = \frac{z^2 + 25}{\sqrt{25 + z^2}} = \sqrt{25 + z^2}
+$$
+
+Set this equal to the given value:
+
+$$
+\sqrt{25 + z^2} = 14
+\Rightarrow 25 + z^2 = 196
+\Rightarrow z^2 = 171
+\Rightarrow z = \sqrt{171} = \sqrt{9 \cdot 19} = 3\sqrt{19}
+$$
+
+---
+
+### **Conclusion**
+
+All derived relationships lead to the final value of $ z $ being:
+
+$$
+z = 3\sqrt{19}
+$$
+
+---
+
+### **Final Answer: C**
+
+$$
+\boxed{\text{C}}
+$$
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

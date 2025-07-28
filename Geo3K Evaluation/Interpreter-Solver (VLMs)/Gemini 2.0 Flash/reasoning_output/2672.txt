@@ -1,0 +1,72 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2672.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2672.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Triangle(A,B,C)
+PointLiesOnLine(D,Line(A,C))
+PointLiesOnLine(A,Line(B,D))
+LengthOf(Line(A,C),28)
+LengthOf(Line(B,C),30)
+LengthOf(Line(A,D),8)
+LengthOf(Line(B,D),y)
+IsSideOf(Line(A,C),Triangle(A,B,C))
+IsSideOf(Line(B,C),Triangle(A,B,C))
+IsSideOf(Line(A,B),Triangle(A,B,C))
+Line(A,B)
+Line(B,C)
+Line(A,C)
+Line(B,D)
+Angle(A,B,C)
+Angle(B,A,C)
+Angle(A,C,B)
+Angle(A,B,D)
+Angle(D,B,C)
+Angle(B,D,C)
+Angle(B,A,C)
+Triangle(A,B,D)
+Triangle(B,D,C)
+IsSideOf(Line(A,D),Triangle(A,B,D))
+IsSideOf(Line(B,D),Triangle(A,B,D))
+IsSideOf(Line(A,B),Triangle(A,B,D))
+IsSideOf(Line(B,D),Triangle(B,D,C))
+IsSideOf(Line(D,C),Triangle(B,D,C))
+IsSideOf(Line(B,C),Triangle(B,D,C))
+Add(LengthOf(Line(A,D)),LengthOf(Line(D,C)),LengthOf(Line(A,C)))
+LengthOf(Line(D,C),$)
+Sub(LengthOf(Line(A,C)),LengthOf(Line(A,D)),LengthOf(Line(D,C)))
+Equals(LengthOf(Line(D,C)),20)
+
+QUESTION:
+Find y.
+
+CHOICES:
+A. 8
+B. 9
+C. 12
+D. 15
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From PointLiesOnLine(D,Line(A,C)) + PointLiesOnLine(A,Line(B,D)) → Points A, B, C, D are coplanar.
+From LengthOf(Line(A,C),28) + LengthOf(Line(A,D),8) + Sub(LengthOf(Line(A,C)),LengthOf(Line(A,D)),LengthOf(Line(D,C))) → LengthOf(Line(D,C)) = LengthOf(Line(A,C)) - LengthOf(Line(A,D))
+From LengthOf(Line(A,C),28) + LengthOf(Line(A,D),8) + LengthOf(Line(D,C)) = LengthOf(Line(A,C)) - LengthOf(Line(A,D)) → LengthOf(Line(D,C)) = 28 - 8 = 20.
+
+Triangle(A,B,C) has an interior line segment from B to point D lying on AC, creating two smaller triangles: Triangle(A,B,D) and Triangle(B,D,C). If Line(B,D) bisects Angle(A,B,C), then by the Angle Bisector Theorem, LengthOf(Line(A,B)) / LengthOf(Line(B,C)) = LengthOf(Line(A,D)) / LengthOf(Line(D,C)).
+Given LengthOf(Line(B,C),30) and LengthOf(Line(A,D),8) and LengthOf(Line(D,C),20), and that LengthOf(Line(A,B)) = y.
+
+If Line(B,D) bisects Angle(A,B,C), then y/30 = 8/20.
+y = 30 * (8/20) = 30 * (2/5) = 6 * 2 = 12.
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

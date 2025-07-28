@@ -1,0 +1,50 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2430.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2430.txt
+
+PREDICATES CONTENT:
+Point(X)
+Point(Y)
+Point(Z)
+Point(W)
+Triangle(X,Y,Z)
+PointLiesOnLine(W,Line(Y,Z))
+Perpendicular(Line(W,X),Line(Y,Z))
+RightAngle(Angle(X,W,Y))
+RightAngle(Angle(X,W,Z))
+Equals(LengthOf(Line(Y,W)),LengthOf(Line(W,Z)))
+LengthOf(Line(Y,X),Add(18,Mul(2,y)))
+LengthOf(Line(Z,X),Sub(Mul(5,y),6))
+IsMidpointOf(W,Line(Y,Z))
+
+QUESTION:
+Find X Z.
+
+CHOICES:
+A. 5
+B. 17
+C. 18
+D. 34
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From PointLiesOnLine(W,Line(Y,Z)) + IsMidpointOf(W,Line(Y,Z)) → W is the midpoint of line YZ. This means YW = WZ.
+From Equals(LengthOf(Line(Y,W)),LengthOf(Line(W,Z))) → YW = WZ
+Triangle XYZ is a triangle with altitude XW. Triangles XWY and XWZ are right triangles because Perpendicular(Line(W,X),Line(Y,Z))
+Since YW = WZ and XW is perpendicular to YZ, triangle XYZ is isosceles with XY = XZ.
+From LengthOf(Line(Y,X),Add(18,Mul(2,y))) → XY = 18 + 2y
+From LengthOf(Line(Z,X),Sub(Mul(5,y),6)) → XZ = 5y - 6
+Since XY = XZ, then 18 + 2y = 5y - 6
+18 + 6 = 5y - 2y
+24 = 3y
+y = 8
+We want to find XZ = 5y - 6 = 5(8) - 6 = 40 - 6 = 34
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

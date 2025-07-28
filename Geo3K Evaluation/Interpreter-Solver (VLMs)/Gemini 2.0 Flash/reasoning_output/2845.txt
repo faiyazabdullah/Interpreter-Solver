@@ -1,0 +1,99 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2845.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2845.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Line(A,B)
+Line(B,C)
+Line(A,E)
+Line(B,E)
+Line(E,C)
+Line(C,D)
+Line(E,D)
+Line(A,D)
+Line(B,D)
+Angle(1)
+Angle(2)
+Angle(3)
+Angle(4)
+Angle(5)
+Angle(6)
+Angle(7)
+Angle(8)
+Angle(9)
+Triangle(A,B,C)
+Triangle(B,E,C)
+Triangle(E,C,D)
+MeasureOf(Angle(1),58)
+MeasureOf(Angle(2),47)
+MeasureOf(Angle(3),26)
+Parallel(Line(A,B),Line(E,C))
+Equals(MeasureOf(Angle(5)),MeasureOf(Angle(2)))
+Equals(MeasureOf(Angle(6)),MeasureOf(Angle(1)))
+Add(MeasureOf(Angle(3)),MeasureOf(Angle(4)),MeasureOf(Angle(5)),180)
+Add(MeasureOf(Angle(6)),MeasureOf(Angle(7)),MeasureOf(Angle(9)),180)
+Add(MeasureOf(Angle(7)),MeasureOf(Angle(8)),180)
+PointLiesOnLine(E,Line(A,D))
+PointLiesOnLine(C,Line(B,D))
+PointLiesOnLine(E,Line(C,D))
+Equals(MeasureOf(Angle(5)),47)
+Equals(MeasureOf(Angle(6)),58)
+
+QUESTION:
+In the figure, m \angle 1 = 58, m \angle 2 = 47, and m \angle 3 = 26. Find the measure of \angle 9.
+
+CHOICES:
+A. 39
+B. 47
+C. 49
+D. 58
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Add(MeasureOf(Angle(3)),MeasureOf(Angle(4)),MeasureOf(Angle(5)),180) + MeasureOf(Angle(3),26) + Equals(MeasureOf(Angle(5)),47) → MeasureOf(Angle(4)) = 180 - 26 - 47 = 107
+From Add(MeasureOf(Angle(7)),MeasureOf(Angle(8)),180) → MeasureOf(Angle(8)) = 180 - MeasureOf(Angle(7))
+From PointLiesOnLine(E,Line(C,D)) → Angle(7) and Angle(8) are supplementary.
+From Triangle(E,C,D) → Add(MeasureOf(Angle(7)),MeasureOf(Angle(8)),MeasureOf(Angle(9)),180)
+From Triangle(B,E,C) → Add(MeasureOf(Angle(3)),MeasureOf(Angle(4)),MeasureOf(Angle(5)),180)
+From Add(MeasureOf(Angle(6)),MeasureOf(Angle(7)),MeasureOf(Angle(9)),180) + Equals(MeasureOf(Angle(6)),58) → 58 + MeasureOf(Angle(7)) + MeasureOf(Angle(9)) = 180
+From MeasureOf(Angle(4))=107 + Add(MeasureOf(Angle(3)),MeasureOf(Angle(4)),MeasureOf(Angle(5)),180) → MeasureOf(Angle(4)) = 107
+From Angle(5)=Angle(2) and Angle(1) = Angle(6) and Parallel(Line(A,B),Line(E,C)) → Angle(5) = 47 and Angle(6) = 58
+From Add(MeasureOf(Angle(6)),MeasureOf(Angle(7)),MeasureOf(Angle(9)),180) → 58 + MeasureOf(Angle(7)) + MeasureOf(Angle(9)) = 180 → MeasureOf(Angle(7)) + MeasureOf(Angle(9)) = 122
+From Add(MeasureOf(Angle(7)),MeasureOf(Angle(8)),180) + MeasureOf(Angle(8)) + MeasureOf(Angle(4)) = 180 → MeasureOf(Angle(7)) + MeasureOf(Angle(4)) = 180
+From MeasureOf(Angle(4)) = 107 → MeasureOf(Angle(8)) is not useful.
+From Triangle(E,C,D) → MeasureOf(Angle(7)) + MeasureOf(Angle(8)) = 180
+From 58 + MeasureOf(Angle(7)) + MeasureOf(Angle(9)) = 180 → MeasureOf(Angle(7)) = 122 - MeasureOf(Angle(9))
+From 122 - MeasureOf(Angle(9)) + MeasureOf(Angle(8)) = 180 → MeasureOf(Angle(8)) - MeasureOf(Angle(9)) = 58
+Since Angle(3) + Angle(4) + Angle(5) = 180. Angle(3)=26, Angle(5) = 47, so 26+47+Angle(4) = 180, Angle(4) = 107
+Since Angle(7) + Angle(8) = 180, Angle(8) = 180-Angle(7).
+Also, Angle(6) + Angle(7) + Angle(9) = 180, Angle(6) = 58, so 58+Angle(7)+Angle(9)=180, Angle(7)+Angle(9) = 122.
+In triangle ECD, Angle(7) + Angle(8) + Angle(9) = 180.
+(180-Angle(8)) + Angle(9) = 122, so (180-Angle(7))+Angle(9) = 180. So Angle(8) is useless.
+Now Angle(3)=26, Angle(5)=47, so in triangle BEC, Angle(2) is corresponding, So Angle(5) = Angle(2) = 47. Then Angle(4)=180-26-47=107.
+Triangle ECD: Angle(4)+Angle(8) = 180. Angle(4) = 107, Angle(8)+Angle(9)+Angle(7)=180
+Angle(7) + Angle(9) = 122, Angle(7)= 122 - Angle(9)
+Angle(8)+Angle(7) =180, Angle(8) = 180 - Angle(7) = 180 - (122-Angle(9)) = 58 + Angle(9).
+
+Angle(4)+Angle(3)+Angle(5) = 180. This mean Angle(4)=180-26-47 =107
+Angle(4) + Angle(8) = straight line.
+Triangle ECD => Angle(7)+Angle(8) = supplementary
+We are trying to find Angle(9).
+We have Angle(7)+Angle(9)+58 = 180, Angle(7) = 122 - Angle(9).
+Angle(8) is supplementary to Angle(4). So Angle(8)+107=180, so Angle(8)=73.
+In triangle ECD. Angle(7)+Angle(8)+Angle(9)=180. So Angle(7) = 49.
+So Angle(6)+Angle(7)+Angle(9)=180 -> Angle(9) = 180-58-49=73
+So Angle(7)+Angle(9) = Angle(7)=122 ->
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

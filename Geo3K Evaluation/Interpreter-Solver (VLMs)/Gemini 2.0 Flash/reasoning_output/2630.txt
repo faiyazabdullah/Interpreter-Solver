@@ -1,0 +1,89 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2630.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2630.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(E)
+Point(F)
+Line(A,B)
+Line(B,C)
+Line(A,C)
+Line(E,D)
+Line(B,F)
+Line(E,F)
+Line(B,D)
+Triangle(A,B,C)
+Triangle(E,F,D)
+RightAngle(Angle(A,B,C))
+LengthOf(A,B,6)
+LengthOf(B,C,7.5)
+LengthOf(A,C,9)
+LengthOf(E,D,9)
+BisectsAngle(B,F,Angle(A,B,C))
+Parallel(Line(A,C),Line(E,D))
+Angle(A,B,C)
+Angle(B,A,C)
+Angle(B,C,A)
+Angle(E,F,D)
+Angle(F,D,E)
+Angle(D,E,F)
+PointLiesOnLine(F,Line(A,C))
+PointLiesOnLine(C,Line(B,D))
+PointLiesOnLine(D,Line(B,D))
+Equals(LengthOf(A,C),LengthOf(E,D))
+Right(Triangle(A,B,C))
+IsSideOf(Line(A,B),Triangle(A,B,C))
+IsSideOf(Line(B,C),Triangle(A,B,C))
+IsSideOf(Line(A,C),Triangle(A,B,C))
+IsSideOf(Line(E,F),Triangle(E,F,D))
+IsSideOf(Line(F,D),Triangle(E,F,D))
+IsSideOf(Line(E,D),Triangle(E,F,D))
+PointLiesOnLine(B,Line(B,D))
+PointLiesOnLine(C,Line(B,C))
+PointLiesOnLine(D,Line(E,D))
+IntersectAt(Line(B,F),Line(A,C),Line(A,C),Point(F))
+
+QUESTION:
+Find B D if B F bisects \angle A B C and A C \parallel E D, B A = 6, B C = 7.5, A C = 9, and D E = 9.
+
+CHOICES:
+A. 12
+B. 13.5
+C. 15
+D. 18
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From RightAngle(Angle(A,B,C)) → Angle(A,B,C) = 90 degrees
+From BisectsAngle(B,F,Angle(A,B,C)) → Angle(ABF) = Angle(CBF) = 90/2 = 45 degrees
+From Parallel(Line(A,C),Line(E,D)) → Angle(FDE) = Angle(AFB)
+From Angle(ABF) = 45 degrees → Angle(AFB) = 180 - Angle(BAC) - 45
+In Triangle(ABC), Angle(BAC) = 180 - 90 - Angle(BCA)
+From Triangle(ABC) + lengths of sides → we know that Triangle(ABC) is a right triangle
+From the properties of right triangle ABC with sides AB = 6, BC = 7.5, AC = 9 → We can use trig to solve for the angles. However, this is not necessary.
+From Parallel(Line(A,C),Line(E,D)) → Angle(ACB) = Angle(CDE) [Alternate Interior Angles]
+From Angle(ABF) = Angle(CBF) → BF is the angle bisector of Angle ABC
+Since AC || ED, Triangle CBF is similar to Triangle DBF
+Let BC = 7.5 = a, BD = x. Since BF bisects Angle ABC, by the angle bisector theorem, CF/AF = BC/AB = 7.5/6 = 5/4. Then CF = 5y and AF = 4y. Also, since AC = 9, CF+AF = 9, so 5y + 4y = 9. Thus, 9y = 9 and y=1. Therefore, CF = 5 and AF = 4.
+In Triangle ABC, AC || ED, so Triangle CBF is similar to Triangle EDF and Triangle CBD is similar to Triangle EBD
+Also Angle ACB = Angle CDE, so
+We have LengthOf(A,C,9) and LengthOf(E,D,9), so AC=ED
+Since Angle ACB = Angle CDE, let Angle ACB = alpha. Since AC || ED, Angle ACB = Angle CDE. Also, Angle CBF + Angle ABF = 90. Since BF bisects Angle ABC, Angle CBF = 45. Therefore, in Triangle CBF, Angle CFB = 180 - 45 - alpha.
+Since AC || ED, Angle ACB = Angle CDE and Angle BAC + Angle DEF = 180. Since Angle ABC = 90, it is a right triangle.
+
+Since Line(A,C)|| Line(E,D),  \(\angle ACB = \angle CDE\).
+By similar triangles, BC/BD = CF/DE
+7.  5/BD = 5/9. Therefore, BD = 7.5 * 9/5 = 1.5 * 9 = 13.5.
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

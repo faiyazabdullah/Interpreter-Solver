@@ -1,0 +1,830 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+PREDICATES:
+Point(P)
+Point(Q)
+Point(R)
+Point(S)
+Line(P,Q)
+Line(Q,R)
+Line(R,P)
+Line(Q,S)
+Line(P,S)
+Triangle(P,Q,R)
+Triangle(P,Q,S)
+Angle(P,Q,R)
+Angle(P,Q,S)
+Angle(S,Q,R)
+Angle(Q,R,P)
+Angle(R,P,Q)
+Angle(P,S,Q)
+Angle(R,S,Q)
+Angle(1)
+Angle(2)
+Equals(MeasureOf(Angle(Q,R,P)), 33)
+Equals(MeasureOf(Angle(P,Q,S)), 51)
+RightAngle(Angle(P,Q,R))
+Equals(MeasureOf(Angle(P,Q,R)), 90)
+Perpendicular(Line(P,Q),Line(Q,R))
+PointLiesOnLine(S,Line(P,R))
+PointLiesOnLine(S,Line(Q,S))
+Equals(Angle(1), Angle(P,S,Q))
+Equals(Angle(2), Angle(S,Q,R))
+Add(MeasureOf(Angle(P,Q,S)), MeasureOf(Angle(S,Q,R)))
+Equals(Add(MeasureOf(Angle(P,Q,S)), MeasureOf(Angle(S,Q,R))), MeasureOf(Angle(P,Q,R)))
+SumOf(MeasureOf(Angle(Q,R,P)),MeasureOf(Angle(R,P,Q)),MeasureOf(Angle(P,Q,R)))
+Equals(SumOf(MeasureOf(Angle(Q,R,P)),MeasureOf(Angle(R,P,Q)),MeasureOf(Angle(P,Q,R))), 180)
+SumOf(MeasureOf(Angle(P,Q,S)),MeasureOf(Angle(Q,P,S)),MeasureOf(Angle(P,S,Q)))
+Equals(SumOf(MeasureOf(Angle(P,Q,S)),MeasureOf(Angle(Q,P,S)),MeasureOf(Angle(P,S,Q))), 180)
+
+QUESTION:
+Find m \angle 1.
+
+CHOICES:
+A. 39
+B. 84
+C. 108
+D. 129
+
+====================================================================================================
+FINAL RESPONSE:
+====================================================================================================
+<think>
+Okay, let's try to tackle this geometry problem. First, I need to parse all the given information carefully. There are several points and lines mentioned, along with various angles and their measures. The goal is to find the measure of angle 1, which is denoted as ∠(P,S,Q). Let me start by listing out all the given constraints and see how they connect.
+
+So, we have points P, Q, R, S. Lines PQ, QR, RP form triangle PQR. Also, there's line QS and PS, so maybe another triangle? Let me visualize this. Points P, Q, R form a triangle, and point S is connected to Q and P. Also, there's a mention that S lies on line PR (since PointLiesOnLine(S, Line(P,R)) and also on line QS? Wait, no, PointLiesOnLine(S, Line(Q,S))? That seems redundant because S is on line QS by definition. Maybe there's a typo here, but perhaps S lies on both PR and QS? Or maybe it's part of some other configuration.
+
+Wait, let me check again. The constraints say:
+
+- PointLiesOnLine(S, Line(P,R)): So S is on line PR.
+- PointLiesOnLine(S, Line(Q,S)): Well, since S is on line QS, that's trivially true. So maybe that's just emphasizing that S is connected to Q?
+
+But then, considering that, S is a point lying on PR and connected to Q. Therefore, S is somewhere along PR such that QS connects Q to S. This suggests that quadrilateral PQRS might be formed, but since S is on PR, maybe triangles PQS and QSR?
+
+Also, there are several angles mentioned. Let me list them:
+
+- Angle(P,Q,R): which is angle at Q between P and R. Given that this is a right angle (RightAngle(Angle(P,Q,R))) and its measure is 90 degrees. Also, Perpendicular(Line(PQ), Line(QR)), which confirms that angle at Q is 90 degrees. So triangle PQR is a right-angled triangle at Q.
+
+Additionally, we have:
+
+- Equals(MeasureOf(Angle(Q,R,P)), 33). Wait, angle(Q,R,P) would be angle at R between Q and P. Wait, angle notation can sometimes be confusing. In standard notation, ∠ABC is the angle at point B. So ∠(Q,R,P) would be angle at R between Q and P. Similarly, ∠(P,Q,R) is angle at Q between P and R, which we already know is 90 degrees.
+
+Then, Equals(MeasureOf(Angle(P,Q,S)), 51). So angle at Q between P and S, which would be ∠(PQS) = 51 degrees. Also, there's Angle(1) equals Angle(P,S,Q), which is ∠(P,S,Q) — that's the same as ∠(PSQ)? Wait, angle(P,S,Q) is the angle at S between P and Q. So ∠1 is equal to ∠PSQ.
+
+Another important constraint is that SumOf(MeasureOf(Angle(P,Q,S)), MeasureOf(Angle(S,Q,R)), MeasureOf(Angle(P,Q,R))) equals MeasureOf(Angle(P,Q,R)). Wait, that seems odd. Wait, the original statement says:
+
+Add(MeasureOf(Angle(P,Q,S)), MeasureOf(Angle(S,Q,R)))
+Equals(Add(...), MeasureOf(Angle(P,Q,R)))
+
+Wait, adding MeasureOf(Angle(P,Q,S)) and MeasureOf(Angle(S,Q,R)) equals MeasureOf(Angle(P,Q,R))? But Angle(P,Q,R) is 90 degrees. So that implies that MeasureOf(Angle(P,Q,S)) + MeasureOf(Angle(S,Q,R)) = 90 degrees. Hmm. Let me note that down.
+
+Also, there's another sum involving angles around point Q. The SumOf(MeasureOf(Angle(Q,R,P)), MeasureOf(Angle(R,P,Q)), MeasureOf(Angle(P,Q,R))) equals 180. Wait, but these are angles in triangle PQR? Wait, triangle PQR has angles at P, Q, R. Wait, ∠(Q,R,P) is angle at R, ∠(R,P,Q) is angle at P, and ∠(P,Q,R) is angle at Q. Since it's a triangle, their sum should be 100% 180 degrees. However, we're told that ∠(Q,R,P) is 33 degrees, ∠(P,Q,R) is 90 degrees. Then ∠(R,P,Q) would be 180 - 33 - 90 = 57 degrees. Wait, but according to the given, SumOf those three angles equals 180, which checks out. So that gives us the measure of ∠(R,P,Q) as 57 degrees.
+
+Now, moving on. We need to find measure of angle 1, which is ∠(P,S,Q). Let me think about how to approach this.
+
+Since S lies on PR, let's consider triangle PQS. Because S is on PR, we can think about triangle PQS. In triangle PQS, we have angle at Q (∠PQS) which is given as 51 degrees. Also, we have angle at S (∠PSQ) which is angle 1. And angle at P (∠QPS). Wait, but maybe there are other relationships here.
+
+Alternatively, since S is on PR, and PR is the hypotenuse of triangle PQR (since it's a right triangle at Q). Let me recall that in triangle PQR, with right angle at Q, sides PQ and QR are legs, and PR is the hypotenuse. Let me denote lengths for clarity, even though exact lengths aren't given. Let me assign variables.
+
+Let me suppose that PQ = a, QR = b, so PR = sqrt(a² + b²). But maybe coordinates could help here. Let me try coordinate geometry.
+
+Let me place point Q at the origin (0,0). Since triangle PQR is right-angled at Q, let me set coordinates:
+
+- Q = (0, 0)
+- P = (a, 0) along x-axis
+- R = (0, b) along y-axis
+
+Therefore, PR connects point P (a,0) to R (0,b). The equation of line PR can be parametrized. Any point S on PR can be expressed as a linear combination. For example, parametric equations: x = a - a*t, y = 0 + b*t, where t ∈ [0,1]. Alternatively, using parameter k, S divides PR in ratio k:(1-k).
+
+But perhaps more helpful is to express coordinates of S. Suppose S lies on PR. Let me write coordinates of S as (x,y) satisfying the line PR. The line PR goes from P(a,0) to R(0,b). The slope of PR is (b - 0)/(0 - a) = -b/a. Equation of line PR is y = (-b/a)(x - a) => y = (-b/a)x + b.
+
+So, coordinates of S satisfy this equation. Now, since S is also connected to Q(0,0), forming segment QS. So, we have triangle PQS with vertices at P(a,0), Q(0,0), and S(x,y) lying on PR.
+
+We need to find ∠(P,S,Q), which is angle at S between P and Q. Wait, angle at S between P and Q would be ∠PSQ. To find this angle, perhaps using coordinates or trigonometric relations.
+
+Alternatively, since we have angles in triangle PQS. In triangle PQS, we know angle at Q is 51 degrees (∠PQS = 51°). If we can find other angles or sides, we can use the Law of Sines or Cosines.
+
+But first, let's check the earlier constraint that MeasureOf(Angle(P,Q,S)) + MeasureOf(Angle(S,Q,R)) = MeasureOf(Angle(P,Q,R)) = 90°. Wait, Angle(P,Q,S) is ∠PQS = 51°, as per given. Then Angle(S,Q,R) is ∠SQR. Wait, ∠SQR is the angle at Q between S and R. Since S lies on PR, ∠SQR is part of the original angle ∠PQR, which was 90°. Let me think.
+
+Original angle at Q is 90°, which is split into two parts: ∠PQS (which is 51°) and ∠SQR. Therefore, ∠SQR = 90° - 51° = 39°. Therefore, MeasureOf(Angle(S,Q,R)) is 39°, which makes sense. Therefore, adding 51° + 39° = 90°, which matches the given condition.
+
+Now, since ∠SQR is 39°, and we know that in triangle QSR, which is formed by points Q, S, R. Wait, but S is on PR. So, triangle QSR has points Q, S, R. In this triangle, angle at Q is 39°, side QR is length b, QS is some length, SR is some length.
+
+But maybe we can relate angles in triangle QSR. However, perhaps there's another way. Let me consider triangle PQS. In triangle PQS, we have angle at Q is 51°, angle at S is ∠PSQ = angle 1, and angle at P is ∠QPS. The sum of angles in triangle PQS must be 180°, so:
+
+∠PQS + ∠PSQ + ∠QPS = 180°
+=> 51° + angle1 + ∠QPS = 180°
+Thus, angle1 + ∠QPS = 129°.
+
+If we can find ∠QPS, then we can compute angle1.
+
+What is ∠QPS? It's the angle at P between Q and S. Let me think about how to find this angle. Since S lies on PR, which is the hypotenuse of triangle PQR. Let me consider triangle PQR. Earlier, we had that ∠(Q,R,P) is 33°, which is the angle at R between Q and P. Wait, angle at R is 33°, angle at Q is 90°, so angle at P is 57°, as computed before (since 33+90+57=180). Therefore, in triangle PQR, angle at P is 57°, which is ∠RPQ. 
+
+But ∠QPS is part of that angle. Since S lies on PR, ∠QPS is the same as ∠RPQ? No, wait. ∠RPQ is the entire angle at P between R and Q. But since S is on PR, when you look at ∠QPS, it's the angle at P between Q and S. So, if S is on PR, then ∠QPS is the same as ∠QPR, which is 57°, only if S coincides with R. But since S is somewhere on PR, depending on where S is, ∠QPS will vary. Wait, but maybe there's a relation here.
+
+Alternatively, perhaps we can use coordinates. Let me proceed with coordinates.
+
+Earlier, I considered coordinates for Q(0,0), P(a,0), R(0,b). Then S lies on PR, so coordinates of S can be parametrized. Let me define S as a point dividing PR in some ratio. Let me assume that S divides PR in ratio t:(1-t), so that vectorially, S = P + t*(R - P) = (a - ta, 0 + tb) = (a(1 - t), bt). So coordinates of S are (a(1 - t), bt) for some t between 0 and 1.
+
+Now, we can compute vectors to find angles. For instance, in triangle PQS, angle at Q is between PQ and QS. Vector PQ is from Q to P: (a, 0). Vector QS is from Q to S: (a(1 - t), bt). The angle between PQ and QS is given as 51 degrees. Let me compute that angle using dot product.
+
+The formula for the angle θ between vectors u and v is cosθ = (u · v)/(|u||v|).
+
+Here, u = PQ vector = (a, 0)
+v = QS vector = (a(1 - t), bt)
+
+Dot product u · v = a * a(1 - t) + 0 * bt = a²(1 - t)
+|u| = sqrt(a² + 0) = a
+|v| = sqrt[ (a(1 - t))² + (bt)^2 ] = sqrt{ a²(1 - t)^2 + b²t² }
+
+So,
+
+cos(51°) = [a²(1 - t)] / [a * sqrt(a²(1 - t)^2 + b²t² ) ] 
+Simplify numerator and denominator:
+
+Numerator: a²(1 - t)
+Denominator: a * sqrt[ a²(1 - t)^2 + b²t² ] = a * sqrt[ a²(1 - t)^2 + b²t² ]
+
+Cancel an 'a':
+
+cos(51°) = [a(1 - t)] / sqrt[ a²(1 - t)^2 + b²t² ]
+
+This seems complex, but perhaps we can square both sides to eliminate the square root:
+
+cos²(51°) = [a²(1 - t)^2] / [a²(1 - t)^2 + b²t²]
+
+Multiply both sides by denominator:
+
+cos²(51°) [a²(1 - t)^2 + b²t²] = a²(1 - t)^2
+
+Expand left side:
+
+cos²(51°)*a²(1 - t)^2 + cos²(51°)*b²t² = a²(1 - t)^2
+
+Bring terms with a²(1 - t)^2 to left:
+
+cos²(51°)*a²(1 - t)^2 - a²(1 - t)^2 + cos²(51°)*b²t² = 0
+
+Factor out a²(1 - t)^2:
+
+a²(1 - t)^2 [cos²(51°) - 1] + cos²(51°)*b²t² = 0
+
+Note that cos²θ - 1 = -sin²θ:
+
+-a²(1 - t)^2 sin²(51°) + cos²(51°) b² t² = 0
+
+Rearranged:
+
+cos²(51°) b² t² = a² (1 - t)^2 sin²(51°)
+
+Divide both sides by sin²(51°):
+
+[cos²(51°)/sin²(51°)] * b² t² = a² (1 - t)^2
+
+Take square roots of both sides:
+
+[cos(51°)/sin(51°)] * b t = ± a (1 - t)
+
+But since all quantities are positive (lengths and t between 0 and 1), we take the positive sign:
+
+[ cot(51°) ] * b t = a (1 - t )
+
+So:
+
+cot(51°) * b t = a (1 - t )
+
+Let me rearrange:
+
+cot(51°) * b t + a t = a 
+
+Factor t:
+
+t [ cot(51°) * b + a ] = a 
+
+Therefore:
+
+t = a / [ cot(51°) * b + a ]
+
+Hmm. This relates t to a and b. However, without knowing specific values for a and b, this may not directly help. But perhaps there's another relationship from triangle PQR.
+
+In triangle PQR, which is right-angled at Q, we have angles:
+
+At Q: 90°, at R: 33°, at P: 57°. Therefore, the sides are related via trigonometry. For example, tan(angle at P) = opposite/adjacent = QR/PQ = b/a. So tan(57°) = b/a → b = a tan(57°). Let me compute tan(57°). 
+
+Calculating tan(57°): approximately tan(57°) ≈ 1.5399. So b ≈ 1.5399a.
+
+Let me substitute b = a tan(57°) into the expression for t:
+
+t = a / [ cot(51°) * b + a ] = a / [ cot(51°) * a tan(57°) + a ] = 1 / [ cot(51°) tan(57°) + 1 ]
+
+Compute cot(51°) tan(57°):
+
+cot(51°) = 1/tan(51°) ≈ 1/1.2349 ≈ 0.810
+
+tan(57°) ≈ 1.5399
+
+Multiplying them: 0.810 * 1.5399 ≈ 1.247
+
+Adding 1: 1.247 + 1 = 2.247
+
+So t ≈ 1 / 2.247 ≈ 0.445
+
+So t ≈ 0.445. So coordinates of S are (a(1 - t), bt) ≈ (a(1 - 0.445), b*0.445) ≈ (a*0.555, b*0.445)
+
+But how does this help us find angle1?
+
+Recall that angle1 is ∠PSQ, which is the angle at S between P and Q. To find this angle, perhaps using coordinates.
+
+Let me consider vectors SP and SQ. At point S, vectors SP and SQ. The angle between them is ∠PSQ.
+
+Coordinates:
+
+SP vector: from S to P: P - S = (a - a(1 - t), 0 - bt) = (a*t, -bt)
+
+SQ vector: from S to Q: Q - S = (0 - a(1 - t), 0 - bt) = (-a(1 - t), -bt)
+
+So vectors SP = (at, -bt) and SQ = (-a(1 - t), -bt)
+
+To find angle between SP and SQ at point S, we can use the dot product formula again.
+
+Let me compute the cosine of the angle between SP and SQ:
+
+cos(angle1) = (SP · SQ) / ( |SP| |SQ| )
+
+First compute SP · SQ:
+
+(at)(-a(1 - t)) + (-bt)(-bt) = -a² t(1 - t) + b² t²
+
+Compute |SP|:
+
+sqrt( (at)^2 + (-bt)^2 ) = t sqrt(a² + b² )
+
+Similarly, |SQ|:
+
+sqrt( [-a(1 - t)]^2 + (-bt)^2 ) = sqrt( a²(1 - t)^2 + b² t² )
+
+Therefore,
+
+cos(angle1) = [ -a² t(1 - t) + b² t² ] / [ t sqrt(a² + b² ) * sqrt( a²(1 - t)^2 + b² t² ) ]
+
+This looks complicated, but maybe we can simplify using previous substitutions.
+
+From earlier, we had that b = a tan(57°). Let me substitute b = a tan(57°), and also remember that in triangle PQR, PR is the hypotenuse, which has length sqrt(a² + b²) = a sec(57°), since tan(theta) = b/a, so sec(theta) = sqrt(1 + tan²(theta)) = sqrt(1 + (b/a)^2) = sqrt( (a² + b²)/a² ) = sqrt(a² + b²)/a. Hence, sqrt(a² + b²) = a sec(57°).
+
+But let me proceed step by step.
+
+Substituting b = a tan(57°):
+
+First compute numerator:
+
+- a² t(1 - t) + b² t² = -a² t(1 - t) + a² tan²(57°) t² = a² [ -t(1 - t) + tan²(57°) t² ]
+
+Denominator:
+
+t * sqrt(a² + b² ) * sqrt( a²(1 - t)^2 + b² t² )
+
+Which becomes t * sqrt(a² + b² ) * sqrt( a²(1 - t)^2 + b² t² )
+
+Again, substituting b = a tan(57°):
+
+sqrt(a² + b² ) = a sec(57°)
+
+And inside the second sqrt:
+
+a²(1 - t)^2 + b² t² = a²(1 - t)^2 + a² tan²(57°) t² = a² [ (1 - t)^2 + tan²(57°) t² ]
+
+So putting it together:
+
+cos(angle1) = [ a² [ -t(1 - t) + tan²(57°) t² ] ] / [ t * a sec(57°) * a sqrt( (1 - t)^2 + tan²(57°) t² ) ) ]
+
+Simplify numerator and denominator:
+
+Numerator: a² [ ... ]
+
+Denominator: t * a sec(57°) * a sqrt(...) = t * a² sec(57°) * sqrt(...)
+
+Therefore, cos(angle1) simplifies to:
+
+[ -t(1 - t) + tan²(57°) t² ] / [ t sec(57°) sqrt( (1 - t)^2 + tan²(57°) t² ) ]
+
+This still seems messy, but perhaps plugging in the value of t ≈ 0.445 (from earlier calculation) would help. Let me attempt that numerically.
+
+Given t ≈ 0.445, let me compute each term.
+
+First, compute tan(57°): approx 1.5399 as before.
+
+Compute tan²(57°): approx (1.5399)^2 ≈ 2.371.
+
+Compute numerator terms:
+
+-t(1 - t) + tan²(57°) t² 
+
+= -0.445*(1 - 0.445) + 2.371*(0.445)^2
+
+Calculate 1 - 0.445 = 0.555
+
+First term: -0.445 * 0.555 ≈ -0.247
+
+Second term: 2.371 * (0.445)^2 ≈ 2.371 * 0.198 ≈ 0.469
+
+Total numerator ≈ -0.247 + 0.469 ≈ 0.222
+
+Denominator:
+
+t sec(57°) * sqrt( (1 - t)^2 + tan²(57°) t² )
+
+First, compute sec(57°): 1/cos(57°). cos(57°) ≈ 0.5446, so sec(57°) ≈ 1.836.
+
+Then, t * sec(57°) ≈ 0.445 * 1.836 ≈ 0.818
+
+Next, compute the sqrt part:
+
+Inside sqrt: (1 - t)^2 + tan²(57°) t² ≈ (0.555)^2 + 2.371*(0.445)^2 ≈ 0.308 + 0.469 ≈ 0.777
+
+Square root of that ≈ sqrt(0.777) ≈ 0.881
+
+Therefore, denominator ≈ 0.818 * 0.881 ≈ 0.721
+
+So overall, cos(angle1) ≈ 0.222 / 0.721 ≈ 0.308
+
+Then angle1 ≈ arccos(0.308) ≈ 72 degrees? Let me check calculator: arccos(0.308) is roughly 72 degrees (cos(60°)=0.5, cos(72°)=approx 0.309). Yes! So angle1 ≈ 72 degrees. Wait, but none of the answer choices include 72. The options are A. 39, B. 84, C. 108, D. 129. Hmm. Did I make a mistake here?
+
+Wait, but this contradicts the given answer choices. Alternatively, maybe my approximation is off due to rounding errors. Let me re-express the calculation more accurately.
+
+Alternatively, perhaps there's a better approach than going through coordinates. Let me think again.
+
+Earlier, we had that in triangle PQS, angles sum to 180°, with ∠PQS = 51°, ∠PSQ = angle1, and ∠QPS = ?
+
+We also know that in triangle PQR, angle at P is 57°, which is ∠RPQ. Since S is on PR, then ∠QPS is part of ∠RPQ. Specifically, ∠QPS is the angle between QP and PS. Wait, but PS is a segment from P to S on PR. So ∠QPS is the same as ∠QPR minus something? Not sure. Wait, if S is on PR, then ∠QPS is the same as ∠QPR, which is 57°, only if S is at R. But since S is somewhere along PR, ∠QPS depends on where S is located.
+
+But earlier, we derived that ∠SQR = 39°, and in triangle QSR, which has angles at Q (39°), at R, and at S. Perhaps applying the law of sines in triangle QSR?
+
+Wait, triangle QSR: points Q, S, R. We know angle at Q is 39°, and we might be able to find other angles. Also, since S lies on PR, and PR is the hypotenuse of triangle PQR. 
+
+Alternatively, perhaps using the fact that in triangle PQS, we have angle at Q is 51°, and we can find the ratio of sides using the Law of Sines.
+
+Law of Sines in triangle PQS:
+
+PQ / sin(∠PSQ) = QS / sin(∠QPS) = PS / sin(51°)
+
+But we don't know the actual lengths, but perhaps ratios can be established.
+
+However, we might relate this to triangle PQR. Since S lies on PR, PS + SR = PR. Also, in triangle PQR, PR = sqrt(PQ² + QR²). Let me denote PQ = c, QR = a, PR = b. Wait, but earlier I used different notations. Let me clarify:
+
+Let me denote:
+
+In triangle PQR, right-angled at Q:
+
+- PQ = a
+- QR = b
+- PR = c = sqrt(a² + b²)
+- Angles: at Q = 90°, at R = 33°, at P = 57°
+
+So tan(57°) = QR / PQ = b/a → b = a tan(57°)
+
+Now, in triangle PQS:
+
+Using Law of Sines:
+
+PQ / sin(∠PSQ) = QS / sin(∠QPS) = PS / sin(51°)
+
+But I need more relations. Alternatively, since S lies on PR, PS = PR - SR. Let me denote PR = c, so PS = c - SR.
+
+But without knowing SR, this might not help. However, perhaps using mass point or similar triangles?
+
+Alternatively, consider triangle QSR. In triangle QSR, we have angle at Q = 39°, and we can relate sides.
+
+But maybe using the Law of Sines in triangle QSR:
+
+QS / sin(∠QRS) = QR / sin(∠QSR) = RS / sin(39°)
+
+But ∠QRS is the angle at R in triangle QSR. What is ∠QRS?
+
+Wait, ∠QRS is the angle at R between Q and S. Since S lies on PR, which is the hypotenuse of triangle PQR. Let me think. In triangle PQR, angle at R is 33°, which is ∠QRP. When we introduce point S on PR, ∠QRS is part of that angle. So ∠QRS = ∠QRP = 33°? No, because S is on PR, so ∠QRS would be the same as ∠QRP if S were at P, but since S is somewhere along PR, it depends on where S is. Wait, actually, ∠QRS is the angle at R between Q and S. But since S is on PR, line RS is part of PR, so ∠QRS is the angle between QR and RS. But QR is perpendicular to PQ, and RS is along PR. Wait, maybe using slopes or coordinates again.
+
+Alternatively, since earlier calculations suggested angle1 ≈ 72°, but the answer choices don't include that. Let me check if there's another approach.
+
+Wait, earlier I thought that angle1 + ∠QPS = 129°, from the triangle PQS angles. If I can find ∠QPS, then subtract from 129° to get angle1.
+
+How to find ∠QPS?
+
+∠QPS is the angle at P between Q and S. Since S lies on PR, this is the same as the angle between PQ and PS. Let me think about triangle PQS and triangle PRQ.
+
+Wait, since S is on PR, the line PS is a portion of PR. So ∠QPS is the angle between PQ and PS. In triangle PQR, ∠QPR is 57°, which is the angle between PQ and PR. Since S is on PR, ∠QPS is the same as ∠QPR, which is 57°, unless S is not at R. Wait, no. If S is somewhere along PR, then ∠QPS is the angle between PQ and PS, which would be less than ∠QPR if S is closer to R, or larger if S is closer to P? Wait, no. If S moves from P to R along PR, then ∠QPS decreases from 0° to 57°. Wait, when S is at P, ∠QPS is undefined (as S coincides with P), and as S moves towards R, ∠QPS increases up to 57° when S reaches R. Wait, that conflicts with earlier thoughts. Wait, maybe I need to clarify.
+
+Actually, when S is at P, PS is zero length, so ∠QPS is not defined. As S moves from P to R along PR, the angle ∠QPS increases from 0° to 57°. So in our case, since S is somewhere between P and R, ∠QPS is some value between 0° and 57°.
+
+But earlier, we derived from triangle PQS that angle1 + ∠QPS = 129°, so angle1 = 129° - ∠QPS.
+
+But if ∠QPS is less than 57°, then angle1 would be greater than 129° - 57° = 72°. But our earlier approximate calculation gave angle1 ≈ 72°, which would suggest ∠QPS ≈ 57°, implying S is at R. But earlier, we had that ∠SQR = 39°, which would mean that S is not at R, since at R, ∠SQR would be zero. So this suggests inconsistency.
+
+Wait, this indicates an error in reasoning. Let me backtrack.
+
+Earlier, I said that in triangle PQS, angles sum to 180°, so 51° + angle1 + ∠QPS = 180°, hence angle1 + ∠QPS = 129°. This is correct.
+
+But if ∠QPS is part of the angle ∠QPR = 57°, then ∠QPS ≤ 57°, so angle1 ≥ 129° - 57° = 72°. However, if angle1 is 72°, then ∠QPS = 57°, meaning S is at R. But earlier, we had that ∠SQR = 39°, which would not hold if S is at R, since ∠SQR would be ∠QRR, which is zero. So there's a contradiction here, suggesting an error in assumptions.
+
+Where is the mistake?
+
+Ah! The assumption that ∠QPS is part of ∠QPR is incorrect. Because when S is on PR, ∠QPS is the angle between PQ and PS, while ∠QPR is the angle between PQ and PR. Since PS is a part of PR, ∠QPS is indeed part of ∠QPR. Thus, ∠QPS ≤ ∠QPR = 57°. Hence, angle1 = 129° - ∠QPS ≥ 129° - 57° = 72°. But if angle1 is 72°, then ∠QPS = 57°, implying S is at R, which conflicts with ∠SQR = 39°. Therefore, there must be an error in earlier steps.
+
+Let me revisit the earlier part where I thought ∠SQR = 39°. This came from the constraint that MeasureOf(Angle(P,Q,S)) + MeasureOf(Angle(S,Q,R)) = MeasureOf(Angle(P,Q,R)) = 90°. Given that MeasureOf(Angle(P,Q,S)) is 51°, then MeasureOf(Angle(S,Q,R)) is 90° - 51° = 39°. But Angle(S,Q,R) is ∠SQR, which is the angle at Q between S and R. Wait, but if S is on PR, then ∠SQR is the angle between QS and QR. So yes, it's the angle at Q between S and R, which is part of the original right angle at Q. So ∠SQR = 39°, and ∠PQS = 51°, summing to 90°, which is correct.
+
+But how does this affect the position of S? Let me consider triangle QSR. In triangle QSR, we have angle at Q is 39°, and we can relate sides using Law of Sines.
+
+In triangle QSR:
+
+∠Q = 39°, ∠R = ?, ∠S = ? 
+
+Wait, in triangle QSR, the angles are at Q, R, and S. Let me denote:
+
+- ∠QSR: angle at S between Q and R.
+- ∠QRS: angle at R between Q and S.
+- ∠SQR: angle at Q between S and R, which is 39°.
+
+But I'm not sure about the other angles. However, since S is on PR, and PR is the hypotenuse of triangle PQR, maybe we can relate ∠QRS to known angles.
+
+In triangle PQR, ∠QRP = 33°, which is the angle at R between Q and P. Since S is on PR, ∠QRS is part of ∠QRP. Specifically, ∠QRS = ∠QRP - ∠SRP? Wait, no. ∠QRS is the angle at R between Q and S. Since S is on PR, line RS is along PR. So ∠QRS is the angle between QR and RS. But QR is perpendicular to PQ, and RS is along PR. Let me think about the direction.
+
+In triangle PQR, angle at R is 33°, which is between QR and PR. Since S is on PR, the angle between QR and RS is the same as the angle between QR and PR, which is 33°. Wait, no. If S is anywhere on PR, then the angle between QR and RS is still the same as ∠QRP, which is 33°, because RS is a segment of PR. So ∠QRS = 33°? But earlier, we had ∠SQR = 39°, which is the angle at Q between S and R. Wait, confusion arises from labeling.
+
+Wait, ∠SQR is the angle at Q between S and R, which we've determined is 39°, and ∠QRS is the angle at R between S and Q, which might be 33°. Let me confirm.
+
+Yes, in triangle QSR, ∠QRS is the angle at R between Q and S. Since S is on PR, this angle is the same as ∠QRP in triangle PQR, which is 33°. Therefore, in triangle QSR, we have:
+
+∠Q = 39° (at Q), ∠R = 33° (at R), so ∠S = 180° - 39° - 33° = 108°. 
+
+So ∠QSR = 108°, which is the angle at S between Q and R. 
+
+But ∠QSR is part of triangle QSR, and also, in triangle PQS, angle at S is ∠PSQ = angle1. How do these relate?
+
+Point S is connected to P and Q. So, at point S, we have two angles: ∠PSQ (which is angle1) and ∠QSR (which is 108°). These two angles are adjacent and form a straight line? No, because S is connected to P, Q, and R. Wait, but S is on PR, so the line PR passes through S. Therefore, at point S, the lines SP and SR are colinear (since S is on PR). Therefore, the angle between SQ and SP (which is ∠PSQ) and the angle between SQ and SR (which is ∠QSR) add up to a straight angle, i.e., 180°.
+
+Wait, yes! At point S, the lines SP and SR are in a straight line (since S is on PR). Therefore, the angle between SQ and SP (which is ∠PSQ = angle1) plus the angle between SQ and SR (which is ∠QSR = 108°) equals 180°, because they are supplementary.
+
+Therefore:
+
+angle1 + ∠QSR = 180°
+
+We found ∠QSR = 108°, so:
+
+angle1 = 180° - 108° = 72°
+
+But this contradicts the answer choices. Wait, but the answer choices are A.39, B.84, C.108, D.129. 72 isn't listed. But perhaps I made a mistake in calculating ∠QSR?
+
+Wait, in triangle QSR, we said ∠Q = 39°, ∠R = 33°, so ∠S = 108°. Let me verify this.
+
+Yes, in triangle QSR, the angles are:
+
+- At Q: 39° (given)
+- At R: 33° (same as in triangle PQR)
+- Therefore, angle at S: 180 - 39 - 33 = 108°, correct.
+
+So angle at S in triangle QSR is 108°, which is ∠QSR = 108°. At point S, this angle is adjacent to angle1 (∠PSQ). Since SP and SR are collinear, the sum of ∠PSQ and ∠QSR is 180°, so angle1 = 180 - 108 = 72°. 
+
+But none of the options is 72. However, looking back at the answer choices, option B is 84, C is 108. Wait, maybe I made a mistake in assuming ∠QSR = 108°?
+
+Wait, let me double-check the angles in triangle QSR. 
+
+In triangle QSR:
+
+- ∠Q is ∠SQR = 39°
+- ∠R is ∠QRS = ?
+Wait, earlier I assumed ∠QRS is 33°, but is that accurate?
+
+∠QRS is the angle at R between Q and S. In triangle PQR, ∠QRP is 33°, which is the angle at R between Q and P. Since S is on PR, the angle between Q and S at R is the same as ∠QRP, which is 33°, because RS is a part of PR. So ∠QRS = 33°, yes.
+
+Therefore, in triangle QSR, angles are 39° + 33° + ∠QSR = 180° ⇒ ∠QSR = 108°, so angle1 = 180 - 108 = 72°. Still 72°.
+
+But since this is not among the choices, perhaps there's a miscalculation. Let me check the initial assumption that ∠QSR is 108°. 
+
+Alternatively, maybe ∠QSR is not 108°, but something else. Let me think again.
+
+Wait, at point S, the lines SP and SR are in a straight line (since S is on PR). So, the angle between SQ and SP (which is ∠PSQ = angle1) and the angle between SQ and SR (which is ∠QSR) are supplementary. So angle1 + ∠QSR = 180°. 
+
+But ∠QSR is the angle at S between Q and R, which is part of triangle QSR. But earlier, we calculated ∠QSR as 108°, leading to angle1 = 72°. But if the answer choices don't have 72, maybe I made a mistake in determining ∠QSR.
+
+Let me recalculate ∠QSR. In triangle QSR, we have:
+
+- ∠Q = 39°
+- ∠R = ?
+Wait, earlier I assumed ∠R = 33°, but that might be wrong.
+
+Wait, ∠R in triangle QSR is ∠QRS, which is the angle at R between Q and S. In triangle PQR, ∠QRP is 33°, which is the angle at R between Q and P. Since S is on PR, the angle between Q and S at R is the same as ∠QRP, which is 33°, so ∠QRS = 33°. Hence, ∠QSR = 180 - 39 - 33 = 108°, as before. So angle1 = 72°.
+
+But since 72 isn't an option, perhaps I need to reconsider. Let me check the problem statement again for possible misinterpretations.
+
+Wait, the question asks for m∠1, which is equal to ∠(P,S,Q), which is ∠PSQ. Earlier, I concluded it's 72°, but let me check if there's another way this could be calculated.
+
+Wait, maybe there's a mistake in the assumption that ∠QSR = 108°. Let me calculate it using Law of Sines in triangle QSR.
+
+In triangle QSR:
+
+∠Q = 39°, ∠R = 33°, ∠S = 108°
+
+Using Law of Sines:
+
+QS / sin(33°) = QR / sin(∠QSR) = QR / sin(108°)
+
+But QR is known from triangle PQR. Let me denote QR = b, PQ = a, and PR = c = sqrt(a² + b²). From earlier, b = a tan(57°).
+
+So, in triangle QSR:
+
+QS / sin(33°) = QR / sin(108°)
+
+→ QS = QR * sin(33°) / sin(108°)
+
+Plugging in QR = b = a tan(57°):
+
+QS = a tan(57°) * sin(33°) / sin(108°)
+
+Now, in triangle PQS, we can apply Law of Sines:
+
+PQ / sin(∠PSQ) = QS / sin(∠QPS)
+
+PQ is a, ∠PSQ is angle1, QS is as above, ∠QPS is what?
+
+But earlier, we had angle1 + ∠QPS = 129°, so ∠QPS = 129° - angle1.
+
+Let me write the Law of Sines equation:
+
+a / sin(angle1) = QS / sin(∠QPS) = QS / sin(129° - angle1)
+
+Substitute QS from above:
+
+a / sin(angle1) = [a tan(57°) * sin(33°) / sin(108°)] / sin(129° - angle1)
+
+Cancel a from both sides:
+
+1 / sin(angle1) = [ tan(57°) * sin(33°) / sin(108°) ] / sin(129° - angle1)
+
+Cross-multiplying:
+
+sin(129° - angle1) = tan(57°) * sin(33°) / sin(108°) * sin(angle1)
+
+Let me compute the numerical value of the RHS.
+
+First, calculate tan(57°): ≈ 1.5399
+
+sin(33°) ≈ 0.5446
+
+sin(108°) ≈ 0.9511
+
+So RHS = 1.5399 * 0.5446 / 0.9511 * sin(angle1) ≈ (1.5399 * 0.5446 / 0.9511) * sin(angle1)
+
+Calculate 1.5399 * 0.5446 ≈ 0.838
+
+Then divide by 0.9511: 0.838 / 0.9511 ≈ 0.881
+
+So RHS ≈ 0.881 * sin(angle1)
+
+Thus:
+
+sin(129° - angle1) ≈ 0.881 * sin(angle1)
+
+Let me denote x = angle1. Then:
+
+sin(129° - x) = 0.881 sin(x)
+
+Expand sin(129° - x) using sine subtraction formula:
+
+sin(129°)cos(x) - cos(129°)sin(x) = 0.881 sin(x)
+
+Rearrange:
+
+sin(129°)cos(x) = [0.881 + cos(129°)] sin(x)
+
+Divide both sides by sin(x):
+
+sin(129°)cot(x) = 0.881 + cos(129°)
+
+Compute sin(129°) and cos(129°):
+
+129° is in the second quadrant. sin(129°) = sin(180° - 51°) = sin(51°) ≈ 0.7771
+
+cos(129°) = -cos(51°) ≈ -0.6293
+
+So:
+
+0.7771 * cot(x) = 0.881 + (-0.6293) = 0.881 - 0.6293 ≈ 0.2517
+
+Thus:
+
+cot(x) ≈ 0.2517 / 0.7771 ≈ 0.3237
+
+So cot(x) ≈ 0.3237 → tan(x) ≈ 1 / 0.3237 ≈ 3.090
+
+Now, tan(x) ≈ 3.090 → x ≈ arctan(3.090). Let me calculate this.
+
+arctan(3.090) is approximately 72°, since tan(72°) ≈ 3.077, which is close. So x ≈ 72°, confirming our earlier result.
+
+But since 72° is not among the options, and the closest is 72°, which isn't listed. But the options are A.39, B.84, C.108, D.129. Wait, maybe there's a calculation error in assuming that ∠QSR is 108°? Let me recheck.
+
+Wait, in triangle QSR, if ∠Q = 39°, ∠R = 33°, then ∠S = 180 - 39 - 33 = 108°, which is correct. So angle1 = 180 - 108 = 72°. 
+
+But since 72° isn't an option, perhaps the problem expects us to round or there's a different interpretation. Alternatively, perhaps I made a mistake in identifying the angles.
+
+Wait, let me check if ∠QSR is not 108°, but instead something else. Let me think about the diagram.
+
+If S is on PR, then in triangle QSR, ∠QSR is the angle at S between Q and R. But this angle is also part of triangle PSQ. Wait, no. At point S, the angle between QS and PR is ∠QSR, and the angle between QS and PS is ∠PSQ. Since PR is a straight line, these two angles at S add up to 180°. So ∠QSR + ∠PSQ = 180°, hence ∠PSQ = 180° - ∠QSR.
+
+But if ∠QSR is 108°, then ∠PSQ = 72°, which is angle1. But if the options don't include this, perhaps there's an error in the problem setup or in my understanding.
+
+Alternatively, perhaps the angle1 is not ∠PSQ but another angle? Let me recheck the problem statement.
+
+The problem states: Equals(Angle(1), Angle(P,S,Q)). Angle(P,S,Q) is the angle at S between P and Q, which is ∠PSQ, which is angle1. So that part is correct.
+
+Wait, maybe the initial assumption that ∠QRS = 33° is wrong. Let me think: in triangle PQR, ∠QRP is 33°, which is the angle at R between Q and P. But when S is on PR, ∠QRS is the angle at R between Q and S. Since S is on PR, this is the same as ∠QRP, which is 33°, because RS is part of PR. So ∠QRS = 33°, correct.
+
+Alternatively, perhaps there's a miscalculation in the earlier steps. Let me try another approach using the given that Add(MeasureOf(Angle(P,Q,S)), MeasureOf(Angle(S,Q,R))) = MeasureOf(Angle(P,Q,R)) = 90°, and we know MeasureOf(Angle(P,Q,S)) is 51°, so MeasureOf(Angle(S,Q,R)) is 39°, as before.
+
+Now, consider triangle QSR, with ∠SQR = 39°, ∠QRS = 33°, so ∠QSR = 108°, as before. Hence, angle1 = 180 - 108 = 72°. 
+
+But since this is not an option, maybe the intended answer is 84°, which is closest to 72°? Or perhaps I missed a key detail.
+
+Wait, let me check if there's another relationship. The problem mentions that SumOf(MeasureOf(Angle(P,Q,S)), MeasureOf(Angle(Q,P,S)), MeasureOf(Angle(P,S,Q))) equals 180°. Wait, Angle(Q,P,S) is the angle at P between Q and S, which is ∠QPS. So in triangle PQS, the angles are ∠PQS = 51°, ∠QPS, and ∠PSQ = angle1. Their sum is 180°, so 51 + ∠QPS + angle1 = 180 → ∠QPS + angle1 = 129°, as before.
+
+But earlier, we also found that angle1 = 72°, so ∠QPS = 57°, which would imply that ∠QPS = 57°, which is the same as ∠QPR in triangle PQR. This would mean that S is at R, but then ∠SQR would be 0°, conflicting with ∠SQR = 39°. This contradiction suggests an error in assumptions.
+
+Wait, this implies that our earlier conclusion that ∠QSR = 108° is wrong. How?
+
+Wait, if ∠QPS = 57°, then S is at R, making ∠SQR = 0°, but we have ∠SQR = 39°, so this is impossible. Hence, there must be a mistake in the assumption that ∠QSR = 108°. Where is the mistake?
+
+Perhaps ∠QRS is not 33°, but something else. Let me rethink: in triangle PQR, ∠QRP is 33°, which is the angle at R between Q and P. When S is on PR, the angle at R between Q and S is not necessarily 33°, because S is not necessarily at P. Let me recompute ∠QRS.
+
+Let me use coordinates again. Assume Q(0,0), P(a,0), R(0,b), S on PR. Let me find ∠QRS.
+
+Vector RQ is from R to Q: Q - R = (0 - 0, 0 - b) = (0, -b)
+
+Vector RS is from R to S: S - R = (a(1 - t) - 0, bt - b) = (a(1 - t), b(t - 1))
+
+So, to find ∠QRS, which is the angle at R between Q and S. This is the angle between vectors RQ and RS.
+
+Vector RQ is (0, -b), vector RS is (a(1 - t), b(t - 1))
+
+The angle between these vectors can be found using dot product:
+
+cosθ = (RQ · RS) / (|RQ| |RS|)
+
+Compute RQ · RS = (0)(a(1 - t)) + (-b)(b(t - 1)) = -b²(t - 1) = b²(1 - t)
+
+|RQ| = sqrt(0² + (-b)^2) = b
+
+|RS| = sqrt[a²(1 - t)^2 + b²(t - 1)^2] = sqrt[(a² + b²)(1 - t)^2] = (1 - t)sqrt(a² + b²)
+
+Thus, cosθ = [b²(1 - t)] / [b * (1 - t)sqrt(a² + b²)] = b / sqrt(a² + b²)
+
+But in triangle PQR, b / sqrt(a² + b²) is sin(angle at P), since in right triangle, opposite over hypotenuse. Angle at P is 57°, so sin(57°) = b / sqrt(a² + b²). Hence, cosθ = sin(57°) = cos(33°), since sin(57°) = cos(90° - 57°) = cos(33°). Therefore, θ = 33°, which confirms that ∠QRS = 33°, as previously thought.
+
+So, this means ∠QRS = 33°, and in triangle QSR, angles are 39°, 33°, and 108°, leading to angle1 = 72°. This suggests that either there's a mistake in the problem's answer choices, or I have made a fundamental error.
+
+Alternatively, perhaps the angle1 is not ∠PSQ but another angle? Let me recheck the problem statement.
+
+The problem says: Equals(Angle(1), Angle(P,S,Q)). Angle(P,S,Q) is the angle at S between P and Q, which is ∠PSQ, which is angle1. So that part is correct.
+
+Wait, but let me check if there's a different interpretation of the angle notation. In some contexts, Angle(P,S,Q) could be interpreted differently, but generally, it's the angle at S. So, it should be ∠PSQ.
+
+Given that, and the calculations consistently pointing to 72°, which is not an option, but the closest option is B.84, which is 12° higher. Alternatively, perhaps there's a miscalculation in the earlier steps.
+
+Wait, let me try to calculate angle1 using the Law of Sines in triangle PQS with the earlier derived value of tan(x) ≈ 3.090, giving x ≈ 72°, but if there's a calculation error in the RHS of the equation.
+
+Let me redo the calculation for the RHS:
+
+Earlier, I calculated tan(57°) * sin(33°) / sin(108°) ≈ 1.5399 * 0.5446 / 0.9511 ≈ 0.881. Let me verify this with more precise values.
+
+First, let's use more accurate values:
+
+tan(57°): 57 degrees. Using calculator: tan(57°) ≈ 1.5398649638
+
+sin(33°): sin(33°) ≈ 0.5446391494
+
+sin(108°): sin(108°) = sin(180° - 72°) = sin(72°) ≈ 0.9510565163
+
+So:
+
+1.5398649638 * 0.5446391494 = 1.5398649638 * 0.5446391494
+
+Let me calculate this:
+
+1.5398649638 * 0.5446391494 ≈ 1.539865 * 0.544639 ≈ 
+
+Let me multiply 1.54 * 0.5446 ≈ 1.54 * 0.5446 ≈ 0.8387
+
+Then divide by 0.9510565163: 0.8387 / 0.951056 ≈ 0.882.
+
+So, RHS ≈ 0.882 * sin(x)
+
+Then, the equation is sin(129 - x) = 0.882 sin(x)
+
+Let me try x = 72°:
+
+Left side: sin(129 - 72) = sin(57°) ≈ 0.8387
+
+Right side: 0.882 * sin(72°) ≈ 0.882 * 0.9511 ≈ 0.839
+
+These are very close, confirming x ≈ 72°.
+
+But since 72° is not an option, perhaps the intended answer is 84°, which is the closest option, or there's a mistake in the problem. Alternatively, maybe there's a different interpretation.
+
+Wait, let me check if the angle1 is actually ∠QSP instead of ∠PSQ. But no, ∠QSP is the same as ∠PSQ.
+
+Wait, maybe the question refers to angle1 as ∠SQR, which is 39°, but that's not the case. Or perhaps I mixed up angles.
+
+Alternatively, let me consider that in the beginning, I assumed that ∠QSR = 108°, but if instead, there's a different relationship.
+
+Wait, if angle1 is 72°, and the options are A.39, B.84, C.108, D.129, perhaps the closest is B.84, and there was a calculation error. Or perhaps the correct answer is 84°, and my earlier steps have an error.
+
+Let me try another approach using the given that in triangle PQS, ∠PQS = 51°, and in triangle QSR, ∠SQR = 39°, ∠QRS = 33°, ∠QSR = 108°, and angle1 = 72°. If this is correct, then the answer should be 72°, but since it's not available, perhaps the problem expects us to use another method.
+
+Wait, let me check if there's a cyclic quadrilateral or other properties. For example, if points P, Q, R, S form a cyclic quadrilateral, but since S is on PR, it's unlikely.
+
+Alternatively, let me consider triangle PQS and triangle QSR. 
+
+Wait, if I use the Law of Sines in triangle PQS and triangle QSR, and relate the sides.
+
+In triangle QSR, using Law of Sines:
+
+QS / sin(33°) = QR / sin(108°) → QS = QR * sin(33°) / sin(108°)
+
+In triangle PQS, using Law of Sines:
+
+PS / sin(51°) = QS / sin(∠QPS)
+
+But PS = PR - SR. In triangle PQR, PR = sqrt(PQ² + QR²). Let me denote PQ = a, QR = b, so PR = sqrt(a² + b²).
+
+Also, in triangle QSR, using Law of Sines:
+
+SR / sin(39°) = QR / sin(108°) → SR = QR * sin(39°) / sin(108°)
+
+So PS = PR - SR = sqrt(a² + b²) - [b * sin(39°) / sin(108°)]
+
+But from earlier, in triangle PQS:
+
+PS / sin(51°) = QS / sin(∠QPS)
+
+But QS = b * sin(33°) / sin(108°)
+
+And PS = sqrt(a² + b²) - [b * sin(39°) / sin(10°8)]
+
+This seems too complex, but let me substitute b = a tan(57°), as before.
+
+Let me compute each term:
+
+Let a = 1 for simplicity, so PQ = 1, QR = tan(57°) ≈ 1.5399.
+
+PR = sqrt(1 + tan²(57°)) = sec(57°) ≈ 1.836.
+
+SR = QR * sin(39°) / sin(108°) ≈ 1.5399 * 0.6293 / 0.9511 ≈ (1.5399 * 0.6293) / 0.9511 ≈ 0.968 / 0.9511 ≈ 1.018.
+
+So PS = PR - SR ≈ 1.836 - 1.018 ≈ 0.818.
+
+Now, in triangle PQS, PS / sin(51°) = QS / sin(∠QPS)
+
+We have PS ≈ 0.818, sin(51°) ≈ 0.7771, QS = QR * sin(33°)/sin(108°) ≈ 1.5399 * 0.5446 / 0.9511 ≈ 0.881.
+
+So:
+
+0.818 / 0.7771 ≈ QS / sin(∠QPS)
+
+=> 1.052 ≈ 0.881 / sin(∠QPS)
+
+=> sin(∠QPS) ≈ 0.881 / 1.052 ≈ 0.837
+
+Thus, ∠QPS ≈ arcsin(0.837) ≈ 56.9°, which is approximately 57°, as expected. Then, angle1 = 129° - 57° = 72°, confirming the previous result.
+
+This strongly suggests that the correct answer is 72°, but since it's not an option, there must be an error in the problem or perhaps a miscalculation. However, given the options, the closest is B.84, but this is speculative. Alternatively, perhaps there's a miscalculation in the assumption of ∠QSR.
+
+Wait, let me try to calculate ∠QSR using the Law of Sines in triangle QSR with actual values.
+
+With a = 1, b = tan(57°) ≈ 1.5399, QR = b, QS ≈ 0.881, SR ≈ 1.018.
+
+In triangle QSR, sides:
+
+- QR = 1.5399
+- SR ≈ 1.018
+- QS ≈ 0.881
+
+Using Law of Cosines to find ∠QSR:
+
+cos(∠QSR) = (QS² + SR² - QR²) / (2 * QS * SR)
+
+Compute QS² + SR² - QR²:
+
+(0.881² + 1.018² - 1.5399²) ≈ (0.776 + 1.036 - 2.371) ≈ (1.812 - 2.371) ≈ -0.559
+
+Then, cos(∠QSR) = -0.559 / (2 * 0.881 * 1.018) ≈ -0.559 / (1.793) ≈ -0.311
+
+Thus, ∠QSR ≈ arccos(-0.311) ≈ 108.1°, confirming the earlier calculation. Hence, angle1 = 180 - 108.1 = 71.9°, which is approximately 72°.
+
+Given that the closest option is B.84, but this is not very close. Alternatively, perhaps the correct answer is 84°, and there's an error in the problem's options. Alternatively, perhaps I made a mistake in interpreting the angle1.
+
+Wait, let me check if angle1 is ∠QSP instead of ∠PSQ. No, ∠QSP is the same as ∠PSQ.
+
+Alternatively, perhaps the angle1 is ∠QPS, which is 57°, but that's not an option either. Or maybe the problem meant to ask for ∠QSR, which is 108°, option C. But the question explicitly says angle1 = ∠(P,S,Q), which is ∠PSQ.
+
+Given this, and assuming that the problem may have a typo or the options are incorrect, but since I have to choose from the given options, and 72° is closest to 72°, but none of the options
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================

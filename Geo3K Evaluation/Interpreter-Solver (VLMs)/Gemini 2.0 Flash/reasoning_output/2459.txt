@@ -1,0 +1,66 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2459.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2459.txt
+
+PREDICATES CONTENT:
+Point(J)
+Point(K)
+Point(L)
+Point(M)
+Point(R)
+Point(P)
+Line(J,K)
+Line(K,L)
+Line(L,M)
+Line(M,J)
+Line(M,L)
+Line(L,P)
+Line(P,R)
+Line(R,M)
+Rectangle(J,K,L,M)
+Rhombus(M,L,P,R)
+Congruent(Angle(J,M,K),Angle(R,M,P))
+MeasureOf(Angle(J,M,K),55)
+MeasureOf(Angle(M,R,P),70)
+Parallel(Line(J,K),Line(M,L))
+Parallel(Line(K,L),Line(J,M))
+Parallel(Line(M,L),Line(R,P))
+Parallel(Line(L,P),Line(M,R))
+RightAngle(Angle(J,K,L))
+RightAngle(Angle(K,L,M))
+RightAngle(Angle(L,M,J))
+RightAngle(Angle(M,J,K))
+Equals(LengthOf(J,K),LengthOf(M,L))
+Equals(LengthOf(K,L),LengthOf(J,M))
+Equals(LengthOf(M,L),LengthOf(L,P))
+Equals(LengthOf(L,P),LengthOf(P,R))
+Equals(LengthOf(P,R),LengthOf(R,M))
+MeasureOf(Angle(R,M,P),55)
+Equals(MeasureOf(Angle(M,R,P)),MeasureOf(Angle(M,L,P)))
+
+QUESTION:
+J K L M is a rectangle. M L P R is a rhombus. \angle J M K \cong \angle R M P, m \angle J M K = 55, and m \angle M R P = 70. Find m \angle K L P.
+
+CHOICES:
+A. 20
+B. 110
+C. 140
+D. 160
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Rectangle(J,K,L,M) + RightAngle(Angle(K,L,M)) → MeasureOf(Angle(K,L,M),90)
+From Rhombus(M,L,P,R) → Equals(MeasureOf(Angle(M,R,P)),MeasureOf(Angle(M,L,P)))
+From MeasureOf(Angle(M,R,P),70) + Equals(MeasureOf(Angle(M,R,P)),MeasureOf(Angle(M,L,P))) → MeasureOf(Angle(M,L,P),70)
+From MeasureOf(Angle(K,L,M),90) + MeasureOf(Angle(M,L,P),70) → MeasureOf(Angle(K,L,P), MeasureOf(Angle(K,L,M)) + MeasureOf(Angle(M,L,P)))
+From MeasureOf(Angle(K,L,M),90) + MeasureOf(Angle(M,L,P),70) → MeasureOf(Angle(K,L,P),90 + 70)
+From MeasureOf(Angle(K,L,P),90 + 70) → MeasureOf(Angle(K,L,P),160)
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

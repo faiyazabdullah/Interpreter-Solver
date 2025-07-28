@@ -1,0 +1,60 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2778.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2778.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(X)
+Point(Z)
+Point(W)
+Point(Y)
+Point(T)
+Circle(A)
+PointLiesOnCircle(X,Circle(A))
+PointLiesOnCircle(Z,Circle(A))
+PointLiesOnCircle(W,Circle(A))
+PointLiesOnCircle(Y,Circle(A))
+Line(X,W)
+Line(Z,Y)
+Line(W,T)
+Line(Y,T)
+LengthOf(X,W,12)
+LengthOf(W,T,7)
+LengthOf(Y,T,6)
+IsChordOf(Line(X,W),Circle(A))
+IsChordOf(Line(Z,Y),Circle(A))
+Secant(Line(T,W),Circle(A))
+Secant(Line(T,Y),Circle(A))
+Mul(LengthOf(W,T),LengthOf(X,T))
+Mul(LengthOf(Y,T),LengthOf(Z,T))
+Equals(Mul(LengthOf(W,T),LengthOf(X,T)),Mul(LengthOf(Y,T),LengthOf(Z,T)))
+Add(LengthOf(W,T),LengthOf(X,W),LengthOf(X,T))
+Add(LengthOf(Y,T),LengthOf(Y,Z),LengthOf(Z,T))
+LengthOf(Y,Z,x)
+Equals(Add(LengthOf(W,T),LengthOf(X,W),LengthOf(X,T)),Add(LengthOf(Y,T),LengthOf(Y,Z),LengthOf(Z,T)))
+
+QUESTION:
+Find x.
+
+CHOICES:
+A. \frac { 72 } { 7 }
+B. 14
+C. \frac { 95 } { 6 }
+D. \frac { 97 } { 6 }
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Secant(Line(T,W),Circle(A)) and Secant(Line(T,Y),Circle(A)) + Secant-Secant Power Theorem → LengthOf(W,T) * LengthOf(X,T) = LengthOf(Y,T) * LengthOf(Z,T)
+From LengthOf(W,T,7) and LengthOf(X,W,12) → LengthOf(X,T) = LengthOf(X,W) + LengthOf(W,T) = 12 + 7 = 19
+From LengthOf(Y,T,6) and LengthOf(Y,Z,x) → LengthOf(Z,T) = LengthOf(Y,Z) + LengthOf(Y,T) = x + 6
+From LengthOf(W,T,7) and LengthOf(X,T,19) and LengthOf(Y,T,6) and LengthOf(Z,T,x+6) + LengthOf(W,T) * LengthOf(X,T) = LengthOf(Y,T) * LengthOf(Z,T) → 7 * 19 = 6 * (x+6)
+From 7 * 19 = 6 * (x+6) → 133 = 6x + 36 → 6x = 133 - 36 = 97 → x = 97 / 6
+
+Final Answer: D
+
+====================================================================================================
+EXTRACTED ANSWER: D
+====================================================================================================

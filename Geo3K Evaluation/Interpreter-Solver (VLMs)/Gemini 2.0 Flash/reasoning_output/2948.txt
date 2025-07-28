@@ -1,0 +1,53 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2948.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2948.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Line(A,B)
+Line(A,C)
+Line(B,C)
+Line(A,D)
+Perpendicular(A,D,B,C)
+Perpendicular(A,B,A,C)
+RightAngle(A,D,B)
+RightAngle(B,A,C)
+Triangle(A,B,D)
+Triangle(A,B,C)
+LengthOf(A,B,10)
+LengthOf(B,D,5)
+PointLiesOnLine(D,B,C)
+PointLiesOnLine(A,A,D)
+IsAltitudeOf(A,D,Triangle(A,B,C))
+
+QUESTION:
+In the figure, A D is perpendicular to B C and A B is perpendicular to A C. What is B C?
+
+CHOICES:
+A. 5 \sqrt 2
+B. 5 \sqrt 3
+C. 20
+D. 25
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Line(A,B), Line(A,C) and Line(B,C) → Triangle(A,B,C)
+From Line(A,B), Line(A,D), Line(B,D) → Triangle(A,B,D)
+From RightAngle(B,A,C) → Triangle(A,B,C) is a right triangle.
+From RightAngle(A,D,B) → Line(A,D) is perpendicular to Line(B,C)
+From LengthOf(A,B,10) and LengthOf(B,D,5) → A B = 10 and B D = 5
+From Triangle(A,B,D) + RightAngle(A,D,B) + LengthOf(A,B,10) + LengthOf(B,D,5) + Pythagorean Theorem → A D^2 + B D^2 = A B^2 → A D^2 + 5^2 = 10^2 → A D^2 = 100 - 25 = 75 → A D = \sqrt{75} = 5 \sqrt{3}
+From Triangle(A,B,C) + RightAngle(B,A,C) + IsAltitudeOf(A,D,Triangle(A,B,C)) → A D^2 = B D * D C → (5 \sqrt{3})^2 = 5 * D C → 75 = 5 * D C → D C = 75 / 5 = 15
+From PointLiesOnLine(D,B,C) → B C = B D + D C → B C = 5 + 15 = 20
+
+Final Answer: C
+
+====================================================================================================
+EXTRACTED ANSWER: C
+====================================================================================================

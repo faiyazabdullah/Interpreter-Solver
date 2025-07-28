@@ -1,0 +1,119 @@
+====================================================================================================
+PROBLEM DETAILS:
+====================================================================================================
+IMAGE: /kaggle/input/geometry3k-test-set/geometry3K/image/2801.png
+PREDICATES: /kaggle/input/geometry3k-test-set/Gemini_Claude_Prompt_Improved/Gemini_Claude_Prompt_Improved/predicates_output/2801.txt
+
+PREDICATES CONTENT:
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(F)
+Line(A,B)
+Line(B,C)
+Line(C,D)
+Line(D,A)
+Line(A,C)
+Line(B,D)
+Parallelogram(A,B,C,D)
+LengthOf(A,B)
+Equals(LengthOf(A,B),Sub(Mul(3,y),8))
+LengthOf(B,C)
+Equals(LengthOf(B,C),Add(Mul(2,x),7))
+LengthOf(C,D)
+Equals(LengthOf(C,D),10)
+LengthOf(D,A)
+Equals(LengthOf(D,A),13)
+MeasureOf(Angle(D,B,F))
+Equals(MeasureOf(Angle(D,B,F)),20)
+MeasureOf(Angle(A,F,D))
+Equals(MeasureOf(Angle(A,F,D)),49)
+MeasureOf(Angle(A,D,B))
+Equals(MeasureOf(Angle(A,D,B)),59)
+IsDiagonalOf(Line(A,C),Parallelogram(A,B,C,D))
+IsDiagonalOf(Line(B,D),Parallelogram(A,B,C,D))
+IntersectAt(Line(A,C),Line(B,D),Point(F))
+Parallel(Line(A,B),Line(C,D))
+Parallel(Line(B,C),Line(D,A))
+IsMidpointOf(Point(F),Line(A,C))
+IsMidpointOf(Point(F),Line(B,D))
+Equals(LengthOf(A,F),LengthOf(F,C))
+Equals(LengthOf(B,F),LengthOf(F,D))
+Equals(LengthOf(A,B),LengthOf(C,D))
+Equals(LengthOf(B,C),LengthOf(D,A))
+Congruent(Angle(A,F,D),Angle(C,F,B))
+Congruent(Angle(D,F,C),Angle(A,F,B))
+Angle(B,D,C)
+Angle(A,B,D)
+Equals(MeasureOf(Angle(A,B,D)),MeasureOf(Angle(B,D,C)))
+Angle(A,C,D)
+Angle(B,A,C)
+Equals(MeasureOf(Angle(B,A,C)),MeasureOf(Angle(A,C,D)))
+PointLiesOnLine(F,Line(B,D))
+PointLiesOnLine(F,Line(A,C))
+
+QUESTION:
+Use parallelogram A B C D to find m \angle A C D.
+
+CHOICES:
+A. 20
+B. 29
+C. 49
+D. 59
+
+====================================================================================================
+GEMINI VISION MODEL RESPONSE (WITH IMAGE + PREDICATES):
+====================================================================================================
+From Parallelogram(A,B,C,D) + Parallel(Line(A,B),Line(C,D)) + Parallel(Line(B,C),Line(D,A)) → ABCD is a parallelogram.
+From Parallelogram(A,B,C,D) + IsDiagonalOf(Line(B,D),Parallelogram(A,B,C,D)) + PointLiesOnLine(F,Line(B,D)) + IsMidpointOf(Point(F),Line(B,D)) → F is the midpoint of BD.
+From Parallelogram(A,B,C,D) + IsDiagonalOf(Line(A,C),Parallelogram(A,B,C,D)) + PointLiesOnLine(F,Line(A,C)) + IsMidpointOf(Point(F),Line(A,C)) → F is the midpoint of AC.
+From Angle(A,D,B) + Equals(MeasureOf(Angle(A,D,B)),59) → m∠ADB = 59°
+From Angle(D,B,F) + Equals(MeasureOf(Angle(D,B,F)),20) → m∠DBF = 20°
+From Parallel(Line(A,B),Line(C,D)) → Line AB || Line CD.
+From Line AB || Line CD + Line BD transversal →  m∠ABD = m∠BDC (alternate interior angles)
+From m∠DBF = 20° + Angle(A,B,D) → m∠ABD = m∠DBF = 20°
+From m∠ABD = 20° + m∠ABD = m∠BDC → m∠BDC = 20°
+From m∠ADB = 59° + m∠BDC = 20° + Angle(B,D,C) + Angle(A,D,B) + Angle(A,D,C) → m∠ADC = m∠ADB + m∠BDC = 59° + 20° = 79°
+From Parallelogram(A,B,C,D) → m∠ADC + m∠BCD = 180° (adjacent angles in a parallelogram are supplementary)
+From m∠ADC = 79° + m∠ADC + m∠BCD = 180° → m∠BCD = 180° - 79° = 101°
+From Parallel(Line(B,C),Line(D,A)) → Line BC || Line AD.
+From Line BC || Line AD + Line AC transversal →  m∠DAC = m∠BCA (alternate interior angles)
+From m∠BAC = m∠DCA → m∠BCA = m∠DAC
+From m∠BDC = 20° + Angle(A,B,D) + Angle(B,D,C) + m∠ADB = 59° → m∠BDC = 20°
+From m∠BCA = m∠DAC → Let m∠BCA = x and m∠DAC = x.
+From Line BC || Line AD + Line BD transversal →  m∠CBD = m∠ADB = 59° (alternate interior angles)
+From Parallelogram(A,B,C,D) + Parallel(Line(A,B),Line(C,D)) → m∠BAC = m∠DCA (alternate interior angles)
+Angle(A,C,D) → we are solving for m∠ACD.
+
+From LengthOf(A,B) Equals(LengthOf(A,B),Sub(Mul(3,y),8)) LengthOf(C,D) Equals(LengthOf(C,D),10) Parallel(Line(A,B),Line(C,D)) → A,B,C,D is a parallelogram.
+From LengthOf(B,C) Equals(LengthOf(B,C),Add(Mul(2,x),7)) LengthOf(D,A) Equals(LengthOf(D,A),13) Parallel(Line(B,C),Line(D,A)) → A,B,C,D is a parallelogram.
+From Parallelogram(A,B,C,D) → m∠ADC + m∠BCD = 180°
+Also, m∠BAD + m∠ABC = 180°
+m∠ADB + m∠BDC = m∠ADC = 59 + 20 = 79.
+m∠BDC = m∠ABD = 20. m∠BAC = m∠DCA
+Since ABCD is a parallelogram, AB = CD = 10 and AD = BC = 13. 3y - 8 = 10, 3y = 18, y=6. 2x+7=13, 2x = 6, x=3.
+
+The sum of the angles of a triangle is 180. m∠BCD = m∠BCA + m∠ACD = 101.
+Triangle ABD: m∠BAD + m∠ADB + m∠DBA = 180. m∠BAD + 59 + 20 = 180, m∠BAD = 180 - 79 = 101.
+Triangle ABC: m∠BCA + m∠BAC + m∠CBA = 180. m∠ABC = 180 - 79 = 101.
+Triangle ADC: m∠DAC + m∠DCA + m∠CDA = 180, m∠CDA = 79.
+
+Since ABCD is a parallelogram, m∠BAD + m∠ADC = 180, m∠BAD = 180 - 79 = 101.
+m∠ACD = m∠CAB, m∠BAC + m∠CAD = m∠BAD = 101. m∠CAD =  m∠BCA
+m∠ADC + m∠BCD = 180, m∠BCD = 180 - 79 = 101. m∠BCA + m∠ACD = 101
+Since we know m∠CAB = m∠ACD, then we want the measure of m∠ACD.
+From the triangle formed by ADC:
+m∠DAC+m∠ACD+m∠CDA=180. Let X = m∠CAD= m∠BCA. Since DC is parallel to AB: m∠BAC= m∠DCA.
+m∠CDA=m∠ADB+m∠BDC=59+20=79
+X + m∠ACD + 79 = 180.
+The given angle AFD = 49° = ACB+CBD. Then ACB = 49 -CBD where CBD = ADB,  49° = DAF+AFD. DAF = 49. It cannot be computed directly.
+Since angles of the given lines in parallelogram do not provide precise value. Let us find it in another alternative method
+
+m∠DCA and DAF are alt interior angles where AD and BC are parrallel. DAF = m∠DAX. AF and BD intersect at F with intersection = 49 . Also m∠AFD = 49°
+
+Final Answer: B
+
+====================================================================================================
+EXTRACTED ANSWER: B
+====================================================================================================
