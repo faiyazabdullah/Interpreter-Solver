@@ -2,11 +2,7 @@
 
 ## A Two-Agent Framework for Geometric Reasoning with Large Vision and Language Models
 
-This repository contains the full implementation, evaluation scripts, and predicate generation pipelines for our **Interpreter-Solver** framework — a zero-shot geometric reasoning method combining Vision-Language Models (VLMs) and Language Models (LLMs).
-
 <!-- > 📄 [Anonymous ACL Submission](https://anonymous.4open.science/r/Interpreter-Solver/) -->
-
----
 
 ## 📌 Overview
 
@@ -14,11 +10,12 @@ We present **Interpreter-Solver**, a two-stage pipeline for visual mathematical 
 - The **Interpreter Agent** parses images and questions to generate formal logical predicates.
 - The **Solver Agent** uses these predicates with the question to compute the final answer.
 
-Our approach is evaluated on:
-- 🧩 **Geometry3K** (3,001 high-school geometry questions)
-- 🧠 **MathVerse** (2,612 visual math problems including free-form and MCQ)
+## 🧪 Datasets Overview
 
----
+| Dataset       | Total Problems | MCQ | Free-Form | Source |
+|---------------|----------------|-----|-----------|--------|
+| Geometry3K    | 3,001          | ✅  | ❌        | [Lu et al. (2021)](https://aclanthology.org/2021.acl-long.528.pdf) |
+| MathVerse     | 2,612          | ✅  | ✅        | [Zhang et al. (2025)](https://arxiv.org/pdf/2403.14624)            |
 
 ## 📁 Folder Structure
 
@@ -50,8 +47,6 @@ Our approach is evaluated on:
 └── README.md
 ```
 
----
-
 ## ✨ Key Features
 
 - 📐 **Two-Stage Agent System**: Decouples perception (VLM) from reasoning (LLM)
@@ -59,27 +54,11 @@ Our approach is evaluated on:
 - 🔍 **Predicate-Based Reasoning**: Symbolic formalization of visual geometry
 - 🧠 **High Accuracy**: Outperforms prior state-of-the-art on both benchmarks
 
----
-
-## 🧪 Results
-
-| Dataset       | Model                           | Accuracy |
-|---------------|----------------------------------|----------|
-| Geometry3K    | Interpreter-Solver (Gemini)      | 83.19%   |
-|               | Interpreter-Solver (Qwen 32B)    | 79.53%   |
-|               | Interpreter-Solver (Phi-4)       | 70.05%   |
-| MathVerse     | Interpreter-Solver (Qwen 32B)    | 67.77%   |
-|               | Single Agent (Gemini)            | 85.19%   |
-
----
-
 ## 🧠 Methodology
 
-[]()
+![methodology](assets/methodology.png)
 
-*Figure: Our two-stage pipeline: the Interpreter generates formal predicates; the Solver reasons over them to produce the answer.*
-
----
+*(a) An Interpreter Agent generates formal predicates from images and questions using VLMs.(b) A Solver Agent then solves the problem using these predicates as LLM input.(c) The 2D t-SNE plot visualizes the semantic similarity of generated descriptions and predicate embeddings, indicating the Interpreter's comprehension of predicate generation.*
 
 ## 🧰 Getting Started
 
@@ -107,16 +86,21 @@ cd ../Geometry\ 3K/
 jupyter notebook interpreter_solver_qwen8b.ipynb
 ```
 
----
+## 🧪 Results
 
-## 📊 Evaluation Datasets
+| Dataset       | Model                                      | #Params      | Accuracy |
+|---------------|---------------------------------------------|--------------|----------|
+| **Geometry3K**| Inter-GPS                                   | 406M         | 57.5%    |
+|               | GeoDRL                                      | 44M          | 68.4%    |
+|               | AutoGPS                                     | ≈200B        | 81.6%    |
+|               | Interpreter-Solver-Phi-4 (Ours)            | 14B-4bit     | 70.05%   |
+|               | Interpreter-Solver-Qwen-3 (Ours)           | 8B-4bit      | 79.53%   |
+|               | Interpreter-Solver-Gemini-2.0 Flash (Ours) | ≈40B         | **83.19%**   |
+| **MathVerse** | G-LLaVa                                     | 13B          | 16.6%    |
+|               | MathVerse                                   | 7B           | 25.9%    |
+|               | OpenVLThinker                               | 7B           | 47.9%    |
+|               | Interpreter-Solver-Qwen-3 (Ours)           | 8B-4bit      | **69.67%**   |
 
-| Dataset       | MCQ | Free-Form | Source                        |
-|---------------|-----|-----------|-------------------------------|
-| Geometry3K    | ✅  | ❌        | [Lu et al. (2021)](https://aclanthology.org/2021.acl-long.528.pdf)              |
-| MathVerse     | ✅  | ✅        | [Zhang et al. (2025)](https://arxiv.org/pdf/2403.14624)     |
-
----
 <!--
 ## 🧩 Citation
 
