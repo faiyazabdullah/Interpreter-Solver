@@ -69,9 +69,8 @@ We present **Interpreter-Solver**, a two-stage pipeline for visual mathematical 
 ### 🔧 Installation
 
 ```bash
-git clone https://github.com/yourusername/interpreter-solver.git
+git clone https://github.com/faiyazabdullah/Interpreter-Solver.git
 cd interpreter-solver
-pip install -r requirements.txt
 ```
 
 ### 🧪 Running Evaluations
