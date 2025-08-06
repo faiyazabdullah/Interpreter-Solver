@@ -56,7 +56,7 @@ We present **Interpreter-Solver**, a two-stage pipeline for visual mathematical 
 
 ## 🧠 Methodology
 
-![methodology](assets/methodology.png)
+![methodology](Assets/methodology.png)
 
 *(a) An Interpreter Agent generates formal predicates from images and questions using VLMs.(b) A Solver Agent then solves the problem using these predicates as LLM input.(c) The 2D t-SNE plot visualizes the semantic similarity of generated descriptions and predicate embeddings, indicating the Interpreter's comprehension of predicate generation.*
 
