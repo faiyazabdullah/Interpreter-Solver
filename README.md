@@ -1,18 +1,10 @@
 # _Do Multi-Agents Solve Better Than Single?_ Evaluating Agentic Frameworks for Diagram-Grounded Geometry Problem Solving and Reasoning
 
+[![Paper](https://img.shields.io/badge/Paper-Arxiv-red)](https://arxiv.org/abs/2512.16698)
+
 _Abstract: Diagram-grounded geometry problem solving is a critical benchmark for multimodal large language models (MLLMs), yet the benefits of multi-agent design over single-agent remain unclear. We systematically compare single-agent and multi-agent pipelines on four visual math benchmarks: Geometry3K, MathVerse, OlympiadBench, and We-Math. For open-source models, multi-agent consistently improves performance. For example, Qwen-2.5-VL (7B) gains +6.8 points and Qwen-2.5-VL (32B) gains +3.3 on Geometry3K, and both Qwen-2.5-VL variants see further gains on OlympiadBench and We-Math. In contrast, the closed-source Gemini-2.0-Flash generally performs better in single-agent mode on classic benchmarks, while multi-agent yields only modest improvements on the newer We-Math dataset. These findings show that multi-agent pipelines provide clear benefits for open-source models and can assist strong proprietary systems on newer, less familiar benchmarks, but agentic decomposition is not universally optimal._
 
 <!-- > 📄 [Anonymous ACL Submission](https://anonymous.4open.science/r/Interpreter-Solver/) -->
-
-## 📌 Overview
-
-We present **Interpreter-Solver**, a two-stage, multi-agent pipeline for visual mathematical reasoning, together with a **single-agent** baseline built from the same models. We systematically compare these paradigms across four visual math benchmarks.
-
-- The **Interpreter Agent** parses images and questions to generate compact formal logical predicates.
-- The **Solver Agent** uses these predicates (plus the original question) to compute the final answer.
-- In the **single-agent** setting, a VLM directly answers from the diagram and text without explicit predicates.
-
-Our results show that multi-agent decomposition **consistently helps open-source models**, especially at medium scale and on newer benchmarks, while **strong proprietary systems** often remain stronger in single-agent mode, with multi-agent offering only **modest gains** on newer visual math datasets.
 
 ## 🧪 Datasets Overview
 
